@@ -1,4 +1,4 @@
-# EloBairro (nome provisório)
+# EloBairro
 
 Assistente de serviços públicos do bairro, feito para quem tem dificuldade com interfaces de texto: pessoas idosas, com baixa alfabetização, com deficiência visual, auditiva ou motora.
 
