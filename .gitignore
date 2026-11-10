@@ -1,0 +1,10 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+data/audios_teste/*.wav
+data/audios_teste/*.mp3
+models/*.bin
+*.log
+.DS_Store
