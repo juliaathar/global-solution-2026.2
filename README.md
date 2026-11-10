@@ -2,7 +2,7 @@
 
 Assistente de serviços públicos do bairro, feito para quem tem dificuldade com interfaces de texto: pessoas idosas, com baixa alfabetização, com deficiência visual, auditiva ou motora.
 
-Projeto da Global Solution 2026.2 (FIAP, CitizenTech). Uma única solução atende nove disciplinas. Cada disciplina tem sua pasta de entrega em `entregas/`, e o código integrado fica em `src/`.
+Projeto da Global Solution 2026.2 (FIAP, CitizenTech). Uma única solução atende nove disciplinas. Cada disciplina tem sua própria pasta, numerada de 01 a 09, com código, dados, notebooks, evidências e relatório daquela matéria.
 
 ## Integrantes
 
@@ -46,17 +46,17 @@ Módulos complementares: alerta sonoro acessível (IoT), simulação de carga em
 
 | # | Disciplina | O que faz no sistema | Pasta |
 |---|---|---|---|
-| 1 | Front-end em Sistemas de IA | Interface Streamlit e API FastAPI, gráficos Plotly, deploy | `entregas/01-front-end` |
-| 2 | PLN (Assistente de Voz) | STT, LLM, TTS, memória e adaptação para fala | `entregas/02-pln-voz` |
-| 3 | Generative AI | Motor RAG: chunking, retriever, prompt e proteções | `entregas/03-generative-ai` |
-| 4 | Visão Computacional | Classifica fissuras e danos em fotos e vídeo curto | `entregas/04-visao-computacional` |
-| 5 | IoT e Embedded AI | Reconhece campainha e batida na porta no celular (Edge Impulse) | `entregas/05-iot` |
-| 6 | RPA e IA | Robô que transforma relatos em protocolos | `entregas/06-rpa` |
-| 7 | Cluster Computing | Simulação no iSPD com 2 e 4 workers | `entregas/07-cluster` |
-| 8 | Computação Quântica | Roadmap de otimização e criptografia pós-quântica | `entregas/08-quantica` |
-| 9 | Governança em IA | Vídeo, relatório ABNT e consolidação | `entregas/09-governanca` |
+| 1 | Front-end em Sistemas de IA | Interface Streamlit e API FastAPI, gráficos Plotly, deploy | `01-front-end` |
+| 2 | PLN (Assistente de Voz) | STT, LLM, TTS, memória e adaptação para fala | `02-pln-voz` |
+| 3 | Generative AI | Motor RAG: chunking, retriever, prompt e proteções | `03-generative-ai` |
+| 4 | Visão Computacional | Classifica fissuras e danos em fotos e vídeo curto | `04-visao-computacional` |
+| 5 | IoT e Embedded AI | Reconhece campainha e batida na porta no celular (Edge Impulse) | `05-iot` |
+| 6 | RPA e IA | Robô que transforma relatos em protocolos | `06-rpa` |
+| 7 | Cluster Computing | Simulação no iSPD com 2 e 4 workers | `07-cluster` |
+| 8 | Computação Quântica | Roadmap de otimização e criptografia pós-quântica | `08-quantica` |
+| 9 | Governança em IA | Vídeo, relatório ABNT e consolidação | `09-governanca` |
 
-Cada pasta de entrega tem um `README.md` com o checklist dos requisitos do enunciado correspondente.
+Cada pasta tem um `README.md` com o checklist dos requisitos do enunciado correspondente.
 
 ## Estrutura do repositório
 
@@ -65,38 +65,26 @@ Cada pasta de entrega tem um `README.md` com o checklist dos requisitos do enunc
 ├── README.md
 ├── .env.example
 ├── docker-compose.yml          (a criar)
-├── docs/                       problema, arquitetura, ODS, LGPD e ética
-│   ├── diagramas/
-│   └── evidencias/
-├── src/
-│   ├── api/                    back-end FastAPI
-│   │   ├── routers/            endpoints
-│   │   ├── schemas/            modelos Pydantic de entrada e saída
-│   │   ├── pipelines/          lógica de IA
-│   │   └── providers/          acesso ao LLM e a dados externos
-│   ├── web/                    front-end Streamlit
-│   │   ├── features/           telas por responsabilidade
-│   │   ├── ui/                 componentes reutilizáveis
-│   │   ├── state/              estado centralizado
-│   │   └── providers/          cliente HTTP da API
-│   ├── rag/                    motor RAG compartilhado
-│   │   ├── ingestao/
-│   │   ├── chunking/
-│   │   ├── retriever/
-│   │   ├── generator/
-│   │   └── seguranca/          abstenção e testes de prompt injection
-│   ├── voz/                    STT, TTS e adaptação do texto para fala
-│   ├── visao/                  modelo e inferência de imagem e vídeo
-│   ├── rpa/                    robô e fluxos
-│   └── iot/                    recebimento de eventos sonoros
-├── data/                       corpus, áudios e imagens de teste, dados sintéticos
-├── notebooks/                  treino, avaliação e experimentos
-├── tests/                      testes automatizados (pytest)
 ├── docker/
-└── entregas/                   material específico de cada disciplina
+├── docs/                       problema, arquitetura, ODS, LGPD e ética
+├── 01-front-end/
+│   ├── api/                    FastAPI: routers, schemas, pipelines, providers
+│   ├── web/                    Streamlit: features, ui, state, providers
+│   └── testes/
+├── 02-pln-voz/                 stt, tts, adaptacao_fala, audios_teste, testes
+├── 03-generative-ai/           rag (ingestao, chunking, retriever, generator, seguranca),
+│                               corpus, avaliacao, testes
+├── 04-visao-computacional/     codigo, imagens, testes
+├── 05-iot/                     codigo, dados_audio
+├── 06-rpa/                     codigo/fluxos, dados_sinteticos, testes
+├── 07-cluster/                 cenarios_ispd
+├── 08-quantica/
+└── 09-governanca/
 ```
 
-O código em `src/` é único e compartilhado. As pastas de `entregas/` guardam o que cada professor avalia separadamente: relatórios, notebooks, tabelas de métricas, capturas e vídeos.
+Todas as pastas de 01 a 09 têm também `README.md` (checklist do enunciado), `evidencias/` e `relatorio/`. As pastas 01 a 06 têm `notebooks/`.
+
+A integração acontece pela API em `01-front-end/api`, que chama os módulos das outras pastas (voz, RAG, visão e RPA). Cada módulo funciona e é avaliado sozinho.
 
 ## Como executar
 
