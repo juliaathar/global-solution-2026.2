@@ -8,3 +8,8 @@ data/audios_teste/*.mp3
 models/*.bin
 *.log
 .DS_Store
+06-rpa/saida/
+04-visao-computacional/codigo/*.pt
+04-visao-computacional/imagens/Positive/
+04-visao-computacional/imagens/Negative/
+*.imsx.bak
