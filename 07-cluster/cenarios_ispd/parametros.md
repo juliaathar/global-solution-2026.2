@@ -1,49 +1,53 @@
-# Parâmetros dos cenários iSPD (valores estimados e declarados)
+# Parâmetros da simulação (iSPD)
 
-A simulação é uma hipótese de carga do AcolheBairro, não uma medição do protótipo.
-Confirme as unidades na interface do iSPD ao cadastrar cada campo.
+Projeto: **EloBairro**. Disciplina: Cluster Computing.
 
-## Carga de trabalho
+> **Todos os valores abaixo são hipóteses do modelo, não medições.** A simulação não representa um cluster real. Unidades de tamanho computacional (MFLOPS) e comunicação (Mbits) confirmadas na interface do iSPD. Banda e latência não exibem unidade na interface; adotados Mbits/s e s, coerentes com o tempo de comunicação de 0,042 s por tarefa obtido na simulação.
 
-Tarefa repetida: classificar fotos de fissuras e danos enviadas pelos cidadãos (módulo de Visão Computacional).
-Cenário de pico: campanha de relatos após uma chuva forte.
+## Tarefa simulada
 
-| Parâmetro | Valor | Justificativa |
-|---|---|---|
-| Número de tarefas | 1000 imagens | pico de relatos em um dia |
-| Tamanho computacional por tarefa | ~600 MFLOPS (estimado) | MobileNetV2 a 224x224 faz cerca de 300 milhões de multiplicações-somas por imagem |
-| Comunicação por tarefa (envio) | ~0,4 Mbit (≈ 50 KB) | foto JPEG redimensionada |
-| Comunicação por tarefa (retorno) | ~0,01 Mbit | rótulo e confiança |
+Classificar fotos de fissuras e danos em lote (módulo `04-visao-computacional`) em um dia de pico, como depois de uma chuva forte, quando muitos cidadãos enviam fotos ao mesmo tempo.
 
-Substitua pelo valor medido de `benchmark_video.py` se quiser aproximar do real, mas declare a origem.
+## Carga (idêntica nos dois cenários)
 
-## Infraestrutura (idêntica nos dois cenários)
+| Parâmetro | Valor | Unidade | Origem |
+|---|---|---|---|
+| Número de tarefas | 1000 | imagens | hipótese: pico de um dia |
+| Tamanho computacional por tarefa | 2000 | MFlops | hipótese: inferência de um classificador de imagens |
+| Comunicação de ida por tarefa | 4 | Mbits | hipótese: foto de cerca de 500 KB enviada ao worker |
+| Comunicação de volta por tarefa | não modelada | - | retorno do rótulo desconsiderado |
+| Chegada das tarefas | todas em t = 0 | - | lote único |
 
-| Parâmetro | Valor |
-|---|---|
-| Capacidade de cada worker | 2000 MFLOPS (estimado) |
-| Escalonador | Round Robin (o mesmo nos dois) |
-| Banda do enlace | 100 Mbit/s |
-| Latência do enlace | 0,001 s |
-| Mestre | 1, sem processamento de tarefas |
+Configuração no iSPD (carga Random): mínimo = médio = máximo para tamanho fixo; Probability = 0.
 
-## Cenários
+## Infraestrutura (idêntica nos dois cenários, exceto o nº de workers)
 
-| Cenário | Workers | O que muda |
-|---|---|---|
-| A | 2 | somente a quantidade de workers |
-| B | 4 | somente a quantidade de workers |
+| Parâmetro | Cenário A | Cenário B | Unidade |
+|---|---|---|---|
+| Workers | **2** | **4** | máquinas |
+| Capacidade por worker | 1000 | 1000 | MFlops/s |
+| Núcleos (Cores) por worker | 1 | 1 | núcleos |
+| Mestre | 1 (no próprio cluster) | 1 (no próprio cluster) | máquina |
+| Banda de cada link | 100 | 100 | Mbits/s |
+| Latência de cada link | 0,001 | 0,001 | s |
+| Escalonador | Workqueue | Workqueue | - |
 
-## Passo a passo no iSPD
-1. Criar o modelo: 1 mestre, N workers e 1 rede, com os valores acima.
-2. Configurar a carga: 1000 tarefas com o tamanho e a comunicação acima.
-3. Escolher o escalonador (Round Robin) e executar.
-4. Anotar o **Total Simulated Time (s)** e capturar a aba **Resources** (uso de cada worker).
-5. Salvar o arquivo `.imsx` do modelo e as capturas nesta pasta, com nomes `cenario_a_2workers.*` e `cenario_b_4workers.*`.
-6. Repetir com 4 workers sem alterar mais nada.
-7. Calcular: `python calcular_resultados.py T2 T4`.
+Escalonador: Workqueue (opções da versão usada: Workqueue, RoundRobin e DynamicFPLTF). Bandwidth e Latency são definidos no próprio cluster.
 
-## Pontos para discutir no relatório
-- Se T2/T4 ficar abaixo de 2, qual foi o gargalo (rede, mestre ou distribuição desigual).
-- Se a banda ou o mestre limitar, o ganho de workers extras será pequeno. Isso também vale nota.
-- Limites: capacidade e tamanho das tarefas são hipóteses, e o iSPD não modela memória nem I/O de disco.
+## Valores esperados (só para conferir o resultado)
+
+- Tempo de cálculo por tarefa: 2000 / 1000 = 2 s.
+- Cenário A: 1000 × 2 s / 2 workers = cerca de 1000 s.
+- Cenário B: 1000 × 2 s / 4 workers = cerca de 500 s.
+- Transferência por tarefa: 4 Mbits / 100 Mbits/s = 0,04 s. Como o mestre envia tudo pelo mesmo link, o envio das 1000 imagens leva cerca de 40 s e pode virar gargalo no cenário B.
+- Razão ideal T2/T4 = 2.
+
+Se o iSPD mostrar tempos diferentes, o relatório deve explicar a diferença (rede, mestre, escalonador, distribuição).
+
+## Regra de comparação
+
+Só a quantidade de workers muda entre A e B. Carga, capacidade, escalonador, banda e latência ficam iguais.
+
+## Se quiser aproximar do real
+
+Substituir o tamanho computacional pela latência de inferência medida em `04-visao-computacional` e declarar a origem aqui.

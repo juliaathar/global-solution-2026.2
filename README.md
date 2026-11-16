@@ -1,4 +1,4 @@
-# EloBairro (nome provisório)
+# EloBairro
 
 Assistente de serviços públicos do bairro, feito para quem tem dificuldade com interfaces de texto: pessoas idosas, com baixa alfabetização, com deficiência visual, auditiva ou motora.
 
@@ -8,9 +8,9 @@ Projeto da Global Solution 2026.2 (FIAP, CitizenTech). Uma única solução aten
 
 | Nome completo | RM |
 |---|---|
-| (preencher) | (preencher) |
-| (preencher) | (preencher) |
-| (preencher) | (preencher) |
+| Bruno Fernandes | 566325 |
+| Edgar Lódula | 565260 |
+| Júlia Aben-Athar | 566325 |
 
 ## Problema e público
 
