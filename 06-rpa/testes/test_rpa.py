@@ -1,7 +1,9 @@
 """Testes do robô RPA. Rodar de 06-rpa/: python -m unittest discover -s testes -v"""
 import csv
 import sys
+import os
 import tempfile
+from datetime import timedelta
 import unittest
 from pathlib import Path
 
@@ -11,12 +13,16 @@ import config  # noqa: E402
 from classificador import classificar  # noqa: E402
 import coleta_web  # noqa: E402
 import coleta_inmet  # noqa: E402
+import agendador  # noqa: E402
+import smtplib  # noqa: E402
+from unittest import mock  # noqa: E402
 import main  # noqa: E402
 from privacidade import mascarar  # noqa: E402
 import coleta_noticias  # noqa: E402
 from datetime import datetime  # noqa: E402
 from deduplicacao import eh_duplicado, normalizar  # noqa: E402
 from ingestao import ler_relatos  # noqa: E402
+import notificador  # noqa: E402
 from notificador import ErroNotificacao, enviar_com_retry  # noqa: E402
 from validacao import validar  # noqa: E402
 
@@ -274,6 +280,195 @@ class TestEnriquecimento(unittest.TestCase):
             con.close()
             self.assertEqual(urg, "alta")
             self.assertEqual(r["protocolos"][0]["alerta_inmet"], "Inmet: Tempestade (Perigo) em teste")
+
+
+class TestEmail(unittest.TestCase):
+    DADOS = {"categoria": "alagamento", "urgencia": "alta", "confianca": 1.0,
+             "encaminhamento": "", "alerta_inmet": "Inmet: Tempestade (Perigo) em Vale"}
+
+    def setUp(self):
+        self.antes = (config.SMTP_USUARIO, config.SMTP_SENHA, config.EMAIL_DESTINO, config.EMAIL_ATIVO,
+                      config.API_URL, config.EMAIL_URGENCIAS)
+        config.SMTP_USUARIO, config.SMTP_SENHA = "robo@exemplo.com", "senha-de-teste"
+        config.EMAIL_DESTINO, config.EMAIL_ATIVO, config.API_URL = "gestor@exemplo.com", True, ""
+        config.EMAIL_URGENCIAS = ("alta",)
+        notificador._entregues.clear()
+
+    def tearDown(self):
+        (config.SMTP_USUARIO, config.SMTP_SENHA, config.EMAIL_DESTINO, config.EMAIL_ATIVO,
+         config.API_URL, config.EMAIL_URGENCIAS) = self.antes
+
+    def test_envia_email_com_login_e_starttls(self):
+        with mock.patch("notificador.smtplib.SMTP") as smtp:
+            notificador.enviar("ELB-1", self.DADOS)
+        srv = smtp.return_value.__enter__.return_value
+        srv.starttls.assert_called_once()
+        srv.login.assert_called_once_with("robo@exemplo.com", "senha-de-teste")
+        msg = srv.send_message.call_args[0][0]
+        self.assertEqual(msg["To"], "gestor@exemplo.com")
+        self.assertIn("ELB-1", msg["Subject"])
+        self.assertIn("Inmet", msg.get_content())
+
+    def test_email_nao_leva_texto_do_cidadao(self):
+        msg = notificador.montar_email("ELB-1", {**self.DADOS, "texto": "Ligar 12 99876-5432", "id": "R1"})
+        self.assertNotIn("99876", msg.as_string())
+
+    def test_sem_config_ou_urgencia_baixa_nao_envia(self):
+        with mock.patch("notificador.smtplib.SMTP") as smtp:
+            notificador.enviar("ELB-1", {**self.DADOS, "urgencia": "media"})
+            config.EMAIL_ATIVO = False
+            notificador.enviar("ELB-2", self.DADOS)
+            notificador.enviar("ELB-3")  # sem dados: só simula
+        smtp.assert_not_called()
+
+    def test_falha_do_smtp_vira_retry_e_nao_quebra(self):
+        with mock.patch("notificador.smtplib.SMTP", side_effect=OSError("rede fora")) as smtp:
+            ok = enviar_com_retry("ELB-1", 3, 0, dados=self.DADOS)
+        self.assertFalse(ok)
+        self.assertEqual(smtp.call_count, 3)
+
+    def test_senha_recusada_nao_repete(self):
+        with mock.patch("notificador.smtplib.SMTP") as smtp:
+            smtp.return_value.__enter__.return_value.login.side_effect = smtplib.SMTPAuthenticationError(535, b"recusada")
+            ok = enviar_com_retry("ELB-1", 3, 0, dados=self.DADOS)
+        self.assertFalse(ok)
+        self.assertEqual(smtp.call_count, 1)
+
+    def test_retry_nao_reenvia_canal_ja_entregue(self):
+        config.API_URL = "http://api.local/protocolos"
+        chamadas = {"api": 0}
+
+        def api_ok(_p):
+            chamadas["api"] += 1
+        with mock.patch("notificador._enviar_api", api_ok),                 mock.patch("notificador.smtplib.SMTP", side_effect=[OSError("1a falha"), mock.DEFAULT]):
+            ok = enviar_com_retry("ELB-9", 3, 0, dados=self.DADOS)
+        self.assertTrue(ok)
+        self.assertEqual(chamadas["api"], 1)  # a API não foi chamada de novo na 2ª tentativa
+
+    def test_senha_nao_aparece_no_log_de_erro(self):
+        with mock.patch("notificador.smtplib.SMTP", side_effect=OSError("rede fora")),                 self.assertLogs("rpa.notificador", level="WARNING") as logs:
+            enviar_com_retry("ELB-1", 1, 0, dados=self.DADOS)
+        self.assertNotIn("senha-de-teste", "".join(logs.output))
+
+
+def _isolar(d):
+    """Aponta saída, banco e histórico para uma pasta temporária; devolve o estado antigo para restaurar."""
+    campos = ("SAIDA", "BANCO", "LOG", "RELATORIO", "REVISAO", "HISTORICO", "LOCK", "ENTRADA", "USAR_NOTICIAS")
+    antigo = {c: getattr(config, c) for c in campos}
+    config.SAIDA, config.BANCO, config.LOG = d, d / "p.db", d / "l.log"
+    config.RELATORIO, config.REVISAO = d / "r.json", d / "rev.csv"
+    config.HISTORICO, config.LOCK = d / "hist.jsonl", d / "agendador.lock"
+    return antigo
+
+
+def _restaurar(antigo):
+    for c, v in antigo.items():
+        setattr(config, c, v)
+
+
+class TestAgendador(unittest.TestCase):
+    def test_parse_horarios(self):
+        self.assertEqual(agendador.parse_horarios("18:00, 08:00,08:00"), ["08:00", "18:00"])
+        for ruim in ("", "25:00", "8h", "08:60"):
+            with self.assertRaises(agendador.ErroAgendamento):
+                agendador.parse_horarios(ruim)
+
+    def test_proxima_execucao_hoje_e_amanha(self):
+        h = ["08:00", "18:00"]
+        self.assertEqual(agendador.proxima_execucao(datetime(2026, 11, 17, 7, 0), h), datetime(2026, 11, 17, 8, 0))
+        self.assertEqual(agendador.proxima_execucao(datetime(2026, 11, 17, 8, 0), h), datetime(2026, 11, 17, 18, 0))
+        self.assertEqual(agendador.proxima_execucao(datetime(2026, 11, 17, 19, 0), h), datetime(2026, 11, 18, 8, 0))
+        self.assertEqual(agendador.proxima_execucao(datetime(2026, 12, 31, 23, 0), h), datetime(2027, 1, 1, 8, 0))
+
+    def test_busca_manual_registra_historico(self):
+        with tempfile.TemporaryDirectory() as d:
+            antigo = _isolar(Path(d))
+            orig = agendador.main.executar
+            agendador.main.executar = lambda entrada: {"resumo": {"protocolos": 3}, "protocolos": []}
+            try:
+                reg = agendador.executar_busca("manual")
+            finally:
+                agendador.main.executar = orig
+                _restaurar(antigo)
+            self.assertEqual((reg["status"], reg["gatilho"], reg["resumo"]["protocolos"]), ("ok", "manual", 3))
+            self.assertEqual(len((Path(d) / "hist.jsonl").read_text(encoding="utf-8").splitlines()), 1)
+            self.assertFalse((Path(d) / "agendador.lock").exists())  # lock liberado
+
+    def test_busca_simultanea_e_ignorada(self):
+        with tempfile.TemporaryDirectory() as d:
+            antigo = _isolar(Path(d))
+            try:
+                with agendador.Lock():
+                    reg = agendador.executar_busca("agendado")
+            finally:
+                _restaurar(antigo)
+            self.assertEqual(reg["status"], "ignorada")
+
+    def test_lock_esquecido_e_removido(self):
+        with tempfile.TemporaryDirectory() as d:
+            antigo = _isolar(Path(d))
+            velho = config.LOCK_VALIDADE_S
+            config.LOCK.write_text("pid antigo")
+            os.utime(config.LOCK, (0, 0))  # lock de 1970
+            try:
+                with agendador.Lock():
+                    pass
+            finally:
+                config.LOCK_VALIDADE_S = velho
+                _restaurar(antigo)
+
+    def test_erro_na_busca_nao_derruba_o_servico(self):
+        with tempfile.TemporaryDirectory() as d:
+            antigo = _isolar(Path(d))
+            orig = agendador.main.executar
+
+            def quebra(entrada):
+                raise RuntimeError("falha inesperada")
+            agendador.main.executar = quebra
+            try:
+                reg = agendador.executar_busca("agendado")
+            finally:
+                agendador.main.executar = orig
+                _restaurar(antigo)
+            self.assertEqual(reg["status"], "erro")
+            self.assertFalse((Path(d) / "agendador.lock").exists())
+
+    def test_servir_executa_nos_horarios_com_relogio_falso(self):
+        relogio = {"t": datetime(2026, 11, 17, 7, 59, 0)}
+        dormidos = []
+
+        def dormir(seg):
+            dormidos.append(seg)
+            relogio["t"] += timedelta(seconds=seg)
+        buscas = []
+        orig = agendador.executar_busca
+        agendador.executar_busca = lambda gatilho, com_noticias=True: buscas.append((gatilho, relogio["t"])) or {}
+        try:
+            feitas = agendador.servir(["08:00", "18:00"], agora_fn=lambda: relogio["t"], dormir_fn=dormir, max_execucoes=3)
+        finally:
+            agendador.executar_busca = orig
+        self.assertEqual(feitas, 3)
+        self.assertEqual([b[0] for b in buscas], ["agendado"] * 3)
+        self.assertEqual([b[1].strftime("%d %H:%M") for b in buscas], ["17 08:00", "17 18:00", "18 08:00"])
+        self.assertTrue(all(s <= 30 for s in dormidos))
+
+
+class TestBuscasRepetidas(unittest.TestCase):
+    def test_segunda_busca_nao_cria_protocolo_para_copias(self):
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            (d / "e.csv").write_text(
+                "id,texto\n"
+                "A1,Buraco perigoso na Rua Sete com risco de acidente\n"
+                "A2,Buraco perigoso na Rua Sete com risco de acidente\n", encoding="utf-8")
+            antigo = _isolar(d)
+            try:
+                r1 = main.executar(d / "e.csv")["resumo"]
+                r2 = main.executar(d / "e.csv")["resumo"]
+            finally:
+                _restaurar(antigo)
+            self.assertEqual((r1["protocolos"], r1["duplicados"]), (1, 1))
+            self.assertEqual((r2["protocolos"], r2["duplicados"], r2["ja_processados"]), (0, 1, 1))
 
 
 if __name__ == "__main__":

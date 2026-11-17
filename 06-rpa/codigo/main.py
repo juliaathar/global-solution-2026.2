@@ -59,10 +59,11 @@ def executar(entrada: Path, enviar_fn=None) -> dict:
                 resumo["invalidos"] += 1
                 log.warning("Relato %s invalido: %s", rid or "?", motivo)
                 continue
+            texto, n_mascarados = mascarar(r["texto"])  # a partir daqui só o texto mascarado circula
             if banco.existe(rid):
                 resumo["ja_processados"] += 1
+                vistos.append(normalizar(texto))  # senão suas cópias viram protocolo novo nas buscas seguintes
                 continue
-            texto, n_mascarados = mascarar(r["texto"])  # a partir daqui só o texto mascarado circula
             resumo["dados_pessoais_mascarados"] += n_mascarados
             if eh_duplicado(texto, vistos, config.SIMILARIDADE_DUPLICADO):
                 resumo["duplicados"] += 1
@@ -74,18 +75,22 @@ def executar(entrada: Path, enviar_fn=None) -> dict:
                 resumo["revisao_humana"] += 1
                 revisao.append({"id": rid, "texto": texto, **c})
                 continue
+            urgencia_original = c["urgencia"]
             alerta = enriquecedor.aviso_inmet(c)
             if alerta:
                 c = {**c, "urgencia": "alta"}  # antes de gravar, para o banco guardar a urgência final
             encaminhamento = enriquecedor.encaminhamento(texto, c)
             protocolo = banco.salvar(rid, c["categoria"], c["urgencia"], c["confianca"])
             resumo["protocolos"] += 1
-            if not enviar_com_retry(protocolo, config.TENTATIVAS, config.ESPERA_BASE_S, **extra):
+            dados_notif = {**c, "encaminhamento": encaminhamento, "alerta_inmet": alerta}
+            if not enviar_com_retry(protocolo, config.TENTATIVAS, config.ESPERA_BASE_S,
+                                    dados=None if enviar_fn else dados_notif, **extra):
                 resumo["notificacoes_falhas"] += 1
             detalhes.append({"id": rid, "protocolo": protocolo, "encaminhamento": encaminhamento,
-                             "alerta_inmet": alerta, **c,
+                             "alerta_inmet": alerta, "urgencia_original": urgencia_original, **c,
                              "categoria_real": r.get("categoria_real", ""),
-                             "urgencia_real": r.get("urgencia_real", "")})
+                             "urgencia_real": r.get("urgencia_real", ""),
+                             "ubs_real": r.get("ubs_real", "")})
         except Exception:  # um relato com problema nunca derruba a execução inteira
             log.exception("Erro inesperado no relato %s; seguindo", r.get("id"))
             resumo["invalidos"] += 1

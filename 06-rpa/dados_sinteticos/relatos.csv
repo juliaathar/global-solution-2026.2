@@ -1,126 +1,126 @@
-id,texto,categoria_real,urgencia_real
-R0000,"Pessoal, alagamento depois da chuva, água entrando nas casas na Rua das Flores, 760. Já faz tempo.",alagamento,alta
-R0001,"Moro aqui e queria avisar que buraco no asfalto atrapalhando o trânsito na Av. Brasil, 693. Isso afeta muita gente.",buraco,media
-R0002,"Cratera no asfalto com risco para motos na Rua Bela Vista, 33.",buraco,alta
-R0003,"Buraco no asfalto atrapalhando o trânsito na Rua do Mercado, 617. Isso afeta muita gente.",buraco,media
-R0004,"Bom dia. asfalto afundando aos poucos na Rua do Mercado, 430. Preciso de uma solução.",buraco,media
-R0005,"Bom dia. calçada com rachadura grande na Rua das Flores, 778. Preciso de uma solução.",calcada,media
-R0006,"Pessoal, lâmpada queimada no poste da esquina na Rua do Comércio, 221.",iluminacao,media
-R0007,"Pessoal, buraco perigoso, carros desviam na contramão na Av. Brasil, 368. Isso afeta muita gente.",buraco,alta
-R0008,"Poste apagado há duas semanas na Travessa Sol, 550. Preciso de uma solução.",iluminacao,media
-R0009,"Moro aqui e queria avisar que cratera no asfalto com risco para motos na Av. Central, 850. Isso afeta muita gente.",buraco,alta
-R0010,"Moro aqui e queria avisar que onde tomar vacina perto daqui? na Av. das Palmeiras, 197.",servico_saude,media
-R0011,"Pessoal, cratera no asfalto com risco para motos na Rua Sete, 792.",buraco,alta
-R0012,"Pessoal, como marcar consulta no posto de saúde? na Av. Brasil, 390. Preciso de uma solução.",servico_saude,media
-R0013,"Pessoal, bueiro entupido causando alagamento na Rua do Comércio, 380. Já faz tempo.",alagamento,alta
-R0014,"Moro aqui e queria avisar que bueiro entupido causando alagamento na Av. Brasil, 624. Já faz tempo.",alagamento,alta
-R0015,"Gostaria de informar: piso da calçada solto e desnivelado na Rua Sete, 168. Preciso de uma solução.",calcada,media
-R0016,"Rua sem iluminação à noite na Rua da Paz, 864. Já faz tempo.",iluminacao,media
-R0017,"Pessoal, onde fica a UBS mais próxima? na Rua da Paz, 411.",servico_saude,media
-R0018,"Moro aqui e queria avisar que asfalto afundando aos poucos na Rua da Paz, 218. Preciso de uma solução.",buraco,media
-R0019,"Bom dia. caçamba cheia transbordando na Rua do Comércio, 272. Já faz tempo.",lixo,baixa
-R0020,"Moro aqui e queria avisar que enchente na rua, risco para moradores na Rua do Mercado, 270. Isso afeta muita gente.",alagamento,alta
-R0021,"Bom dia. caçamba cheia transbordando na Rua da Paz, 225. Isso afeta muita gente.",lixo,baixa
-R0022,"Lixo acumulado na esquina na Rua das Flores, 882. Já faz tempo.",lixo,baixa
-R0023,"Alagamento depois da chuva, água entrando nas casas na Rua Bela Vista, 611. Preciso de uma solução.",alagamento,alta
-R0024,"Atenção: caçamba cheia transbordando na Rua do Mercado, 258.",lixo,baixa
-R0025,"Atenção: enchente na rua, risco para moradores na Av. Brasil, 699. Por favor, enviem alguém.",alagamento,alta
-R0026,"Gostaria de informar: onde tomar vacina perto daqui? na Av. Brasil, 301. Já faz tempo.",servico_saude,media
-R0027,"Atenção: lixo acumulado na esquina na Av. Central, 996. Já faz tempo.",lixo,baixa
-R0028,"Moro aqui e queria avisar que calçada quebrada que dificulta cadeirante na Av. Central, 862. Isso afeta muita gente.",calcada,media
-R0029,"Bom dia. calçada quebrada que dificulta cadeirante na Rua do Comércio, 383. Isso afeta muita gente.",calcada,media
-R0030,"Gostaria de informar: onde fica a UBS mais próxima? na Av. das Palmeiras, 332.",servico_saude,media
-R0031,"Buraco perigoso, carros desviam na contramão na Av. Central, 246. Já faz tempo.",buraco,alta
-R0032,"Gostaria de informar: calçada quebrada que dificulta cadeirante na Av. Brasil, 750.",calcada,media
-R0033,"Gostaria de informar: como marcar consulta no posto de saúde? na Rua do Comércio, 676. Isso afeta muita gente.",servico_saude,media
-R0034,"Atenção: pista esburacada na Rua do Mercado, 894. Preciso de uma solução.",buraco,media
-R0035,"Pessoal, asfalto afundando aos poucos na Rua Sete, 731. Preciso de uma solução.",buraco,media
-R0036,"Atenção: enchente na rua, risco para moradores na Rua da Paz, 449. Preciso de uma solução.",alagamento,alta
-R0037,"Pessoal, buraco enorme que já causou acidente na Rua Sete, 66.",buraco,alta
-R0038,"Bom dia. piso da calçada solto e desnivelado na Rua Sete, 603.",calcada,media
-R0039,"Cratera no asfalto com risco para motos na Rua das Flores, 235.",buraco,alta
-R0040,"Bom dia. onde tomar vacina perto daqui? na Av. Brasil, 527. Por favor, enviem alguém.",servico_saude,media
-R0041,"Bom dia. bueiro entupido causando alagamento na Rua Sete, 553. Isso afeta muita gente.",alagamento,alta
-R0042,"Gostaria de informar: calçada com rachadura grande na Rua Sete, 804. Preciso de uma solução.",calcada,media
-R0043,"Gostaria de informar: buraco no asfalto atrapalhando o trânsito na Av. Brasil, 675. Por favor, enviem alguém.",buraco,media
-R0044,"Moro aqui e queria avisar que caçamba cheia transbordando na Travessa Sol, 885.",lixo,baixa
-R0045,"Gostaria de informar: enchente na rua, risco para moradores na Av. Brasil, 63. Por favor, enviem alguém.",alagamento,alta
-R0046,"Bom dia. onde fica a UBS mais próxima? na Rua Sete, 197. Isso afeta muita gente.",servico_saude,media
-R0047,"Pessoal, entulho largado há dias na Rua Bela Vista, 188. Preciso de uma solução.",lixo,baixa
-R0048,"Atenção: buraco no asfalto atrapalhando o trânsito na Travessa Sol, 828.",buraco,media
-R0049,"Cratera no asfalto com risco para motos na Rua do Mercado, 857.",buraco,alta
-R0050,"Gostaria de informar: como marcar consulta no posto de saúde? na Rua do Comércio, 417. Preciso de uma solução.",servico_saude,media
-R0051,"Gostaria de informar: pista esburacada na Rua das Flores, 169.",buraco,media
-R0052,"Gostaria de informar: sujeira espalhada na calçada do mercado na Travessa Sol, 293. Isso afeta muita gente.",lixo,baixa
-R0053,"Bom dia. enchente na rua, risco para moradores na Travessa Sol, 159. Por favor, enviem alguém.",alagamento,alta
-R0054,"Atenção: buraco no asfalto atrapalhando o trânsito na Av. das Palmeiras, 754.",buraco,media
-R0055,"Atenção: bueiro entupido causando alagamento na Rua das Flores, 52. Preciso de uma solução.",alagamento,alta
-R0056,"Atenção: piso da calçada solto e desnivelado na Rua do Comércio, 59.",calcada,media
-R0057,"Como marcar consulta no posto de saúde? na Av. Brasil, 610. Já faz tempo.",servico_saude,media
-R0058,"Atenção: lixo acumulado na esquina na Av. das Palmeiras, 253. Isso afeta muita gente.",lixo,baixa
-R0059,"Moro aqui e queria avisar que cratera no asfalto com risco para motos na Av. Brasil, 430. Isso afeta muita gente.",buraco,alta
-R0060,"Pessoal, piso da calçada solto e desnivelado na Rua da Paz, 958. Já faz tempo.",calcada,media
-R0061,"Pessoal, enchente na rua, risco para moradores na Rua da Paz, 245. Preciso de uma solução.",alagamento,alta
-R0062,"Pessoal, asfalto afundando aos poucos na Av. Central, 469.",buraco,media
-R0063,"Buraco perigoso, carros desviam na contramão na Av. das Palmeiras, 577.",buraco,alta
-R0064,"Bom dia. calçada quebrada que dificulta cadeirante na Rua do Mercado, 272. Por favor, enviem alguém.",calcada,media
-R0065,"Bom dia. buraco enorme que já causou acidente na Rua da Paz, 292. Preciso de uma solução.",buraco,alta
-R0066,"Moro aqui e queria avisar que onde tomar vacina perto daqui? na Av. das Palmeiras, 827. Isso afeta muita gente.",servico_saude,media
-R0067,"Moro aqui e queria avisar que cratera no asfalto com risco para motos na Rua do Mercado, 307.",buraco,alta
-R0068,"Pista esburacada na Av. Brasil, 912. Isso afeta muita gente.",buraco,media
-R0069,"Bom dia. pista esburacada na Av. Central, 620. Por favor, enviem alguém.",buraco,media
-R0070,"Gostaria de informar: asfalto afundando aos poucos na Av. Central, 518. Por favor, enviem alguém.",buraco,media
-R0071,"Gostaria de informar: onde fica a UBS mais próxima? na Av. Brasil, 650. Por favor, enviem alguém.",servico_saude,media
-R0072,"Bom dia. buraco enorme que já causou acidente na Rua da Paz, 790. Por favor, enviem alguém.",buraco,alta
-R0073,"Moro aqui e queria avisar que asfalto afundando aos poucos na Travessa Sol, 565. Preciso de uma solução.",buraco,media
-R0074,"Moro aqui e queria avisar que calçada quebrada que dificulta cadeirante na Av. Brasil, 78. Já faz tempo.",calcada,media
-R0075,"Atenção: calçada quebrada que dificulta cadeirante na Rua da Paz, 597. Já faz tempo.",calcada,media
-R0076,"Pessoal, entulho largado há dias na Rua das Flores, 316.",lixo,baixa
-R0077,"Rua sem iluminação à noite na Rua Sete, 683. Por favor, enviem alguém.",iluminacao,media
-R0078,"Bom dia. como conseguir atendimento médico gratuito? na Av. das Palmeiras, 768. Já faz tempo.",servico_saude,media
-R0079,"Gostaria de informar: como marcar consulta no posto de saúde? na Rua do Comércio, 903.",servico_saude,media
-R0080,"Gostaria de informar: asfalto afundando aos poucos na Rua da Paz, 802. Já faz tempo.",buraco,media
-R0081,"Rua sem iluminação à noite na Av. Brasil, 392. Preciso de uma solução.",iluminacao,media
-R0082,"Pessoal, buraco no asfalto atrapalhando o trânsito na Travessa Sol, 359. Já faz tempo.",buraco,media
-R0083,"Pessoal, buraco no asfalto atrapalhando o trânsito na Rua Sete, 409. Por favor, enviem alguém.",buraco,media
-R0084,"Moro aqui e queria avisar que onde fica a UBS mais próxima? na Av. Central, 360. Isso afeta muita gente.",servico_saude,media
-R0085,"Pessoal, sujeira espalhada na calçada do mercado na Rua das Flores, 119. Já faz tempo.",lixo,baixa
-R0086,"Atenção: calçada com rachadura grande na Rua das Flores, 112. Preciso de uma solução.",calcada,media
-R0087,"Atenção: lâmpada queimada no poste da esquina na Rua Bela Vista, 621.",iluminacao,media
-R0088,"Moro aqui e queria avisar que entulho largado há dias na Av. Central, 46. Preciso de uma solução.",lixo,baixa
-R0089,"Moro aqui e queria avisar que cratera no asfalto com risco para motos na Rua do Mercado, 704. Já faz tempo.",buraco,alta
-R0090,"Moro aqui e queria avisar que escuridão total depois das 18h na Av. Brasil, 972. Por favor, enviem alguém.",iluminacao,media
-R0091,"Pessoal, calçada com rachadura grande na Av. Brasil, 738. Isso afeta muita gente.",calcada,media
-R0092,"Moro aqui e queria avisar que escuridão total depois das 18h na Rua da Paz, 413. Por favor, enviem alguém.",iluminacao,media
-R0093,"Moro aqui e queria avisar que calçada quebrada que dificulta cadeirante na Rua Sete, 431. Preciso de uma solução.",calcada,media
-R0094,"Atenção: enchente na rua, risco para moradores na Rua do Comércio, 631. Por favor, enviem alguém.",alagamento,alta
-R0095,"Bom dia. lixo acumulado na esquina na Av. Central, 294. Preciso de uma solução.",lixo,baixa
-R0096,"Gostaria de informar: onde tomar vacina perto daqui? na Travessa Sol, 453. Já faz tempo.",servico_saude,media
-R0097,"Calçada com rachadura grande na Rua do Comércio, 675. Por favor, enviem alguém.",calcada,media
-R0098,"Piso da calçada solto e desnivelado na Av. das Palmeiras, 344. Já faz tempo.",calcada,media
-R0099,"Bom dia. bueiro entupido causando alagamento na Rua Sete, 826. Já faz tempo.",alagamento,alta
-R0100,"Atenção: buraco enorme que já causou acidente na Rua Sete, 487.",buraco,alta
-R0101,"Moro aqui e queria avisar que caçamba cheia transbordando na Av. das Palmeiras, 200. Preciso de uma solução.",lixo,baixa
-R0102,"Moro aqui e queria avisar que caçamba cheia transbordando na Rua Sete, 152.",lixo,baixa
-R0103,"Bom dia. onde fica a UBS mais próxima? na Rua Bela Vista, 225. Isso afeta muita gente.",servico_saude,media
-R0104,"Lixo acumulado na esquina na Rua do Mercado, 256. Preciso de uma solução.",lixo,baixa
-R0105,"Atenção: pista esburacada na Rua do Mercado, 573. Por favor, enviem alguém.",buraco,media
-R0106,"Moro aqui e queria avisar que como conseguir atendimento médico gratuito? na Av. das Palmeiras, 835. Isso afeta muita gente.",servico_saude,media
-R0107,"Gostaria de informar: caçamba cheia transbordando na Rua do Comércio, 762. Preciso de uma solução.",lixo,baixa
-R0108,"Atenção: rua sem iluminação à noite na Av. Central, 785. Preciso de uma solução.",iluminacao,media
-R0109,"Alagamento depois da chuva, água entrando nas casas na Av. Central, 451. Por favor, enviem alguém.",alagamento,alta
-R0110,"Atenção: pista esburacada na Rua da Paz, 328.",buraco,media
-R0111,"Moro aqui e queria avisar que buraco no asfalto atrapalhando o trânsito na Rua Sete, 393. Já faz tempo.",buraco,media
-R0112,"Gostaria de informar: alagamento depois da chuva, água entrando nas casas na Av. Brasil, 425. Por favor, enviem alguém.",alagamento,alta
-R0113,"Bom dia. calçada com rachadura grande na Rua Bela Vista, 64. Preciso de uma solução.",calcada,media
-R0114,"Gostaria de informar: lixo acumulado na esquina na Av. das Palmeiras, 390.",lixo,baixa
-R0115,"Gostaria de informar: lâmpada queimada no poste da esquina na Rua Bela Vista, 874. Isso afeta muita gente.",iluminacao,media
-R0116,"Atenção: enchente na rua, risco para moradores na Rua do Mercado, 820. Já faz tempo.",alagamento,alta
-R0117,"Gostaria de informar: entulho largado há dias na Av. Central, 447.",lixo,baixa
-R0118,"Bom dia. sujeira espalhada na calçada do mercado na Rua Bela Vista, 742. Preciso de uma solução.",lixo,baixa
-R0119,"Gostaria de informar: asfalto afundando aos poucos na Rua do Mercado, 28. Isso afeta muita gente.",buraco,media
-R9001,"Pessoal, alagamento depois da chuva, água entrando nas casas na Rua das Flores, 760. Já faz tempo.",alagamento,alta
-R9002,,,
-R9003,oi,,
-R9004,xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx,,
-R9005,Preciso de ajuda com uma coisa que não sei explicar direito,indefinido,baixa
+id,texto,categoria_real,urgencia_real,ubs_real
+R0000,"Pessoal, alagamento depois da chuva, água entrando nas casas na Rua das Flores, 760. Já faz tempo.",alagamento,alta,
+R0001,"Moro aqui e queria avisar que buraco no asfalto atrapalhando o trânsito na Av. Brasil, 693. Isso afeta muita gente.",buraco,media,
+R0002,"Cratera no asfalto com risco para motos na Rua Bela Vista, 33.",buraco,alta,
+R0003,"Buraco no asfalto atrapalhando o trânsito na Rua do Mercado, 617. Isso afeta muita gente.",buraco,media,
+R0004,"Bom dia. asfalto afundando aos poucos na Rua do Mercado, 430. Preciso de uma solução.",buraco,media,
+R0005,"Bom dia. calçada com rachadura grande na Rua das Flores, 778. Preciso de uma solução.",calcada,media,
+R0006,"Pessoal, lâmpada queimada no poste da esquina na Rua do Comércio, 221.",iluminacao,media,
+R0007,"Pessoal, buraco perigoso, carros desviam na contramão na Av. Brasil, 368. Isso afeta muita gente.",buraco,alta,
+R0008,"Poste apagado há duas semanas na Travessa Sol, 550. Preciso de uma solução.",iluminacao,media,
+R0009,"Moro aqui e queria avisar que cratera no asfalto com risco para motos na Av. Central, 850. Isso afeta muita gente.",buraco,alta,
+R0010,Moro aqui e queria avisar que onde fica a UBS do Jardim Santa Inês 2?,servico_saude,media,UBS Jardim Santa Inês 2
+R0011,"Bom dia. alagamento depois da chuva, água entrando nas casas na Av. Central, 82.",alagamento,alta,
+R0012,"Pessoal, sujeira espalhada na calçada do mercado na Travessa Sol, 651. Já faz tempo.",lixo,baixa,
+R0013,"Pessoal, lâmpada queimada no poste da esquina na Rua Sete, 687.",iluminacao,media,
+R0014,"Moro aqui e queria avisar que piso da calçada solto e desnivelado na Rua do Comércio, 547. Já faz tempo.",calcada,media,
+R0015,"Moro aqui e queria avisar que pista esburacada na Rua Bela Vista, 277. Isso afeta muita gente.",buraco,media,
+R0016,"Asfalto afundando aos poucos na Rua da Paz, 864. Já faz tempo.",buraco,media,
+R0017,Gostaria de informar: a UBS Santana abre aos sábados?,servico_saude,media,UBS Santana
+R0018,"Moro aqui e queria avisar que asfalto afundando aos poucos na Rua da Paz, 218. Preciso de uma solução.",buraco,media,
+R0019,"Bom dia. caçamba cheia transbordando na Rua do Comércio, 272. Já faz tempo.",lixo,baixa,
+R0020,"Moro aqui e queria avisar que enchente na rua, risco para moradores na Rua do Mercado, 270. Isso afeta muita gente.",alagamento,alta,
+R0021,"Bom dia. caçamba cheia transbordando na Rua da Paz, 225. Isso afeta muita gente.",lixo,baixa,
+R0022,"Lixo acumulado na esquina na Rua das Flores, 882. Já faz tempo.",lixo,baixa,
+R0023,"Alagamento depois da chuva, água entrando nas casas na Rua Bela Vista, 611. Preciso de uma solução.",alagamento,alta,
+R0024,"Atenção: caçamba cheia transbordando na Rua do Mercado, 258.",lixo,baixa,
+R0025,"Atenção: enchente na rua, risco para moradores na Av. Brasil, 699. Por favor, enviem alguém.",alagamento,alta,
+R0026,"Bom dia. onde fica a UBS mais próxima? na Av. Central, 446. Preciso de uma solução.",servico_saude,media,
+R0027,"Atenção: cratera no asfalto com risco para motos na Av. Central, 996. Já faz tempo.",buraco,alta,
+R0028,"Moro aqui e queria avisar que calçada quebrada que dificulta cadeirante na Av. Central, 862. Isso afeta muita gente.",calcada,media,
+R0029,"Bom dia. calçada quebrada que dificulta cadeirante na Rua do Comércio, 383. Isso afeta muita gente.",calcada,media,
+R0030,"Gostaria de informar: onde fica a UBS mais próxima? na Av. das Palmeiras, 332.",servico_saude,media,
+R0031,"Buraco perigoso, carros desviam na contramão na Av. Central, 246. Já faz tempo.",buraco,alta,
+R0032,"Gostaria de informar: calçada quebrada que dificulta cadeirante na Av. Brasil, 750.",calcada,media,
+R0033,Bom dia. qual o horário de vacina na UBS Jardim São José 2? Isso afeta muita gente.,servico_saude,media,UBS Jardim São José 2
+R0034,"Atenção: pista esburacada na Rua do Mercado, 894. Preciso de uma solução.",buraco,media,
+R0035,"Pessoal, asfalto afundando aos poucos na Rua Sete, 731. Preciso de uma solução.",buraco,media,
+R0036,"Atenção: enchente na rua, risco para moradores na Rua da Paz, 449. Preciso de uma solução.",alagamento,alta,
+R0037,"Pessoal, buraco enorme que já causou acidente na Rua Sete, 66.",buraco,alta,
+R0038,"Bom dia. piso da calçada solto e desnivelado na Rua Sete, 603.",calcada,media,
+R0039,"Cratera no asfalto com risco para motos na Rua das Flores, 235.",buraco,alta,
+R0040,Bom dia. a UBS Chácaras Reunidas abre aos sábados? Preciso de uma solução.,servico_saude,media,UBS Chácaras Reunidas
+R0041,"Atenção: asfalto afundando aos poucos na Rua do Comércio, 741. Isso afeta muita gente.",buraco,media,
+R0042,"Gostaria de informar: entulho largado há dias na Travessa Sol, 827. Já faz tempo.",lixo,baixa,
+R0043,"Gostaria de informar: buraco enorme que já causou acidente na Rua Bela Vista, 363. Preciso de uma solução.",buraco,alta,
+R0044,"Gostaria de informar: lixo acumulado na esquina na Av. Brasil, 63. Por favor, enviem alguém.",lixo,baixa,
+R0045,"Atenção: como marcar consulta no posto de saúde? na Rua Sete, 195. Preciso de uma solução.",servico_saude,media,
+R0046,"Gostaria de informar: pista esburacada na Rua do Comércio, 286. Já faz tempo.",buraco,media,
+R0047,"Como conseguir atendimento médico gratuito? na Rua do Mercado, 101. Isso afeta muita gente.",servico_saude,media,
+R0048,Bom dia. como marcar consulta na UBS Monterrey? Preciso de uma solução.,servico_saude,media,UBS Monterrey
+R0049,"Gostaria de informar: caçamba cheia transbordando na Rua Sete, 886.",lixo,baixa,
+R0050,"Pessoal, pista esburacada na Rua das Flores, 400. Preciso de uma solução.",buraco,media,
+R0051,"Moro aqui e queria avisar que escuridão total depois das 18h na Rua do Mercado, 678. Preciso de uma solução.",iluminacao,media,
+R0052,"Buraco no asfalto atrapalhando o trânsito na Av. Central, 223. Isso afeta muita gente.",buraco,media,
+R0053,"Pessoal, enchente na rua, risco para moradores na Rua das Flores, 766.",alagamento,alta,
+R0054,"Atenção: cratera no asfalto com risco para motos na Travessa Sol, 515. Já faz tempo.",buraco,alta,
+R0055,"Bom dia. cratera no asfalto com risco para motos na Av. Brasil, 872.",buraco,alta,
+R0056,"Calçada quebrada que dificulta cadeirante na Rua Sete, 414. Isso afeta muita gente.",calcada,media,
+R0057,"Atenção: asfalto afundando aos poucos na Av. das Palmeiras, 41.",buraco,media,
+R0058,"Moro aqui e queria avisar que sujeira espalhada na calçada do mercado na Av. Central, 210. Por favor, enviem alguém.",lixo,baixa,
+R0059,"Moro aqui e queria avisar que pista esburacada na Rua Bela Vista, 135. Por favor, enviem alguém.",buraco,media,
+R0060,"Gostaria de informar: sujeira espalhada na calçada do mercado na Av. Brasil, 10. Isso afeta muita gente.",lixo,baixa,
+R0061,"Bom dia. calçada quebrada que dificulta cadeirante na Av. Brasil, 551. Isso afeta muita gente.",calcada,media,
+R0062,"Rua sem iluminação à noite na Rua da Paz, 903. Já faz tempo.",iluminacao,media,
+R0063,"Atenção: lâmpada queimada no poste da esquina na Rua do Comércio, 449. Por favor, enviem alguém.",iluminacao,media,
+R0064,"Moro aqui e queria avisar que piso da calçada solto e desnivelado na Rua do Mercado, 9. Isso afeta muita gente.",calcada,media,
+R0065,"Poste apagado há duas semanas na Rua do Comércio, 271.",iluminacao,media,
+R0066,"Pessoal, enchente na rua, risco para moradores na Rua do Comércio, 279. Isso afeta muita gente.",alagamento,alta,
+R0067,"Moro aqui e queria avisar que asfalto afundando aos poucos na Rua da Paz, 209. Por favor, enviem alguém.",buraco,media,
+R0068,"Calçada com rachadura grande na Av. Central, 928.",calcada,media,
+R0069,"Bueiro entupido causando alagamento na Av. Central, 46. Por favor, enviem alguém.",alagamento,alta,
+R0070,Bom dia. qual o horário de vacina na UBS Altos de Santana? Isso afeta muita gente.,servico_saude,media,UBS Altos de Santana
+R0071,"Bueiro entupido causando alagamento na Rua do Mercado, 10.",alagamento,alta,
+R0072,"Pessoal, alagamento depois da chuva, água entrando nas casas na Rua do Mercado, 37. Isso afeta muita gente.",alagamento,alta,
+R0073,"Calçada quebrada que dificulta cadeirante na Rua Bela Vista, 131. Por favor, enviem alguém.",calcada,media,
+R0074,"Moro aqui e queria avisar que poste apagado há duas semanas na Rua da Paz, 216. Já faz tempo.",iluminacao,media,
+R0075,"Atenção: alagamento depois da chuva, água entrando nas casas na Rua da Paz, 799. Preciso de uma solução.",alagamento,alta,
+R0076,"Bom dia. piso da calçada solto e desnivelado na Rua do Comércio, 948. Já faz tempo.",calcada,media,
+R0077,"Moro aqui e queria avisar que como conseguir atendimento médico gratuito? na Rua das Flores, 184. Por favor, enviem alguém.",servico_saude,media,
+R0078,"Moro aqui e queria avisar que como marcar consulta no posto de saúde? na Av. Central, 164.",servico_saude,media,
+R0079,"Bom dia. lixo acumulado na esquina na Travessa Sol, 228. Preciso de uma solução.",lixo,baixa,
+R0080,"Lâmpada queimada no poste da esquina na Rua Sete, 229. Já faz tempo.",iluminacao,media,
+R0081,"Sujeira espalhada na calçada do mercado na Av. Central, 886. Por favor, enviem alguém.",lixo,baixa,
+R0082,"Escuridão total depois das 18h na Rua do Mercado, 340.",iluminacao,media,
+R0083,"Pessoal, rua sem iluminação à noite na Av. das Palmeiras, 986.",iluminacao,media,
+R0084,"Moro aqui e queria avisar que cratera no asfalto com risco para motos na Rua Bela Vista, 354. Por favor, enviem alguém.",buraco,alta,
+R0085,"Atenção: lixo acumulado na esquina na Rua Bela Vista, 922. Já faz tempo.",lixo,baixa,
+R0086,"Atenção: poste apagado há duas semanas na Rua Bela Vista, 2. Isso afeta muita gente.",iluminacao,media,
+R0087,"Gostaria de informar: enchente na rua, risco para moradores na Rua Sete, 373.",alagamento,alta,
+R0088,"Moro aqui e queria avisar que bueiro entupido causando alagamento na Av. das Palmeiras, 322.",alagamento,alta,
+R0089,"Moro aqui e queria avisar que bueiro entupido causando alagamento na Rua do Mercado, 317. Preciso de uma solução.",alagamento,alta,
+R0090,"Bom dia. escuridão total depois das 18h na Av. Central, 568. Já faz tempo.",iluminacao,media,
+R0091,"Atenção: caçamba cheia transbordando na Rua do Comércio, 631. Por favor, enviem alguém.",lixo,baixa,
+R0092,"Bom dia. lixo acumulado na esquina na Av. Central, 294. Preciso de uma solução.",lixo,baixa,
+R0093,"Pessoal, qual o horário de vacina na UBS Majestic? Preciso de uma solução.",servico_saude,media,UBS Majestic
+R0094,"Moro aqui e queria avisar que entulho largado há dias na Rua do Mercado, 485. Já faz tempo.",lixo,baixa,
+R0095,"Moro aqui e queria avisar que alagamento depois da chuva, água entrando nas casas na Av. Central, 528. Isso afeta muita gente.",alagamento,alta,
+R0096,"Pessoal, poste apagado há duas semanas na Rua Sete, 689. Já faz tempo.",iluminacao,media,
+R0097,Como marcar consulta na UBS Centro 2? Preciso de uma solução.,servico_saude,media,UBS Centro 2
+R0098,"Moro aqui e queria avisar que calçada quebrada que dificulta cadeirante na Travessa Sol, 425. Isso afeta muita gente.",calcada,media,
+R0099,"Gostaria de informar: asfalto afundando aos poucos na Rua Bela Vista, 507. Já faz tempo.",buraco,media,
+R0100,"Asfalto afundando aos poucos na Rua das Flores, 915. Preciso de uma solução.",buraco,media,
+R0101,"Buraco no asfalto atrapalhando o trânsito na Rua do Mercado, 476. Isso afeta muita gente.",buraco,media,
+R0102,"Gostaria de informar: buraco no asfalto atrapalhando o trânsito na Travessa Sol, 137. Isso afeta muita gente.",buraco,media,
+R0103,"Gostaria de informar: piso da calçada solto e desnivelado na Rua da Paz, 973. Isso afeta muita gente.",calcada,media,
+R0104,"Bom dia. como conseguir atendimento médico gratuito? na Rua do Mercado, 457. Preciso de uma solução.",servico_saude,media,
+R0105,"Moro aqui e queria avisar que sujeira espalhada na calçada do mercado na Rua Sete, 861. Por favor, enviem alguém.",lixo,baixa,
+R0106,"Gostaria de informar: como conseguir atendimento médico gratuito? na Rua Sete, 282.",servico_saude,media,
+R0107,"Pessoal, bueiro entupido causando alagamento na Rua Sete, 279. Por favor, enviem alguém.",alagamento,alta,
+R0108,"Bom dia. calçada quebrada que dificulta cadeirante na Rua do Comércio, 155. Preciso de uma solução.",calcada,media,
+R0109,"Gostaria de informar: alagamento depois da chuva, água entrando nas casas na Rua Sete, 66. Preciso de uma solução.",alagamento,alta,
+R0110,"Bom dia. escuridão total depois das 18h na Rua Bela Vista, 64. Preciso de uma solução.",iluminacao,media,
+R0111,"Gostaria de informar: lixo acumulado na esquina na Av. das Palmeiras, 390.",lixo,baixa,
+R0112,"Gostaria de informar: lâmpada queimada no poste da esquina na Rua Bela Vista, 874. Isso afeta muita gente.",iluminacao,media,
+R0113,"Atenção: enchente na rua, risco para moradores na Rua do Mercado, 820. Já faz tempo.",alagamento,alta,
+R0114,"Gostaria de informar: entulho largado há dias na Av. Central, 447.",lixo,baixa,
+R0115,"Bom dia. sujeira espalhada na calçada do mercado na Rua Bela Vista, 742. Preciso de uma solução.",lixo,baixa,
+R0116,"Gostaria de informar: asfalto afundando aos poucos na Rua do Mercado, 28. Isso afeta muita gente.",buraco,media,
+R0117,"Moro aqui e queria avisar que piso da calçada solto e desnivelado na Rua das Flores, 86. Preciso de uma solução.",calcada,media,
+R0118,"Pessoal, pista esburacada na Rua do Comércio, 52. Preciso de uma solução.",buraco,media,
+R0119,"Pessoal, rua sem iluminação à noite na Travessa Sol, 335. Preciso de uma solução.",iluminacao,media,
+R9001,"Pessoal, alagamento depois da chuva, água entrando nas casas na Rua das Flores, 760. Já faz tempo.",alagamento,alta,
+R9002,,,,
+R9003,oi,,,
+R9004,xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx,,,
+R9005,Preciso de ajuda com uma coisa que não sei explicar direito,indefinido,baixa,

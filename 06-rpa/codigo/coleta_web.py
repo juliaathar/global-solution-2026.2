@@ -47,9 +47,10 @@ def baixar(url: str, tentativas=None, espera_base=None) -> str:
     for i in range(1, tentativas + 1):
         try:
             r = requests.get(url, headers={"User-Agent": config.USER_AGENT}, timeout=config.TIMEOUT_S)
-            if r.status_code in (403, 429):
-                raise ErroColeta(f"HTTP {r.status_code}: acesso negado ou limitado")
-            r.raise_for_status()
+            if 400 <= r.status_code < 500 and r.status_code != 408:
+                # 403/404/410/429...: o servidor respondeu "não"; repetir não adianta e pode irritar o site
+                raise ErroColeta(f"HTTP {r.status_code}: não adianta repetir")
+            r.raise_for_status()  # 5xx e 408 são transitórios: seguem para o retry
             r.encoding = r.apparent_encoding if r.encoding in (None, "ISO-8859-1") else r.encoding
             time.sleep(config.ESPERA_ENTRE_REQUISICOES_S)
             return r.text
@@ -140,13 +141,19 @@ def coletar_ubs(url=None, extrator=extrair_css) -> tuple[list[dict], str]:
 
 
 def sugerir_ubs(texto: str, unidades: list[dict]) -> dict | None:
-    """Escolhe a UBS cujo nome/endereço/região mais combina com o texto; None se nada combinar."""
+    """Escolhe a UBS que o texto cita. 1º: nome do bairro/unidade inteiro dentro do texto (o mais longo vence);
+    2º: palavras do nome ou do endereço em comum (só palavras com 4+ letras e não genéricas). None se nada combinar."""
     from deduplicacao import normalizar
+    norm = normalizar(texto)
+    por_nome = [(len(n), u) for u in unidades
+                if (n := normalizar(u["nome"]).removeprefix("ubs ").strip()) and re.search(rf"\b{re.escape(n)}\b", norm)]
+    if por_nome:
+        return max(por_nome, key=lambda x: x[0])[1]
     ignorar = {"ubs", "rua", "avenida", "estrada", "praca", "travessa", "esquina", "jardim", "vila", "parque",
                "sao", "jose", "campos", "regiao", "unidades", "avancadas", "onde", "fica", "mais", "proxima",
                "como", "para", "perto", "daqui", "posto", "saude", "pessoal", "consulta", "marcar", "vacina",
                "atendimento", "medico", "gratuito", "preciso", "solucao", "favor", "enviem", "alguem"}
-    t = {w for w in normalizar(texto).split() if len(w) >= 4} - ignorar
+    t = {w for w in norm.split() if len(w) >= 4} - ignorar
     melhor, pontos = None, 0
     for u in unidades:
         chaves = {w for w in normalizar(f"{u['nome']} {u['endereco']}").split() if len(w) >= 4} - ignorar

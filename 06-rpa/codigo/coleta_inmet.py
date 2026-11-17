@@ -60,6 +60,11 @@ def coletar_avisos(agora=None) -> tuple[list[dict], str]:
     if origem == "snapshot":
         avisos = extrair_avisos(config.INMET_SNAPSHOT.read_text(encoding="utf-8"))
     vigentes = filtrar_vigentes(avisos, agora)
+    if origem == "snapshot":
+        fins = [a["fim"] for a in avisos if a["fim"]]
+        if not fins or max(fins) < (agora or datetime.now()):
+            log.warning("Snapshot do Inmet desatualizado (avisos terminam em %s): sem alertas confiáveis até o feed voltar",
+                        max(fins).strftime("%d/%m/%Y") if fins else "?")
     log.info("Inmet: %d avisos lidos, %d vigentes para %s (origem: %s)",
              len(avisos), len(vigentes), config.INMET_AREA, origem)
     return vigentes, origem

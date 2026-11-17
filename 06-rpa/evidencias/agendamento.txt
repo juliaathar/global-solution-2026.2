@@ -1,0 +1,13 @@
+Evidência de agendamento (17/11/2026). Serviço iniciado às 19:27:48 com: python agendador.py servir --horarios 19:29 --sem-noticias
+
+Histórico gravado em saida/historico_execucoes.jsonl:
+{"gatilho": "agendado", "inicio": "2026-11-17T19:29:00", "status": "ok", "resumo": {"lidos": 125, "protocolos": 0, "invalidos": 3, "duplicados": 17, "ja_processados": 104, "revisao_humana": 1, "notificacoes_falhas": 0, "dados_pessoais_mascarados": 0, "ubs_origem": "", "inmet_origem": "", "avisos_vigentes": 0, "noticias_publicas": 0, "noticias_origem": "", "duracao_s": 0.987}, "duracao_s": 0.99}
+
+Horários padrão (RPA_HORARIOS=08:00,18:00), próximas execuções:
+18/11/2026 08:00
+18/11/2026 18:00
+19/11/2026 08:00
+19/11/2026 18:00
+
+Segunda busca manual enquanto outra roda (lock):
+{"gatilho": "agendado", "status": "ignorada", "motivo": "já existe uma busca em andamento"}

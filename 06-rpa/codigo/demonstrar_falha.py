@@ -67,4 +67,15 @@ def pagina_instavel(url):
 
 noticias, info = coleta_noticias.rastrear(max_paginas=3, baixar_fn=pagina_instavel)
 log.info("Crawler: %d noticias, info=%s", len(noticias), info)
+log.info("CENARIO 9: servidor de e-mail (SMTP) fora do ar (retry e segue sem notificar; nenhum e-mail real e enviado)")
+config.API_URL = ""
+config.SMTP_HOST, config.SMTP_PORTA = "127.0.0.1", 9
+config.SMTP_USUARIO, config.SMTP_SENHA, config.EMAIL_DESTINO = "robo@exemplo.com", "senha-ficticia", "gestor@exemplo.com"
+config.EMAIL_ATIVO = True
+sem3 = Path(tmp / "tres.csv")
+sem3.write_text("id,texto\nE1,Bueiro entupido e agua entrando nas casas da Rua Sete\n", encoding="utf-8")
+import notificador  # noqa: E402
+notificador._entregues.clear()
+r9 = main.executar(sem3)["resumo"]
+log.info("Resultado e-mail: notificacoes_falhas=%s", r9["notificacoes_falhas"])
 log.info("Resultado: cenario1=%s | cenario2=%s", r1, r2)

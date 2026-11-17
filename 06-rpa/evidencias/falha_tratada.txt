@@ -1,46 +1,59 @@
-2026-11-16 21:23:38,870 INFO demo: CENARIO 1: arquivo de entrada ausente
-2026-11-16 21:23:38,871 ERROR rpa.ingestao: Arquivo de entrada ausente: nao_existe.csv
-2026-11-16 21:23:38,881 INFO rpa.main: Resumo: {'lidos': 0, 'protocolos': 0, 'invalidos': 0, 'duplicados': 0, 'ja_processados': 0, 'revisao_humana': 0, 'notificacoes_falhas': 0, 'dados_pessoais_mascarados': 0, 'ubs_origem': '', 'inmet_origem': '', 'avisos_vigentes': 0, 'noticias_publicas': 0, 'noticias_origem': '', 'duracao_s': 0.01}
-2026-11-16 21:23:38,882 INFO demo: CENARIO 2: API do app fora do ar (retry e segue sem notificar)
-2026-11-16 21:23:39,941 WARNING rpa.notificador: Notificação ELB-20261116-00001 falhou (tentativa 1/3): <urlopen error timed out>
-2026-11-16 21:23:41,145 WARNING rpa.notificador: Notificação ELB-20261116-00001 falhou (tentativa 2/3): <urlopen error timed out>
-2026-11-16 21:23:42,561 WARNING rpa.notificador: Notificação ELB-20261116-00001 falhou (tentativa 3/3): <urlopen error timed out>
-2026-11-16 21:23:42,561 ERROR rpa.notificador: Notificação ELB-20261116-00001 não enviada; segue sem notificar
-2026-11-16 21:23:43,572 WARNING rpa.notificador: Notificação ELB-20261116-00002 falhou (tentativa 1/3): <urlopen error timed out>
-2026-11-16 21:23:44,795 WARNING rpa.notificador: Notificação ELB-20261116-00002 falhou (tentativa 2/3): <urlopen error timed out>
-2026-11-16 21:23:46,207 WARNING rpa.notificador: Notificação ELB-20261116-00002 falhou (tentativa 3/3): <urlopen error timed out>
-2026-11-16 21:23:46,208 ERROR rpa.notificador: Notificação ELB-20261116-00002 não enviada; segue sem notificar
-2026-11-16 21:23:46,213 INFO rpa.main: Resumo: {'lidos': 2, 'protocolos': 2, 'invalidos': 0, 'duplicados': 0, 'ja_processados': 0, 'revisao_humana': 0, 'notificacoes_falhas': 2, 'dados_pessoais_mascarados': 0, 'ubs_origem': '', 'inmet_origem': '', 'avisos_vigentes': 0, 'noticias_publicas': 0, 'noticias_origem': '', 'duracao_s': 7.327}
-2026-11-16 21:23:46,214 INFO demo: CENARIO 3: site fora do ar na coleta de UBS (cai no snapshot local)
-2026-11-16 21:23:47,240 WARNING rpa.coleta_web: Não consegui ler http://127.0.0.1:9/robots.txt (HTTPConnectionPool(host='127.0.0.1', port=9): Max retries exceeded with url: /robots.txt (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=9) at 0x2b066e746e0>, 'Connection to 127.0.0.1 timed out. (connect timeout=1)'))); seguindo com cautela
-2026-11-16 21:23:48,262 WARNING rpa.coleta_web: Download falhou (tentativa 1/3): HTTPConnectionPool(host='127.0.0.1', port=9): Max retries exceeded with url: /ubs (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=9) at 0x2b066bfee90>, 'Connection to 127.0.0.1 timed out. (connect timeout=1)'))
-2026-11-16 21:23:49,473 WARNING rpa.coleta_web: Download falhou (tentativa 2/3): HTTPConnectionPool(host='127.0.0.1', port=9): Max retries exceeded with url: /ubs (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=9) at 0x2b066bff750>, 'Connection to 127.0.0.1 timed out. (connect timeout=1)'))
-2026-11-16 21:23:50,895 WARNING rpa.coleta_web: Download falhou (tentativa 3/3): HTTPConnectionPool(host='127.0.0.1', port=9): Max retries exceeded with url: /ubs (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=9) at 0x2b066bdeea0>, 'Connection to 127.0.0.1 timed out. (connect timeout=1)'))
-2026-11-16 21:23:50,897 ERROR rpa.coleta_web: Coleta web falhou (HTTPConnectionPool(host='127.0.0.1', port=9): Max retries exceeded with url: /ubs (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=9) at 0x2b066bdeea0>, 'Connection to 127.0.0.1 timed out. (connect timeout=1)'))); usando snapshot local
-2026-11-16 21:23:51,001 INFO rpa.coleta_web: UBS coletadas: 45 (origem: snapshot)
-2026-11-16 21:23:51,001 INFO demo: UBS: 45 unidades, origem=snapshot
-2026-11-16 21:23:51,001 INFO demo: CENARIO 4: robots.txt proibe o acesso (portal de dados da prefeitura de SP, Disallow: /)
-2026-11-16 21:23:51,785 ERROR rpa.coleta_web: Coleta web falhou (robots.txt não permite acessar https://dados.prefeitura.sp.gov.br/); usando snapshot local
-2026-11-16 21:23:51,898 INFO rpa.coleta_web: UBS coletadas: 45 (origem: snapshot)
-2026-11-16 21:23:51,899 INFO demo: UBS: 45 unidades, origem=snapshot
-2026-11-16 21:23:51,899 INFO demo: CENARIO 5: HTML mudou e os seletores nao acham nada (pagina sem UBS)
-2026-11-16 21:23:51,900 ERROR rpa.coleta_web: Seletores não encontraram UBS (HTML pode ter mudado); usando snapshot local
-2026-11-16 21:23:52,050 INFO rpa.coleta_web: UBS coletadas: 45 (origem: snapshot)
-2026-11-16 21:23:52,051 INFO demo: UBS: 45 unidades, origem=snapshot
-2026-11-16 21:23:52,051 INFO demo: CENARIO 6: feed do Inmet fora do ar (usa snapshot do feed)
-2026-11-16 21:23:53,061 WARNING rpa.coleta_web: Não consegui ler http://127.0.0.1:9/robots.txt (HTTPConnectionPool(host='127.0.0.1', port=9): Max retries exceeded with url: /robots.txt (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=9) at 0x2b066bdf490>, 'Connection to 127.0.0.1 timed out. (connect timeout=1)'))); seguindo com cautela
-2026-11-16 21:23:54,073 WARNING rpa.coleta_web: Download falhou (tentativa 1/3): HTTPConnectionPool(host='127.0.0.1', port=9): Max retries exceeded with url: /avisos/rss (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=9) at 0x2b0682e3410>, 'Connection to 127.0.0.1 timed out. (connect timeout=1)'))
-2026-11-16 21:23:55,295 WARNING rpa.coleta_web: Download falhou (tentativa 2/3): HTTPConnectionPool(host='127.0.0.1', port=9): Max retries exceeded with url: /avisos/rss (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=9) at 0x2b066e1acf0>, 'Connection to 127.0.0.1 timed out. (connect timeout=1)'))
-2026-11-16 21:23:56,707 WARNING rpa.coleta_web: Download falhou (tentativa 3/3): HTTPConnectionPool(host='127.0.0.1', port=9): Max retries exceeded with url: /avisos/rss (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=9) at 0x2b066e1b020>, 'Connection to 127.0.0.1 timed out. (connect timeout=1)'))
-2026-11-16 21:23:56,707 ERROR rpa.inmet: Feed do Inmet indisponível ou inválido (HTTPConnectionPool(host='127.0.0.1', port=9): Max retries exceeded with url: /avisos/rss (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=9) at 0x2b066e1b020>, 'Connection to 127.0.0.1 timed out. (connect timeout=1)'))); usando snapshot local
-2026-11-16 21:23:57,098 INFO rpa.inmet: Inmet: 86 avisos lidos, 3 vigentes para Vale do Paraíba Paulista (origem: snapshot)
-2026-11-16 21:23:57,098 INFO demo: Inmet: origem=snapshot
-2026-11-16 21:23:57,098 INFO demo: CENARIO 7: feed do Inmet devolve XML invalido
-2026-11-16 21:23:57,098 ERROR rpa.inmet: Feed do Inmet indisponível ou inválido (Premature end of data in tag item line 1, line 1, column 21 (<string>, line 1)); usando snapshot local
-2026-11-16 21:23:57,320 INFO rpa.inmet: Inmet: 86 avisos lidos, 3 vigentes para Vale do Paraíba Paulista (origem: snapshot)
-2026-11-16 21:23:57,320 INFO demo: Inmet: origem=snapshot
-2026-11-16 21:23:57,321 INFO demo: CENARIO 8: crawler perde a pagina 2 (mantem a pagina 1 ja coletada)
-2026-11-16 21:23:57,355 ERROR rpa.noticias: Página 2 do arquivo falhou (timeout simulado na pagina 2); mantendo as 1 já coletadas
-2026-11-16 21:23:57,355 INFO rpa.noticias: Crawler: 12 notícias em 1 páginas (origem: web)
-2026-11-16 21:23:57,355 INFO demo: Crawler: 12 noticias, info={'paginas': 1, 'origem': 'web', 'falhas': 1}
-2026-11-16 21:23:57,355 INFO demo: Resultado: cenario1={'lidos': 0, 'protocolos': 0, 'invalidos': 0, 'duplicados': 0, 'ja_processados': 0, 'revisao_humana': 0, 'notificacoes_falhas': 0, 'dados_pessoais_mascarados': 0, 'ubs_origem': '', 'inmet_origem': '', 'avisos_vigentes': 0, 'noticias_publicas': 0, 'noticias_origem': '', 'duracao_s': 0.01} | cenario2={'lidos': 2, 'protocolos': 2, 'invalidos': 0, 'duplicados': 0, 'ja_processados': 0, 'revisao_humana': 0, 'notificacoes_falhas': 2, 'dados_pessoais_mascarados': 0, 'ubs_origem': '', 'inmet_origem': '', 'avisos_vigentes': 0, 'noticias_publicas': 0, 'noticias_origem': '', 'duracao_s': 7.327}
+2026-11-17 19:45:29,032 INFO demo: CENARIO 1: arquivo de entrada ausente
+2026-11-17 19:45:29,033 ERROR rpa.ingestao: Arquivo de entrada ausente: nao_existe.csv
+2026-11-17 19:45:29,049 INFO rpa.main: Resumo: {'lidos': 0, 'protocolos': 0, 'invalidos': 0, 'duplicados': 0, 'ja_processados': 0, 'revisao_humana': 0, 'notificacoes_falhas': 0, 'dados_pessoais_mascarados': 0, 'ubs_origem': '', 'inmet_origem': '', 'avisos_vigentes': 0, 'noticias_publicas': 0, 'noticias_origem': '', 'duracao_s': 0.016}
+2026-11-17 19:45:29,049 INFO demo: CENARIO 2: API do app fora do ar (retry e segue sem notificar)
+2026-11-17 19:45:30,111 WARNING rpa.notificador: Notificação ELB-20261117-00001 falhou (tentativa 1/3): API: <urlopen error timed out>
+2026-11-17 19:45:31,328 WARNING rpa.notificador: Notificação ELB-20261117-00001 falhou (tentativa 2/3): API: <urlopen error timed out>
+2026-11-17 19:45:32,744 WARNING rpa.notificador: Notificação ELB-20261117-00001 falhou (tentativa 3/3): API: <urlopen error timed out>
+2026-11-17 19:45:32,744 ERROR rpa.notificador: Notificação ELB-20261117-00001 não enviada; segue sem notificar
+2026-11-17 19:45:33,776 WARNING rpa.notificador: Notificação ELB-20261117-00002 falhou (tentativa 1/3): API: <urlopen error timed out>
+2026-11-17 19:45:34,994 WARNING rpa.notificador: Notificação ELB-20261117-00002 falhou (tentativa 2/3): API: <urlopen error timed out>
+2026-11-17 19:45:36,406 WARNING rpa.notificador: Notificação ELB-20261117-00002 falhou (tentativa 3/3): API: <urlopen error timed out>
+2026-11-17 19:45:36,407 ERROR rpa.notificador: Notificação ELB-20261117-00002 não enviada; segue sem notificar
+2026-11-17 19:45:36,412 INFO rpa.main: Resumo: {'lidos': 2, 'protocolos': 2, 'invalidos': 0, 'duplicados': 0, 'ja_processados': 0, 'revisao_humana': 0, 'notificacoes_falhas': 2, 'dados_pessoais_mascarados': 0, 'ubs_origem': '', 'inmet_origem': '', 'avisos_vigentes': 0, 'noticias_publicas': 0, 'noticias_origem': '', 'duracao_s': 7.358}
+2026-11-17 19:45:36,412 INFO demo: CENARIO 3: site fora do ar na coleta de UBS (cai no snapshot local)
+2026-11-17 19:45:37,428 WARNING rpa.coleta_web: Não consegui ler http://127.0.0.1:9/robots.txt (HTTPConnectionPool(host='127.0.0.1', port=9): Max retries exceeded with url: /robots.txt (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=9) at 0x1bec7788ec0>, 'Connection to 127.0.0.1 timed out. (connect timeout=1)'))); seguindo com cautela
+2026-11-17 19:45:38,441 WARNING rpa.coleta_web: Download falhou (tentativa 1/3): HTTPConnectionPool(host='127.0.0.1', port=9): Max retries exceeded with url: /ubs (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=9) at 0x1bec76fbd90>, 'Connection to 127.0.0.1 timed out. (connect timeout=1)'))
+2026-11-17 19:45:39,661 WARNING rpa.coleta_web: Download falhou (tentativa 2/3): HTTPConnectionPool(host='127.0.0.1', port=9): Max retries exceeded with url: /ubs (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=9) at 0x1bec77a8690>, 'Connection to 127.0.0.1 timed out. (connect timeout=1)'))
+2026-11-17 19:45:41,093 WARNING rpa.coleta_web: Download falhou (tentativa 3/3): HTTPConnectionPool(host='127.0.0.1', port=9): Max retries exceeded with url: /ubs (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=9) at 0x1bec77b82b0>, 'Connection to 127.0.0.1 timed out. (connect timeout=1)'))
+2026-11-17 19:45:41,094 ERROR rpa.coleta_web: Coleta web falhou (HTTPConnectionPool(host='127.0.0.1', port=9): Max retries exceeded with url: /ubs (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=9) at 0x1bec77b82b0>, 'Connection to 127.0.0.1 timed out. (connect timeout=1)'))); usando snapshot local
+2026-11-17 19:45:41,173 INFO rpa.coleta_web: UBS coletadas: 45 (origem: snapshot)
+2026-11-17 19:45:41,173 INFO demo: UBS: 45 unidades, origem=snapshot
+2026-11-17 19:45:41,173 INFO demo: CENARIO 4: robots.txt proibe o acesso (portal de dados da prefeitura de SP, Disallow: /)
+2026-11-17 19:45:41,856 ERROR rpa.coleta_web: Coleta web falhou (robots.txt não permite acessar https://dados.prefeitura.sp.gov.br/); usando snapshot local
+2026-11-17 19:45:41,941 INFO rpa.coleta_web: UBS coletadas: 45 (origem: snapshot)
+2026-11-17 19:45:41,941 INFO demo: UBS: 45 unidades, origem=snapshot
+2026-11-17 19:45:41,941 INFO demo: CENARIO 5: HTML mudou e os seletores nao acham nada (pagina sem UBS)
+2026-11-17 19:45:41,943 ERROR rpa.coleta_web: Seletores não encontraram UBS (HTML pode ter mudado); usando snapshot local
+2026-11-17 19:45:42,006 INFO rpa.coleta_web: UBS coletadas: 45 (origem: snapshot)
+2026-11-17 19:45:42,006 INFO demo: UBS: 45 unidades, origem=snapshot
+2026-11-17 19:45:42,006 INFO demo: CENARIO 6: feed do Inmet fora do ar (usa snapshot do feed)
+2026-11-17 19:45:43,011 WARNING rpa.coleta_web: Não consegui ler http://127.0.0.1:9/robots.txt (HTTPConnectionPool(host='127.0.0.1', port=9): Max retries exceeded with url: /robots.txt (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=9) at 0x1bec76dfa80>, 'Connection to 127.0.0.1 timed out. (connect timeout=1)'))); seguindo com cautela
+2026-11-17 19:45:44,020 WARNING rpa.coleta_web: Download falhou (tentativa 1/3): HTTPConnectionPool(host='127.0.0.1', port=9): Max retries exceeded with url: /avisos/rss (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=9) at 0x1bec7bfbbf0>, 'Connection to 127.0.0.1 timed out. (connect timeout=1)'))
+2026-11-17 19:45:45,244 WARNING rpa.coleta_web: Download falhou (tentativa 2/3): HTTPConnectionPool(host='127.0.0.1', port=9): Max retries exceeded with url: /avisos/rss (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=9) at 0x1bec77168b0>, 'Connection to 127.0.0.1 timed out. (connect timeout=1)'))
+2026-11-17 19:45:46,660 WARNING rpa.coleta_web: Download falhou (tentativa 3/3): HTTPConnectionPool(host='127.0.0.1', port=9): Max retries exceeded with url: /avisos/rss (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=9) at 0x1bec77167a0>, 'Connection to 127.0.0.1 timed out. (connect timeout=1)'))
+2026-11-17 19:45:46,661 ERROR rpa.inmet: Feed do Inmet indisponível ou inválido (HTTPConnectionPool(host='127.0.0.1', port=9): Max retries exceeded with url: /avisos/rss (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=9) at 0x1bec77167a0>, 'Connection to 127.0.0.1 timed out. (connect timeout=1)'))); usando snapshot local
+2026-11-17 19:45:46,933 INFO rpa.inmet: Inmet: 86 avisos lidos, 0 vigentes para Vale do Paraíba Paulista (origem: snapshot)
+2026-11-17 19:45:46,933 INFO demo: Inmet: origem=snapshot
+2026-11-17 19:45:46,933 INFO demo: CENARIO 7: feed do Inmet devolve XML invalido
+2026-11-17 19:45:46,933 ERROR rpa.inmet: Feed do Inmet indisponível ou inválido (Premature end of data in tag item line 1, line 1, column 21 (<string>, line 1)); usando snapshot local
+2026-11-17 19:45:47,082 INFO rpa.inmet: Inmet: 86 avisos lidos, 0 vigentes para Vale do Paraíba Paulista (origem: snapshot)
+2026-11-17 19:45:47,082 INFO demo: Inmet: origem=snapshot
+2026-11-17 19:45:47,082 INFO demo: CENARIO 8: crawler perde a pagina 2 (mantem a pagina 1 ja coletada)
+2026-11-17 19:45:47,104 ERROR rpa.noticias: Página 2 do arquivo falhou (timeout simulado na pagina 2); mantendo as 1 já coletadas
+2026-11-17 19:45:47,105 INFO rpa.noticias: Crawler: 12 notícias em 1 páginas (origem: web)
+2026-11-17 19:45:47,105 INFO demo: Crawler: 12 noticias, info={'paginas': 1, 'origem': 'web', 'falhas': 1}
+2026-11-17 19:45:47,105 INFO demo: CENARIO 9: servidor de e-mail (SMTP) fora do ar (retry e segue sem notificar; nenhum e-mail real e enviado)
+2026-11-17 19:45:48,130 WARNING rpa.coleta_web: Não consegui ler http://127.0.0.1:9/robots.txt (HTTPConnectionPool(host='127.0.0.1', port=9): Max retries exceeded with url: /robots.txt (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=9) at 0x1bec7716470>, 'Connection to 127.0.0.1 timed out. (connect timeout=1)'))); seguindo com cautela
+2026-11-17 19:45:49,143 WARNING rpa.coleta_web: Download falhou (tentativa 1/3): HTTPConnectionPool(host='127.0.0.1', port=9): Max retries exceeded with url: /avisos/rss (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=9) at 0x1bec7717020>, 'Connection to 127.0.0.1 timed out. (connect timeout=1)'))
+2026-11-17 19:45:50,354 WARNING rpa.coleta_web: Download falhou (tentativa 2/3): HTTPConnectionPool(host='127.0.0.1', port=9): Max retries exceeded with url: /avisos/rss (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=9) at 0x1bec7715e10>, 'Connection to 127.0.0.1 timed out. (connect timeout=1)'))
+2026-11-17 19:45:51,777 WARNING rpa.coleta_web: Download falhou (tentativa 3/3): HTTPConnectionPool(host='127.0.0.1', port=9): Max retries exceeded with url: /avisos/rss (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=9) at 0x1bec7716ad0>, 'Connection to 127.0.0.1 timed out. (connect timeout=1)'))
+2026-11-17 19:45:51,778 ERROR rpa.inmet: Feed do Inmet indisponível ou inválido (HTTPConnectionPool(host='127.0.0.1', port=9): Max retries exceeded with url: /avisos/rss (Caused by ConnectTimeoutError(<HTTPConnection(host='127.0.0.1', port=9) at 0x1bec7716ad0>, 'Connection to 127.0.0.1 timed out. (connect timeout=1)'))); usando snapshot local
+2026-11-17 19:45:52,012 INFO rpa.inmet: Inmet: 86 avisos lidos, 0 vigentes para Vale do Paraíba Paulista (origem: snapshot)
+2026-11-17 19:45:53,044 WARNING rpa.notificador: Notificação ELB-20261117-00003 falhou (tentativa 1/3): e-mail: timed out
+2026-11-17 19:45:54,253 WARNING rpa.notificador: Notificação ELB-20261117-00003 falhou (tentativa 2/3): e-mail: timed out
+2026-11-17 19:45:55,676 WARNING rpa.notificador: Notificação ELB-20261117-00003 falhou (tentativa 3/3): e-mail: timed out
+2026-11-17 19:45:55,677 ERROR rpa.notificador: Notificação ELB-20261117-00003 não enviada; segue sem notificar
+2026-11-17 19:45:55,680 INFO rpa.main: Resumo: {'lidos': 1, 'protocolos': 1, 'invalidos': 0, 'duplicados': 0, 'ja_processados': 0, 'revisao_humana': 0, 'notificacoes_falhas': 1, 'dados_pessoais_mascarados': 0, 'ubs_origem': '', 'inmet_origem': 'snapshot', 'avisos_vigentes': 0, 'noticias_publicas': 0, 'noticias_origem': '', 'duracao_s': 8.572}
+2026-11-17 19:45:55,681 INFO demo: Resultado e-mail: notificacoes_falhas=1
+2026-11-17 19:45:55,682 INFO demo: Resultado: cenario1={'lidos': 0, 'protocolos': 0, 'invalidos': 0, 'duplicados': 0, 'ja_processados': 0, 'revisao_humana': 0, 'notificacoes_falhas': 0, 'dados_pessoais_mascarados': 0, 'ubs_origem': '', 'inmet_origem': '', 'avisos_vigentes': 0, 'noticias_publicas': 0, 'noticias_origem': '', 'duracao_s': 0.016} | cenario2={'lidos': 2, 'protocolos': 2, 'invalidos': 0, 'duplicados': 0, 'ja_processados': 0, 'revisao_humana': 0, 'notificacoes_falhas': 2, 'dados_pessoais_mascarados': 0, 'ubs_origem': '', 'inmet_origem': '', 'avisos_vigentes': 0, 'noticias_publicas': 0, 'noticias_origem': '', 'duracao_s': 7.358}

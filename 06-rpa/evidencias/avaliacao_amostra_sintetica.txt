@@ -1,3 +1,4 @@
-Amostra: 104 relatos rotulados
-Acerto de categoria: 104/104 = 100.0%
-Acerto de urg�ncia:  104/104 = 100.0%
+Amostra: 107 relatos rotulados
+Acerto de categoria: 107/107 = 100.0%
+Acerto de urgência:  107/107 = 100.0%
+Sugestão de UBS: 6/6 = 100.0% (relatos de saúde que citam a unidade)

@@ -3,6 +3,20 @@ import os
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
+
+
+def _carregar_env(caminho: Path) -> None:
+    """Lê KEY=VALOR de um .env (sem dependências). Variáveis já definidas no ambiente têm prioridade."""
+    if not caminho.is_file():
+        return
+    for linha in caminho.read_text(encoding="utf-8").splitlines():
+        linha = linha.strip()
+        if linha and not linha.startswith("#") and "=" in linha:
+            chave, valor = linha.split("=", 1)
+            os.environ.setdefault(chave.strip(), valor.split(" #")[0].strip().strip('"').strip("'"))
+
+
+_carregar_env(RAIZ / ".env")  # 06-rpa/.env, fora do git
 ENTRADA = Path(os.getenv("RPA_ENTRADA", RAIZ / "dados_sinteticos" / "relatos.csv"))
 SAIDA = Path(os.getenv("RPA_SAIDA", RAIZ / "saida"))
 BANCO = SAIDA / "protocolos.db"
@@ -37,3 +51,18 @@ USAR_NOTICIAS = os.getenv("RPA_USAR_NOTICIAS", "") == "1"  # liga o crawler como
 MAX_PAGINAS = int(os.getenv("RPA_MAX_PAGINAS", "3"))
 PALAVRAS_NOTICIA = ("buraco", "tapa-buraco", "alagamento", "enchente", "bueiro", "iluminação", "iluminacao",
                     "lixo", "entulho", "calçada", "calcada", "chuva", "ubs", "posto de saúde")
+
+# Canal de e-mail (SMTP). Desligado se usuário, senha ou destino faltarem. A senha vem só do ambiente.
+SMTP_HOST = os.getenv("RPA_SMTP_HOST", "smtp.gmail.com")
+SMTP_PORTA = int(os.getenv("RPA_SMTP_PORTA", "587"))
+SMTP_USUARIO = os.getenv("RPA_SMTP_USUARIO", "")
+SMTP_SENHA = os.getenv("RPA_SMTP_SENHA", "")
+EMAIL_DESTINO = os.getenv("RPA_EMAIL_DESTINO", "")
+EMAIL_URGENCIAS = tuple(os.getenv("RPA_EMAIL_URGENCIAS", "alta").split(","))  # só estas urgências geram e-mail
+EMAIL_ATIVO = bool(SMTP_USUARIO and SMTP_SENHA and EMAIL_DESTINO)
+
+# Agendamento: horários diários da busca automática (HH:MM, separados por vírgula). Padrão: duas vezes ao dia.
+HORARIOS = os.getenv("RPA_HORARIOS", "08:00,18:00")
+HISTORICO = SAIDA / "historico_execucoes.jsonl"
+LOCK = SAIDA / "agendador.lock"
+LOCK_VALIDADE_S = int(os.getenv("RPA_LOCK_VALIDADE", "3600"))  # lock mais velho que isso é considerado esquecido

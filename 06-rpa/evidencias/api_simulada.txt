@@ -1,0 +1,5 @@
+Demonstração do POST robô -> API (API simulada em thread, porta local aleatória)
+Robô: 107 protocolos gerados, 0 notificações com falha
+API: 107 protocolos recebidos por POST /protocolos
+Primeiro: {'protocolo': 'ELB-20261117-00001'} | Último: {'protocolo': 'ELB-20261117-00107'}
+Conferência: todos os protocolos chegaram
