@@ -1,0 +1,24 @@
+[desenvolvimento] 30 relatos | categoria 21/30 = 70.0% | urgência 18/30 = 60.0% | revisão humana 14/30
+  ERRO D01: previsto buraco/media (conf 1.0) real buraco/alta | Tem uma cratera no meio da avenida e ontem um carro quebrou o eixo nel
+  ERRO D02: previsto indefinido/baixa (conf 0.0) real buraco/media [revisão humana] | A rua da minha casa está toda esburacada, não dá pra passar de carro.
+  ERRO D07: previsto indefinido/baixa (conf 0.0) real iluminacao/alta [revisão humana] | Sem luz na rua e já tiveram dois assaltos esta semana, é perigoso anda
+  ERRO D08: previsto indefinido/baixa (conf 0.0) real iluminacao/media [revisão humana] | A luminária do ponto de ônibus não acende mais.
+  ERRO D14: previsto indefinido/baixa (conf 0.0) real calcada/media [revisão humana] | Raiz de árvore levantou o passeio e uma senhora de bengala quase caiu.
+  ERRO D17: previsto indefinido/baixa (conf 0.0) real alagamento/alta [revisão humana] | Quando chove forte a rua vira um rio e a água entra nas lojas.
+  ERRO D18: previsto alagamento/media (conf 1.0) real alagamento/alta | O bueiro entupiu e a água subiu até a altura do joelho.
+  ERRO D19: previsto alagamento/media (conf 1.0) real alagamento/alta | Enchente no córrego, as famílias da beira precisam sair de casa.
+  ERRO D20: previsto indefinido/baixa (conf 0.0) real alagamento/media [revisão humana] | A boca de lobo da esquina está cheia de folhas e a água não escoa.
+  ERRO D21: previsto indefinido/baixa (conf 0.0) real servico_saude/media [revisão humana] | Qual o telefone da unidade de saúde do meu bairro?
+  ERRO D22: previsto indefinido/baixa (conf 0.0) real servico_saude/media [revisão humana] | Preciso levar minha mãe idosa no médico, onde faço o cadastro?
+  ERRO D24: previsto indefinido/baixa (conf 0.0) real servico_saude/media [revisão humana] | Como consigo remédio de pressão pelo SUS?
+[teste] 30 relatos | categoria 25/30 = 83.3% | urgência 22/30 = 73.3% | revisão humana 10/30
+  ERRO T04: previsto indefinido/baixa (conf 0.0) real buraco/media [revisão humana] | Rua de terra com valas fundas, difícil passar.
+  ERRO T15: previsto indefinido/baixa (conf 0.0) real calcada/media [revisão humana] | Passeio público destruído depois da obra da rua.
+  ERRO T16: previsto calcada/alta (conf 1.0) real calcada/media | Degrau enorme na calçada da esquina, perigoso para idosos.
+  ERRO T17: previsto indefinido/baixa (conf 0.0) real alagamento/alta [revisão humana] | A água da chuva invadiu o térreo do prédio, tudo alagado.
+  ERRO T18: previsto alagamento/media (conf 1.0) real alagamento/alta | O bueiro da Rua Sete está entupido e a rua inunda toda vez que chove.
+  ERRO T19: previsto alagamento/media (conf 1.0) real alagamento/alta | Com a enchente a água entrou nas casas e perdemos móveis.
+  ERRO T20: previsto indefinido/baixa (conf 0.0) real alagamento/media [revisão humana] | A galeria de água da esquina está obstruída.
+  ERRO T25: previsto indefinido/baixa (conf 0.0) real servico_saude/media [revisão humana] | Preciso de atendimento médico gratuito, como proceder?
+[todos] 60 relatos | categoria 46/60 = 76.7% | urgência 40/60 = 66.7% | revisão humana 24/60
+Confusões de categoria (real -> previsto): {('buraco', 'indefinido'): 2, ('iluminacao', 'indefinido'): 2, ('calcada', 'indefinido'): 2, ('alagamento', 'indefinido'): 4, ('servico_saude', 'indefinido'): 4}

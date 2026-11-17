@@ -1,6 +1,11 @@
 """Notificação simulada com retry e espera exponencial."""
+import json
 import logging
 import time
+import urllib.error
+import urllib.request
+
+import config
 
 log = logging.getLogger("rpa.notificador")
 
@@ -10,8 +15,21 @@ class ErroNotificacao(Exception):
 
 
 def enviar(protocolo: str) -> None:
-    """Simula o envio ao cidadão ou ao gestor. Troque por e-mail ou webhook real."""
-    return None
+    """Envia o protocolo à API do app (RPA_API_URL, ex.: http://localhost:8000/protocolos).
+
+    Sem RPA_API_URL configurada, apenas simula o envio. Timeout curto; falha de rede
+    vira ErroNotificacao e é tratada pelo retry.
+    """
+    if not config.API_URL:
+        return None
+    req = urllib.request.Request(
+        config.API_URL, data=json.dumps({"protocolo": protocolo}).encode("utf-8"),
+        headers={"Content-Type": "application/json"}, method="POST")
+    try:
+        with urllib.request.urlopen(req, timeout=config.TIMEOUT_S):
+            pass
+    except (urllib.error.URLError, TimeoutError, OSError) as e:
+        raise ErroNotificacao(str(e)) from e
 
 
 def enviar_com_retry(protocolo, tentativas, espera_base, enviar_fn=enviar) -> bool:

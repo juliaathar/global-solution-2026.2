@@ -18,7 +18,7 @@ class Armazenamento:
 
     def salvar(self, relato_id, categoria, urgencia, confianca) -> str:
         n = self.con.execute("SELECT COUNT(*) FROM protocolos").fetchone()[0] + 1
-        protocolo = f"ACB-{datetime.now():%Y%m%d}-{n:05d}"
+        protocolo = f"ELB-{datetime.now():%Y%m%d}-{n:05d}"
         self.con.execute(
             "INSERT INTO protocolos VALUES (?,?,?,?,?,?)",
             (relato_id, protocolo, categoria, urgencia, confianca, datetime.now().isoformat(timespec="seconds")),

@@ -1,0 +1,3 @@
+Amostra: 104 relatos rotulados
+Acerto de categoria: 104/104 = 100.0%
+Acerto de urgência:  104/104 = 100.0%
