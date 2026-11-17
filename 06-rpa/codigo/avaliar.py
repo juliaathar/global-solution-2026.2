@@ -14,3 +14,11 @@ print(f"Acerto de urgência:  {urg}/{n} = {urg / n:.1%}")
 erros = [d for d in rotulados if d["categoria"] != d["categoria_real"] or d["urgencia"] != d["urgencia_real"]]
 for d in erros[:10]:
     print("ERRO", d["id"], d["categoria"], "!=", d["categoria_real"], "|", d["urgencia"], "!=", d["urgencia_real"])
+
+# Sugestão de UBS: só nos relatos de saúde que citam a unidade (ubs_real preenchida)
+com_ubs = [d for d in dados if d.get("ubs_real")]
+if com_ubs:
+    acertou = sum(d["encaminhamento"].startswith(d["ubs_real"] + " -") for d in com_ubs)
+    print(f"Sugestão de UBS: {acertou}/{len(com_ubs)} = {acertou / len(com_ubs):.1%} (relatos de saúde que citam a unidade)")
+    for d in [d for d in com_ubs if not d["encaminhamento"].startswith(d["ubs_real"] + " -")][:5]:
+        print("ERRO UBS", d["id"], "esperado", d["ubs_real"], "| veio", d["encaminhamento"][:60])

@@ -1,7 +1,9 @@
 """Mede o classificador na amostra escrita à mão, separando desenvolvimento (usada para melhorar as regras)
 e teste (nunca olhada ao ajustar). Gera matriz de confusão e lista de erros por grupo.
 
-Uso: python avaliar_independente.py [--erros]
+Uso: python avaliar_independente.py [--erros] [--amostra outro.csv]
+Com --amostra, mede um CSV escrito por outra pessoa (colunas: id,texto,categoria_real,urgencia_real; coluna grupo opcional).
+Sem a coluna grupo, tudo entra no grupo "externo". Veja dados_sinteticos/amostra_externa_modelo.csv.
 """
 import csv
 import sys
@@ -10,10 +12,18 @@ from collections import Counter
 import config
 from classificador import classificar
 
-linhas = list(csv.DictReader(open(config.RAIZ / "dados_sinteticos" / "amostra_independente.csv", encoding="utf-8")))
-mostrar_erros = "--erros" in sys.argv
+caminho = config.RAIZ / "dados_sinteticos" / "amostra_independente.csv"
+if "--amostra" in sys.argv:
+    caminho = sys.argv[sys.argv.index("--amostra") + 1]
+linhas = list(csv.DictReader(open(caminho, encoding="utf-8")))
+for r in linhas:
+    r.setdefault("grupo", "") or None
+    if not r["grupo"]:
+        r["grupo"] = "externo"
+mostrar_erros = "--erros" in sys.argv or "--amostra" in sys.argv
+grupos = sorted({r["grupo"] for r in linhas}, key=lambda g: ("desenvolvimento", "teste").index(g) if g in ("desenvolvimento", "teste") else 9)
 
-for grupo in ("desenvolvimento", "teste", "todos"):
+for grupo in (*grupos, "todos"):
     sub = [r for r in linhas if grupo == "todos" or r["grupo"] == grupo]
     cat = urg = revisao = 0
     erros, conf = [], Counter()
@@ -30,7 +40,7 @@ for grupo in ("desenvolvimento", "teste", "todos"):
             erros.append((r, c, rev))
     n = len(sub)
     print(f"[{grupo}] {n} relatos | categoria {cat}/{n} = {cat / n:.1%} | urgência {urg}/{n} = {urg / n:.1%} | revisão humana {revisao}/{n}")
-    if grupo != "todos" and (mostrar_erros or grupo == "teste"):
+    if grupo != "todos" and mostrar_erros:
         for r, c, rev in erros:
             print(f"  ERRO {r['id']}: previsto {c['categoria']}/{c['urgencia']} (conf {c['confianca']}) "
                   f"real {r['categoria_real']}/{r['urgencia_real']}{' [revisão humana]' if rev else ''} | {r['texto'][:70]}")

@@ -1,0 +1,20 @@
+Treino: 122 relatos sintéticos | Avaliação: 60 relatos escritos à mão
+
+[desenvolvimento] 30 relatos
+  regras                                                     categoria 100.0% | urgência  96.7% | revisão humana 5/30
+  ML (TF-IDF + regressão logística)                          categoria  60.0% | urgência  50.0% | revisão humana 29/30
+  híbrido (regras, ML se 'indefinido' e prob >= 0.5)         categoria 100.0% | urgência  96.7% | revisão humana 5/30
+
+[teste] 30 relatos
+  regras                                                     categoria  90.0% | urgência  86.7% | revisão humana 8/30
+  ML (TF-IDF + regressão logística)                          categoria  60.0% | urgência  63.3% | revisão humana 30/30
+  híbrido (regras, ML se 'indefinido' e prob >= 0.5)         categoria  90.0% | urgência  86.7% | revisão humana 8/30
+
+[todos] 60 relatos
+  regras                                                     categoria  95.0% | urgência  91.7% | revisão humana 13/60
+  ML (TF-IDF + regressão logística)                          categoria  60.0% | urgência  56.7% | revisão humana 59/60
+  híbrido (regras, ML se 'indefinido' e prob >= 0.5)         categoria  95.0% | urgência  91.7% | revisão humana 13/60
+
+[teste, modelo treinado com sintéticos + 30 relatos de desenvolvimento] 30 relatos
+  ML                                                         categoria  66.7% | urgência  66.7% | revisão humana 29/30
+  híbrido                                                    categoria  90.0% | urgência  86.7% | revisão humana 8/30

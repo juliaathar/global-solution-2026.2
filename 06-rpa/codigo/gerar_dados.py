@@ -18,23 +18,41 @@ RUAS = ["Rua das Flores", "Av. Brasil", "Rua do Comércio", "Rua Sete", "Av. Cen
 FECHOS = ["", " Já faz tempo.", " Por favor, enviem alguém.", " Preciso de uma solução.", " Isso afeta muita gente."]
 
 
+SAUDE_COM_UBS = ["onde fica a UBS do {b}?", "como marcar consulta na UBS {b}?", "a UBS {b} abre aos sábados?",
+                 "qual o horário de vacina na UBS {b}?", "preciso de atendimento na unidade de saúde do {b}"]
+
+
+def _unidades_reais():
+    """Nomes de bairros das UBS reais de SJC (do snapshot da página pública), para relatos de saúde realistas."""
+    from coleta_web import extrair_css
+    import config
+    return [u["nome"].removeprefix("UBS ").strip() for u in extrair_css(config.UBS_SNAPSHOT.read_text(encoding="utf-8"))]
+
+
 def gerar(n=120, semente=42):
     rnd = random.Random(semente)
     linhas = []
     chaves = list(PROBLEMAS)
+    bairros = _unidades_reais()
     for i in range(n):
         cat, urg = rnd.choice(chaves)
-        prob = rnd.choice(PROBLEMAS[(cat, urg)])
-        rua = f"{rnd.choice(RUAS)}, {rnd.randint(1, 999)}"
-        txt = f"{rnd.choice(ABERTURAS)}{prob} na {rua}.{rnd.choice(FECHOS)}"
+        ubs_real = ""
+        if cat == "servico_saude" and rnd.random() < 0.6:  # relato que cita a unidade pelo bairro
+            ubs_real = rnd.choice(bairros)
+            txt = rnd.choice(ABERTURAS) + rnd.choice(SAUDE_COM_UBS).format(b=ubs_real) + rnd.choice(FECHOS)
+        else:
+            prob = rnd.choice(PROBLEMAS[(cat, urg)])
+            rua = f"{rnd.choice(RUAS)}, {rnd.randint(1, 999)}"
+            txt = f"{rnd.choice(ABERTURAS)}{prob} na {rua}.{rnd.choice(FECHOS)}"
         txt = txt[0].upper() + txt[1:]
-        linhas.append({"id": f"R{i:04d}", "texto": txt, "categoria_real": cat, "urgencia_real": urg})
+        linhas.append({"id": f"R{i:04d}", "texto": txt, "categoria_real": cat, "urgencia_real": urg,
+                       "ubs_real": f"UBS {ubs_real}" if ubs_real else ""})
     # casos problemáticos: duplicado, vazio, curto, longo demais, ambíguo
     linhas.append({**linhas[0], "id": "R9001"})
-    linhas.append({"id": "R9002", "texto": "", "categoria_real": "", "urgencia_real": ""})
-    linhas.append({"id": "R9003", "texto": "oi", "categoria_real": "", "urgencia_real": ""})
-    linhas.append({"id": "R9004", "texto": "x" * 800, "categoria_real": "", "urgencia_real": ""})
-    linhas.append({"id": "R9005", "texto": "Preciso de ajuda com uma coisa que não sei explicar direito", "categoria_real": "indefinido", "urgencia_real": "baixa"})
+    linhas.append({"id": "R9002", "texto": "", "categoria_real": "", "urgencia_real": "", "ubs_real": ""})
+    linhas.append({"id": "R9003", "texto": "oi", "categoria_real": "", "urgencia_real": "", "ubs_real": ""})
+    linhas.append({"id": "R9004", "texto": "x" * 800, "categoria_real": "", "urgencia_real": "", "ubs_real": ""})
+    linhas.append({"id": "R9005", "texto": "Preciso de ajuda com uma coisa que não sei explicar direito", "categoria_real": "indefinido", "urgencia_real": "baixa", "ubs_real": ""})
     return linhas
 
 
@@ -43,7 +61,7 @@ if __name__ == "__main__":
     destino = Path(sys.argv[1]) if len(sys.argv) > 1 else padrao
     destino.parent.mkdir(parents=True, exist_ok=True)
     with open(destino, "w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=["id", "texto", "categoria_real", "urgencia_real"])
+        w = csv.DictWriter(f, fieldnames=["id", "texto", "categoria_real", "urgencia_real", "ubs_real"])
         w.writeheader()
         w.writerows(gerar())
     print(f"Gerado: {destino}")

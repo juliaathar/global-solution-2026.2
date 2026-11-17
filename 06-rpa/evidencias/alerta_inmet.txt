@@ -1,0 +1,7 @@
+Demonstração com data fixa 16/11/2026 12:00 e snapshot do feed do Inmet (origem: snapshot)
+Avisos vigentes para Vale do Paraíba Paulista: 3
+Relatos de alagamento com protocolo: 20 | com alerta anexado: 20 | urgência elevada pelo alerta (média -> alta): 2
+Exemplo: R0000 -> Inmet: Tempestade (Perigo Potencial) em Vale do Paraíba Paulista
+Elevado: E1 urgência media -> alta (Inmet: Tempestade (Perigo Potencial) em Vale do Paraíba Paulista)
+Elevado: E2 urgência media -> alta (Inmet: Tempestade (Perigo Potencial) em Vale do Paraíba Paulista)
+Obs.: alagamento já sai com urgência alta pelo classificador; o alerta altera o resultado só nos casos preventivos.

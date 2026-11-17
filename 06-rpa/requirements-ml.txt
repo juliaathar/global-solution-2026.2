@@ -1,0 +1,2 @@
+# Opcional: só para codigo/avaliar_ml.py (comparação regras x ML). O robô em si não precisa disto.
+scikit-learn>=1.3
