@@ -1,0 +1,277 @@
+
+
+<!DOCTYPE html>
+
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	Serviço - Prefeitura de São José dos Campos
+</title><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="/ArquivoNoticias/Imagens/favicon.ico?v=1" />
+
+    
+    <link rel="stylesheet" href="/ArquivoNoticias/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="/ArquivoNoticias/Content/servico.css" />
+
+    
+    <script src="/ArquivoNoticias/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="/ArquivoNoticias/Scripts/popper.min.js"></script>
+    <script src="/ArquivoNoticias/Scripts/bootstrap.min.js"></script>
+    <script src="/ArquivoNoticias/Scripts/jquery.mask.min.js"></script>
+    <script src="/ArquivoNoticias/Scripts/mascaras.js"></script>
+
+    
+    
+    <script src="https://www.google.com/recaptcha/api.js?render=6Lc_YvUlAAAAAPIu1CV618zvyRbLvYVx8WCEdfdx"></script>
+
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('6Lc_YvUlAAAAAPIu1CV618zvyRbLvYVx8WCEdfdx', { action: 'servicos_adm' })
+                .then(function (token) {
+                    document.getElementById('cphCorpo_googleRecaptcha').value = token;
+             });
+     });
+    </script>
+</head>
+<body>
+    <form method="post" action="./arquivo_noticias.aspx?pag=2&amp;dat=" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/ArquivoNoticias/WebResource.axd?d=pynGkmcFUV13He1Qd6_TZFTz9eKUoWyayxA9B8H3Eou8M3u3D0gAvlt-co1deRmiJEVBhVxc_s8ZdNdytug2OA2&amp;t=639190736600000000" type="text/javascript"></script>
+
+
+<script src="/ArquivoNoticias/ScriptResource.axd?d=uHIkleVeDJf4xS50Krz-yBGPNiRzMQ4iEShg2AJe54xXI6nRSN_GMLQ0PBaQ_hAXoLc9mUQm7O80J-PJxJFrLucNIAdYI15juYGPhwvAn55ZdTOQP_c4t5uSWS_YG75tEyO-Q5_h2Ex6w9rRQU39xislKKlg1q33biQpygFRB4I1&amp;t=ffffffffbec1863d" type="text/javascript"></script>
+<script src="/ArquivoNoticias/ScriptResource.axd?d=Jw6tUGWnA15YEa3ai3FadFuOr4TrSCTI4xGhs2cONKyxgycOVUPLoMJtK01-QwLJK97EP3glu4YVEljYhbvnlkg_57uF3ZOlV7JlyFRfALo5kwcFWb16zeBMGVRqlMcIC_q12biAYrwe6d7CAt1ZQCkCmVxprqIjcHfn1-_wOfg1&amp;t=ffffffffbec1863d" type="text/javascript"></script>
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="78280CAD" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="jlfv3+J8nFpZaav9AqU4czOFIaAHdghjhk69KoZ1AadGuHsAwH29Q8t5vAjTpIUa6ygfNDKsq5pTB/ZA+IcO2nucwlmBKubJ0zMwmbiPgACKSjxX87HmM+wlrL9+K0udB27xRG0uJJh3kJhX04rBx9eGRaGx4DPqPBgQ7FiIfkjfz9F8AhP9mbCuDj/O5GW844ZB1sFDjX+A69SUAHa5174qxLpCdXDl0suxNWZqolj1/0AHZwEgogbv4VhQLc9ueRci1gA0aUK2U4DnCgHYB0Va2xPv6If43axjE/N5RD3p9Q1N8SfAdekFAdrXA+o4CSzILYH9e+Hb/v/TpA0ZGqVYq5XVgZ7ZYJwomrELVwzPgzoEjh1X7MjC9SlGdRfCYtZq6CGlm1+ozWV8aczLg8t0dTsPoUKglNKsQv19zMEkdt9Lc3ScdkOMck0OCheFQFyb5Guo/PLXLGAVqpX2rZpzrqIxmRfZZ8c3tGeOxH8t6gdtOyAfW3CnW1kPzWY61VrgwIqbVstgOtX6FOeK74Pl+lqqo1kC1nt4xKL3V/ryNzV2UAFblv0qyLQTGalBrO075sIy1CyM8BpmICbIGj7jb2lRIoYrQfChrKFkFTII7Tv3T9HBiX7EHuLK/KvF6zn4euyc3S2Z4MwrXhyfhXn++jUzljMTDH46qzvEogq3Do8TOBp6kyKtEcnt4yPeTCdR3hMfmTAReDuvrohGpwjnOJ19jde64jhJt8HU3VUTISKl65itcgPvMmQo1atn7PlOjSAXLPvg8dYp0aEmTHaYI6C6Sevu6QA1DcHx+9v3GFGOf6PXU2s3x67ezt1+SF0QO/UZXMV0THH/CHLD3J9Ia7rKCbTUdg7AAq94nMcWIuQxBSJKnIXT/NqxZYi+g4+YTdSVmF75sA5HWjp+D4767yE/Rs/LcFkEEs+c/sxBPlHYbrCBCGXOpjae8YjmtJIPpPn4zlL4myd6HRtSW3E31c6qRUrBK6bCaDdbDEyo9HE1LxEOU9uISbX5tTgHeMSahZIUgpcqAGxzWLhrqPGs4uz1FBQShN9L423i/pFrmzmd+4b5/xMHzIeusdUYtT6RnQ29CsBSQikXp22YAqz77hDXjRuQfwg3dIXPO95S4Gi1mfJn++1DZrljHpUZoNGB0qsSbt/RLc8xHZjWSngOLpOnmRBY6WQ5lxAjEbQnd+6M4oeyVo5JRHP7ElahvpcuTkym1sNqH3huTWBgNZ7LEwzTpIIYKlnpcCMRvr5zR/ocOFYm9kVzqx4GO6hS8SsgurDAR73B4aC4My+Zvy6x324S0fMHpCbIjYP+gq8mcagd09+mHidRAypNGwvzrPfNNr4jY23oCG2nigX8xm0+ec54efytfb9w1MlwUfSOzyPlTVddcCAz4qeV1x331s7a6k+revQhGbsXflDL7Dgs8wK71ExyZFlviWyEfeDMbIGFX3J/oXCmp7I+ROOtY+nVfwsmEufNJfvDsCP5h8u6ymVxb/OUcTBcod/JoJ6D8B49eBPvbMeYSIohz2JT38WAmrLRPumzCS3icc/AYHdsdhkETTzCVT/Gj8vHg10xlE83BPnB2fd8CHFP/WifWadBAJlpoq7sD6FQVCsRqwT+czBMvdJlAY+YVz3nBOwQ7X6iMH01xlZMAenunH9JsfLUtRA9cv3qSGYEOL8bVo6Hiq/2arUY+lsWTcpHoEGVa721Z8gyoFf8TtVc7K8679UK06qX1HowyUH2bxkYBcyLLrV99kOjDAq863Vgr3YZ2L1LgfPRpsVPueoQdcLaBOayrlDBbZZFstQV2DHLjZtDEW/Lz1SrBhj/SdkE7EVKTgvyfSkBEe3B2yN/gwnapRa7rLKH6/YYFXIJ5y0ZybeXPL8SeVHxSQKLRVXPBmPmHSeIfDs8B+xWmZw0DUlBnihCehEB015qcOSxNTzBT/YVQzqj4Ha9Y9hpeiKfnaY=" />
+</div>
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['tctl00$uppMsg','uppMsg'], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+
+        
+        <div id="panCabecalhoNormal">
+	
+            <div id="div_iframe_cabecalho" class="nao-imprime" style="width: 100%;">
+                <iframe id="iframe_cabecalho" width="100%" height="175" scrolling="no" frameborder="0" src="//servicos.sjc.sp.gov.br/cabecalho/index.htm"></iframe>
+            </div>
+        
+</div>
+        
+        
+
+        
+        <div class="container">
+            <h1>
+                
+    Arquivo de Notícias
+    
+
+            </h1>
+            <div id="uppMsg">
+	
+                    
+                
+</div>
+            
+
+    <br />
+
+    <div class="row form-group">
+        <div class="col-1">
+            <label>Palavra</label>
+        </div>
+        <div class="col-11">
+            <input name="ctl00$cphCorpo$txtPalavra" type="text" maxlength="100" id="cphCorpo_txtPalavra" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-1">
+            <label>Área</label>
+        </div>
+        <div class="col-11">
+            <select name="ctl00$cphCorpo$cmbArea" id="cphCorpo_cmbArea" class="form-control">
+	<option value="">Todas as secretarias e funda&#231;&#245;es</option>
+	<option value="34">Cephas</option>
+	<option value="35">Encargos gerais do mun&#237;cipio</option>
+	<option value="24">Funda&#231;&#227;o Cultural Cassiano Ricardo</option>
+	<option value="25">Fundhas</option>
+	<option value="11">Fundo Social de Solidariedade</option>
+	<option value="12">Gabinete</option>
+	<option value="4">Apoio Jur&#237;dico</option>
+	<option value="7">Apoio Social ao Cidad&#227;o</option>
+	<option value="8">Educa&#231;&#227;o e Cidadania</option>
+	<option value="9">Esporte e Qualidade de Vida</option>
+	<option value="10">Gest&#227;o Administrativa e Finan&#231;as</option>
+	<option value="17">Gest&#227;o Habitacional e Obras</option>
+	<option value="27">Governan&#231;a</option>
+	<option value="6">Inova&#231;&#227;o e Desenvolvimento Econ&#244;mico</option>
+	<option value="21">Manuten&#231;&#227;o da Cidade</option>
+	<option value="22">Mobilidade Urbana</option>
+	<option value="5">Prote&#231;&#227;o ao Cidad&#227;o</option>
+	<option value="20">Sa&#250;de</option>
+	<option value="16">Urbanismo e Sustentabilidade</option>
+	<option value="23">Urbam</option>
+
+</select>
+        </div>
+    </div>
+
+    <fieldset class="form-group">
+        <div class="row">
+            <legend class="col-form-label col-sm-2 pt-0">Data</legend>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <input value="rbDataTodas" name="ctl00$cphCorpo$rblData" type="radio" id="cphCorpo_rbDataTodas" class="form-check-input" checked="checked" />
+                    <label class="form-check-label" for="rbDataTodas">
+                        Todas
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input value="rbDataEspec" name="ctl00$cphCorpo$rblData" type="radio" id="cphCorpo_rbDataEspec" class="form-check-input" />
+                    <label class="form-check-label" for="rbDataEspec">
+                        Data específica
+                    </label>
+                </div>
+                <div class="form-check d-flex justify-content-lg-start">
+                    <select name="ctl00$cphCorpo$cmbDia" id="cphCorpo_cmbDia" class="form-control col-sm-2">
+	<option selected="selected" value="">[Dia]</option>
+	<option value="01">1</option>
+	<option value="02">2</option>
+	<option value="03">3</option>
+	<option value="04">4</option>
+	<option value="05">5</option>
+	<option value="06">6</option>
+	<option value="07">7</option>
+	<option value="08">8</option>
+	<option value="09">9</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+	<option value="13">13</option>
+	<option value="14">14</option>
+	<option value="15">15</option>
+	<option value="16">16</option>
+	<option value="17">17</option>
+	<option value="18">18</option>
+	<option value="19">19</option>
+	<option value="20">20</option>
+	<option value="21">21</option>
+	<option value="22">22</option>
+	<option value="23">23</option>
+	<option value="24">24</option>
+	<option value="25">25</option>
+	<option value="26">26</option>
+	<option value="27">27</option>
+	<option value="28">28</option>
+	<option value="29">29</option>
+	<option value="30">30</option>
+	<option value="31">31</option>
+
+</select>
+                    &nbsp;&nbsp;/&nbsp;&nbsp; 
+                <select name="ctl00$cphCorpo$cmbMes" id="cphCorpo_cmbMes" class="form-control col-sm-2">
+	<option selected="selected" value="">[M&#234;s]</option>
+	<option value="01">Janeiro</option>
+	<option value="02">Fevereiro</option>
+	<option value="03">Mar&#231;o</option>
+	<option value="04">Abril</option>
+	<option value="05">Maio</option>
+	<option value="06">Junho</option>
+	<option value="07">Julho</option>
+	<option value="08">Agosto</option>
+	<option value="09">Setembro</option>
+	<option value="10">Outubro</option>
+	<option value="11">Novembro</option>
+	<option value="12">Dezembro</option>
+
+</select>
+                    &nbsp;&nbsp;/&nbsp;&nbsp;
+                <select name="ctl00$cphCorpo$cmbAno" id="cphCorpo_cmbAno" class="form-control col-sm-2">
+	<option selected="selected" value="">[Ano]</option>
+	<option value="2020">2020</option>
+	<option value="2019">2019</option>
+	<option value="2018">2018</option>
+	<option value="2017">2017</option>
+	<option value="2016">2016</option>
+	<option value="2015">2015</option>
+	<option value="2014">2014</option>
+	<option value="2013">2013</option>
+	<option value="2012">2012</option>
+	<option value="2011">2011</option>
+	<option value="2010">2010</option>
+	<option value="2009">2009</option>
+	<option value="2008">2008</option>
+	<option value="2007">2007</option>
+	<option value="2006">2006</option>
+
+</select>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="form-group centraliza">
+        <input type="submit" name="ctl00$cphCorpo$btnBuscar" value="Buscar" id="cphCorpo_btnBuscar" class="btn btn-primary" />
+    </div>
+
+    <div id="textosnoticias" class="noticias_geral">
+        <div class="bloco-noticias-inf"><div class="noticia-02"><div class="noticia-com-foto"><a href="noticia.aspx?noticia_id=28713"><img src="https://servicos.sjc.sp.gov.br/arquivonoticias/adm/noticias_imagens/202011/F00044371g.jpg" title="foto"><h6>05/11/2020</h6><h5>Coletiva de Imprensa</h5></a></div></div><div class="noticia-02"><div class="noticia-com-foto"><a href="noticia.aspx?noticia_id=28712"><img src="imagens/psjc_claudio_vieira.jpg" title="Vacina&#231;&#227;o contra a febre aftosa"/><h6>03/11/2020</h6><h5>Vacina&#231;&#227;o contra a febre aftosa</h5></a></div></div><div class="noticia-02"><div class="noticia-com-foto"><a href="noticia.aspx?noticia_id=28711"><img src="imagens/psjc_claudio_vieira.jpg" title="Prorroga&#231;&#227;o - campanha de vacina&#231;&#227;o"/><h6>03/11/2020</h6><h5>Prorroga&#231;&#227;o - campanha de vacina&#231;&#227;o</h5></a></div></div><div class="noticia-02"><div class="noticia-com-foto"><a href="noticia.aspx?noticia_id=28710"><img src="imagens/psjc_claudio_vieira.jpg" title="Comit&#234; libera abertura de teatro, uso de provadores e consumo no balc&#227;o"/><h6>29/10/2020</h6><h5>Comit&#234; libera abertura de teatro, uso de provadores e consumo no balc&#227;o</h5></a></div></div><div class="noticia-02"><div class="noticia-com-foto"><a href="noticia.aspx?noticia_id=28709"><img src="https://servicos.sjc.sp.gov.br/arquivonoticias/adm/noticias_imagens/202010/F00044369g.jpg" title="foto"><h6>29/10/2020</h6><h5>Coletiva de imprensa</h5></a></div></div><div class="noticia-02"><div class="noticia-com-foto"><a href="noticia.aspx?noticia_id=28707"><img src="imagens/psjc_claudio_vieira.jpg" title="Pagamento do t&#237;quete-alimenta&#231;&#227;o"/><h6>28/10/2020</h6><h5>Pagamento do t&#237;quete-alimenta&#231;&#227;o</h5></a></div></div><div class="noticia-02"><div class="noticia-com-foto"><a href="noticia.aspx?noticia_id=28706"><img src="imagens/psjc_claudio_vieira.jpg" title="Cidade registrou 29 mortes nos nove primeiros meses de 2020"/><h6>27/10/2020</h6><h5>Cidade registrou 29 mortes nos nove primeiros meses de 2020</h5></a></div></div><div class="noticia-02"><div class="noticia-com-foto"><a href="noticia.aspx?noticia_id=28705"><img src="imagens/psjc_claudio_vieira.jpg" title="Prefeitura mant&#233;m plant&#245;es durante feriados"/><h6>26/10/2020</h6><h5>Prefeitura mant&#233;m plant&#245;es durante feriados</h5></a></div></div><div class="noticia-02"><div class="noticia-com-foto"><a href="noticia.aspx?noticia_id=28704"><img src="imagens/psjc_claudio_vieira.jpg" title="Vacina&#231;&#227;o contra brucelose termina nesta quarta"/><h6>26/10/2020</h6><h5>Vacina&#231;&#227;o contra brucelose termina nesta quarta</h5></a></div></div><div class="noticia-02"><div class="noticia-com-foto"><a href="noticia.aspx?noticia_id=28703"><img src="imagens/psjc_claudio_vieira.jpg" title="Prefeitura libera feiras de artesanato e abre Parque Alberto Sim&#245;es"/><h6>23/10/2020</h6><h5>Prefeitura libera feiras de artesanato e abre Parque Alberto Sim&#245;es</h5></a></div></div><div class="noticia-02"><div class="noticia-com-foto"><a href="noticia.aspx?noticia_id=28702"><img src="imagens/psjc_claudio_vieira.jpg" title="PAT tem 56 vagas diversas para preenchimento"/><h6>23/10/2020</h6><h5>PAT tem 56 vagas diversas para preenchimento</h5></a></div></div><div class="noticia-02"><div class="noticia-com-foto"><a href="noticia.aspx?noticia_id=28701"><img src="imagens/psjc_claudio_vieira.jpg" title="Cemit&#233;rios ficar&#227;o fechados para evitar riscos de cont&#225;gio do Coronav&#237;rus"/><h6>23/10/2020</h6><h5>Cemit&#233;rios ficar&#227;o fechados para evitar riscos de cont&#225;gio do Coronav&#237;rus</h5></a></div></div></div>
+    </div>
+
+
+    <div style="width: 100%; clear: both; font-size: 5px;">
+        &nbsp;
+    </div>
+
+    <div Class="d-flex justify-content-lg-start"><div style="margin-right:10px"><a href="/arquivonoticias/arquivo_noticias.aspx?pag=1&dat=">1</a></div><div style="font-weight: bold; margin-right:10px"><a href="/arquivonoticias/arquivo_noticias.aspx?pag=2&dat=">2</a></div><div style="margin-right:10px"><a href="/arquivonoticias/arquivo_noticias.aspx?pag=3&dat=">3</a></div><div style="margin-right:10px"><a href="/arquivonoticias/arquivo_noticias.aspx?pag=4&dat=">4</a></div><div style="margin-right:10px"><a href="/arquivonoticias/arquivo_noticias.aspx?pag=5&dat=">5</a></div><div style="margin-right:10px"><a href="/arquivonoticias/arquivo_noticias.aspx?pag=6&dat=">6</a></div><div style="margin-right:10px"><a href="/arquivonoticias/arquivo_noticias.aspx?pag=7&dat=">7</a></div><div style="margin-right:10px"><a href="/arquivonoticias/arquivo_noticias.aspx?pag=8&dat=">8</a></div><div style="margin-right:10px"><a href="/arquivonoticias/arquivo_noticias.aspx?pag=9&dat=">9</a></div><div style="margin-right:10px"><a href="/arquivonoticias/arquivo_noticias.aspx?pag=10&dat=">10</a></div><div style="margin-right:10px"><a href="/arquivonoticias/arquivo_noticias.aspx?pag=11&dat=">11</a></div><div style="margin-right:10px"><a href="/arquivonoticias/arquivo_noticias.aspx?pag=1&dat=">Anterior</a></div><div style="margin-right:10px">|</div><div style="margin-right:10px"><a href="/arquivonoticias/arquivo_noticias.aspx?pag=3&dat=">Pr&oacute;xima</a></div></div>
+
+    
+    
+    <input name="ctl00$cphCorpo$googleRecaptcha" type="hidden" id="cphCorpo_googleRecaptcha" />
+    <input type="hidden" name="action" value="servicos_adm" />
+    
+
+
+        </div>
+        
+
+        
+        <div id="panRodapeNormal">
+	
+            <div id="div_iframe_rodape" class="nao-imprime" style="width: 100%; background-color: #213a73; margin-top: 20px">
+                <iframe width="100%" height="70" scrolling="no" frameborder="0" src="//servicos.sjc.sp.gov.br/cabecalho/rodape.htm"></iframe>
+            </div>
+        
+</div>
+        
+        
+    </form>
+</body>
+</html>

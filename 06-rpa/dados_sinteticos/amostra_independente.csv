@@ -1,0 +1,61 @@
+id,grupo,texto,categoria_real,urgencia_real
+D01,desenvolvimento,Tem uma cratera no meio da avenida e ontem um carro quebrou o eixo nela.,buraco,alta
+D02,desenvolvimento,"A rua da minha casa está toda esburacada, não dá pra passar de carro.",buraco,media
+D03,desenvolvimento,Asfalto cedeu em frente à padaria e formou um buracão.,buraco,media
+D04,desenvolvimento,"Buraco fundo na curva, já vi duas motos caírem. Muito perigoso.",buraco,alta
+D05,desenvolvimento,Os postes da pracinha estão todos apagados há um mês.,iluminacao,media
+D06,desenvolvimento,Rua totalmente no escuro depois que a lâmpada queimou.,iluminacao,media
+D07,desenvolvimento,"Sem luz na rua e já tiveram dois assaltos esta semana, é perigoso andar à noite.",iluminacao,alta
+D08,desenvolvimento,A luminária do ponto de ônibus não acende mais.,iluminacao,media
+D09,desenvolvimento,Moradores jogam lixo no terreno ao lado e o mato está tomando conta.,lixo,baixa
+D10,desenvolvimento,"O caminhão do lixo não passa aqui há dez dias, está se acumulando sacos na calçada.",lixo,baixa
+D11,desenvolvimento,Pilha de entulho de reforma largada na esquina.,lixo,baixa
+D12,desenvolvimento,Container de lixo transbordando e cheirando mal na Rua Sete.,lixo,baixa
+D13,desenvolvimento,"Calçada afundada na frente da escola, as crianças tropeçam.",calcada,media
+D14,desenvolvimento,Raiz de árvore levantou o passeio e uma senhora de bengala quase caiu.,calcada,media
+D15,desenvolvimento,"Não tem rampa na esquina, cadeirante precisa ir pela rua.",calcada,media
+D16,desenvolvimento,Piso da calçada quebrado em vários pontos da avenida.,calcada,media
+D17,desenvolvimento,Quando chove forte a rua vira um rio e a água entra nas lojas.,alagamento,alta
+D18,desenvolvimento,O bueiro entupiu e a água subiu até a altura do joelho.,alagamento,alta
+D19,desenvolvimento,"Enchente no córrego, as famílias da beira precisam sair de casa.",alagamento,alta
+D20,desenvolvimento,A boca de lobo da esquina está cheia de folhas e a água não escoa.,alagamento,media
+D21,desenvolvimento,Qual o telefone da unidade de saúde do meu bairro?,servico_saude,media
+D22,desenvolvimento,"Preciso levar minha mãe idosa no médico, onde faço o cadastro?",servico_saude,media
+D23,desenvolvimento,Em que horário abre o posto para tomar a vacina da gripe?,servico_saude,media
+D24,desenvolvimento,Como consigo remédio de pressão pelo SUS?,servico_saude,media
+D25,desenvolvimento,A UBS do Jardim Paulista está atendendo hoje?,servico_saude,media
+D26,desenvolvimento,Gostaria de falar sobre um problema no meu bairro.,indefinido,baixa
+D27,desenvolvimento,Preciso de informação sobre um documento.,indefinido,baixa
+D28,desenvolvimento,Vizinho faz barulho de madrugada todos os dias.,indefinido,baixa
+D29,desenvolvimento,"A praça está muito feia, poderiam fazer algo.",indefinido,baixa
+D30,desenvolvimento,Quero saber como funciona o programa da prefeitura.,indefinido,baixa
+T01,teste,Um buraco enorme abriu na ponte e já houve acidente com ciclista.,buraco,alta
+T02,teste,O asfalto da travessa está esburacado e quebrando os carros.,buraco,media
+T03,teste,Pista com várias crateras depois da chuva.,buraco,media
+T04,teste,"Rua de terra com valas fundas, difícil passar.",buraco,media
+T05,teste,Faz semanas que a lâmpada do poste em frente de casa está queimada.,iluminacao,media
+T06,teste,A rua está escura porque os postes não acendem.,iluminacao,media
+T07,teste,"Poste caído com fio solto na calçada, risco de choque.",iluminacao,alta
+T08,teste,Falta iluminação na quadra de esportes.,iluminacao,media
+T09,teste,Tem um monte de sujeira e entulho na calçada da feira.,lixo,baixa
+T10,teste,A coleta de lixo não veio esta semana e os sacos estão abertos.,lixo,baixa
+T11,teste,Caçamba cheia há dias na rua do mercado.,lixo,baixa
+T12,teste,Resto de poda e entulho abandonado na praça.,lixo,baixa
+T13,teste,A calçada em frente à clínica está rachada e desnivelada.,calcada,media
+T14,teste,"Não consigo passar com a cadeira de rodas, a calçada é estreita e quebrada.",calcada,media
+T15,teste,Passeio público destruído depois da obra da rua.,calcada,media
+T16,teste,"Degrau enorme na calçada da esquina, perigoso para idosos.",calcada,media
+T17,teste,"A água da chuva invadiu o térreo do prédio, tudo alagado.",alagamento,alta
+T18,teste,O bueiro da Rua Sete está entupido e a rua inunda toda vez que chove.,alagamento,alta
+T19,teste,Com a enchente a água entrou nas casas e perdemos móveis.,alagamento,alta
+T20,teste,A galeria de água da esquina está obstruída.,alagamento,media
+T21,teste,Onde posso marcar consulta com o clínico geral?,servico_saude,media
+T22,teste,O posto de saúde perto de mim tem atendimento aos sábados?,servico_saude,media
+T23,teste,Como faço para tomar a vacina do meu filho recém-nascido?,servico_saude,media
+T24,teste,Qual a UBS mais próxima do Jardim Satélite?,servico_saude,media
+T25,teste,"Preciso de atendimento médico gratuito, como proceder?",servico_saude,media
+T26,teste,Gostaria de reclamar de uma situação.,indefinido,baixa
+T27,teste,Alguém pode me ajudar com um problema?,indefinido,baixa
+T28,teste,O ponto de ônibus fica longe da minha casa.,indefinido,baixa
+T29,teste,Preciso falar com alguém da prefeitura.,indefinido,baixa
+T30,teste,Tem como mudar o horário do ônibus?,indefinido,baixa

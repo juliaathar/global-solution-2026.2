@@ -1,0 +1,9 @@
+[desenvolvimento] 30 relatos | categoria 30/30 = 100.0% | urgência 29/30 = 96.7% | revisão humana 5/30
+  ERRO D01: previsto buraco/media (conf 1.0) real buraco/alta | Tem uma cratera no meio da avenida e ontem um carro quebrou o eixo nel
+[teste] 30 relatos | categoria 27/30 = 90.0% | urgência 26/30 = 86.7% | revisão humana 8/30
+  ERRO T04: previsto indefinido/baixa (conf 0.0) real buraco/media [revisão humana] | Rua de terra com valas fundas, difícil passar.
+  ERRO T16: previsto calcada/alta (conf 1.0) real calcada/media | Degrau enorme na calçada da esquina, perigoso para idosos.
+  ERRO T17: previsto indefinido/baixa (conf 0.0) real alagamento/alta [revisão humana] | A água da chuva invadiu o térreo do prédio, tudo alagado.
+  ERRO T20: previsto indefinido/baixa (conf 0.0) real alagamento/media [revisão humana] | A galeria de água da esquina está obstruída.
+[todos] 60 relatos | categoria 57/60 = 95.0% | urgência 55/60 = 91.7% | revisão humana 13/60
+Confusões de categoria (real -> previsto): {('buraco', 'indefinido'): 1, ('alagamento', 'indefinido'): 2}
