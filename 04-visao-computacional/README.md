@@ -36,7 +36,7 @@ Robustez com perturbações sintéticas (F1 no teste): original 0,982, obstácul
 - O teste vem da mesma distribuição do treino (fotos de prédios de um único campus), então 98% é otimista para fotos de cidadãos.
 - Há rótulos duvidosos: imagens com fissura visível em `Negative` (por exemplo `13047`, `03043`, `00320`, `00361`).
 - Pouca luz, excesso de luz e desfoque derrubam o recall; sombra e texturas manchadas geram falsos positivos.
-- Nenhuma foto real de cidadão foi testada: as interferências (sombra, pouca luz, desfoque, obstáculo) são simuladas sobre imagens do dataset.
+- Nenhuma foto de cidadão foi avaliada: as interferências (sombra, pouca luz, desfoque, obstáculo) são simuladas sobre imagens do dataset. Há só 4 imagens da internet (Wikimedia Commons) como exemplo qualitativo, com rótulo atribuído visualmente: 2 acertos, 1 falso negativo (fissuras finas) e 1 falso positivo (agregados expostos). Créditos em `evidencias/fotos_internet/CREDITOS.md`.
 - Classificação binária: não localiza a fissura e não mede gravidade.
 
 ## Como rodar (a partir de `codigo/`)
@@ -57,4 +57,4 @@ python benchmark_video.py caminho/do/video.mp4
 Integração, a partir de `01-front-end/`: `uvicorn api.main:app --port 8000` e `streamlit run web/app.py`.
 
 ## Evidências (`evidencias/`)
-`relatorio_classificacao.txt`, `matriz_confusao.png`, `erros_teste.csv`, `montagem_erros.png`, `montagem_acertos.png`, `limiar_validacao.csv`, `limiar_escolhido.json`, `varredura_limiar.csv`, `robustez.csv`, `montagem_interferencias.png`, `interferencias_exemplos.csv`, `prints/` (telas do app), `benchmark.txt`, `historico_treino.json`, `manifesto_split.csv`.
+`relatorio_classificacao.txt`, `matriz_confusao.png`, `erros_teste.csv`, `montagem_erros.png`, `montagem_acertos.png`, `limiar_validacao.csv`, `limiar_escolhido.json`, `varredura_limiar.csv`, `robustez.csv`, `montagem_interferencias.png`, `interferencias_exemplos.csv`, `prints/` (telas do app, inclusive 07 a 10 com imagens da internet), `fotos_internet/` (imagens e créditos), `benchmark.txt`, `historico_treino.json`, `manifesto_split.csv`.

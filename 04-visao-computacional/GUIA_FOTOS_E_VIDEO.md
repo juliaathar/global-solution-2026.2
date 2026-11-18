@@ -48,10 +48,11 @@ Não testei as partes específicas do Colab (instalar pacote, baixar o dataset, 
 4. **Meça no computador onde o app roda.** Esse é o equipamento que vale para o relatório (Intel Core i5-6300U, 15,7 GB, sem GPU):
 
    ```bash
-   C:\vcenv\Scripts\python.exe benchmark_video.py "C:\caminho\do\video.mp4"
+   cd "<caminho-do-repositorio>\04-visao-computacional\codigo"
+   C:\vcenv\Scripts\python.exe benchmark_video.py "C:\caminho\real\do\seu_video.mp4"
    ```
 
-   Rode a partir de `04-visao-computacional/codigo/`. Copie a saída (equipamento, resolução, latência média, FPS).
+   Troque `C:\caminho\real\do\seu_video.mp4` pelo caminho verdadeiro do seu arquivo. Copie a saída (equipamento, resolução, latência média, FPS).
 5. **Opcional:** repetir no Colab (célula 🎥) para ter uma segunda referência.
 6. **Alternativa permitida pelo enunciado:** uma pasta de imagens em sequência no lugar do vídeo.
 7. Me passe o caminho do vídeo e eu rodo o benchmark, gero o gráfico e atualizo o README e o documento de tarefas.
@@ -61,13 +62,19 @@ Não testei as partes específicas do Colab (instalar pacote, baixar o dataset, 
 O enunciado pede: **demonstração da funcionalidade integrada, com exemplos de imagens e processamento de vídeo ou sequência de imagens**. O vídeo do front-end tem no máximo 5 min e deve mostrar problema, fluxo, código, erro tratado e evidências. O roteiro abaixo cobre os dois.
 
 ### Preparação (antes de gravar)
-Em dois terminais, a partir de `01-front-end/`:
+Em **dois terminais**, cada um começando com `cd` para a pasta `01-front-end` (rodar de outra pasta dá `No module named 'api'`).
+
+Terminal 1 (API):
 
 ```bash
+cd "<caminho-do-repositorio>\01-front-end"
 C:\vcenv\Scripts\python.exe -m uvicorn api.main:app --port 8000
 ```
 
+Terminal 2 (tela):
+
 ```bash
+cd "<caminho-do-repositorio>\01-front-end"
 C:\vcenv\Scripts\python.exe -m streamlit run web/app.py
 ```
 
@@ -106,3 +113,9 @@ Abra http://localhost:8501. Deixe à mão: 3 fotos (uma com fissura, uma sem, um
 | `evidencias/prints/04_confianca_baixa.jpg` | Aviso de resultado incerto |
 | `evidencias/prints/05_video_resultado.jpg` | Métricas, gráfico por quadro e lista de quadros com alerta (vídeo sintético) |
 | `evidencias/prints/06_erro_api_fora_do_ar.jpg` | Erro tratado quando a API não responde |
+| `evidencias/prints/07_internet_fissura_muro_alerta.png` | Imagem da internet: fissura em muro, alerta (91,4%) |
+| `evidencias/prints/08_internet_pavimento_rachado_alerta.png` | Imagem da internet: calçada rachada, alerta (86,6%) |
+| `evidencias/prints/09_internet_calcada_fissuras_finas_nao_detectou.png` | Imagem da internet: fissuras finas **não detectadas** (falso negativo, 21,0%) |
+| `evidencias/prints/10_internet_concreto_com_agregados_falso_alerta.png` | Imagem da internet: concreto com agregados, **falso alerta** (73,5%) |
+
+Os prints 07 a 10 usam imagens do Wikimedia Commons (créditos em `evidencias/fotos_internet/CREDITOS.md`). Servem para mostrar acertos e erros no vídeo, mas não são avaliação: 4 imagens, com rótulo atribuído visualmente.

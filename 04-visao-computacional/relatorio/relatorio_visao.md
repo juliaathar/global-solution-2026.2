@@ -1,7 +1,7 @@
 # Relatório: Visão Computacional para Manutenção Urbana
 
 Projeto EloBairro, Global Solution 2026.2 (FIAP, CitizenTech). Disciplina de Visão Computacional.
-Integrantes: Bruno Fernandes, Edgar Lódula e Júlia Aben-Athar.
+Integrantes: Bruno Fernandes Nascimento (RM 552574), Edgar Lódula de Assis (RM 565260) e Júlia Aben-Athar (RM 566325).
 
 > **Aviso de triagem.** O módulo sinaliza locais que merecem inspeção. A presença de fissura na imagem, isoladamente, **não define a gravidade do dano nem a segurança estrutural** da edificação. Esse aviso aparece na resposta da API (`aviso`) e fixo na tela do app.
 
@@ -97,6 +97,17 @@ Mesmo entre os acertos há casos "apertados" (`montagem_acertos.png`): fissuras 
 
 Essa tabela foi medida com o limiar 0,5, antes de adotarmos 0,45. O padrão é claro: **sombra gera falsos positivos** (a precisão cai para 0,878), e **pouca luz, excesso de luz e desfoque derrubam o recall**, ou seja, o modelo deixa de ver fissuras. O obstáculo central quase não atrapalha. Em `evidencias/montagem_interferencias.png`, 6 imagens sorteadas (fissuras largas e nítidas) resistiram à maioria das interferências, com 1 erro em 36 casos; a queda média da tabela vem das fissuras finas.
 
+**Exemplos qualitativos com imagens da internet.** Para ver o app com fotos de fora do dataset, usamos 4 imagens do Wikimedia Commons com licença aberta (créditos em `evidencias/fotos_internet/CREDITOS.md`; prints em `evidencias/prints/07` a `10`). São **exemplos, não uma avaliação**: o rótulo "esperado" foi atribuído por inspeção visual da equipe, sem verificação de especialista, e 4 imagens não permitem calcular métrica. Limiar 0,45.
+
+| Imagem | O que mostra | Resultado do app | Leitura |
+|---|---|---|---|
+| `01_fissura_muro_concreto` | Fissura vertical em muro de blocos de concreto | Alerta, P(fissura) 91,4% | Acerto |
+| `02_pavimento_rachado` | Calçada de concreto com rachaduras largas | Alerta, P(fissura) 86,6% | Acerto |
+| `03_calcada_quebrada_rua` | Calçada com várias fissuras finas | **Sem alerta**, P(fissura) 21,0% | **Falso negativo**: fissuras finas e foto de cena aberta |
+| `04_concreto_polido_agregados` | Concreto polido com pedras (agregados) expostas, sem fissura | **Alerta**, P(fissura) 73,5% | **Falso positivo**: textura com agregados |
+
+Os dois erros combinam com o que já aparece no teste: fissura fina escapa (falso negativo) e textura irregular vira falso alerta. Isso reforça que o resultado serve só para triagem e precisa de conferência humana.
+
 ## 7. Integração ao app
 
 - **API (FastAPI):** `POST /visao/imagem` recebe JPG ou PNG (até 5 MB) e `POST /visao/video` recebe MP4, AVI, MOV ou MKV (até 50 MB), analisando 1 a cada N quadros. Ambos aceitam o parâmetro `limiar`.
@@ -124,7 +135,7 @@ A variação entre execuções é grande: é um notebook com CPU de baixa potên
 - A separação por blocos é uma **aproximação**: pode haver recortes da mesma foto original em conjuntos diferentes.
 - O teste vem da **mesma distribuição do treino**; o desempenho em fotos de cidadãos, em outros locais, deve ser menor.
 - Há **rótulos duvidosos** no dataset (fissuras visíveis em `Negative`).
-- **Nenhuma foto real** foi testada. As interferências (sombra, pouca luz, desfoque, obstáculo) são **simuladas** sobre imagens do dataset.
+- **Não houve avaliação com fotos reais.** As interferências (sombra, pouca luz, desfoque, obstáculo) são **simuladas** sobre imagens do dataset. As 4 imagens da internet da seção 6 são só exemplos qualitativos, com rótulo atribuído visualmente.
 - O modelo foi treinado com recortes quadrados de superfície vista **de perto**. Fotos de fachada inteira, de longe, e fotos retangulares redimensionadas à força para 224×224 podem degradar o resultado.
 - **Classificação binária:** não localiza a fissura nem mede gravidade, abertura ou segurança estrutural.
 - Latência e FPS foram medidos em um único equipamento e, por ora, com entradas sintéticas.
