@@ -2,6 +2,7 @@
 
 Fica fora do app.py para que os scripts de teste não dependam do Gradio.
 """
+import logging
 import math
 import os
 import struct
@@ -9,6 +10,8 @@ import wave
 
 from config import LLM_API_KEY, LLM_MODEL, LLM_PROVIDER, STT_MODEL, TTS_ENGINE
 from llm.base_stub import BaseStub
+
+log = logging.getLogger("componentes")
 
 
 def tom_wav(caminho: str) -> None:
@@ -53,8 +56,18 @@ class DemoTTS:
 
 
 def carregar_base():
-    """Troque pelo adaptador do RAG de 03-generative-ai quando ele existir."""
-    return BaseStub()
+    """Base de conhecimento. Padrão: o RAG da pasta 03 (BASE_CONHECIMENTO=rag). Se ele não puder ser
+    carregado (falta fastembed, modelo de embeddings sem rede), cai na base fictícia de exemplo e AVISA:
+    as respostas dela não são oficiais. BASE_CONHECIMENTO=stub força a base fictícia (testes)."""
+    if os.getenv("BASE_CONHECIMENTO", "rag").lower() == "stub":
+        return BaseStub()
+    try:
+        from llm.base_rag import BaseRAG
+        return BaseRAG()
+    except Exception as e:  # noqa: BLE001 - qualquer falha de carga cai no caminho seguro
+        log.warning("RAG da pasta 03 indisponível (%s: %s). Usando a base FICTÍCIA de exemplo; "
+                    "as respostas não são oficiais.", type(e).__name__, e)
+        return BaseStub()
 
 
 def carregar_componentes(demo: bool, apagar_audio: bool = True):
