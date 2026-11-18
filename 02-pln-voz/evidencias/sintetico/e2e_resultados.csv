@@ -1,0 +1,31 @@
+﻿conversa,turno,transcricao,resposta,motivo,stt,llm_rag,adaptacao,tts,total
+c01,1,Que horas a UBS abre?,"A UBS abre de segunda a sexta, das sete às dezessete horas.",llm,6.321,6.154,0.005,2.485,14.965
+c01,2,E o que eu levo?,Leve documento com foto e cartão do SUS.,llm,6.722,4.394,0.0,0.346,11.463
+c01,3,Quem ganhou o jogo ontem?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,6.456,0.0,0.001,1.579,8.037
+c02,1,para que serve o CRAS.,O CRAS orienta sobre benefícios sociais e o Cadastro Único. Precisa de mais alguma informação?,llm,6.157,7.906,0.0,0.569,14.632
+c02,2,e o que eu preciso levar lá.,Leve documento com foto e comprovante de residência.,llm,6.694,5.395,0.0,0.645,12.734
+c02,3,Qual remédio é bom para dor de cabeça?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,6.52,0.001,0.001,1.393,7.914
+c03,1,Como faça a segunda via do RG?,Vá ao posto de identificação. Leve certidão de nascimento ou casamento e comprovante de residência.,llm,6.253,8.701,0.0,0.586,15.541
+c03,2,E quais documentos eu levo?,Leve documento com foto e cartão do SUS.,llm,5.956,4.371,0.0,0.302,10.63
+c03,3,Quanto custa?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,6.073,0.0,0.001,1.416,7.49
+c04,1,Tenho um buraco na minha rua. Como eu aviso?,Diga sobre o buraco no EloBairro e crie um protocolo. Fique atento às orientações do sistema.,llm,6.511,7.628,0.0,0.716,14.855
+c04,2,E isso gera um número para acompanhar?,"Sim, você receberá um número de acompanhamento. Verifique no EloBairro se já recebeu.",llm,6.227,5.682,0.0,0.653,12.562
+c04,3,Obrigado! Me conta uma piada!,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,6.17,0.001,0.001,1.576,7.747
+c05,1,Em quais dias a UBS atende?,"A UBS atende de segunda a sexta, das sete às dezessete horas.",llm,6.29,6.652,0.0,0.488,13.43
+c05,2,e ela fecha que horas.,A UBS fecha às dezessete horas.,llm,5.924,3.897,0.0,0.302,10.123
+c05,3,Posso processar meu vizinho?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,6.231,0.0,0.001,1.407,7.639
+c06,1,Onde posso fazer o cadastro único?,Vá ao CRAS e leva documento com foto e comprovante de residência.,llm,6.325,6.556,0.0,0.445,13.326
+c06,2,E eu preciso de comprovante de residência?,"Sim, leva também um comprovante de residência.",llm,6.372,7.605,0.0,0.421,14.399
+c06,3,Qual a previsão do tempo?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,6.95,0.0,0.001,1.817,8.768
+c07,1,O poste da minha rua está apagado. O que eu faço?,"Ligue para a empresa responsável por manutenção de postes. Caso não saiba quem é, procure a prefeitura local.",llm,6.837,8.38,0.0,0.692,15.91
+c07,2,"e depois que eu relato, o que acontece?","Depois de relatar, um técnico será encaminhado para fazer a manutenção. Espera-se que seja resolvido em até 48 horas.",llm,6.938,8.459,0.0,1.053,16.449
+c07,3,Quanto está o dólar?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,6.339,0.0,0.001,2.347,8.687
+c08,1,Preciso do cartão dos SUS para ir ao BS?,"Sim, levará seu cartão do SUS.",llm,6.34,6.266,0.0,0.298,12.904
+c08,2,E se eu não tiver?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,6.353,0.001,0.001,1.888,8.242
+c08,3,Me dá uma receita de bolo.,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,6.834,0.001,0.001,1.856,8.691
+c09,1,Como relato lixo acumulado na calçada?,Você pode relatar lixo acumulado no EloBairro. Crie um novo protocolo informando a localização.,llm,6.974,8.575,0.0,0.858,16.408
+c09,2,E isso gera protocolo?,"Sim, ao criar um novo protocolo no EloBairro, você relata o problema para que seja resolvido.",llm,6.776,6.867,0.0,0.617,14.26
+c09,3,Qual é o endereço da UBS mais próxima?,Não sei essa informação. Procure no EloBairro para encontrar a UBS mais próxima.,llm,6.652,10.582,0.0,0.851,18.085
+c10,1,Posso usar certidão de casamento na segunda via do RG?,"Não, certidão de casamento não serve para segunda via do RG. Lembre-se de levar documento com foto e cartão do SUS.",llm,7.321,10.101,0.0,1.139,18.562
+c10,2,e precisa de mais alguma coisa?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,7.775,0.001,0.001,1.485,9.262
+c10,3,Quem é o prefeito da cidade?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,6.577,0.0,0.001,1.489,8.067

@@ -1,0 +1,31 @@
+﻿id,conversa,turno,tipo,pergunta,esperado,modelo,resposta,motivo,acerto_auto,acerto_manual,obs_manual,latencia_s
+q01,c01,1,normal,Que horas a UBS abre?,sete|7,ollama/qwen2.5:3b,"A UBS abre de segunda a sexta, das sete às dezessete horas.",llm,1,,,6.945
+q02,c01,2,continuacao,E o que eu levo?,foto|sus,ollama/qwen2.5:3b,Leve documento com foto e cartão do SUS.,llm,1,,,5.287
+q03,c02,1,normal,Em quais dias a UBS atende?,segunda;sexta,ollama/qwen2.5:3b,"A UBS atende de segunda a sexta, das sete às dezessete horas.",llm,1,,,5.685
+q04,c02,2,continuacao,E que horas ela fecha?,dezessete|17,ollama/qwen2.5:3b,A UBS fecha às dezessete horas.,llm,1,,,4.089
+q05,c03,1,normal,Para que serve o CRAS?,benefício|beneficio|cadastro,ollama/qwen2.5:3b,O CRAS orienta sobre benefícios sociais e o Cadastro Único. Documento com foto e comprovante de residência são necessários.,llm,1,,,8.816
+q06,c03,2,continuacao,E o que eu preciso levar lá?,comprovante,ollama/qwen2.5:3b,Leve documento com foto e comprovante de residência.,llm,1,,,4.859
+q07,c04,1,normal,Como faço a segunda via do RG?,posto,ollama/qwen2.5:3b,Vá ao posto de identificação. Leve certidão de nascimento ou casamento e comprovante de residência.,llm,1,,,8.771
+q08,c04,2,continuacao,E o que eu levo?,certidão|certidao;comprovante,ollama/qwen2.5:3b,Leve documento com foto e cartão do SUS.,llm,0,0,Errado: manda levar documento da UBS para a segunda via do RG.,4.21
+q09,c05,1,normal,Tem um buraco na minha rua. Como eu aviso?,elobairro|protocolo,ollama/qwen2.5:3b,Diga ao EloBairro sobre o buraco. Eles gerarão um protocolo.,llm,1,,,6.633
+q10,c05,2,continuacao,E isso gera algum número para acompanhar?,protocolo,ollama/qwen2.5:3b,"Sim, eles gerarão um número para você acompanhar o caso.",llm,0,1,Correta: diz que gera número para acompanhar.,5.388
+q11,n06,1,normal,Preciso do cartão do SUS para ir à UBS?,cartão|cartao|sus,ollama/qwen2.5:3b,"Sim, levará seu cartão do SUS.",llm,1,,,6.343
+q12,n07,1,normal,Que documento eu levo na UBS?,foto,ollama/qwen2.5:3b,Leve seu documento com foto e o cartão do SUS.,llm,1,,,6.319
+q13,n08,1,normal,Onde posso fazer o Cadastro Único?,cras,ollama/qwen2.5:3b,Vá ao CRAS do seu bairro para fazer o Cadastro Único. Precisa de mais alguma informação?,llm,1,,,7.503
+q14,n09,1,normal,O CRAS pede comprovante de residência?,comprovante,ollama/qwen2.5:3b,"Sim, leva comprovante de residência.",llm,1,,,6.138
+q15,n10,1,normal,Quem orienta sobre benefícios sociais?,cras,ollama/qwen2.5:3b,O CRAS orienta sobre benefícios sociais.,llm,1,,,4.643
+q16,n11,1,normal,Quais documentos preciso para a segunda via do RG?,certidão|certidao;comprovante,ollama/qwen2.5:3b,Leve certidão de nascimento ou casamento e comprovante de residência.,llm,1,,,8.562
+q17,n12,1,normal,Posso usar certidão de casamento para tirar a segunda via do RG?,certidão|certidao,ollama/qwen2.5:3b,Não sei essa informação. Pergunte em uma secretaria de identidade.,llm,0,0,Abstenção indevida: respondeu 'não sei' a pergunta que a base responde.,5.961
+q18,n13,1,normal,O poste da minha rua está apagado. O que eu faço?,elobairro|protocolo,ollama/qwen2.5:3b,Ligue para a empresa responsável por manutenção de postes ou procure a Companhia de Água e Esgoto.,llm,0,0,Inventou: manda ligar para empresa de manutenção e Companhia de Água e Esgoto.,8.215
+q19,n14,1,normal,Como relato lixo acumulado na calçada?,elobairro|protocolo,ollama/qwen2.5:3b,Diga onde está o lixo acumulado e faça um chamado pelo EloBairro.,llm,1,,,6.256
+q20,n15,1,normal,O EloBairro gera protocolo?,protocolo,ollama/qwen2.5:3b,"Sim, você pode usar o EloBairro para relatar problemas como buracos na rua, poste apagado ou lixo acumulado.",llm,0,1,Responde 'Sim' à pergunta.,5.889
+q21,n16,1,normal,A UBS atende de segunda a sexta?,segunda;sexta,ollama/qwen2.5:3b,"Sim, atende de segunda a sexta, das sete às dezessete horas.",llm,1,,,8.694
+q22,n17,1,normal,Onde faço a segunda via de identidade?,posto,ollama/qwen2.5:3b,Vá ao posto de identificação. Leve certidão de nascimento ou casamento e comprovante de residência.,llm,1,,,9.735
+q23,n18,1,normal,O que a UBS pede para atender uma pessoa?,documento|cartão|cartao,ollama/qwen2.5:3b,Leva documento com foto e cartão do SUS.,llm,1,,,5.89
+q24,f01,1,fora_escopo,Quem ganhou o jogo de futebol ontem?,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,,,0.0
+q25,f02,1,fora_escopo,Me dá uma receita de bolo de chocolate.,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,,,0.0
+q26,f03,1,fora_escopo,Quanto está o dólar hoje?,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,,,0.0
+q27,f04,1,fora_escopo,Estou com febre há três dias. Que remédio devo tomar?,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,,,0.0
+q28,f05,1,fora_escopo,Posso processar meu vizinho por causa do barulho?,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,,,0.0
+q29,s01,1,sem_resposta,Qual é o endereço da UBS mais próxima da minha casa?,,ollama/qwen2.5:3b,Não sei essa informação. Procure no site oficial da prefeitura ou ligue para o 156 para saber o endereço mais próximo.,llm,1,,,6.106
+q30,s02,1,sem_resposta,Quanto custa a segunda via do RG?,,ollama/qwen2.5:3b,Não sei essa informação. Pergunte diretamente no posto de identificação.,llm,1,,,7.686

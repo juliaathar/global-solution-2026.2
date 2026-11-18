@@ -26,7 +26,9 @@ def main():
     with torch.no_grad():
         for x, y in DataLoader(ds, batch_size=config.BATCH):
             prob = torch.softmax(modelo(x), 1)
-            conf, pred = prob.max(1)
+            p_fissura = prob[:, 1]
+            pred = (p_fissura >= config.LIMIAR_CONFIANCA).long()  # mesmo limiar usado na API
+            conf = torch.where(pred == 1, p_fissura, 1 - p_fissura)
             y_real += y.tolist()
             y_prev += pred.tolist()
             confs += conf.tolist()
@@ -40,7 +42,7 @@ def main():
         w.writerow(["arquivo", "real", "previsto", "confianca"])
         for it, r, p, c in zip(ds.itens, y_real, y_prev, confs):
             if r != p:
-                w.writerow([it["arquivo"], config.CLASSES[r], config.CLASSES[p], round(c, 3)])
+                w.writerow([it["relativo"], config.CLASSES[r], config.CLASSES[p], round(c, 3)])
     print("Amostra de teste:", len(y_real), "| erros:", sum(r != p for r, p in zip(y_real, y_prev)))
 
 

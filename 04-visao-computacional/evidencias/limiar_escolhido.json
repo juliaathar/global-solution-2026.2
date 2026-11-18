@@ -1,0 +1,28 @@
+{
+  "criterio": "recall >= 0.99 na validação, maior precisão",
+  "limiar_escolhido": 0.45,
+  "validacao": {
+    "limiar": 0.45,
+    "precisao": 0.9835,
+    "recall": 0.9933,
+    "f1": 0.9884,
+    "fn": 2,
+    "fp": 5
+  },
+  "teste_no_limiar_escolhido": {
+    "limiar": 0.45,
+    "precisao": 0.9738,
+    "recall": 0.99,
+    "f1": 0.9818,
+    "fn": 3,
+    "fp": 8
+  },
+  "teste_no_limiar_0.5": {
+    "limiar": 0.5,
+    "precisao": 0.9769,
+    "recall": 0.9867,
+    "f1": 0.9818,
+    "fn": 4,
+    "fp": 7
+  }
+}

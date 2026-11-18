@@ -8,8 +8,8 @@ Projeto da Global Solution 2026.2 (FIAP, CitizenTech). Uma única solução aten
 
 | Nome completo | RM |
 |---|---|
-| Bruno Fernandes | 566325 |
-| Edgar Lódula | 565260 |
+| Bruno Fernandes Nascimento | 552574 |
+| Edgar Lódula de Assis | 565260 |
 | Júlia Aben-Athar | 566325 |
 
 ## Problema e público

@@ -13,3 +13,11 @@ models/*.bin
 04-visao-computacional/imagens/Positive/
 04-visao-computacional/imagens/Negative/
 *.imsx.bak
+
+# 02-pln-voz: respostas sintetizadas e log de latência
+02-pln-voz/saida/
+02-pln-voz/relatorio/relatorio_montado.md
+02-pln-voz/*.onnx
+02-pln-voz/*.onnx.json
+02-pln-voz/audios_teste/sintetico/*.wav
+02-pln-voz/audios_teste/sintetico_e2e/*.wav

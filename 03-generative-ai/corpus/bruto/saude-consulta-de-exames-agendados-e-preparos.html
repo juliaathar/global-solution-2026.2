@@ -1,0 +1,266 @@
+
+
+<!DOCTYPE html>
+
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	Consulta de Exames Agendados e Preparos - Prefeitura de São José dos Campos
+</title><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="/consulta_exames/Imagens/favicon.ico?v=1" />
+
+    
+    <link rel="stylesheet" href="/consulta_exames/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="/consulta_exames/Content/servico.css" />
+    <link rel="stylesheet" href="/consulta_exames/Content/jquery-ui.min.css" />
+
+    
+    <script src="/consulta_exames/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="/consulta_exames/Scripts/jquery-ui.min.js"></script>
+    <script src="/consulta_exames/Scripts/umd/popper.min.js"></script>
+    <script src="/consulta_exames/Scripts/bootstrap.min.js"></script>
+    <script src="/consulta_exames/Scripts/jquery.mask.min.js"></script>
+    <script src="/consulta_exames/Scripts/mascaras.js"></script>
+
+    
+    <script src="/funcoes/javascripts/google_analytics.js" type="text/javascript"></script>
+
+    
+    
+    <script src="https://www.google.com/recaptcha/api.js?render=6Lc_YvUlAAAAAPIu1CV618zvyRbLvYVx8WCEdfdx"></script>
+
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('6Lc_YvUlAAAAAPIu1CV618zvyRbLvYVx8WCEdfdx', { action: 'consulta_exames' })
+                .then(function (token) {
+                    document.getElementById('cphCorpo_googleRecaptcha').value = token;
+                });
+        });
+
+    </script>
+</head>
+<body>
+    <form method="post" action="./" id="form1">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="XGEE2i0YNWHpMns7LPATLArXDTeZm7SW9qZIyUaPh1jk96cHFK6bhjuAW8aSvMtXBnbyK3vTc5l3iDJsD8zwPrI+HaOXvhNTgXA2eMDcP7KSZkKGCRF+Zgjddu/6rTTLyX8csAkodcJqYm3qXTPZjm/Ff0cU5hxgKrezc1jlFppG+ClrrnHFeRAQ2mT/+af7R0sajtVVjgQJDO2+LmakdHS/5ILbuqwGMsX3PClUnL/jsWHyOrAGKdMjg+yzygCHSLxrxNP4a16PuGZEpPAk9MV1m/SgTSaFyF4l05nqTJ6BudcD1DzD2jobA5u0IPDMa/ZCXrZzQ5FrOsQma1gBOGiJKA4tuPhAbjZk64zrhiDaD0IujEVvUS6eWUulQhrncS66uw17rR8CGRwSfpHDCmR2BwouQirAuQBH0KvSE9W2+P54cdDasAeCYW1sGoR4q2qtLJT92ey3UYwuqiq7VANMtRg8CJ41DvbQYqaCouq5iQ6nC6csU+cW7cX4H2PMf8spJpBD3lRpATsUKXQDJC2qmPWIZHFaiLilWMzGkI3PL9KqxcM3bu+m9pbrLBQSYNitTA7veg1bjd4eAX7NL9lrp/a7D1bAY0VE9S2CFgJgx73auJaebNmMbss0wN36uwrTzxGAWDl3xgbI6FJDTCU+7FvZAygIpOkco997Rv8=" />
+
+
+<script src="/consulta_exames/ScriptResource.axd?d=NJmAwtEo3Ipnlaxl6CMhvpV_QWltTMV4eSlpip7VXi2e2W1X3BuABlGJ13a2eVAlelomTBcjroRjMhzF7jgkn65hB3HqlSHAUK_69qOOQYcoBQus9_FobFMCB7EzvLBekZAFH1MPE8NZeVfuZYADcJYgZylCOS3F3O1VfWluN4U1&amp;t=ffffffffbec1863d" type="text/javascript"></script>
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="66C2303E" />
+<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="" />
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="CSWeRlTwymQCzjYXnCiF0QEuN1fZaUhJcRa1Kx5LZAWJCT176jJi9aPH0XJ6JywsT12CF6MOIlaTFXKTCynvBoiEs93FW867bzIiDSeytyLlS7Kywy3lCaf8F9MneJzL9elvYeIztlI15uHtNWnEhqmHNij0jLYZ3E8B/Nq9mJfhrw7vFepZ6fUva6nKXPGzqXlxAg1Cs9JiaaNdJrjxuw==" />
+        
+
+        
+        <div id="panCabecalhoNormal">
+	
+<div id="div_iframe_cabecalho" class="nao-imprime" style="width: 100%;">
+<iframe id="iframe_cabecalho" width="100%" height="175" scrolling="no" frameborder="0" src="//servicos.sjc.sp.gov.br/cabecalho/index.htm"></iframe></div>
+
+</div>
+
+
+        
+
+        
+        <nav class="navbar navbar-expand-md bg-light navbar-light">
+            <div class="container">
+                <!-- Brand -->
+                <a class="navbar-brand" href="/consulta_exames/default.aspx">Início</a>
+
+                <!-- Toggler/collapsibe Button -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+
+
+              
+
+                <!-- Navbar links -->
+                
+            </div>
+        </nav>
+        
+
+        
+        <div class="container">
+            <h1>
+                
+    Consulta de Exames Agendados e Preparos
+
+            </h1>
+            <div id="uppMsg">
+	
+                    
+                
+</div>
+            
+
+    
+
+
+
+    <div id="cphCorpo_painel_inicial">
+	
+        <p>Entre com os dados abaixo para consultar o agendamento e preparos de seus exames.</p>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="cphCorpo_txtCRA">* Número do CRA:</label>
+                <input name="ctl00$cphCorpo$txtCRA" type="text" maxlength="12" id="cphCorpo_txtCRA" class="form-control mascara_inteiro_12" required="required" autocomplete="off" />
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="cphCorpo_txtCPF">* CPF:</label>
+                <input name="ctl00$cphCorpo$txtCPF" type="text" maxlength="14" id="cphCorpo_txtCPF" class="form-control mascara_cpf" required="required" autocomplete="off" />
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="cphCorpo_txtDataNasc">* Data de Nascimento:</label>
+                <input name="ctl00$cphCorpo$txtDataNasc" type="text" maxlength="10" id="cphCorpo_txtDataNasc" class="form-control mascara_date" required="required" autocomplete="off" />
+            </div>
+        </div>
+
+        <div id="cphCorpo_Panel_lgpd">
+		
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <span id="cphCorpo_lbl_lgpd">Os dados pessoais e sensíveis informados neste formulário serão tratados apenas para a finalidade a que se destinam, nos termos da lei federal nº 13.709/2018 - Lei Geral de Proteção de Dados Pessoais e do decreto municipal nº 18.855/2021.</span>
+                </div>
+            </div>
+        
+	</div>
+
+        
+        <input name="ctl00$cphCorpo$googleRecaptcha" type="hidden" id="cphCorpo_googleRecaptcha" />
+        <input type="hidden" name="action" value="consulta_exames" />
+        
+
+        <div class="form-group">
+            <input type="submit" name="ctl00$cphCorpo$btnEnviar" value="Enviar" id="cphCorpo_btnEnviar" class="btn btn-primary" />
+        </div>
+    
+</div>
+
+    
+    <br />
+    
+
+    
+    
+
+    <div class="modal fade" id="myValidation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content" style="border: 0px;">
+
+                <div class="modal-header" style="background-color: #004997; color: white;">
+                    <div class="pull-left" style="width: 5%; font-size: smaller;">
+                        <div class="sidebar-brand-icon">
+                            <i class="fas fa-laptop-medical"></i>
+                        </div>
+                    </div>
+
+                    <div style="width: 90%; text-align: center"><i class="fa fa-exclamation-circle"></i>Atenção! </div>
+
+                    <div class="pull-right" style="width: 5%">
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" style="color: white;"><sup>×</sup> </span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="modal-body">
+                    <p id="msg1Modal" class="text-dark" style="text-align: center" data-html="true">""</p>
+                </div>
+
+                <div class="modal-footer">
+                    <div id="fecharMensagem" class="pull-right">
+                        <a data-dismiss="modal" aria-label="Close" href="#" onclick="fecharMensagem();" class="btn btn-sm btn-primary mb-0"><i class="fas fa-times"></i>Fechar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+
+            /* solution to undefined msie */
+            jQuery.browser = {};
+            jQuery.browser.msie = false;
+            jQuery.browser.version = 0;
+            if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+                jQuery.browser.msie = true;
+                jQuery.browser.version = RegExp.$1;
+            }
+            /* solution to undefined msie */
+
+            $("#cphCorpo_txtDataNasc").datepicker(
+                {
+                    dateFormat: 'dd/mm/yy',
+                    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
+                    dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+                    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+                    monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                    dpDate: true,
+                    nextText: 'Próximo',
+                    prevText: 'Anterior',
+                    minDate: '-122Y',
+                    maxDate: 'D',
+                    yearRange: "-130:+1",
+                    changeMonth: true,
+                    changeYear: true
+                }
+            );
+        })
+
+        function fecharMensagem(el, static = false) {
+            $('#myValidation').modal('hide')
+
+            if (el != null) {
+                if (static) {
+                    $(el).modal({ backdrop: "static", show: true, fade: true })
+                } else {
+                    $(el).modal('show');
+                }
+            }
+
+            return true;
+        }
+
+        function showModal(msg) {
+            document.getElementById('msg1Modal').style.display = "block";
+            document.getElementById('msg1Modal').innerHTML = msg;
+            $("#myValidation").modal({ backdrop: 'static', show: true, fade: true });
+        }
+
+    </script>
+
+
+        </div>
+        
+
+        
+        <div id="panRodapeNormal">
+	
+<div id="div_iframe_rodape" class="nao-imprime" style="width: 100%; margin-top: 20px; line-height: 0px">
+<iframe width="100%" height="70" scrolling="no" frameborder="0" src="//servicos.sjc.sp.gov.br/cabecalho/rodape.htm"></iframe></div>
+
+</div>
+
+
+        
+    </form>
+	<script>
+	function atualizarIframe(tamanho){
+		var x = document.getElementById("iframe_cabecalho");
+		x.height = tamanho;
+	}
+</script>
+
+</body>
+</html>

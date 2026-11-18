@@ -1,0 +1,31 @@
+﻿conversa,turno,transcricao,resposta,motivo,stt,llm_rag,adaptacao,tts,total
+c01,1,Que horas a UBS abre?,A UBS abre das sete às dezessete horas de segunda a sexta.,llm,6.215,15.722,0.004,3.03,24.971
+c01,2,E o que eu levo?,Leve documento com foto e cartão do SUS.,llm,5.95,4.124,0.0,0.309,10.383
+c01,3,Quem ganhou o jogo ontem?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,7.236,0.0,0.001,3.318,10.556
+c02,1,para que serve o CRAS.,O CRAS orienta sobre benefícios sociais e o Cadastro Único. Precisa de mais alguma informação?,llm,6.343,7.739,0.0,0.597,14.679
+c02,2,e o que eu preciso levar lá.,Leve documento com foto e comprovante de residência.,llm,5.877,4.477,0.0,0.361,10.715
+c02,3,Qual remédio é bom para dor de cabeça?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,6.225,0.001,0.001,1.956,8.182
+c03,1,Como faça a segunda via do RG?,Vá ao posto de identificação. Leve certidão de nascimento ou casamento e comprovante de residência.,llm,6.366,10.445,0.0,1.412,18.224
+c03,2,E quais documentos eu levo?,Leve documento com foto e cartão do SUS.,llm,6.968,4.828,0.0,0.642,12.438
+c03,3,Quanto custa?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,8.976,0.0,0.001,1.822,10.8
+c04,1,Tenho um buraco na minha rua. Como eu aviso?,Diga sobre o buraco no EloBairro e crie um protocolo. Fique atento aos outros problemas também.,llm,6.645,8.73,0.0,1.227,16.602
+c04,2,E isso gera um número para acompanhar?,"Sim, você receberá um número para acompanhar o progresso do protocolo. Fique atento a esse número.",llm,6.779,6.932,0.0,1.171,14.883
+c04,3,Obrigado! Me conta uma piada!,"Claro, aqui vai: Por que era difícil encontrar um oito no cinema? Porque havia muitos dois dois nele.",llm,8.919,7.878,0.0,0.724,17.521
+c05,1,Em quais dias a UBS atende?,"A UBS atende de segunda a sexta, das sete às dezessete horas.",llm,6.664,7.788,0.0,0.738,15.19
+c05,2,e ela fecha que horas.,A UBS fecha às dezessete horas.,llm,6.614,4.702,0.0,0.447,11.764
+c05,3,Posso processar meu vizinho?,Não sou o profissional aconselhado para esse tipo de situação. Procure a Defensoria Pública.,llm,6.724,6.787,0.0,0.915,14.427
+c06,1,Onde posso fazer o cadastro único?,Vá ao CRAS e levar documento com foto e comprovante de residência.,llm,8.694,7.695,0.0,0.956,17.345
+c06,2,E eu preciso de comprovante de residência?,"Sim, levar também comprovante de residência.",llm,8.881,8.383,0.0,0.517,17.781
+c06,3,Qual a previsão do tempo?,"Desculpa, não consigo fornecer previsão do tempo. Pergunta para uma fonte de informação meteorológica.",llm,7.874,7.104,0.0,1.76,16.739
+c07,1,O poste da minha rua está apagado. O que eu faço?,Ligue para a empresa responsável pelo serviço de energia elétrica.,llm,8.974,6.817,0.0,0.856,16.647
+c07,2,"e depois que eu relato, o que acontece?",O EloBairro gera um protocolo e encaminha para a empresa responsável. Espera-se que eles resolvam o problema.,llm,6.216,7.929,0.0,1.308,15.454
+c07,3,Quanto está o dólar?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,6.77,0.001,0.001,1.762,8.534
+c08,1,Preciso do cartão dos SUS para ir ao BS?,"Sim, levará seu cartão do SUS.",llm,6.93,6.096,0.0,0.276,13.302
+c08,2,E se eu não tiver?,Você precisará de um cartão do SUS para ir à UBS.,llm,6.122,5.362,0.0,0.475,11.959
+c08,3,Me dá uma receita de bolo.,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,7.848,0.001,0.001,4.256,12.105
+c09,1,Como relato lixo acumulado na calçada?,Você pode relatar lixo acumulado no EloBairro. Crie um novo protocolo informando a localização.,llm,6.293,8.359,0.0,0.791,15.443
+c09,2,E isso gera protocolo?,"Sim, ao criar um novo protocolo no EloBairro, você informa o problema para que seja resolvido.",llm,6.107,6.35,0.0,0.626,13.083
+c09,3,Qual é o endereço da UBS mais próxima?,Não sei essa informação. Pergunte diretamente à UBS ou procure no site oficial do município.,llm,6.704,11.074,0.0,0.868,18.646
+c10,1,Posso usar certidão de casamento na segunda via do RG?,"Não, certidão de casamento não é aceita para segunda via do RG. Use certidão de nascimento.",llm,8.831,9.05,0.0,0.659,18.541
+c10,2,e precisa de mais alguma coisa?,Leve também um documento com foto e seu cartão do SUS.,llm,6.02,4.786,0.0,0.403,11.209
+c10,3,Quem é o prefeito da cidade?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,6.139,0.0,0.001,1.721,7.86

@@ -21,6 +21,9 @@ class Fissuras(Dataset):
     def __init__(self, conjunto):
         with open(config.MANIFESTO, encoding="utf-8") as f:
             self.itens = [l for l in csv.DictReader(f) if l["conjunto"] == conjunto]
+        for it in self.itens:  # o manifesto guarda caminho relativo; aqui vira absoluto para abrir a imagem
+            it["relativo"] = it["arquivo"]
+            it["arquivo"] = str(config.IMAGENS / it["arquivo"])
         self.tf = tf_treino if conjunto == "treino" else tf_base
 
     def __len__(self):

@@ -39,22 +39,23 @@ A deduplicação compara cada texto com todos os anteriores, o que fica lento em
 
 ## Visão Computacional (`04-visao-computacional`)
 
-- [~] V1. Preparar dados com amostra e separação por blocos, sem vazamento (`codigo/preparar_dados.py`)
-- [~] V2. Pré-processamento e aumento de dados (`dados.py`)
-- [~] V3. Treinar MobileNetV2 com transferência de aprendizado (`treinar.py`)
-- [~] V4. Avaliar com precisão, recall, F1 e matriz de confusão (`avaliar.py`)
-- [~] V5. Função de inferência para a API, com limiar e aviso de triagem (`inferir.py`)
-- [~] V6. Medir latência média e FPS em vídeo ou pasta de imagens (`benchmark_video.py`)
-- [ ] V7. Baixar o dataset Concrete Crack (Mendeley) e extrair em `imagens/Positive` e `imagens/Negative`
-- [ ] V8. Instalar dependências (`pip install -r codigo/requirements.txt`) e rodar V1 a V4
-- [ ] V9. Analisar erros do `erros_teste.csv` (sombra, textura, iluminação) e anotar no relatório
-- [ ] V10. Gravar ou escolher um vídeo curto e rodar V6, anotando equipamento e resolução
-- [ ] V11. Criar o endpoint de imagem na API e a tela no app
-- [ ] V12. Justificar arquitetura, pré-processamento e limiar de confiança no relatório
+- [x] V1. Preparar dados com amostra e separação por blocos, sem vazamento (`codigo/preparar_dados.py`)
+- [x] V2. Pré-processamento e aumento de dados (`dados.py`)
+- [x] V3. Treinar MobileNetV2 com transferência de aprendizado (`treinar.py`)
+- [x] V4. Avaliar com precisão, recall, F1 e matriz de confusão (`avaliar.py`)
+- [x] V5. Função de inferência para a API, com limiar e aviso de triagem (`inferir.py`)
+- [x] V6. Medir latência média e FPS em vídeo ou pasta de imagens (`benchmark_video.py`)
+- [x] V7. Baixar o dataset Concrete Crack (Mendeley) e extrair em `imagens/Positive` e `imagens/Negative`
+- [x] V8. Instalar dependências (`pip install -r codigo/requirements.txt`) e rodar V1 a V4
+- [~] V9. Analisar erros do `erros_teste.csv` (sombra, textura, iluminação) e anotar no relatório (erros e acertos vistos em imagem, interferências simuladas em `montagem_interferencias.png`, sem fotos reais por decisão do grupo; falta a anotação no relatório)
+- [~] V10. Gravar ou escolher um vídeo curto e rodar V6, anotando equipamento e resolução (rodado com vídeo sintético em `evidencias/benchmark.txt`; repetir com vídeo real)
+- [x] V11. Criar o endpoint de imagem na API e a tela no app
+- [x] V12. Justificar arquitetura, pré-processamento e limiar de confiança no relatório (`04-visao-computacional/relatorio/relatorio_visao.md`; latência de vídeo real a preencher)
 - [ ] V13. Gravar o vídeo da funcionalidade integrada
 
 Atenção: o dataset não informa a imagem original de cada recorte. A separação por blocos é uma aproximação e deve aparecer como limitação.
-Os scripts só tiveram a sintaxe verificada, não foram executados.
+Executado em 2026-11-17 (CPU i5-6300U): teste com 600 imagens, acurácia 98,2%, F1 0,98 por classe, 11 erros. Limiar 0,45 escolhido na validação. Detalhes em `04-visao-computacional/README.md`.
+Novos scripts: `escolher_limiar.py`, `analisar_erros.py`, `exemplos_acertos.py`, `teste_robustez.py`. Integração: `01-front-end/api/routers/visao.py` e `01-front-end/web/features/visao.py`.
 
 ## Cluster (`07-cluster`)
 

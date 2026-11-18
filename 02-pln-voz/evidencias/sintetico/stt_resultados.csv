@@ -1,0 +1,41 @@
+﻿arquivo,falante,ruido,faixa_etaria,sotaque,referencia,modelo,transcricao,wer,latencia_s
+stt_01.wav,Francisca,nao,sintetica,sintetico,Que horas a UBS abre?,faster-whisper-base,que horas ao B.S. abre.,0.6,2.642
+stt_02.wav,Francisca,nao,sintetica,sintetico,Em quais dias a UBS atende?,faster-whisper-base,em quais dias a OBS atende.,0.1667,2.032
+stt_03.wav,Francisca,sim,sintetica,sintetico,O que eu preciso levar para ser atendido na UBS?,faster-whisper-base,O que eu preciso levar para ser atendido na OBS?,0.1,1.998
+stt_04.wav,Francisca,nao,sintetica,sintetico,Preciso do cartão do SUS para ir à UBS?,faster-whisper-base,Preciso do cartão do SUS para ir ao BS?,0.2222,2.064
+stt_05.wav,Francisca,nao,sintetica,sintetico,Para que serve o CRAS?,faster-whisper-base,Para que serve o crás.,0.2,1.906
+stt_06.wav,Francisca,nao,sintetica,sintetico,Onde posso fazer o Cadastro Único?,faster-whisper-base,onde posso fazer o cadastro único.,0.0,1.979
+stt_07.wav,Francisca,sim,sintetica,sintetico,Quais documentos eu levo ao CRAS?,faster-whisper-base,Quais documentos eu levo ao craço?,0.1667,2.021
+stt_08.wav,Antonio,nao,sintetica,sintetico,Como faço a segunda via do RG?,faster-whisper-base,Como faça a segunda via do RG?,0.1429,1.999
+stt_09.wav,Antonio,nao,sintetica,sintetico,Quais documentos preciso para tirar a segunda via do RG?,faster-whisper-base,Quais documentos preciso para tirar a segunda via do RG?,0.0,2.095
+stt_10.wav,Antonio,nao,sintetica,sintetico,Posso usar a certidão de casamento para a segunda via?,faster-whisper-base,Posso usar a certidão de casamento para a segunda via?,0.0,2.088
+stt_11.wav,Antonio,sim,sintetica,sintetico,Tem um buraco na minha rua. Como eu aviso?,faster-whisper-base,... sem um buraco na minha rua. Como eu aviso?,0.1111,2.152
+stt_12.wav,Antonio,nao,sintetica,sintetico,O poste da minha rua está apagado há três dias.,faster-whisper-base,O poste da minha rua está pagado a três dias.,0.2,2.521
+stt_13.wav,Antonio,nao,sintetica,sintetico,Como eu relato lixo acumulado na calçada?,faster-whisper-base,Come o relato lixo acumulado na calçada.,0.2857,2.083
+stt_14.wav,Antonio,nao,sintetica,sintetico,O relato gera um protocolo para eu acompanhar?,faster-whisper-base,O relato já era um protocolo para eu acompanhar?,0.25,2.268
+stt_15.wav,Thalita,sim,sintetica,sintetico,Quanto custa a segunda via do documento?,faster-whisper-base,quando custa a segunda via do documento.,0.1429,1.985
+stt_16.wav,Thalita,nao,sintetica,sintetico,Minha mãe tem setenta e dois anos e precisa de ajuda com o benefício.,faster-whisper-base,Minha mãe tem 72 anos e precisa de ajuda com o benefício.,0.0,2.069
+stt_17.wav,Thalita,nao,sintetica,sintetico,A UBS fica aberta no sábado de manhã?,faster-whisper-base,"A UBS, fica aberta no sábado de manhã?",0.0,2.279
+stt_18.wav,Thalita,nao,sintetica,sintetico,Preciso levar o comprovante de residência de dois mil e vinte e seis?,faster-whisper-base,Preciso levar o comprovante de residência de 2026?,0.0,2.084
+stt_19.wav,Thalita,sim,sintetica,sintetico,Qual é o telefone do SAMU?,faster-whisper-base,Qual é o telefone do Samo?,0.1667,1.942
+stt_20.wav,Thalita,nao,sintetica,sintetico,Onde fica o posto de identificação mais perto de mim?,faster-whisper-base,onde fica o posto de identificação mais perto de mim.,0.0,2.023
+stt_01.wav,Francisca,nao,sintetica,sintetico,Que horas a UBS abre?,faster-whisper-small,Que horas a OBS abre?,0.2,6.591
+stt_02.wav,Francisca,nao,sintetica,sintetico,Em quais dias a UBS atende?,faster-whisper-small,Em quais dias a OBS atende?,0.1667,6.421
+stt_03.wav,Francisca,sim,sintetica,sintetico,O que eu preciso levar para ser atendido na UBS?,faster-whisper-small,o que eu preciso levar para ser atendido na OBS.,0.1,6.585
+stt_04.wav,Francisca,nao,sintetica,sintetico,Preciso do cartão do SUS para ir à UBS?,faster-whisper-small,Preciso do cartão do SUS para ir ao BS?,0.2222,7.009
+stt_05.wav,Francisca,nao,sintetica,sintetico,Para que serve o CRAS?,faster-whisper-small,para que serve o cras.,0.0,6.336
+stt_06.wav,Francisca,nao,sintetica,sintetico,Onde posso fazer o Cadastro Único?,faster-whisper-small,Onde posso fazer o cadastro único?,0.0,6.602
+stt_07.wav,Francisca,sim,sintetica,sintetico,Quais documentos eu levo ao CRAS?,faster-whisper-small,Quais documentos eu levo ao CRAS?,0.0,6.587
+stt_08.wav,Antonio,nao,sintetica,sintetico,Como faço a segunda via do RG?,faster-whisper-small,Como faço a segunda via do RG?,0.0,6.5
+stt_09.wav,Antonio,nao,sintetica,sintetico,Quais documentos preciso para tirar a segunda via do RG?,faster-whisper-small,Quais documentos preciso para tirar a segunda via do RG?,0.0,7.489
+stt_10.wav,Antonio,nao,sintetica,sintetico,Posso usar a certidão de casamento para a segunda via?,faster-whisper-small,Posso usar a certidão de casamento para a segunda via?,0.0,7.255
+stt_11.wav,Antonio,sim,sintetica,sintetico,Tem um buraco na minha rua. Como eu aviso?,faster-whisper-small,"tem um buraco na minha rua, com o meu aviso.",0.3333,6.759
+stt_12.wav,Antonio,nao,sintetica,sintetico,O poste da minha rua está apagado há três dias.,faster-whisper-small,O poste da minha rua está pagado há três dias.,0.1,6.947
+stt_13.wav,Antonio,nao,sintetica,sintetico,Como eu relato lixo acumulado na calçada?,faster-whisper-small,como eu relato o lixo acumulado na calçada.,0.1429,7.473
+stt_14.wav,Antonio,nao,sintetica,sintetico,O relato gera um protocolo para eu acompanhar?,faster-whisper-small,O relato gera um protocolo para eu acompanhar?,0.0,6.969
+stt_15.wav,Thalita,sim,sintetica,sintetico,Quanto custa a segunda via do documento?,faster-whisper-small,quanto custa a segunda via do documento.,0.0,6.862
+stt_16.wav,Thalita,nao,sintetica,sintetico,Minha mãe tem setenta e dois anos e precisa de ajuda com o benefício.,faster-whisper-small,Minha mãe tem 72 anos e precisa de ajuda com benefício.,0.0714,6.992
+stt_17.wav,Thalita,nao,sintetica,sintetico,A UBS fica aberta no sábado de manhã?,faster-whisper-small,A UBS fica aberta no sábado de manhã?,0.0,7.302
+stt_18.wav,Thalita,nao,sintetica,sintetico,Preciso levar o comprovante de residência de dois mil e vinte e seis?,faster-whisper-small,Preciso levar o comprovante de residência de 2026?,0.0,7.359
+stt_19.wav,Thalita,sim,sintetica,sintetico,Qual é o telefone do SAMU?,faster-whisper-small,Qual é o telefone do SAMU?,0.0,6.484
+stt_20.wav,Thalita,nao,sintetica,sintetico,Onde fica o posto de identificação mais perto de mim?,faster-whisper-small,onde fica o posto de identificação mais perto de mim.,0.0,6.647

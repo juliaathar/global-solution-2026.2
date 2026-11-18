@@ -6,8 +6,8 @@ Robô que pega os relatos confirmados pelo cidadão (buraco, iluminação, lixo,
 
 | Nome completo | RM |
 |---|---|
-| Bruno Fernandes | 566325 |
-| Edgar Lódula | 565260 |
+| Bruno Fernandes Nascimento | 552574 |
+| Edgar Lódula de Assis | 565260 |
 | Júlia Aben-Athar | 566325 |
 
 ## Problema e público

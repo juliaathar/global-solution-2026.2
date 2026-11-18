@@ -1,0 +1,21 @@
+﻿motor,id,texto_falado,sintese_s
+edge-tts,r01,"A U B S atende de segunda a sexta, das sete horas às dezessete horas. Leve um documento com foto e o cartão do sus.",4.245
+edge-tts,r02,Para a segunda via do R G. Leve a certidão de nascimento ou de casamento e um comprovante de residência.,1.989
+edge-tts,r03,O crás orienta sobre benefícios sociais e o Cadastro Único. Leve documento com foto.,1.734
+edge-tts,r04,"Em caso de emergência, ligue um nove dois para o samu ou um nove três para os Bombeiros.",2.038
+edge-tts,r05,Não sei essa informação. Procure o posto de identificação da sua cidade.,2.565
+edge-tts,r06,Você pode relatar um buraco na rua pelo EloBairro. Ele gera um protocolo para você acompanhar.,2.251
+edge-tts,r07,A consulta custa cinquenta reais e deve ser paga até quinze de março de dois mil e vinte e seis.,2.295
+edge-tts,r08,"Fique tranquilo. Vou repetir devagar: primeiro, separe o R G. Depois, vá ao crás.",2.186
+edge-tts,r09,O poste apagado foi registrado. O prazo médio de atendimento é de dez dias úteis.,1.907
+edge-tts,r10,"Sinto muito, mas esse assunto está fora do que eu posso ajudar. Posso orientar sobre serviços do bairro.",1.94
+piper,r01,"A U B S atende de segunda a sexta, das sete horas às dezessete horas. Leve um documento com foto e o cartão do sus.",4.985
+piper,r02,Para a segunda via do R G. Leve a certidão de nascimento ou de casamento e um comprovante de residência.,0.854
+piper,r03,O crás orienta sobre benefícios sociais e o Cadastro Único. Leve documento com foto.,0.751
+piper,r04,"Em caso de emergência, ligue um nove dois para o samu ou um nove três para os Bombeiros.",0.602
+piper,r05,Não sei essa informação. Procure o posto de identificação da sua cidade.,0.589
+piper,r06,Você pode relatar um buraco na rua pelo EloBairro. Ele gera um protocolo para você acompanhar.,0.685
+piper,r07,A consulta custa cinquenta reais e deve ser paga até quinze de março de dois mil e vinte e seis.,0.671
+piper,r08,"Fique tranquilo. Vou repetir devagar: primeiro, separe o R G. Depois, vá ao crás.",0.845
+piper,r09,O poste apagado foi registrado. O prazo médio de atendimento é de dez dias úteis.,0.601
+piper,r10,"Sinto muito, mas esse assunto está fora do que eu posso ajudar. Posso orientar sobre serviços do bairro.",0.679
