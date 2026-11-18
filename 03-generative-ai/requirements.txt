@@ -1,0 +1,5 @@
+beautifulsoup4>=4.12
+lxml>=5.0
+requests>=2.31
+numpy>=1.26
+fastembed>=0.4
