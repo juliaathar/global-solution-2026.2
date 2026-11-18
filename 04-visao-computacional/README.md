@@ -41,7 +41,7 @@ Robustez com perturbações sintéticas (F1 no teste): original 0,982, obstácul
 
 ## Como rodar (a partir de `codigo/`)
 
-Antes, baixe o dataset (241 MB) em [Mendeley Data](https://data.mendeley.com/datasets/5y9wdsg2zt/1) e extraia em `04-visao-computacional/imagens/` com as pastas `Positive/` e `Negative/` (ou aponte `VC_IMAGENS`). O notebook `notebooks/vc_colab.ipynb` faz o download e confere o hash sozinho. Os dados e o modelo treinado (`codigo/modelo_fissuras.pt`) não ficam no git: sem ele, a API responde 503 até rodar `treinar.py`.
+Antes, baixe o dataset (241 MB) em [Mendeley Data](https://data.mendeley.com/datasets/5y9wdsg2zt/1) e extraia em `04-visao-computacional/imagens/` com as pastas `Positive/` e `Negative/` (ou aponte `VC_IMAGENS`). O notebook `notebooks/vc_colab.ipynb` faz o download e confere o hash sozinho. Os dados não ficam no git, mas o **modelo treinado** (`codigo/modelo_fissuras.pt`) sim: é o mesmo que gerou as métricas deste README e do relatório, então a API e o app funcionam sem treinar. `treinar.py` só é preciso para retreinar. Em 18/11/2026 o treino foi refeito do zero em outra máquina (Linux, CPU, PyTorch 2.15, mesma semente e mesmo manifesto) e reproduziu as métricas deste README: acurácia de validação por época, 98,17% no teste e os mesmos 11 erros.
 
 ```bash
 pip install -r requirements.txt
