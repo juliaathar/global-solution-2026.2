@@ -45,7 +45,7 @@ Cada etapa é um módulo separado, com contrato em [interfaces.py](interfaces.py
 | Captura de áudio | [app.py](app.py) | microfone ("gravar") e upload de arquivo, com aviso de consentimento antes do primeiro uso |
 | STT | [stt/](stt/whisper_stt.py) | faster-whisper `base` ou `small` (variável `STT_MODEL`) |
 | Guardas e memória | [llm/assistente.py](llm/assistente.py) | emergência e "não sei" sem passar pelo LLM; últimos 6 turnos de histórico |
-| LLM | [llm/provedores.py](llm/provedores.py) | Ollama (local), Groq ou Gemini (nuvem), por `LLM_PROVIDER` |
+| LLM | [llm/provedores.py](llm/provedores.py) | Ollama (local), OpenAI, Groq ou Gemini (nuvem), por `LLM_PROVIDER` |
 | Base de conhecimento | [llm/base_stub.py](llm/base_stub.py), [componentes.py](componentes.py) | hoje uma base provisória; o RAG da pasta 03 entra aqui |
 | Adaptação para fala | [adaptacao_fala/](adaptacao_fala/adaptar.py) | sem markdown e emoji, frases curtas, números, siglas, valores, datas e horas por extenso |
 | TTS | [tts/](tts/__init__.py) | Piper (local) ou edge-tts (nuvem), por `TTS_ENGINE` |
@@ -85,7 +85,7 @@ Versões e licenças dos pacotes foram consultadas no PyPI em 17/11/2026. Os mod
 | piper-tts | 1.8.0 | GPL-3.0-ou-posterior | motor local |
 | Voz Piper `pt_BR-faber-medium` | n/d | CC0 (dataset, segundo o cartão da voz) | voz sintética pronta, sem clonagem |
 | LLM `qwen2.5:3b` (padrão) e `qwen2.5:1.5b`, via Ollama | Ollama 0.40.16 | conferir | o 3B usa a licença Qwen Research (restrita a uso não comercial): confirmar no cartão do modelo, assim como a do 1.5B |
-| Groq e Gemini (opcionais) | API | termos do provedor | enviam o texto da pergunta |
+| OpenAI, Groq e Gemini (opcionais) | API | termos do provedor | enviam o texto da pergunta |
 | gradio | testado com 5.50.0; `requirements.txt` aceita >=5, <6 | Apache-2.0 | |
 | jiwer | 4.0.0 | Apache-2.0 | WER |
 | requests | 2.34.2 | Apache-2.0 | |
@@ -106,7 +106,7 @@ cp ../.env.example ../.env      # edite: LLM_PROVIDER, LLM_MODEL, LLM_API_KEY, S
 ```
 
 **LLM local:** instale o [Ollama](https://ollama.com) e baixe o modelo, por exemplo `ollama pull qwen2.5:3b`. No Windows também funciona o pacote portátil `ollama-windows-amd64.zip`, sem instalador: extraia, rode `ollama serve` e depois `ollama pull`.
-**LLM em nuvem:** coloque `LLM_PROVIDER=groq` (ou `gemini`) e a chave em `LLM_API_KEY` no `.env`. O `.env` não é versionado.
+**LLM em nuvem:** coloque `LLM_PROVIDER=openai` (ou `groq`, `gemini`) e a chave em `LLM_API_KEY` no `.env`. O `.env` não é versionado.
 **Voz Piper (opcional):** baixe a voz nesta pasta.
 
 ```bash
@@ -170,7 +170,7 @@ Legenda: [x] feito e verificado, [~] código escrito, mas ainda não verificado 
 - [x] Latência por etapa e total, medida pelo pipeline (um turno real com Whisper e TTS verificado)
 - [x] LGPD: consentimento, retenção mínima (verificado: o áudio de entrada é apagado depois da transcrição), recusa fora do tema (guarda barrou 5 de 5 perguntas, com a base provisória) e sem voz clonada
 - [ ] LGPD: análise de viés do STT (depende dos áudios)
-- [x] Scripts e dados de teste (STT, LLM, TTS, ponta a ponta), com 49 testes automáticos
+- [x] Scripts e dados de teste (STT, LLM, TTS, ponta a ponta), com 52 testes automáticos
 - [~] Executar os testes com dados reais: o LLM está configurado e o ponta a ponta rodou com falas sintéticas; faltam 20 áudios de STT e 30 falas de ponta a ponta gravados pelo grupo e 3 avaliadores de TTS
 - [~] Comparar duas opções em um componente: `base` contra `small` (STT), `3b` contra `1.5b` (LLM) e Piper contra edge-tts (TTS), medidos de forma preliminar; repetir com dados reais
 - [x] README com arquitetura, modelos, versões e licenças

@@ -1,9 +1,12 @@
-"""Provedores de LLM: Ollama (local) e APIs compatíveis com OpenAI (Gemini, Groq)."""
+"""Provedores de LLM: Ollama (local) e APIs compatíveis com OpenAI (OpenAI, Gemini, Groq)."""
+import os
+
 import requests
 
 from interfaces import Mensagem, Trecho
 
 URLS_OPENAI = {
+    "openai": "https://api.openai.com/v1/chat/completions",
     "groq": "https://api.groq.com/openai/v1/chat/completions",
     "gemini": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
 }
@@ -45,5 +48,7 @@ class OpenAICompatLLM:
 
 def criar_llm(provedor: str, modelo: str, api_key: str = ""):
     if provedor == "ollama":
-        return OllamaLLM(modelo)
+        return OllamaLLM(modelo, os.getenv("OLLAMA_URL", "http://localhost:11434"))
+    if provedor not in URLS_OPENAI:
+        raise ValueError(f"LLM_PROVIDER desconhecido: {provedor!r} (use ollama, openai, groq ou gemini)")
     return OpenAICompatLLM(provedor, modelo, api_key)
