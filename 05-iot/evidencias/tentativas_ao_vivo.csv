@@ -1,0 +1,16 @@
+tentativa,som_tocado,real,previsto,confianca,observacao
+1,campainha_1_pattern_20.wav,campainha,campainha,0.85,
+2,campainha_2_pattern_20.wav,campainha,ambiente,1.00,"aparelho pattern_20, que não está no treino"
+3,campainha_3_pattern_20.wav,campainha,campainha,0.94,
+4,campainha_4_pattern_01.wav,campainha,campainha,1.00,
+5,campainha_5_pattern_18.wav,campainha,campainha,0.99,
+6,batida_porta_1_door_wood_knock.wav,batida_porta,campainha,1.00,batida forte confundida com campainha
+7,batida_porta_2_door_wood_knock.wav,batida_porta,batida_porta,0.94,
+8,batida_porta_3_door_wood_knock.wav,batida_porta,batida_porta,0.97,
+9,batida_porta_4_door_wood_knock.wav,batida_porta,batida_porta,0.92,
+10,batida_porta_5_door_wood_knock.wav,batida_porta,batida_porta,1.00,
+11,ambiente_1_mouse_click.wav,ambiente,ambiente,0.98,
+12,ambiente_2_can_opening.wav,ambiente,ambiente,1.00,
+13,ambiente_3_vacuum_cleaner.wav,ambiente,ambiente,1.00,
+14,ambiente_4_cough.wav,ambiente,ambiente,0.94,
+15,ambiente_5_steps.wav,ambiente,campainha,0.92,passos viraram campainha: falso positivo

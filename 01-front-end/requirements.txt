@@ -1,7 +1,5 @@
-fastapi
-uvicorn
-python-multipart
-streamlit
-requests
-pandas
+# Sistema completo: interface, API e os módulos que ela chama.
+-r requirements-base.txt
+-r ../03-generative-ai/requirements.txt
 -r ../04-visao-computacional/codigo/requirements.txt
+# Voz (opcional, pesado): pip install -r ../02-pln-voz/requirements.txt

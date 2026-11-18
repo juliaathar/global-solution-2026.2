@@ -64,7 +64,7 @@ Cada pasta tem um `README.md` com o checklist dos requisitos do enunciado corres
 .
 ├── README.md
 ├── .env.example
-├── docker-compose.yml          (a criar)
+├── docker-compose.yml          interface + API
 ├── docker/
 ├── docs/                       problema, arquitetura, ODS, LGPD e ética
 ├── 01-front-end/
@@ -88,17 +88,15 @@ A integração acontece pela API em `01-front-end/api`, que chama os módulos da
 
 ## Como executar
 
-Será preenchido quando o código estiver pronto. Plano:
-
 ```bash
-cp .env.example .env
-docker compose up
+cp .env.example .env      # opcional: chave do LLM. Sem ela, os relatos são classificados pelas regras do robô RPA
+docker compose up --build
 ```
 
-- Interface: http://localhost:8501
+- Interface: http://localhost:8501 (visões Cidadão e Gestor)
 - API: http://localhost:8000/docs
 
-Chaves de API ficam apenas no `.env`, que não é versionado.
+Sem Docker, veja [01-front-end/README.md](01-front-end/README.md). Chaves de API ficam apenas no `.env`, que não é versionado.
 
 ## Proteção de dados, ética e limites
 

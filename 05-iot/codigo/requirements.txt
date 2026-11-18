@@ -1,0 +1,7 @@
+numpy>=1.26
+requests>=2.31
+matplotlib>=3.8
+# opcionais:
+# sounddevice      -> gravar_no_pc.py
+# edge_impulse_linux pyaudio  -> ponte_alertas.py --modelo (Linux, macOS, Raspberry Pi ou WSL2)
+# ffmpeg (programa, não pacote Python) -> converter m4a/mp3 do celular em preparar_audios.py

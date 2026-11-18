@@ -1,0 +1,16 @@
+arquivo,real,previsto,confianca
+ambiente.20.wav,ambiente,ambiente,"8/9 janelas (8 ambiente, 1 uncertain)"
+ambiente.14.wav,ambiente,ambiente,"8/9 janelas (8 ambiente, 1 uncertain)"
+ambiente.10.wav,ambiente,ambiente,"6/9 janelas (6 ambiente, 3 uncertain)"
+ambiente.03.wav,ambiente,ambiente,"8/9 janelas (8 ambiente, 1 uncertain)"
+ambiente.01.wav,ambiente,ambiente,9/9 janelas (9 ambiente)
+batida_porta.15.wav,batida_porta,batida_porta,"3/9 janelas (6 uncertain, 3 batida_porta)"
+batida_porta.12.wav,batida_porta,ambiente,"0/9 janelas (5 uncertain, 4 ambiente)"
+batida_porta.11.wav,batida_porta,batida_porta,"5/9 janelas (5 batida_porta, 4 uncertain)"
+batida_porta.09.wav,batida_porta,incerto,0/9 janelas (9 uncertain)
+batida_porta.04.wav,batida_porta,ambiente,"3/9 janelas (6 ambiente, 3 batida_porta)"
+campainha.20.wav,campainha,campainha,"7/9 janelas (7 campainha, 2 uncertain)"
+campainha.15.wav,campainha,campainha,"8/9 janelas (8 campainha, 1 uncertain)"
+campainha.10.wav,campainha,campainha,"8/9 janelas (8 campainha, 1 uncertain)"
+campainha.06.wav,campainha,campainha,"7/9 janelas (7 campainha, 2 uncertain)"
+campainha.05.wav,campainha,campainha,"7/9 janelas (7 campainha, 2 uncertain)"

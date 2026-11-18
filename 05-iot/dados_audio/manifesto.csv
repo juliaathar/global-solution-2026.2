@@ -1,0 +1,61 @@
+arquivo,original,classe,conjunto,taxa_hz,canais,bits,duracao_s,pico_dbfs,rms_dbfs,sha1,avisos
+training/campainha.01.wav,campainha.visualfy.01.wav,campainha,training,16000,1,16,5.0,-7.5,-20.3,3523d0a1b1a3477c,completado 16000 amostras
+training/campainha.02.wav,campainha.visualfy.02.wav,campainha,training,16000,1,16,5.0,-4.9,-19.0,10f62f9508e6c5ed,completado 16000 amostras
+training/campainha.03.wav,campainha.visualfy.03.wav,campainha,training,16000,1,16,5.0,-7.3,-20.4,f174f103327e5f06,completado 16000 amostras
+training/campainha.04.wav,campainha.visualfy.04.wav,campainha,training,16000,1,16,5.0,-6.8,-20.3,35cd9a13e14e0b7b,completado 16000 amostras
+testing/campainha.05.wav,campainha.visualfy.05.wav,campainha,testing,16000,1,16,5.0,-14.1,-27.4,9abed4b81ac917ba,completado 16000 amostras
+testing/campainha.06.wav,campainha.visualfy.06.wav,campainha,testing,16000,1,16,5.0,-12.6,-26.0,5b34ac86a5a4ba4b,completado 16000 amostras
+training/campainha.07.wav,campainha.visualfy.07.wav,campainha,training,16000,1,16,5.0,-8.6,-22.0,9a8f702e330e81ea,completado 16000 amostras
+training/campainha.08.wav,campainha.visualfy.08.wav,campainha,training,16000,1,16,5.0,-8.3,-22.0,9ba22b8dcdc3c1f8,completado 16000 amostras
+training/campainha.09.wav,campainha.visualfy.09.wav,campainha,training,16000,1,16,5.0,-0.3,-26.4,fc26a41cd167a88d,completado 16000 amostras
+testing/campainha.10.wav,campainha.visualfy.10.wav,campainha,testing,16000,1,16,5.0,-0.0,-28.1,68b966c5f571be3f,completado 16000 amostras; saturado (estourou)
+training/campainha.11.wav,campainha.visualfy.11.wav,campainha,training,16000,1,16,5.0,-1.5,-28.0,ba0469d742be71c4,completado 16000 amostras
+training/campainha.12.wav,campainha.visualfy.12.wav,campainha,training,16000,1,16,5.0,-1.4,-24.1,155b1c2f799403c2,completado 16000 amostras
+training/campainha.13.wav,campainha.visualfy.13.wav,campainha,training,16000,1,16,5.0,-1.7,-21.5,eff5839831575528,completado 16000 amostras
+training/campainha.14.wav,campainha.visualfy.14.wav,campainha,training,16000,1,16,5.0,-2.2,-20.2,e1ba9b8706f33766,completado 16000 amostras
+testing/campainha.15.wav,campainha.visualfy.15.wav,campainha,testing,16000,1,16,5.0,-1.0,-20.0,9885e0ada36242be,completado 16000 amostras
+training/campainha.16.wav,campainha.visualfy.16.wav,campainha,training,16000,1,16,5.0,0.0,-20.7,6566cb322c9ebbae,completado 16000 amostras; saturado (estourou)
+training/campainha.17.wav,campainha.visualfy.17.wav,campainha,training,16000,1,16,5.0,-11.2,-35.1,5a504e6d29b5fe7f,completado 16000 amostras
+training/campainha.18.wav,campainha.visualfy.18.wav,campainha,training,16000,1,16,5.0,-6.4,-33.9,1f07bd1e8afba257,completado 16000 amostras
+training/campainha.19.wav,campainha.visualfy.19.wav,campainha,training,16000,1,16,5.0,-9.4,-34.3,769669d323d887f6,completado 16000 amostras
+testing/campainha.20.wav,campainha.visualfy.20.wav,campainha,testing,16000,1,16,5.0,-9.0,-34.8,6296522b9e725812,completado 16000 amostras
+training/batida_porta.01.wav,batida_porta.esc50.01.wav,batida_porta,training,16000,1,16,5.0,-0.3,-25.0,79b3f819fe4db68f,
+training/batida_porta.02.wav,batida_porta.esc50.02.wav,batida_porta,training,16000,1,16,5.0,-1.2,-16.1,5fc396e60add1049,
+training/batida_porta.03.wav,batida_porta.esc50.03.wav,batida_porta,training,16000,1,16,5.0,0.0,-17.1,477a7fde562131a1,saturado (estourou)
+testing/batida_porta.04.wav,batida_porta.esc50.04.wav,batida_porta,testing,16000,1,16,5.0,-3.2,-25.2,bcdded5d6a6cbb8a,
+training/batida_porta.05.wav,batida_porta.esc50.05.wav,batida_porta,training,16000,1,16,5.0,-0.0,-21.8,bbb2ff4929a2655c,saturado (estourou)
+training/batida_porta.06.wav,batida_porta.esc50.06.wav,batida_porta,training,16000,1,16,5.0,-0.0,-22.9,25aea72591336555,saturado (estourou)
+training/batida_porta.07.wav,batida_porta.esc50.07.wav,batida_porta,training,16000,1,16,5.0,0.0,-20.3,d8b4cdfeb0ceb42c,saturado (estourou)
+training/batida_porta.08.wav,batida_porta.esc50.08.wav,batida_porta,training,16000,1,16,5.0,-6.0,-27.3,0a312ffe5eff2870,
+testing/batida_porta.09.wav,batida_porta.esc50.09.wav,batida_porta,testing,16000,1,16,5.0,-12.8,-37.5,2f03b19534d68b8a,
+training/batida_porta.10.wav,batida_porta.esc50.10.wav,batida_porta,training,16000,1,16,5.0,-9.0,-36.4,1746bfb49a2173df,
+testing/batida_porta.11.wav,batida_porta.esc50.11.wav,batida_porta,testing,16000,1,16,5.0,-12.6,-32.8,59c12394e72f424e,
+testing/batida_porta.12.wav,batida_porta.esc50.12.wav,batida_porta,testing,16000,1,16,5.0,-4.9,-33.4,a1a0da8155f3235f,
+training/batida_porta.13.wav,batida_porta.esc50.13.wav,batida_porta,training,16000,1,16,5.0,-0.0,-25.9,d1d698c0e082f9be,saturado (estourou)
+training/batida_porta.14.wav,batida_porta.esc50.14.wav,batida_porta,training,16000,1,16,5.0,-12.6,-42.4,fdb5f59ce511c715,
+testing/batida_porta.15.wav,batida_porta.esc50.15.wav,batida_porta,testing,16000,1,16,5.0,0.0,-25.6,f070ed979a64f5e6,saturado (estourou)
+training/batida_porta.16.wav,batida_porta.esc50.16.wav,batida_porta,training,16000,1,16,5.0,-3.2,-25.5,ec51ba2bd153caec,
+training/batida_porta.17.wav,batida_porta.esc50.17.wav,batida_porta,training,16000,1,16,5.0,-6.9,-23.4,19a207a788ada515,
+training/batida_porta.18.wav,batida_porta.esc50.18.wav,batida_porta,training,16000,1,16,5.0,-0.0,-16.0,79b5d2bcd8868210,saturado (estourou)
+training/batida_porta.19.wav,batida_porta.esc50.19.wav,batida_porta,training,16000,1,16,5.0,0.0,-24.9,18ccfa587b381358,saturado (estourou)
+training/batida_porta.20.wav,batida_porta.esc50.20.wav,batida_porta,training,16000,1,16,5.0,-0.3,-17.7,e6997463067fc1bd,
+testing/ambiente.01.wav,ambiente.esc50.01.wav,ambiente,testing,16000,1,16,5.0,-0.0,-25.6,6c228ee49d18280a,saturado (estourou)
+training/ambiente.02.wav,ambiente.esc50.02.wav,ambiente,training,16000,1,16,5.0,-2.4,-28.3,90f6e30ac6c705f8,
+testing/ambiente.03.wav,ambiente.esc50.03.wav,ambiente,testing,16000,1,16,5.0,-18.2,-43.4,59a189f5658f8d35,
+training/ambiente.04.wav,ambiente.esc50.04.wav,ambiente,training,16000,1,16,5.0,-19.5,-50.0,9fbc8a3ffaebcefb,
+training/ambiente.05.wav,ambiente.esc50.05.wav,ambiente,training,16000,1,16,5.0,-7.1,-31.2,2d57df6f9dab52ba,
+training/ambiente.06.wav,ambiente.esc50.06.wav,ambiente,training,16000,1,16,5.0,-12.9,-43.0,ad291c04caf78a8c,
+training/ambiente.07.wav,ambiente.esc50.07.wav,ambiente,training,16000,1,16,5.0,-2.9,-24.6,0a963c3cd7853165,
+training/ambiente.08.wav,ambiente.esc50.08.wav,ambiente,training,16000,1,16,5.0,-11.6,-32.1,7c88ae2bcab5ef19,
+training/ambiente.09.wav,ambiente.esc50.09.wav,ambiente,training,16000,1,16,5.0,-6.1,-23.6,19d240b8be145fe7,
+testing/ambiente.10.wav,ambiente.esc50.10.wav,ambiente,testing,16000,1,16,5.0,-5.0,-23.8,b742d839b8970af5,
+training/ambiente.11.wav,ambiente.visualfy.11.wav,ambiente,training,16000,1,16,5.0,-4.5,-28.3,2b891a40fb86f346,completado 16000 amostras
+training/ambiente.12.wav,ambiente.visualfy.12.wav,ambiente,training,16000,1,16,5.0,-6.3,-29.8,29215bf8cff1c24b,completado 16000 amostras
+training/ambiente.13.wav,ambiente.visualfy.13.wav,ambiente,training,16000,1,16,5.0,0.0,-23.7,3601982efb76a104,completado 16000 amostras; saturado (estourou)
+testing/ambiente.14.wav,ambiente.visualfy.14.wav,ambiente,testing,16000,1,16,5.0,-0.1,-27.9,23e6e0cb898d2ab9,completado 16000 amostras; saturado (estourou)
+training/ambiente.15.wav,ambiente.visualfy.15.wav,ambiente,training,16000,1,16,5.0,-0.1,-19.5,1b6e233b886f7679,completado 16000 amostras; saturado (estourou)
+training/ambiente.16.wav,ambiente.visualfy.16.wav,ambiente,training,16000,1,16,5.0,0.0,-15.6,d5053db4bba52502,completado 16000 amostras; saturado (estourou)
+training/ambiente.17.wav,ambiente.visualfy.17.wav,ambiente,training,16000,1,16,5.0,-24.5,-40.3,b3378b9a775942fb,completado 16000 amostras
+training/ambiente.18.wav,ambiente.visualfy.18.wav,ambiente,training,16000,1,16,5.0,-27.9,-43.6,22a48ebbf74f8555,completado 16000 amostras
+training/ambiente.19.wav,ambiente.visualfy.19.wav,ambiente,training,16000,1,16,5.0,0.0,-15.0,a8095e05c0c5dfa1,completado 16000 amostras; saturado (estourou)
+testing/ambiente.20.wav,ambiente.visualfy.20.wav,ambiente,testing,16000,1,16,5.0,0.0,-24.3,b91800d2432c8c62,completado 16000 amostras; saturado (estourou)

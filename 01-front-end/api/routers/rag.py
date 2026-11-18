@@ -24,4 +24,9 @@ def perguntar(corpo: PerguntaRAG) -> RespostaRAG:
         r = responder(corpo.pergunta.strip(), historico)
     except RequestException as e:  # LLM fora do ar, timeout ou chave inválida
         raise HTTPException(status_code=503, detail="O assistente está indisponível no momento. Tente de novo ou ligue 156.") from e
+    except (ImportError, OSError) as e:  # fastembed não instalado ou modelo de embedding não baixado
+        raise HTTPException(status_code=503, detail="A busca nas fontes oficiais não está instalada neste servidor. "
+                                                    "Ligue 156 para atendimento.") from e
+    except (KeyError, ValueError) as e:  # resposta do LLM em formato inesperado
+        raise HTTPException(status_code=502, detail="O assistente respondeu algo inesperado. Tente de novo.") from e
     return RespostaRAG(**{k: r[k] for k in ("resposta", "fontes", "abstencao", "bloqueada", "esclarecimento", "saida_bloqueada")})

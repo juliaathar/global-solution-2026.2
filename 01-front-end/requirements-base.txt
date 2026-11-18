@@ -1,0 +1,11 @@
+# Só a interface e a API (relatos, protocolos, IoT, painel). RAG e visão ficam desligados sem as libs deles.
+fastapi>=0.110
+uvicorn>=0.29
+python-multipart>=0.0.9
+pydantic>=2.6
+requests>=2.31
+streamlit>=1.50
+pandas>=2.0
+plotly>=6.1
+pytest>=8.0
+httpx>=0.27
