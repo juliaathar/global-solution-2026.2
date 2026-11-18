@@ -51,7 +51,7 @@ python demonstrar_falha.py         # 9 falhas tratadas, grava evidencias/falha_t
 python -m unittest discover -s ../testes -v
 ```
 
-Sem linha de comando: `notebooks/demonstracao.ipynb` roda o fluxo inteiro célula a célula (offline por padrão, também no Colab). Ele é gerado por `python gerar_notebook.py`.
+Sem linha de comando: `notebooks/demonstracao.ipynb` roda o fluxo inteiro célula a célula (offline por padrão, também no Colab) e já traz as saídas da última execução salvas. Ele é gerado por `python gerar_notebook.py`.
 
 Opcional, para a comparação com ML: `pip install -r ../requirements-ml.txt` e `python avaliar_ml.py`.
 
