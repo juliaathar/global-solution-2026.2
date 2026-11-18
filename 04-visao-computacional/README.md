@@ -33,13 +33,15 @@ Robustez com perturbações sintéticas (F1 no teste): original 0,982, obstácul
 
 ## Limitações a declarar no relatório
 - Separação por blocos é aproximação: pode haver recortes da mesma foto original em conjuntos diferentes.
-- O teste vem da mesma distribuição do treino (fotos de prédios de um único campus), então 98% é otimista para fotos de cidadãos.
+- O teste vem da mesma distribuição do treino (fotos de prédios de um único campus), então 98% é otimista para fotos de cidadãos. Além disso, as 600 imagens de teste formam só 6 blocos de 100 (3 por classe), parecidas entre si dentro do bloco: o número efetivo de amostras independentes é bem menor que 600.
 - Há rótulos duvidosos: imagens com fissura visível em `Negative` (por exemplo `13047`, `03043`, `00320`, `00361`).
 - Pouca luz, excesso de luz e desfoque derrubam o recall; sombra e texturas manchadas geram falsos positivos.
 - Nenhuma foto de cidadão foi avaliada: as interferências (sombra, pouca luz, desfoque, obstáculo) são simuladas sobre imagens do dataset. Há só 4 imagens da internet (Wikimedia Commons) como exemplo qualitativo, com rótulo atribuído visualmente: 2 acertos, 1 falso negativo (fissuras finas) e 1 falso positivo (agregados expostos). Créditos em `evidencias/fotos_internet/CREDITOS.md`.
 - Classificação binária: não localiza a fissura e não mede gravidade.
 
 ## Como rodar (a partir de `codigo/`)
+
+Antes, baixe o dataset (241 MB) em [Mendeley Data](https://data.mendeley.com/datasets/5y9wdsg2zt/1) e extraia em `04-visao-computacional/imagens/` com as pastas `Positive/` e `Negative/` (ou aponte `VC_IMAGENS`). O notebook `notebooks/vc_colab.ipynb` faz o download e confere o hash sozinho. Os dados e o modelo treinado (`codigo/modelo_fissuras.pt`) não ficam no git: sem ele, a API responde 503 até rodar `treinar.py`.
 
 ```bash
 pip install -r requirements.txt
