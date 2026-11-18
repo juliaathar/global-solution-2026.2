@@ -50,7 +50,7 @@ A deduplicação compara cada texto com todos os anteriores, o que fica lento em
 - [~] V9. Analisar erros do `erros_teste.csv` (sombra, textura, iluminação) e anotar no relatório (erros e acertos vistos em imagem, interferências simuladas em `montagem_interferencias.png`, sem fotos reais por decisão do grupo; falta a anotação no relatório)
 - [~] V10. Gravar ou escolher um vídeo curto e rodar V6, anotando equipamento e resolução (rodado com vídeo sintético em `evidencias/benchmark.txt`; repetir com vídeo real)
 - [x] V11. Criar o endpoint de imagem na API e a tela no app
-- [ ] V12. Justificar arquitetura, pré-processamento e limiar de confiança no relatório
+- [x] V12. Justificar arquitetura, pré-processamento e limiar de confiança no relatório (`04-visao-computacional/relatorio/relatorio_visao.md`; latência de vídeo real a preencher)
 - [ ] V13. Gravar o vídeo da funcionalidade integrada
 
 Atenção: o dataset não informa a imagem original de cada recorte. A separação por blocos é uma aproximação e deve aparecer como limitação.

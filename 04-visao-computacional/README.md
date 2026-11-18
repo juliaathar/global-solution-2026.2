@@ -12,9 +12,9 @@ Legenda: [x] feito e verificado, [~] feito em parte, [ ] a fazer.
 - [x] Funcionalidade no app: imagem com resultado e confiança
 - [~] Processamento de vídeo curto ou sequência de imagens: funciona na API e na tela, testado só com vídeo sintético
 - [~] Latência média por imagem e FPS, com equipamento e resolução: medido (CPU i5-6300U), mas com vídeo sintético. Repetir com vídeo real
-- [ ] Justificativa de arquitetura, pré-processamento e limiar de confiança (relatório)
+- [x] Justificativa de arquitetura, pré-processamento e limiar de confiança (`relatorio/relatorio_visao.md`)
 - [x] Aviso: fissura na imagem não define gravidade nem segurança estrutural: na API (`aviso`) e fixo na tela
-- [ ] Vídeo de demonstração e relatório breve
+- [~] Vídeo de demonstração e relatório breve: relatório escrito (`relatorio/relatorio_visao.md`, com a latência de vídeo real ainda a preencher); falta gravar o vídeo
 
 ## Resultados medidos (conjunto de teste, 600 imagens)
 
@@ -27,7 +27,7 @@ Limiar 0,45, escolhido na **validação** (critério: recall >= 0,99 com maior p
 
 Acurácia 98,17%, com 11 erros (8 falsos positivos e 3 falsos negativos). No limiar 0,5 o resultado é parecido (F1 0,9818, 4 falsos negativos e 7 falsos positivos).
 
-Desempenho em CPU (Intel Core i5-6300U, 2 núcleos, 15,7 GB, sem GPU): cerca de 80 ms por imagem e 12 FPS, com quadros 227x227 e 640x480 (redimensionados para 224x224). Vídeo sintético montado de imagens do teste.
+Desempenho em CPU (Intel Core i5-6300U, 2 núcleos, 15,7 GB, sem GPU): mediana de cerca de 60 ms por imagem e 10 a 15 FPS em sequência de 227x227; no vídeo sintético 640x480 a variação entre execuções é grande (3,8 a 12,1 FPS). Todas as execuções estão em `evidencias/benchmark.txt`. Entradas sintéticas montadas de imagens do teste: repetir com vídeo real.
 
 Robustez com perturbações sintéticas (F1 no teste): original 0,982, obstáculo 0,973, sombra 0,926, JPEG ruim 0,944, baixa resolução 0,901, superexposta 0,842, desfoque 0,811, pouca luz 0,794.
 

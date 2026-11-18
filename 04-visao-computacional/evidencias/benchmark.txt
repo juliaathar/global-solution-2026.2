@@ -1,14 +1,42 @@
-﻿=== SEQUENCIA 200 imagens 227x227
+﻿Benchmark em CPU, 3 repeticoes por entrada. Limiar 0.45. ENTRADAS SINTETICAS: montadas com imagens do conjunto de teste (nao e video real).
+
+=== SEQUENCIA 200 imagens 227x227
+-- repeticao 1
 Equipamento: Intel64 Family 6 Model 78 Stepping 3, GenuineIntel | Windows-10-10.0.19045-SP0
 Resolução dos quadros: 227x227 (redimensionado para 224x224)
-Quadros: 200 | alertas de inspeção: 95
-Latência média: 80.7 ms | mediana: 63.3 ms
-FPS (fim a fim): 12.0
+Quadros: 200 | alertas de inspeção: 96
+Latência média: 75.7 ms | mediana: 59.7 ms
+FPS (fim a fim): 11.5
+-- repeticao 2
+Equipamento: Intel64 Family 6 Model 78 Stepping 3, GenuineIntel | Windows-10-10.0.19045-SP0
+Resolução dos quadros: 227x227 (redimensionado para 224x224)
+Quadros: 200 | alertas de inspeção: 96
+Latência média: 66.8 ms | mediana: 62.3 ms
+FPS (fim a fim): 14.8
+-- repeticao 3
+Equipamento: Intel64 Family 6 Model 78 Stepping 3, GenuineIntel | Windows-10-10.0.19045-SP0
+Resolução dos quadros: 227x227 (redimensionado para 224x224)
+Quadros: 200 | alertas de inspeção: 96
+Latência média: 91.1 ms | mediana: 63.8 ms
+FPS (fim a fim): 10.9
 
 === VIDEO SINTETICO 120 quadros 640x480
+-- repeticao 1
 Equipamento: Intel64 Family 6 Model 78 Stepping 3, GenuineIntel | Windows-10-10.0.19045-SP0
 Resolução dos quadros: 640x480 (redimensionado para 224x224)
 Quadros: 120 | alertas de inspeção: 56
-Latência média: 78.7 ms | mediana: 65.8 ms
-FPS (fim a fim): 12.1
+Latência média: 253.2 ms | mediana: 135.9 ms
+FPS (fim a fim): 3.8
+-- repeticao 2
+Equipamento: Intel64 Family 6 Model 78 Stepping 3, GenuineIntel | Windows-10-10.0.19045-SP0
+Resolução dos quadros: 640x480 (redimensionado para 224x224)
+Quadros: 120 | alertas de inspeção: 56
+Latência média: 223.0 ms | mediana: 68.1 ms
+FPS (fim a fim): 4.3
+-- repeticao 3
+Equipamento: Intel64 Family 6 Model 78 Stepping 3, GenuineIntel | Windows-10-10.0.19045-SP0
+Resolução dos quadros: 640x480 (redimensionado para 224x224)
+Quadros: 120 | alertas de inspeção: 56
+Latência média: 118.9 ms | mediana: 55.7 ms
+FPS (fim a fim): 8.2
 
