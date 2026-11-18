@@ -13,7 +13,7 @@ Grupo de até 3 integrantes, com nome completo e RM em todos os materiais.
 - [x] Proteção contra resposta não sustentada
 - [x] 2+ testes adversariais (prompt injection, vazamento de prompt ou dados)
 - [x] Sem credenciais nem dados pessoais expostos
-- [~] Relatório: perguntas, evidências recuperadas, respostas, métricas, análise crítica (`relatorio/relatorio_avaliacao.md`; falta preencher a seção 6.4 com a revisão humana e exportar para PDF)
+- [~] Relatório: perguntas, evidências recuperadas, respostas, métricas, análise crítica (`relatorio/relatorio_avaliacao.md`; a seção 6.4 tem a conferência feita pelo assistente de IA; o grupo precisa confirmar a ficha; exportar para PDF se exigido)
 - [ ] Vídeo de até 5 min com sucessos, falhas, mitigação e limites (roteiro pronto em `relatorio/roteiro_video.md`)
 
 ## Corpus e ingestão
@@ -71,6 +71,6 @@ Testes automáticos (21, sem rede): `python -m unittest discover -s testes -v`.
 
 Entregáveis e pendências:
 - `relatorio/relatorio_avaliacao.md`: relatório de avaliação (seções 1 a 8 e anexos).
-- `relatorio/revisao_humana_amostra.md`: 15 respostas para o grupo julgar; depois, preencher a seção 6.4 do relatório.
+- `relatorio/revisao_humana_amostra.md`: 15 respostas já conferidas pelo assistente de IA; o grupo marca concordo ou discordo e atualiza a seção 6.4 do relatório.
 - `relatorio/roteiro_video.md`: roteiro de 4 min 40 s para o vídeo.
 - Pendente: legenda de nome e RM em todos os materiais (conferir o RM de cada integrante), montar o router no app principal (01) e gravar o vídeo.

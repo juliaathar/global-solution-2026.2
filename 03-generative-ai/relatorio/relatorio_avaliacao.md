@@ -171,8 +171,16 @@ Resultados na última execução: `evidencias/seguranca_resumo.md`; análise em 
 - **Segurança:** 9 ataques diretos e 4 payloads, todos escritos pelo grupo; "0 de N" indica que ataques simples e médios falham, não que o sistema é seguro. Não testamos ataques em vários turnos, texto codificado, payloads longos, injeção em PDF ou em páginas novas da coleta, nem abuso de custo. A resistência medida é a do `gpt-4o-mini`; com um modelo local menor (como o `qwen2.5:7b` previsto no `.env.example`) os testes de injeção indireta devem ser repetidos.
 - **Corpus:** 33 páginas de uma cidade. Sem o conteúdo dos PDFs, o assistente não responde o que só está neles.
 
-### 6.4 Revisão humana (pendente)
-Preparamos uma amostra de 15 respostas para revisão pelo grupo em `relatorio/revisao_humana_amostra.md` (9 casos difíceis ou em que o juiz divergiu, 6 sorteados). Os resultados da revisão devem ser registrados aqui antes da entrega: **a preencher** (correta, fundamentada e comportamento adequado, em N de 15, e concordância com o juiz automático).
+### 6.4 Revisão de amostra (15 respostas)
+Selecionamos 15 respostas da versão final: 9 casos difíceis ou em que o juiz automático divergiu e 6 sorteados (semente 7). Cada uma foi conferida contra o texto da página de origem. A ficha completa, com trechos, resposta e observação por item, está em `relatorio/revisao_humana_amostra.md`.
+
+Resultado da conferência, feita pelo assistente de IA que ajudou a montar o projeto, e **não por pessoas do grupo**:
+- Das 10 perguntas respondíveis da amostra, 9 foram respondidas corretamente e com todas as afirmações presentes na página de origem; 1 foi uma falsa abstenção (V04).
+- Das 5 perguntas sem resposta, ambíguas ou de desvio, as 5 tiveram comportamento adequado (abstenção, recusa ou pedido de esclarecimento).
+- O juiz automático concordou com essa conferência nos 9 casos respondidos (inclusive em R12 e C02, que ele havia marcado como parciais em execuções anteriores).
+- Pontos de atenção: a resposta de C01 manda "ligar para os números disponíveis" sem repeti-los; as respostas de R12 e C02 são listas longas, contra a regra de 4 frases; em V14 o limiar foi o que impediu o LLM de ter à disposição valores de outro benefício (R$ 80 e R$ 200) como contexto.
+
+**Pendência antes da entrega:** pelo menos duas pessoas do grupo devem ler a ficha, marcar concordo ou discordo em cada item e registrar aqui o resultado final (por exemplo, "concordamos com 14 de 15"). Até lá, esta seção não deve ser apresentada como revisão humana.
 
 ### 6.5 Impacto para o cidadão
 - **Benefícios:** o assistente responde em linguagem simples, com fonte e data, e diz quando não sabe, mandando ligar para o 156. Para quem hoje não sabe a que serviço recorrer, isso reduz o risco de deslocamento errado.

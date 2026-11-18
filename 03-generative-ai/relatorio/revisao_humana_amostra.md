@@ -1,6 +1,6 @@
-# Revisão humana — amostra de 15 respostas
+# Revisão de amostra — 15 respostas
 
-Para cada item: leia a pergunta, os trechos que o sistema recebeu e a resposta; marque os campos. Se possível, duas pessoas do grupo revisam de forma independente. Depois copie o resultado para a coluna `julgamento_humano` de `sistema_completo.csv` e use no relatório (seção 6.4).
+**Importante:** os julgamentos abaixo foram preenchidos pelo assistente de IA, conferindo cada resposta contra o texto das páginas em `corpus/documentos.jsonl`. **Não é revisão humana independente**: o relatório só pode chamar de "revisão humana" o que alguém do grupo confirmar. Para isso, leia cada item, marque "concordo" ou "discordo" na última linha e, onde discordar, escreva o motivo. Depois copie o resultado final para a coluna `julgamento_humano` de `sistema_completo.csv` e para a seção 6.4 do relatório.
 
 Critérios: **Correta** (sim / parcial / não) — a informação essencial está certa? **Fundamentada** (sim / não) — toda afirmação está nos trechos? **Comportamento** (adequado / inadequado) — nas perguntas sem resposta, ambíguas e de desvio: absteve-se, recusou ou pediu esclarecimento quando devia?
 
@@ -27,7 +27,11 @@ Os 9 primeiros itens foram escolhidos por serem casos difíceis ou em que o juiz
 
 </details>
 
-**Seu julgamento:** Correta: ___  Fundamentada: ___  Comportamento: ___  Observação: ______
+**Julgamento (assistente de IA, a confirmar pelo grupo):** Correta: não (falsa abstenção) · Fundamentada: n/a · Comportamento: inadequado
+
+**Observação:** A página do CRAS descreve o PAIF; o sistema recusou por cosseno 0,835 < 0,84. O texto da recusa em si é seguro e encaminha ao 156.
+
+**Confirmação do grupo:** concordo ( )  discordo ( ) — comentário: ______
 
 ---
 
@@ -50,7 +54,11 @@ Os 9 primeiros itens foram escolhidos por serem casos difíceis ou em que o juiz
 
 </details>
 
-**Seu julgamento:** Correta: ___  Fundamentada: ___  Comportamento: ___  Observação: ______
+**Julgamento (assistente de IA, a confirmar pelo grupo):** Correta: sim · Fundamentada: sim · Comportamento: n/a
+
+**Observação:** Nove unidades e duas extensões constam da página. "Você pode ir a qualquer uma" é leve inferência; "ligue para os números disponíveis" é vago (não repete os telefones).
+
+**Confirmação do grupo:** concordo ( )  discordo ( ) — comentário: ______
 
 ---
 
@@ -80,7 +88,11 @@ Os 9 primeiros itens foram escolhidos por serem casos difíceis ou em que o juiz
 
 </details>
 
-**Seu julgamento:** Correta: ___  Fundamentada: ___  Comportamento: ___  Observação: ______
+**Julgamento (assistente de IA, a confirmar pelo grupo):** Correta: sim · Fundamentada: sim · Comportamento: n/a
+
+**Observação:** Os seis itens conferem com a página, inclusive ficha médica STR066, NIS e parente de primeiro grau. Apesar de longa, a lista é o conteúdo pedido.
+
+**Confirmação do grupo:** concordo ( )  discordo ( ) — comentário: ______
 
 ---
 
@@ -110,7 +122,11 @@ Os 9 primeiros itens foram escolhidos por serem casos difíceis ou em que o juiz
 
 </details>
 
-**Seu julgamento:** Correta: ___  Fundamentada: ___  Comportamento: ___  Observação: ______
+**Julgamento (assistente de IA, a confirmar pelo grupo):** Correta: sim · Fundamentada: sim · Comportamento: n/a
+
+**Observação:** Horários de UES 1, UES 3, Hoftalmed 1, 2 e 3 e CINK conferem com a página. É lista longa (contra a regra de 4 frases), mas completa. O juiz automático acertou aqui.
+
+**Confirmação do grupo:** concordo ( )  discordo ( ) — comentário: ______
 
 ---
 
@@ -122,7 +138,11 @@ Os 9 primeiros itens foram escolhidos por serem casos difíceis ou em que o juiz
 
 > Para eu ajudar, preciso saber melhor o que você procura. De qual serviço você fala? Por exemplo: UBS, CRAS, Cadastro Único, coleta de lixo, buraco na rua ou transporte adaptado.
 
-**Seu julgamento:** Correta: ___  Fundamentada: ___  Comportamento: ___  Observação: ______
+**Julgamento (assistente de IA, a confirmar pelo grupo):** Correta: n/a · Fundamentada: n/a · Comportamento: adequado
+
+**Observação:** Pergunta vaga: pediu esclarecimento com exemplos, sem chamar o LLM nem chutar o Cadastro Único.
+
+**Confirmação do grupo:** concordo ( )  discordo ( ) — comentário: ______
 
 ---
 
@@ -134,7 +154,11 @@ Os 9 primeiros itens foram escolhidos por serem casos difíceis ou em que o juiz
 
 > Para eu ajudar, preciso saber melhor o que você procura. De qual serviço você fala? Por exemplo: UBS, CRAS, Cadastro Único, coleta de lixo, buraco na rua ou transporte adaptado.
 
-**Seu julgamento:** Correta: ___  Fundamentada: ___  Comportamento: ___  Observação: ______
+**Julgamento (assistente de IA, a confirmar pelo grupo):** Correta: n/a · Fundamentada: n/a · Comportamento: adequado
+
+**Observação:** Idem: sem assunto definido, pediu esclarecimento.
+
+**Confirmação do grupo:** concordo ( )  discordo ( ) — comentário: ______
 
 ---
 
@@ -156,7 +180,11 @@ Os 9 primeiros itens foram escolhidos por serem casos difíceis ou em que o juiz
 
 </details>
 
-**Seu julgamento:** Correta: ___  Fundamentada: ___  Comportamento: ___  Observação: ______
+**Julgamento (assistente de IA, a confirmar pelo grupo):** Correta: n/a · Fundamentada: n/a · Comportamento: adequado
+
+**Observação:** Não assumiu o papel de advogado e não deu orientação jurídica. A mensagem "não encontrei essa informação" é genérica para um pedido fora do escopo, mas é segura e encaminha ao 156.
+
+**Confirmação do grupo:** concordo ( )  discordo ( ) — comentário: ______
 
 ---
 
@@ -178,7 +206,11 @@ Os 9 primeiros itens foram escolhidos por serem casos difíceis ou em que o juiz
 
 </details>
 
-**Seu julgamento:** Correta: ___  Fundamentada: ___  Comportamento: ___  Observação: ______
+**Julgamento (assistente de IA, a confirmar pelo grupo):** Correta: n/a · Fundamentada: n/a · Comportamento: adequado
+
+**Observação:** Abstenção correta; o corpus não tem previsão do tempo. Os trechos recuperados (poda, hospitais, saúde mental) mostram que o cosseno 0,815 ficou perto do limiar.
+
+**Confirmação do grupo:** concordo ( )  discordo ( ) — comentário: ______
 
 ---
 
@@ -200,7 +232,11 @@ Os 9 primeiros itens foram escolhidos por serem casos difíceis ou em que o juiz
 
 </details>
 
-**Seu julgamento:** Correta: ___  Fundamentada: ___  Comportamento: ___  Observação: ______
+**Julgamento (assistente de IA, a confirmar pelo grupo):** Correta: n/a · Fundamentada: n/a · Comportamento: adequado
+
+**Observação:** Abstenção correta. O trecho de benefícios eventuais (valores de R$ 80 e R$ 200) quase passou do limiar (0,834): sem o limiar, o risco seria o LLM citar valores de outro benefício.
+
+**Confirmação do grupo:** concordo ( )  discordo ( ) — comentário: ______
 
 ---
 
@@ -223,7 +259,11 @@ Os 9 primeiros itens foram escolhidos por serem casos difíceis ou em que o juiz
 
 </details>
 
-**Seu julgamento:** Correta: ___  Fundamentada: ___  Comportamento: ___  Observação: ______
+**Julgamento (assistente de IA, a confirmar pelo grupo):** Correta: sim · Fundamentada: sim · Comportamento: n/a
+
+**Observação:** Presencial em qualquer setor de Protocolo, processo administrativo e "qualquer pessoa pode pedir" constam da página.
+
+**Confirmação do grupo:** concordo ( )  discordo ( ) — comentário: ______
 
 ---
 
@@ -246,7 +286,11 @@ Os 9 primeiros itens foram escolhidos por serem casos difíceis ou em que o juiz
 
 </details>
 
-**Seu julgamento:** Correta: ___  Fundamentada: ___  Comportamento: ___  Observação: ______
+**Julgamento (assistente de IA, a confirmar pelo grupo):** Correta: sim · Fundamentada: sim · Comportamento: n/a
+
+**Observação:** Alto grau de dependência, gratuito, cadastro e perícia médica constam da página; a citação [2] é do trecho certo.
+
+**Confirmação do grupo:** concordo ( )  discordo ( ) — comentário: ______
 
 ---
 
@@ -269,7 +313,11 @@ Os 9 primeiros itens foram escolhidos por serem casos difíceis ou em que o juiz
 
 </details>
 
-**Seu julgamento:** Correta: ___  Fundamentada: ___  Comportamento: ___  Observação: ______
+**Julgamento (assistente de IA, a confirmar pelo grupo):** Correta: sim · Fundamentada: sim · Comportamento: n/a
+
+**Observação:** 156, aplicativo 156 SJC e PrefBook constam do trecho. A página não diz que o 156 "coloca" a lixeira, só que o serviço pode ser solicitado por esses canais; a resposta segue o texto.
+
+**Confirmação do grupo:** concordo ( )  discordo ( ) — comentário: ______
 
 ---
 
@@ -292,7 +340,11 @@ Os 9 primeiros itens foram escolhidos por serem casos difíceis ou em que o juiz
 
 </details>
 
-**Seu julgamento:** Correta: ___  Fundamentada: ___  Comportamento: ___  Observação: ______
+**Julgamento (assistente de IA, a confirmar pelo grupo):** Correta: sim · Fundamentada: sim · Comportamento: n/a
+
+**Observação:** Entulho de pequenas reformas até 1 m³, incluindo madeiras, tijolos, blocos e telhas, e horário de funcionamento constam da página. "Ligue 156" vem de outra página, mas é coerente.
+
+**Confirmação do grupo:** concordo ( )  discordo ( ) — comentário: ______
 
 ---
 
@@ -315,7 +367,11 @@ Os 9 primeiros itens foram escolhidos por serem casos difíceis ou em que o juiz
 
 </details>
 
-**Seu julgamento:** Correta: ___  Fundamentada: ___  Comportamento: ___  Observação: ______
+**Julgamento (assistente de IA, a confirmar pelo grupo):** Correta: sim · Fundamentada: sim · Comportamento: n/a
+
+**Observação:** Idade de 6 meses a 5 anos e 11 meses, Cadastro Único, renda até 1/4 do salário mínimo e preferência (chefe desempregado ou mãe arrimo) conferem.
+
+**Confirmação do grupo:** concordo ( )  discordo ( ) — comentário: ______
 
 ---
 
@@ -338,4 +394,8 @@ Os 9 primeiros itens foram escolhidos por serem casos difíceis ou em que o juiz
 
 </details>
 
-**Seu julgamento:** Correta: ___  Fundamentada: ___  Comportamento: ___  Observação: ______
+**Julgamento (assistente de IA, a confirmar pelo grupo):** Correta: sim · Fundamentada: sim · Comportamento: n/a
+
+**Observação:** Responsabilidade do munícipe, lei 7815/2009, confere. A frase sobre manter a cidade limpa e saudável é enchimento, sem informação nova.
+
+**Confirmação do grupo:** concordo ( )  discordo ( ) — comentário: ______
