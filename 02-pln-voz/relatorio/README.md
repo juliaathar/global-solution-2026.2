@@ -11,6 +11,6 @@ O enunciado pede um relatório em PDF com: problema e persona, ODS, arquitetura 
    python relatorio/montar.py --sem-instrucoes
    ```
    O script cria `relatorio_montado.md` (não versionado), troca cada `<!-- INCLUIR: evidencias/... -->` pelo resumo correspondente, e informa quantas pendências restam e quais evidências ainda faltam.
-4. Exporte o diagrama para `figuras/arquitetura.png` e converta o `relatorio_montado.md` em PDF, por exemplo com a extensão "Markdown PDF" do VS Code, ou colando no Word ou no Google Docs. Salve o PDF final em `relatorio/`.
+4. O diagrama já está em `figuras/arquitetura.png` (para refazer: `pip install matplotlib` e `python relatorio/gerar_diagrama.py`). Gere o PDF com `pip install markdown weasyprint` e `python relatorio/gerar_pdf.py`: ele monta o relatório, troca os marcadores pelas tabelas e salva `relatorio/relatorio_pln_voz.pdf`. Ele **recusa** gerar a versão final enquanto houver `[PREENCHER]` ou evidência faltando; `--rascunho` gera `relatorio_rascunho.pdf` (não versionado) para ver o layout.
 
 Antes de entregar, confira que `python relatorio/montar.py --sem-instrucoes` informa **0 pendências** e nenhuma evidência faltando.

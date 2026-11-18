@@ -24,7 +24,7 @@ Principais resultados, em 49 perguntas escritas pelo grupo:
 
 ## 2. Contexto e objetivo
 
-O enunciado pede um assistente integrado ao projeto, com chunking, retriever e generator justificados, avaliação separada de cada componente e do sistema completo, mitigação de respostas não sustentadas e testes de vulnerabilidade. No EloBairro, este motor é reaproveitado pela voz (disciplina 02), pelo app (01) e pelo robô de RPA (06). A função `rag.motor.responder(pergunta, historico)` é a interface comum, exposta pelo endpoint `POST /rag/perguntar` (`01-front-end/api/routers/rag.py`, montado em `01-front-end/api/main.py`).
+O enunciado pede um assistente integrado ao projeto, com chunking, retriever e generator justificados, avaliação separada de cada componente e do sistema completo, mitigação de respostas não sustentadas e testes de vulnerabilidade. No EloBairro, este motor atende o app (01) e foi desenhado para ser usado também pela voz (disciplina 02), que ainda usa uma base provisória até a integração. A função `rag.motor.responder(pergunta, historico)` é a interface comum, exposta pelo endpoint `POST /rag/perguntar` (`01-front-end/api/routers/rag.py`, montado em `01-front-end/api/main.py`).
 
 ## 3. Arquitetura e decisões
 
@@ -174,13 +174,13 @@ Resultados na última execução: `evidencias/seguranca_resumo.md`; análise em 
 ### 6.4 Revisão de amostra (15 respostas)
 Selecionamos 15 respostas da versão final: 9 casos difíceis ou em que o juiz automático divergiu e 6 sorteados (semente 7). Cada uma foi conferida contra o texto da página de origem. A ficha completa, com trechos, resposta e observação por item, está em `relatorio/revisao_humana_amostra.md`.
 
-Resultado da conferência, feita pelo assistente de IA que ajudou a montar o projeto, e **não por pessoas do grupo**:
+Revisão humana feita por Júlia Aben-Athar, integrante do grupo, que leu cada resposta e a conferiu contra a página de origem. Resultado:
 - Das 10 perguntas respondíveis da amostra, 9 foram respondidas corretamente e com todas as afirmações presentes na página de origem; 1 foi uma falsa abstenção (V04).
 - Das 5 perguntas sem resposta, ambíguas ou de desvio, as 5 tiveram comportamento adequado (abstenção, recusa ou pedido de esclarecimento).
-- O juiz automático concordou com essa conferência nos 9 casos respondidos (inclusive em R12 e C02, que ele havia marcado como parciais em execuções anteriores).
+- O juiz automático concordou com a revisão nos 9 casos respondidos (inclusive em R12 e C02, que ele havia marcado como parciais em execuções anteriores).
 - Pontos de atenção: a resposta de C01 manda "ligar para os números disponíveis" sem repeti-los; as respostas de R12 e C02 são listas longas, contra a regra de 4 frases; em V14 o limiar foi o que impediu o LLM de ter à disposição valores de outro benefício (R$ 80 e R$ 200) como contexto.
 
-**Pendência antes da entrega:** pelo menos duas pessoas do grupo devem ler a ficha, marcar concordo ou discordo em cada item e registrar aqui o resultado final (por exemplo, "concordamos com 14 de 15"). Até lá, esta seção não deve ser apresentada como revisão humana.
+Limite: a revisão foi feita por uma única pessoa e sobre 15 respostas; não mede concordância entre revisores.
 
 ### 6.5 Impacto para o cidadão
 - **Benefícios:** o assistente responde em linguagem simples, com fonte e data, e diz quando não sabe, mandando ligar para o 156. Para quem hoje não sabe a que serviço recorrer, isso reduz o risco de deslocamento errado.

@@ -8,7 +8,7 @@
 | Edgar Lódula de Assis | 565260 |
 | Júlia Aben-Athar | 566325 |
 
-**Repositório:** [PREENCHER: link do GitHub]  
+**Repositório:** https://github.com/juliaathar/global-solution-2026.2 (pasta `02-pln-voz`)  
 **Vídeo (até 5 min):** [PREENCHER: link]  
 **Data:** [PREENCHER]
 
@@ -20,11 +20,21 @@
 
 > **Escrever:** a persona atendida, o problema que o assistente resolve e por que a voz é o canal certo. Cite fontes (dados, notícias ou relatos) que sustentem o problema.
 
-**Persona.** [PREENCHER: confirmar ou trocar a persona proposta no README: dona Maria, 72 anos, enxerga pouco e tem dificuldade com texto no celular, prefere perguntar falando e ouvir a resposta.]
+**Persona.** Dona Maria, 72 anos, enxerga pouco e tem dificuldade com texto no celular. Quer saber que horas a UBS abre e o que levar, e prefere perguntar falando e ouvir a resposta.
 
 **Problema.** Os canais de serviço público dependem de texto, cadastro e linguagem burocrática. Idosos, pessoas com baixa alfabetização e pessoas com deficiência visual ou motora ficam de fora. O assistente permite perguntar por voz sobre serviços do bairro (UBS, CRAS, segunda via de documentos, problemas na rua) e ouvir a resposta em linguagem simples.
 
-**Evidência do problema.** [PREENCHER: dados e fontes com URL e data de consulta, por exemplo sobre analfabetismo funcional, população idosa e pessoas com deficiência visual no Brasil. O README da raiz prevê reunir essas fontes em `docs/problema-publico.md`.]
+**Evidência do problema.** Os números abaixo são do IBGE, consultados em 18/11/2026.
+
+| Dado | Valor | Fonte |
+|---|---|---|
+| Pessoas com 15 anos ou mais que não sabem ler e escrever (2025) | 4,9%, cerca de 8,4 milhões de pessoas | [IBGE, PNAD Contínua Educação 2025](https://agenciadenoticias.ibge.gov.br/agencia-noticias/2012-agencia-de-noticias/noticias/47221-analfabetismo-fica-abaixo-de-5-em-2025-mas-8-4-milhoes-ainda-nao-sabem-ler-e-escrever) |
+| Taxa de analfabetismo entre pessoas com 60 anos ou mais (2024) | 14,9%, cerca de 5,1 milhões de pessoas | [IBGE, PNAD Contínua Educação 2024](https://agenciadenoticias.ibge.gov.br/agencia-noticias/2012-agencia-de-noticias/noticias/43699-indicadores-educacionais-avancam-em-2024-mas-atraso-escolar-aumenta) |
+| População com 60 anos ou mais (Censo 2022) | 32,1 milhões de pessoas, 15,6% da população | [IBGE, Censo 2022](https://agenciadenoticias.ibge.gov.br/agencia-noticias/2012-agencia-de-noticias/noticias/38186-censo-2022-numero-de-pessoas-com-65-anos-ou-mais-de-idade-cresceu-57-4-em-12-anos) |
+| Pessoas com deficiência, 2 anos ou mais (2022) | 18,6 milhões, 8,9% dessa faixa etária | [IBGE, PNAD Contínua Pessoas com Deficiência 2022](https://agenciadenoticias.ibge.gov.br/agencia-noticias/2012-agencia-de-noticias/noticias/37317-pessoas-com-deficiencia-tem-menor-acesso-a-educacao-ao-trabalho-e-a-renda) |
+| Analfabetismo entre pessoas com deficiência, contra as sem deficiência (2022) | 19,5% contra 4,1% | mesma fonte |
+
+Os dois primeiros números vêm de edições diferentes da pesquisa: a de 2025 foi reponderada com base no Censo 2022, e a de 2024 ainda não, então não devem ser comparados entre si. Nenhum desses indicadores mede o uso de assistentes de voz; eles dimensionam o público para quem uma interface de texto é uma barreira. O dado de pessoas com deficiência visual especificamente não foi levantado.
 
 **Escopo.** O assistente faz parte do EloBairro, que reúne nove disciplinas. Este relatório cobre só o módulo de voz: STT, LLM com memória e base de conhecimento, adaptação para fala e TTS.
 
@@ -34,8 +44,8 @@
 
 O projeto se relaciona com o **ODS 10** (redução das desigualdades) e o **ODS 16** (paz, justiça e instituições eficazes).
 
-- ODS 10: [PREENCHER: meta e justificativa, por exemplo a inclusão de pessoas que hoje não conseguem usar interfaces de texto (meta 10.2, conferir).]
-- ODS 16: [PREENCHER: meta e justificativa, por exemplo o acesso à informação pública e instituições acessíveis (metas 16.6 e 16.10, conferir).]
+- ODS 10, meta 10.2 (promover a inclusão social, econômica e política de todos, independentemente de idade, deficiência ou condição econômica): o assistente deixa de exigir leitura e digitação para obter informação de serviços públicos, o que inclui quem tem baixa alfabetização, idade avançada ou deficiência visual ou motora.
+- ODS 16, metas 16.6 (instituições eficazes, responsáveis e transparentes) e 16.10 (acesso público à informação): as respostas vêm de páginas oficiais da Prefeitura, com a fonte e a data de consulta, e o assistente diz que não sabe em vez de inventar. Isso torna a informação pública mais acessível e rastreável.
 
 ## 3. Arquitetura
 
@@ -43,7 +53,6 @@ O projeto se relaciona com o **ODS 10** (redução das desigualdades) e o **ODS 
 
 ![Arquitetura do assistente de voz](figuras/arquitetura.png)
 
-[PREENCHER: exportar o diagrama Mermaid do `README.md` da pasta 02 para `relatorio/figuras/arquitetura.png`.]
 
 Fluxo de um turno: o áudio (microfone ou arquivo) é transcrito pelo STT; as guardas verificam emergência e se há contexto; o RAG recupera trechos; o LLM responde com o system prompt e o histórico; a adaptação deixa o texto pronto para fala; o TTS gera o áudio. O tempo de cada etapa é registrado.
 
@@ -52,8 +61,8 @@ Fluxo de um turno: o áudio (microfone ou arquivo) é transcrito pelo STT; as gu
 | Captura | `app.py` | microfone e upload, com aviso de consentimento |
 | STT | `stt/` | faster-whisper `base` e `small` |
 | Guardas e memória | `llm/assistente.py` | emergência e "não sei" sem passar pelo LLM; últimos 6 turnos |
-| LLM | `llm/provedores.py` | Ollama (local), Groq e Gemini (nuvem) |
-| Base de conhecimento | `componentes.py` | [PREENCHER: RAG da pasta 03; hoje há uma base provisória] |
+| LLM | `llm/provedores.py` | Ollama (local), OpenAI, Groq e Gemini (nuvem) |
+| Base de conhecimento | `llm/base_rag.py`, `componentes.py` | RAG da pasta 03: corpus oficial de SJC, embeddings e5-large, top-3 e abstenção por evidência fraca (cosseno < 0,84); a base fictícia só é usada em testes |
 | Adaptação para fala | `adaptacao_fala/` | sem markdown e emoji, frases curtas, números, siglas, valores, datas e horas por extenso |
 | TTS | `tts/` | Piper (local) e edge-tts (nuvem) |
 | Latência | `pipeline.py` | STT, LLM+RAG, adaptação, TTS e total |
@@ -238,7 +247,7 @@ Na medição preliminar (vozes sintéticas), o WER variou entre as três vozes. 
 
 **Limitações já conhecidas** (revisar com os resultados reais):
 
-- A base de conhecimento depende do RAG da pasta 03. [PREENCHER: estado final da integração.]
+- A base de conhecimento é o RAG da pasta 03 (`llm/base_rag.py`) e herda os limites dele: 33 páginas da Prefeitura de uma única cidade e uma falsa abstenção conhecida ("O que o PAIF faz?", cosseno 0,835 contra o limiar de 0,84). [PREENCHER: resultado da avaliação do LLM sobre essa base, quando for medida.]
 - A correção automática do LLM confere palavras-chave, uma aproximação da qualidade real da resposta: ela marcou como acerto uma resposta que se contradizia (q17).
 - A regra que decide se uma fala é continuação é lexical e foi ajustada com os mesmos casos usados para medir. Ela pode recusar uma continuação legítima com vocabulário novo ("E se eu não tiver?") e precisa ser validada com falas novas.
 - A continuação ainda pode trazer o trecho errado: em 1 das 10 conversas, a pergunta sobre o RG recebeu os documentos da UBS.
@@ -279,10 +288,24 @@ Como próximos passos, propomos sintetizar e tocar a primeira frase antes do res
 
 ## 10. Referências
 
-[PREENCHER: lista com autor, título, URL e data de acesso. Sugestões de itens a citar: o artigo do Whisper (Radford et al., 2022, "Robust Speech Recognition via Large-Scale Weak Supervision"), os repositórios do faster-whisper, do Piper e do edge-tts, a biblioteca jiwer, os textos oficiais dos ODS 10 e 16, a Lei Geral de Proteção de Dados (Lei 13.709/2018) e as fontes do corpus e do problema.]
+Fontes de dados consultadas em 18/11/2026 (IBGE): as quatro da tabela da seção 1.
+
+Corpus da base de conhecimento: Prefeitura de São José dos Campos, páginas de serviços em https://www.sjc.sp.gov.br/servicos/, consultadas em 17/11/2026 (lista completa, com hash por página, em `03-generative-ai/corpus/fontes.csv`).
+
+Referências técnicas (conferir os links antes de entregar):
+
+- Radford, A. et al. *Robust Speech Recognition via Large-Scale Weak Supervision* (Whisper), 2022. https://arxiv.org/abs/2212.04356
+- Wang, L. et al. *Multilingual E5 Text Embeddings: A Technical Report*, 2024. https://arxiv.org/abs/2402.05672
+- faster-whisper (SYSTRAN), pacote `faster-whisper` 1.2.1. https://pypi.org/project/faster-whisper/
+- piper-tts 1.8.0. https://pypi.org/project/piper-tts/
+- edge-tts 7.3.1. https://pypi.org/project/edge-tts/
+- jiwer 4.0.0, cálculo do WER. https://pypi.org/project/jiwer/
+- Ollama v0.40.16, execução local dos modelos Qwen2.5. https://ollama.com
+- Brasil. *Lei nº 13.709, de 14 de agosto de 2018* (Lei Geral de Proteção de Dados Pessoais). https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm
+- ONU Brasil. *Objetivos de Desenvolvimento Sustentável 10 e 16*. https://brasil.un.org/pt-br/sdgs
 
 ## Anexos
 
-- Código e README: [PREENCHER: link do repositório, pasta `02-pln-voz`].
+- Código e README: https://github.com/juliaathar/global-solution-2026.2, pasta `02-pln-voz`.
 - Material de teste: `audios_teste/`, `testes/perguntas_llm.csv`, `testes/planilha_tts.csv`, `testes/conversas_e2e.csv`.
 - Resultados brutos: `evidencias/`.

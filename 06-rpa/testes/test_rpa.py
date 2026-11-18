@@ -165,6 +165,10 @@ class TestInmet(unittest.TestCase):
 
 class TestCrawlerNoticias(unittest.TestCase):
     def setUp(self):
+        # Os testes injetam baixar_fn falso; RPA_OFFLINE=1 no ambiente não pode desligar esse caminho.
+        patch = mock.patch.object(config, "OFFLINE", False)
+        patch.start()
+        self.addCleanup(patch.stop)
         self.pag = [p.read_text(encoding="utf-8", errors="replace") for p in config.NOTICIAS_SNAPSHOTS]
 
     def test_css_e_xpath_extraem_o_mesmo(self):

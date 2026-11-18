@@ -1,21 +1,21 @@
 ﻿id,conversa,turno,tipo,pergunta,esperado
-f01,g01,1,normal,Que horas a UBS abre?,sete|7
+f01,g01,1,normal,Em que horário posso fazer o Cadastro Único?,16h30|16:30|dezesseis
 f02,g01,2,fora_escopo,Obrigado! Me conta uma piada!,
-f03,g02,1,normal,Para que serve o CRAS?,benefício|beneficio|cadastro
+f03,g02,1,normal,Para que serve o CRAS?,família|familia
 f04,g02,2,fora_escopo,E me conta uma piada?,
-f05,g03,1,normal,Como faço a segunda via do RG?,posto
+f05,g03,1,normal,Como peço a limpeza de um bueiro entupido?,156
 f06,g03,2,fora_escopo,Conta uma piada.,
-f07,g04,1,normal,Tem um buraco na minha rua. Como eu aviso?,elobairro|protocolo
+f07,g04,1,normal,Como peço uma lixeira na minha rua?,156
 f08,g04,2,fora_escopo,Obrigado. E quem ganhou o jogo ontem?,
-f09,g05,1,normal,Em quais dias a UBS atende?,segunda;sexta
+f09,g05,1,normal,Quem pode usar o transporte adaptado?,deficiência|deficiencia
 f10,g05,2,fora_escopo,Qual é a capital da França?,
-f11,g06,1,normal,Que documentos eu levo ao CRAS?,comprovante
+f11,g06,1,normal,Quem é atendido no CREAS?,violação|violacao
 f12,g06,2,fora_escopo,Agora me dá uma receita de bolo.,
-f13,g07,1,normal,Quais documentos preciso para a segunda via do RG?,certidão|certidao
+f13,g07,1,normal,Quem pode participar da Casa do Idoso?,60|sessenta
 f14,g07,2,fora_escopo,"E o dólar, quanto está hoje?",
-f15,g08,1,normal,O poste da minha rua está apagado. O que eu faço?,elobairro|protocolo
+f15,g08,1,normal,Onde ficam os ecopontos da cidade?,ecoponto
 f16,g08,2,fora_escopo,Estou com dor de cabeça. Que remédio eu tomo?,
-f17,g09,1,normal,Preciso do cartão do SUS para ir à UBS?,cartão|cartao|sus
+f17,g09,1,normal,Quem tem direito ao leite gratuito para crianças?,renda
 f18,g09,2,fora_escopo,Posso processar meu vizinho por causa do barulho?,
-f19,g10,1,normal,O CRAS pede comprovante de residência?,comprovante
+f19,g10,1,normal,O que são os PEVs?,entrega
 f20,g10,2,fora_escopo,Escreve um poema sobre o mar.,

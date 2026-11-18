@@ -45,8 +45,8 @@ Cada etapa é um módulo separado, com contrato em [interfaces.py](interfaces.py
 | Captura de áudio | [app.py](app.py) | microfone ("gravar") e upload de arquivo, com aviso de consentimento antes do primeiro uso |
 | STT | [stt/](stt/whisper_stt.py) | faster-whisper `base` ou `small` (variável `STT_MODEL`) |
 | Guardas e memória | [llm/assistente.py](llm/assistente.py) | emergência e "não sei" sem passar pelo LLM; últimos 6 turnos de histórico |
-| LLM | [llm/provedores.py](llm/provedores.py) | Ollama (local), Groq ou Gemini (nuvem), por `LLM_PROVIDER` |
-| Base de conhecimento | [llm/base_stub.py](llm/base_stub.py), [componentes.py](componentes.py) | hoje uma base provisória; o RAG da pasta 03 entra aqui |
+| LLM | [llm/provedores.py](llm/provedores.py) | Ollama (local), OpenAI, Groq ou Gemini (nuvem), por `LLM_PROVIDER` |
+| Base de conhecimento | [llm/base_rag.py](llm/base_rag.py), [componentes.py](componentes.py) | RAG da pasta 03 (padrão, `BASE_CONHECIMENTO=rag`): corpus oficial de SJC, embeddings e5-large, top-3, abstenção por evidência fraca. A base fictícia `llm/base_stub.py` só entra com `BASE_CONHECIMENTO=stub` (testes) ou, com aviso no log, se o RAG não carregar |
 | Adaptação para fala | [adaptacao_fala/](adaptacao_fala/adaptar.py) | sem markdown e emoji, frases curtas, números, siglas, valores, datas e horas por extenso |
 | TTS | [tts/](tts/__init__.py) | Piper (local) ou edge-tts (nuvem), por `TTS_ENGINE` |
 | Orquestração e latência | [pipeline.py](pipeline.py) | mede STT, LLM+RAG, adaptação, TTS e total por turno |
@@ -85,9 +85,11 @@ Versões e licenças dos pacotes foram consultadas no PyPI em 17/11/2026. Os mod
 | piper-tts | 1.8.0 | GPL-3.0-ou-posterior | motor local |
 | Voz Piper `pt_BR-faber-medium` | n/d | CC0 (dataset, segundo o cartão da voz) | voz sintética pronta, sem clonagem |
 | LLM `qwen2.5:3b` (padrão) e `qwen2.5:1.5b`, via Ollama | Ollama 0.40.16 | conferir | o 3B usa a licença Qwen Research (restrita a uso não comercial): confirmar no cartão do modelo, assim como a do 1.5B |
-| Groq e Gemini (opcionais) | API | termos do provedor | enviam o texto da pergunta |
+| OpenAI, Groq e Gemini (opcionais) | API | termos do provedor | enviam o texto da pergunta |
 | gradio | testado com 5.50.0; `requirements.txt` aceita >=5, <6 | Apache-2.0 | |
 | jiwer | 4.0.0 | Apache-2.0 | WER |
+| fastembed | 0.7.4 (testado) | Apache-2.0 | embeddings do RAG da pasta 03 |
+| `intfloat/multilingual-e5-large` (ONNX, via fastembed) | baixado no primeiro uso (~2,2 GB) | MIT (conferir o cartão do modelo) | recuperação do RAG |
 | requests | 2.34.2 | Apache-2.0 | |
 | python-dotenv | 1.2.4 | BSD-3-Clause | |
 
@@ -106,7 +108,7 @@ cp ../.env.example ../.env      # edite: LLM_PROVIDER, LLM_MODEL, LLM_API_KEY, S
 ```
 
 **LLM local:** instale o [Ollama](https://ollama.com) e baixe o modelo, por exemplo `ollama pull qwen2.5:3b`. No Windows também funciona o pacote portátil `ollama-windows-amd64.zip`, sem instalador: extraia, rode `ollama serve` e depois `ollama pull`.
-**LLM em nuvem:** coloque `LLM_PROVIDER=groq` (ou `gemini`) e a chave em `LLM_API_KEY` no `.env`. O `.env` não é versionado.
+**LLM em nuvem:** coloque `LLM_PROVIDER=openai` (ou `groq`, `gemini`) e a chave em `LLM_API_KEY` no `.env`. O `.env` não é versionado.
 **Voz Piper (opcional):** baixe a voz nesta pasta.
 
 ```bash
@@ -118,6 +120,8 @@ Abrir a interface:
 ```bash
 python app.py
 ```
+
+Na primeira execução com o RAG, o índice do 03 é construído e guardado em cache (`03-generative-ai/rag/retriever/.cache`, fora do git): levou cerca de 6 minutos em uma CPU de 2 núcleos e exige baixar o modelo e5-large. Depois disso a busca leva cerca de 0,1 s. Sem rede ou sem `fastembed`, o app avisa no log e usa a base fictícia, cujas respostas não são oficiais.
 
 Depois abra http://127.0.0.1:7860, aceite o aviso e fale ou envie um áudio.
 
@@ -138,7 +142,7 @@ python -m unittest discover -s testes -v
 | Componente | Teste mínimo | Métrica | Script | Resultado |
 |---|---|---|---|---|
 | STT | 20 áudios, 3 vozes, 5 com ruído | WER (`jiwer`) | `testes/avaliar_stt.py` | preliminar (áudios sintéticos): WER global `base` 0,114 e `small` 0,066; latência 2,11 s e 6,86 s. Gravações reais: a medir |
-| LLM | 30 perguntas (5 de continuação, 5 fora do escopo) | % corretas e % de recusas adequadas | `testes/avaliar_llm.py` | `qwen2.5:3b`: 82,6% a 91,3% corretas em 3 rodadas (4 de 5 na continuação); `qwen2.5:1.5b`: 60,9%. 5 de 5 recusas fora do escopo (pela guarda). Fuga em continuação: 10 de 10 barrados depois da correção (antes, 0 de 10). Base provisória |
+| LLM | 30 perguntas (5 de continuação, 5 fora do escopo) | % corretas e % de recusas adequadas | `testes/avaliar_llm.py` | **Base fictícia** (perguntas antigas em `testes/perguntas_llm_base_ficticia.csv`, rodar com `BASE_CONHECIMENTO=stub`): `qwen2.5:3b` 82,6% a 91,3% corretas em 3 rodadas (4 de 5 na continuação); `qwen2.5:1.5b` 60,9%; 5 de 5 recusas fora do escopo (pela guarda); fuga em continuação 10 de 10 barrados depois da correção (antes, 0 de 10). **Base real (RAG do 03): a medir.** As 30 perguntas em `testes/perguntas_llm.csv` já foram reescritas com fatos do corpus de SJC |
 | TTS | 10 respostas, 3 avaliadores | naturalidade e clareza (1 a 5) | `testes/avaliar_tts.py` | áudios gerados, sem notas ainda. Síntese média: Piper 1,13 s, edge-tts 2,31 s |
 | Ponta a ponta | 10 conversas de 3 turnos | latência por etapa e total | `testes/avaliar_e2e.py` | preliminar (falas sintéticas, 100% local): total médio 12,1 s (STT 6,5 s, LLM 4,5 s, TTS 1,1 s). Gravações reais: a medir |
 | Comparação | `base` contra `small` (STT), dois LLMs e dois TTS | qualidade e latência | os mesmos scripts | feita de forma preliminar nos três; repetir com dados reais |
@@ -163,24 +167,24 @@ Legenda: [x] feito e verificado, [~] código escrito, mas ainda não verificado 
 - [x] STT em português (módulo separado), verificado com faster-whisper `base` e `small` em áudios sintéticos; falta testar com gravações reais
 - [x] LLM com system prompt (papel, tom, limites), executado com `qwen2.5:3b` e `qwen2.5:1.5b` via Ollama; erros analisados em `evidencias/llm_resultados.csv`
 - [x] Memória da conversa (perguntas de continuação), coberta por testes
-- [ ] Base de conhecimento: integrar o RAG da pasta 03 (hoje há uma base provisória com textos de exemplo)
+- [~] Base de conhecimento: RAG da pasta 03 integrado (`llm/base_rag.py`, 8 testes) e a recuperação conferida (trechos oficiais, abstenção em passaporte, piada e pergunta vaga). Falta rodar `avaliar_llm.py` com um LLM sobre a base real
 - [x] Adaptação para fala (frases curtas, sem markdown e emoji, números e siglas legíveis), coberta por testes
 - [x] TTS em português do Brasil: Piper e edge-tts geraram áudio (10 respostas em cada); falta a avaliação de naturalidade e clareza por 3 pessoas
 - [~] Interface mostra transcrição e resposta em texto, com o áudio, verificada em modo demonstração
 - [x] Latência por etapa e total, medida pelo pipeline (um turno real com Whisper e TTS verificado)
 - [x] LGPD: consentimento, retenção mínima (verificado: o áudio de entrada é apagado depois da transcrição), recusa fora do tema (guarda barrou 5 de 5 perguntas, com a base provisória) e sem voz clonada
 - [ ] LGPD: análise de viés do STT (depende dos áudios)
-- [x] Scripts e dados de teste (STT, LLM, TTS, ponta a ponta), com 49 testes automáticos
+- [x] Scripts e dados de teste (STT, LLM, TTS, ponta a ponta), com 82 testes automáticos. Ferramentas prontas para quando os dados chegarem: `testes/organizar_audios.py` (converte e confere as gravações), `testes/tts_cego.py` (avaliação cega do TTS) e `relatorio/gerar_pdf.py` (PDF do relatório)
 - [~] Executar os testes com dados reais: o LLM está configurado e o ponta a ponta rodou com falas sintéticas; faltam 20 áudios de STT e 30 falas de ponta a ponta gravados pelo grupo e 3 avaliadores de TTS
 - [~] Comparar duas opções em um componente: `base` contra `small` (STT), `3b` contra `1.5b` (LLM) e Piper contra edge-tts (TTS), medidos de forma preliminar; repetir com dados reais
 - [x] README com arquitetura, modelos, versões e licenças
-- [ ] Relatório em PDF
+- [~] Relatório em PDF: texto, ODS, evidência do problema (IBGE), referências e diagrama prontos (`relatorio/figuras/arquitetura.png`); `python relatorio/gerar_pdf.py` gera o PDF final quando não houver mais `[PREENCHER]` (hoje restam os que dependem das gravações, das notas do TTS, da avaliação do LLM com a base real e do vídeo)
 - [ ] Vídeo de até 5 min: conversa de 3 turnos com continuação e recusa
 
 ## Limitações conhecidas
 
-- A base de conhecimento atual é provisória e fictícia. As respostas só valem depois da integração com o RAG e fontes oficiais.
-- As 30 perguntas de teste foram escritas a partir dessa base provisória e precisam ser revisadas com o corpus real.
+- O RAG herda os limites do 03: cobre 33 páginas da Prefeitura de SJC e tem falsa abstenção conhecida ("O que o PAIF faz?", cosseno 0,835 contra o limiar 0,84).
+- As 30 perguntas de teste foram reescritas com fatos do corpus real, mas as respostas esperadas são palavras-chave conferidas só contra o texto das páginas, e ainda não foram medidas com um LLM. Os resultados de LLM acima, com a base fictícia, não valem para o sistema final.
 - A correção automática do LLM confere palavras-chave, uma aproximação. O grupo pode corrigir na coluna `acerto_manual`.
 - A guarda de emergência usa uma lista de palavras, então frases que fujam dela vão para o LLM.
 - A regra de continuação é lexical e foi ajustada com os mesmos casos usados para medir (10 de 10 barrados), então o resultado é otimista. Ela pode recusar continuações legítimas com vocabulário novo, e a continuação ainda pode trazer o trecho errado (1 de 10 conversas).

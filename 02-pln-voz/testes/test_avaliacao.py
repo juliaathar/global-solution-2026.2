@@ -107,7 +107,13 @@ class TesteLLM(unittest.TestCase):
             def responder(self, system, historico, contexto):
                 return "A UBS abre às sete e pede documento com foto e cartão do SUS."
 
-        linhas = [l for l in ler_csv(TESTES / "perguntas_llm.csv") if l["conversa"] in ("c01", "f01", "s01")]
+        # Fixture própria (base fictícia): este teste confere o mecanismo de avaliação, não os dados reais.
+        linhas = [
+            {"id": "q01", "conversa": "c01", "turno": "1", "tipo": "normal", "pergunta": "Que horas a UBS abre?", "esperado": "sete|7"},
+            {"id": "q02", "conversa": "c01", "turno": "2", "tipo": "continuacao", "pergunta": "E o que eu levo?", "esperado": "foto|sus"},
+            {"id": "q24", "conversa": "f01", "turno": "1", "tipo": "fora_escopo", "pergunta": "Quem ganhou o jogo de futebol ontem?", "esperado": ""},
+            {"id": "q29", "conversa": "s01", "turno": "1", "tipo": "sem_resposta", "pergunta": "Qual é o endereço da UBS mais próxima da minha casa?", "esperado": ""},
+        ]
         res = avaliar_llm.executar(LLM(), BaseStub(), linhas)
         por_id = {r["id"]: r for r in res}
         self.assertEqual(por_id["q01"]["acerto_auto"], 1)

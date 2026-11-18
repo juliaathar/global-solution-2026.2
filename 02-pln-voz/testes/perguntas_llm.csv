@@ -1,31 +1,31 @@
 ﻿id,conversa,turno,tipo,pergunta,esperado
-q01,c01,1,normal,Que horas a UBS abre?,sete|7
-q02,c01,2,continuacao,E o que eu levo?,foto|sus
-q03,c02,1,normal,Em quais dias a UBS atende?,segunda;sexta
-q04,c02,2,continuacao,E que horas ela fecha?,dezessete|17
-q05,c03,1,normal,Para que serve o CRAS?,benefício|beneficio|cadastro
-q06,c03,2,continuacao,E o que eu preciso levar lá?,comprovante
-q07,c04,1,normal,Como faço a segunda via do RG?,posto
-q08,c04,2,continuacao,E o que eu levo?,certidão|certidao;comprovante
-q09,c05,1,normal,Tem um buraco na minha rua. Como eu aviso?,elobairro|protocolo
-q10,c05,2,continuacao,E isso gera algum número para acompanhar?,protocolo
-q11,n06,1,normal,Preciso do cartão do SUS para ir à UBS?,cartão|cartao|sus
-q12,n07,1,normal,Que documento eu levo na UBS?,foto
-q13,n08,1,normal,Onde posso fazer o Cadastro Único?,cras
-q14,n09,1,normal,O CRAS pede comprovante de residência?,comprovante
-q15,n10,1,normal,Quem orienta sobre benefícios sociais?,cras
-q16,n11,1,normal,Quais documentos preciso para a segunda via do RG?,certidão|certidao;comprovante
-q17,n12,1,normal,Posso usar certidão de casamento para tirar a segunda via do RG?,certidão|certidao
-q18,n13,1,normal,O poste da minha rua está apagado. O que eu faço?,elobairro|protocolo
-q19,n14,1,normal,Como relato lixo acumulado na calçada?,elobairro|protocolo
-q20,n15,1,normal,O EloBairro gera protocolo?,protocolo
-q21,n16,1,normal,A UBS atende de segunda a sexta?,segunda;sexta
-q22,n17,1,normal,Onde faço a segunda via de identidade?,posto
-q23,n18,1,normal,O que a UBS pede para atender uma pessoa?,documento|cartão|cartao
+q01,c01,1,normal,Quais documentos preciso levar para fazer o Cadastro Único?,RG;comprovante
+q02,c01,2,continuacao,E onde eu faço isso?,cras
+q03,c02,1,normal,Como peço a limpeza de um bueiro entupido?,156
+q04,c02,2,continuacao,E posso pedir pelo aplicativo?,aplicativo
+q05,c03,1,normal,Quem pode usar o transporte adaptado?,deficiência|deficiencia
+q06,c03,2,continuacao,E esse serviço é gratuito?,gratuito|gratuita
+q07,c04,1,normal,Para que serve o CRAS?,família|familia
+q08,c04,2,continuacao,E onde fica o CRAS do Centro?,machado
+q09,c05,1,normal,Onde ficam os ecopontos da cidade?,ecoponto
+q10,c05,2,continuacao,E quais ficam no Centro?,floriano|raphael|mendes|mercado|cruzeiro
+q11,n06,1,normal,Quem tem direito ao leite gratuito para crianças?,renda
+q12,n07,1,normal,Até que idade a criança pode receber o leite?,5 anos|cinco anos
+q13,n08,1,normal,Como peço uma lixeira na minha rua?,156
+q14,n09,1,normal,Quem é atendido no CREAS?,violação|violacao
+q15,n10,1,normal,Qual o endereço do CREAS Sul?,cidade jardim
+q16,n11,1,normal,Em que horário posso fazer o Cadastro Único?,16h30|16:30|dezesseis
+q17,n12,1,normal,Quem pode participar da Casa do Idoso?,60|sessenta
+q18,n13,1,normal,O que são os PEVs?,entrega
+q19,n14,1,normal,Quantas UBS existem na cidade?,40|quarenta
+q20,n15,1,normal,Dá para tomar vacina na UBS até a hora de fechar?,antes
+q21,n16,1,normal,Como peço para tirar uma árvore que oferece risco?,protocolo|presencial
+q22,n17,1,normal,Quem é atendido pelo Integra?,deficiência|deficiencia
+q23,n18,1,normal,Quem é responsável por construir a calçada?,imóve|imove|responsáve|responsave
 q24,f01,1,fora_escopo,Quem ganhou o jogo de futebol ontem?,
 q25,f02,1,fora_escopo,Me dá uma receita de bolo de chocolate.,
 q26,f03,1,fora_escopo,Quanto está o dólar hoje?,
 q27,f04,1,fora_escopo,Estou com febre há três dias. Que remédio devo tomar?,
 q28,f05,1,fora_escopo,Posso processar meu vizinho por causa do barulho?,
-q29,s01,1,sem_resposta,Qual é o endereço da UBS mais próxima da minha casa?,
-q30,s02,1,sem_resposta,Quanto custa a segunda via do RG?,
+q29,s01,1,sem_resposta,Como tirar passaporte?,
+q30,s02,1,sem_resposta,Como renovar a minha CNH?,

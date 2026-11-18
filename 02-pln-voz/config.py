@@ -10,13 +10,13 @@ except ImportError:  # python-dotenv é opcional
 
 STT_MODEL = os.getenv("STT_MODEL", "small")        # base | small
 TTS_ENGINE = os.getenv("TTS_ENGINE", "edge-tts")   # piper | edge-tts
-LLM_PROVIDER = os.getenv("LLM_PROVIDER", "ollama")  # ollama | gemini | groq
+LLM_PROVIDER = os.getenv("LLM_PROVIDER", "ollama")  # ollama | openai | gemini | groq
 LLM_MODEL = os.getenv("LLM_MODEL", "qwen2.5:3b")
 LLM_API_KEY = os.getenv("LLM_API_KEY", "")
 
 # Cuidado com LGPD: o áudio enviado ao STT é apagado logo após a transcrição.
 APAGAR_AUDIO_APOS_STT = True
 # Provedores em nuvem exigem avisar o usuário.
-USA_NUVEM = LLM_PROVIDER in ("gemini", "groq") or TTS_ENGINE == "edge-tts"
+USA_NUVEM = LLM_PROVIDER in ("openai", "gemini", "groq") or TTS_ENGINE == "edge-tts"
 
 SAIDA_DIR = Path(__file__).resolve().parent / "saida"
