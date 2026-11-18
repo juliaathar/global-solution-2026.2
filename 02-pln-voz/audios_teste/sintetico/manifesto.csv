@@ -1,0 +1,21 @@
+﻿arquivo,falante,ruido,faixa_etaria,sotaque,referencia
+stt_01.wav,Francisca,nao,sintetica,sintetico,Que horas a UBS abre?
+stt_02.wav,Francisca,nao,sintetica,sintetico,Em quais dias a UBS atende?
+stt_03.wav,Francisca,sim,sintetica,sintetico,O que eu preciso levar para ser atendido na UBS?
+stt_04.wav,Francisca,nao,sintetica,sintetico,Preciso do cartão do SUS para ir à UBS?
+stt_05.wav,Francisca,nao,sintetica,sintetico,Para que serve o CRAS?
+stt_06.wav,Francisca,nao,sintetica,sintetico,Onde posso fazer o Cadastro Único?
+stt_07.wav,Francisca,sim,sintetica,sintetico,Quais documentos eu levo ao CRAS?
+stt_08.wav,Antonio,nao,sintetica,sintetico,Como faço a segunda via do RG?
+stt_09.wav,Antonio,nao,sintetica,sintetico,Quais documentos preciso para tirar a segunda via do RG?
+stt_10.wav,Antonio,nao,sintetica,sintetico,Posso usar a certidão de casamento para a segunda via?
+stt_11.wav,Antonio,sim,sintetica,sintetico,Tem um buraco na minha rua. Como eu aviso?
+stt_12.wav,Antonio,nao,sintetica,sintetico,O poste da minha rua está apagado há três dias.
+stt_13.wav,Antonio,nao,sintetica,sintetico,Como eu relato lixo acumulado na calçada?
+stt_14.wav,Antonio,nao,sintetica,sintetico,O relato gera um protocolo para eu acompanhar?
+stt_15.wav,Thalita,sim,sintetica,sintetico,Quanto custa a segunda via do documento?
+stt_16.wav,Thalita,nao,sintetica,sintetico,Minha mãe tem setenta e dois anos e precisa de ajuda com o benefício.
+stt_17.wav,Thalita,nao,sintetica,sintetico,A UBS fica aberta no sábado de manhã?
+stt_18.wav,Thalita,nao,sintetica,sintetico,Preciso levar o comprovante de residência de dois mil e vinte e seis?
+stt_19.wav,Thalita,sim,sintetica,sintetico,Qual é o telefone do SAMU?
+stt_20.wav,Thalita,nao,sintetica,sintetico,Onde fica o posto de identificação mais perto de mim?

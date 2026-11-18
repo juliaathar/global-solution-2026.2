@@ -1,0 +1,21 @@
+﻿arquivo,falante,ruido,faixa_etaria,sotaque,referencia
+stt_01.wav,A,nao,,,Que horas a UBS abre?
+stt_02.wav,A,nao,,,Em quais dias a UBS atende?
+stt_03.wav,A,sim,,,O que eu preciso levar para ser atendido na UBS?
+stt_04.wav,A,nao,,,Preciso do cartão do SUS para ir à UBS?
+stt_05.wav,A,nao,,,Para que serve o CRAS?
+stt_06.wav,A,nao,,,Onde posso fazer o Cadastro Único?
+stt_07.wav,A,sim,,,Quais documentos eu levo ao CRAS?
+stt_08.wav,B,nao,,,Como faço a segunda via do RG?
+stt_09.wav,B,nao,,,Quais documentos preciso para tirar a segunda via do RG?
+stt_10.wav,B,nao,,,Posso usar a certidão de casamento para a segunda via?
+stt_11.wav,B,sim,,,Tem um buraco na minha rua. Como eu aviso?
+stt_12.wav,B,nao,,,O poste da minha rua está apagado há três dias.
+stt_13.wav,B,nao,,,Como eu relato lixo acumulado na calçada?
+stt_14.wav,B,nao,,,O relato gera um protocolo para eu acompanhar?
+stt_15.wav,C,sim,,,Quanto custa a segunda via do documento?
+stt_16.wav,C,nao,,,Minha mãe tem setenta e dois anos e precisa de ajuda com o benefício.
+stt_17.wav,C,nao,,,A UBS fica aberta no sábado de manhã?
+stt_18.wav,C,nao,,,Preciso levar o comprovante de residência de dois mil e vinte e seis?
+stt_19.wav,C,sim,,,Qual é o telefone do SAMU?
+stt_20.wav,C,nao,,,Onde fica o posto de identificação mais perto de mim?

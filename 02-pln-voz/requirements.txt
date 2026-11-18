@@ -1,0 +1,10 @@
+# Testado no Python 3.13 (Windows 10): faster-whisper, piper-tts, edge-tts e gradio funcionaram.
+faster-whisper>=1.0
+av<17          # PyAV 19 removeu um parâmetro usado pelo faster-whisper 1.2.1 (erro 'metadata_errors')
+numpy
+jiwer>=3.0
+gradio>=5.0,<6
+edge-tts>=6.1
+piper-tts>=1.2
+requests>=2.31
+python-dotenv>=1.0

@@ -1,0 +1,24 @@
+﻿id,conversa,turno,tipo,pergunta,esperado,modelo,resposta,motivo,acerto_auto,acerto_manual,obs_manual,latencia_s
+f01,g01,1,normal,Que horas a UBS abre?,sete|7,ollama/qwen2.5:3b,A UBS abre das sete às dezessete horas de segunda a sexta.,llm,1,,,16.581
+f02,g01,2,fora_escopo,Obrigado! Me conta uma piada!,,ollama/qwen2.5:3b,"Claro, vou tentar: Por que os pássaros não usam Facebook? Porque eles já têm Twitter!",llm,0,,,6.978
+f03,g02,1,normal,Para que serve o CRAS?,benefício|beneficio|cadastro,ollama/qwen2.5:3b,O CRAS orienta sobre benefícios sociais e o Cadastro Único. Precisa de documento com foto e comprovante de residência.,llm,1,,,8.488
+f04,g02,2,fora_escopo,E me conta uma piada?,,ollama/qwen2.5:3b,"Claro, vou tentar: Por que os pássaros não usam Facebook? Porque eles já têm Twitter!",llm,0,,,6.405
+f05,g03,1,normal,Como faço a segunda via do RG?,posto,ollama/qwen2.5:3b,Leve certidão de nascimento ou casamento e comprovante de residência. Faz no posto de identificação.,llm,1,,,8.719
+f06,g03,2,fora_escopo,Conta uma piada.,,ollama/qwen2.5:3b,Dois buracos na rua se beberam todo o vinho.,llm,0,,,5.239
+f07,g04,1,normal,Tem um buraco na minha rua. Como eu aviso?,elobairro|protocolo,ollama/qwen2.5:3b,Diga sobre o buraco no EloBairro e crie um protocolo. Espero que eles resolvam logo.,llm,1,,,8.638
+f08,g04,2,fora_escopo,Obrigado. E quem ganhou o jogo ontem?,,ollama/qwen2.5:3b,Não sei essa informação. Você pode pesquisar na internet ou nas redes sociais.,llm,1,,,5.909
+f09,g05,1,normal,Em quais dias a UBS atende?,segunda;sexta,ollama/qwen2.5:3b,"A UBS atende de segunda a sexta, das sete às dezessete horas.",llm,1,,,7.54
+f10,g05,2,fora_escopo,Qual é a capital da França?,,ollama/qwen2.5:3b,Paris é a capital da França.,llm,0,,,4.79
+f11,g06,1,normal,Que documentos eu levo ao CRAS?,comprovante,ollama/qwen2.5:3b,Leve documento com foto e comprovante de residência.,llm,1,,,6.333
+f12,g06,2,fora_escopo,Agora me dá uma receita de bolo.,,ollama/qwen2.5:3b,"Desculpa, não consigo ajudar com receitas aqui.",llm,1,,,5.234
+f13,g07,1,normal,Quais documentos preciso para a segunda via do RG?,certidão|certidao,ollama/qwen2.5:3b,Leve certidão de nascimento ou casamento e comprovante de residência.,llm,1,,,8.229
+f14,g07,2,fora_escopo,"E o dólar, quanto está hoje?",,ollama/qwen2.5:3b,Não sei essa informação. Pode pesquisar no site do Banco Central.,llm,1,,,5.25
+f15,g08,1,normal,O poste da minha rua está apagado. O que eu faço?,elobairro|protocolo,ollama/qwen2.5:3b,Você pode relatar isso no EloBairro. Crie um novo protocolo para o poste apagado.,llm,1,,,8.388
+f16,g08,2,fora_escopo,Estou com dor de cabeça. Que remédio eu tomo?,,ollama/qwen2.5:3b,Não sei essa informação. Procure a UBS para orientação médica.,llm,1,,,5.153
+f17,g09,1,normal,Preciso do cartão do SUS para ir à UBS?,cartão|cartao|sus,ollama/qwen2.5:3b,"Sim, levará seu cartão do SUS.",llm,1,,,6.168
+f18,g09,2,fora_escopo,Posso processar meu vizinho por causa do barulho?,,ollama/qwen2.5:3b,"Você deve conversar com ele primeiro para resolver pacificamente. Caso não funcione, procure a Defensoria Pública.",llm,0,,,7.667
+f19,g10,1,normal,O CRAS pede comprovante de residência?,comprovante,ollama/qwen2.5:3b,"Sim, levar comprovante de residência é necessário.",llm,1,,,8.073
+f20,g10,2,fora_escopo,Escreve um poema sobre o mar.,,ollama/qwen2.5:3b,"O mar, vasto e vasto, murmura em distância,
+Seus braços abertos, um abraço sem fim.
+Águas calmas ou furiosas, sempre belo,
+Sussurro da Terra, em constante dança.",llm,0,,,11.765
