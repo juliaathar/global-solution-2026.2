@@ -7,14 +7,14 @@ Grupo de até 3 integrantes, com nome completo e RM em todos os materiais.
 - [x] Chunking justificado (tamanho, overlap, metadados), comparando configurações
 - [x] Retriever justificado (BM25, denso ou híbrido; embeddings, top-k, filtros, reranking)
 - [x] Generator justificado (LLM, prompt, parâmetros, citação de fontes, abstenção)
-- [ ] Pipeline funcional integrado ao protótipo
+- [~] Pipeline funcional integrado ao protótipo (endpoint `POST /rag/perguntar` pronto em `01-front-end/api/routers/rag.py`, testado; falta montar no app principal quando o 01 existir)
 - [x] Mínimo de 10 perguntas: respondíveis, sem resposta, ambíguas, desvio de propósito
 - [x] Avaliação separada: recuperação, geração (contexto controlado), sistema completo
 - [x] Proteção contra resposta não sustentada
 - [x] 2+ testes adversariais (prompt injection, vazamento de prompt ou dados)
 - [x] Sem credenciais nem dados pessoais expostos
-- [ ] Relatório: perguntas, evidências recuperadas, respostas, métricas, análise crítica
-- [ ] Vídeo de até 5 min com sucessos, falhas, mitigação e limites
+- [~] Relatório: perguntas, evidências recuperadas, respostas, métricas, análise crítica (`relatorio/relatorio_avaliacao.md`; falta preencher a seção 6.4 com a revisão humana e exportar para PDF)
+- [ ] Vídeo de até 5 min com sucessos, falhas, mitigação e limites (roteiro pronto em `relatorio/roteiro_video.md`)
 
 ## Corpus e ingestão
 
@@ -67,4 +67,10 @@ r = responder("Quais documentos preciso para o Cadastro Único?", historico=[])
 r["resposta"], r["fontes"], r["abstencao"]
 ```
 
-Pendências: revisão humana de amostra (coluna `julgamento_humano` em `evidencias/sistema_completo.csv`), integração com a API da pasta 01, relatório e vídeo.
+Testes automáticos (21, sem rede): `python -m unittest discover -s testes -v`.
+
+Entregáveis e pendências:
+- `relatorio/relatorio_avaliacao.md`: relatório de avaliação (seções 1 a 8 e anexos).
+- `relatorio/revisao_humana_amostra.md`: 15 respostas para o grupo julgar; depois, preencher a seção 6.4 do relatório.
+- `relatorio/roteiro_video.md`: roteiro de 4 min 40 s para o vídeo.
+- Pendente: legenda de nome e RM em todos os materiais (conferir o RM de cada integrante), montar o router no app principal (01) e gravar o vídeo.

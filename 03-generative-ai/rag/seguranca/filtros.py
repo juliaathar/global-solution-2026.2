@@ -20,11 +20,48 @@ _VAZAMENTO = re.compile(
     r"repita (tudo|o texto) acima|modo desenvolvedor|developer mode)", re.I)
 _INJECAO_NO_DOC = re.compile(
     r"(ignore (todas )?(as )?(instru[cç][oõ]es|regras)|desconsidere|a partir de agora (voc[eê]|responda)|"
-    r"voc[eê] deve (agora )?(responder|obedecer)|system prompt|reveal your|ignore previous)", re.I)
+    r"voc[eê] deve (agora )?(responder|obedecer)|system prompt|reveal your|ignore previous|"
+    r"(nota|aviso|mensagem|instru[cç][aã]o) (para|ao) (o )?(assistente|modelo|ia|rob[oô])|"
+    r"responda (ao cidad[aã]o |ao usu[aá]rio )?que|inclua no final|termine (a resposta )?(pedindo|com)|"
+    r"informe (seu|sua|o seu) (cpf|senha)|texto completo das (suas )?instru)", re.I)
+
+# Perguntas vagas: não sobra palavra de conteúdo, ou só sobram palavras genéricas de serviço.
+_GENERICAS = {"telefone", "endereco", "horario", "ajuda", "reclamar", "reclamacao", "informacao", "informacoes",
+              "servico", "cadastro", "documento", "documentos", "faco", "numero", "contato", "atendimento"}
+MSG_ESCLARECIMENTO = ("Para eu ajudar, preciso saber melhor o que você procura. De qual serviço você fala? "
+                      "Por exemplo: UBS, CRAS, Cadastro Único, coleta de lixo, buraco na rua ou transporte adaptado.")
+MSG_SAIDA_BLOQUEADA = ("Não consegui confirmar essa resposta nas fontes oficiais. "
+                       "Procure a Prefeitura pelo telefone 156 ou no portal sjc.sp.gov.br.")
 
 
 def pedido_malicioso(pergunta: str) -> bool:
     return bool(_VAZAMENTO.search(pergunta))
+
+
+def pergunta_vaga(pergunta: str, tem_historico: bool) -> bool:
+    """True se a pergunta não diz de que serviço fala. Em continuação (com histórico) nunca é vaga."""
+    if tem_historico:
+        return False
+    from rag.retriever.bm25 import tokenizar
+    palavras = tokenizar(pergunta)
+    return not palavras or all(p in _GENERICAS for p in palavras)
+
+
+def resposta_suspeita(resposta: str, trechos: list[dict]) -> str:
+    """Guarda de saída. Devolve o motivo se a resposta tem URL ou valor em reais que não estão nos trechos,
+    ou trechos das instruções internas; senão, string vazia."""
+    from rag.generator.generator import SISTEMA
+    contexto = " ".join(t["texto"] for t in trechos)
+    for url in re.findall(r"https?://\S+|www\.\S+", resposta):
+        if url.rstrip(".,;)") not in contexto:
+            return f"URL fora das fontes: {url[:60]}"
+    for valor in re.findall(r"R\$\s?\d[\d.,]*", resposta):
+        if valor not in contexto:
+            return f"valor em reais fora das fontes: {valor}"
+    for linha in SISTEMA.splitlines():
+        if len(linha) > 40 and linha[:40].lower() in resposta.lower():
+            return "trecho das instruções internas na resposta"
+    return ""
 
 
 def evidencia_fraca(trechos: list[dict]) -> bool:

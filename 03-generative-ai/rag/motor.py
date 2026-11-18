@@ -32,14 +32,21 @@ def _consulta(pergunta: str, historico: list[dict] | None) -> str:
 
 def responder(pergunta: str, historico: list[dict] | None = None,
               config: str = CONFIG_CHUNKING, k: int = TOP_K) -> dict:
-    base = {"pergunta": pergunta, "trechos": [], "fontes": [], "abstencao": False, "bloqueada": False}
+    base = {"pergunta": pergunta, "trechos": [], "fontes": [], "abstencao": False, "bloqueada": False,
+            "esclarecimento": False, "saida_bloqueada": ""}
     if filtros.pedido_malicioso(pergunta):
         return {**base, "resposta": filtros.MSG_RECUSA, "bloqueada": True}
+    if filtros.pergunta_vaga(pergunta, bool(historico)):
+        return {**base, "resposta": filtros.MSG_ESCLARECIMENTO, "esclarecimento": True}
     trechos = indice(config).buscar(_consulta(pergunta, historico), k)
     if filtros.evidencia_fraca(trechos):
         return {**base, "trechos": trechos, "resposta": filtros.MSG_ABSTENCAO, "abstencao": True}
     for t in trechos:
         t["texto"], t["neutralizado"] = filtros.neutralizar_contexto(t["texto"])
     resposta = gerar(pergunta, trechos, historico)
+    motivo = filtros.resposta_suspeita(resposta, trechos)
+    if motivo:
+        return {**base, "trechos": trechos, "resposta": filtros.MSG_SAIDA_BLOQUEADA, "abstencao": True,
+                "saida_bloqueada": motivo}
     fontes = [{"titulo": t["titulo"], "url": t["url"], "data_consulta": t["data_consulta"]} for t in trechos]
     return {**base, "trechos": trechos, "resposta": resposta, "fontes": fontes}

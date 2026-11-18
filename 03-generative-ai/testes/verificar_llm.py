@@ -1,6 +1,6 @@
 """Teste rápido do LLM configurado no .env: uma pergunta respondível, uma sem resposta e um pedido de vazamento.
 
-Uso (a partir de 03-generative-ai):  python testes/testar_llm.py
+Uso (a partir de 03-generative-ai):  python testes/verificar_llm.py
 Não imprime a chave. Mostra provider, modelo, resposta e latência.
 """
 import os

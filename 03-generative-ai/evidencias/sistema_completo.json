@@ -3,7 +3,7 @@
   "id": "R01",
   "tipo": "respondivel",
   "pergunta": "Quais documentos preciso levar para fazer o Cadastro Único?",
-  "A_resposta": "Para fazer o Cadastro Único, você precisa levar os seguintes documentos:\n\nPara integrantes com menos de 16 anos:\n- RG ou Certidão de Nascimento\n- Declaração escolar\n\nPara integrantes com mais de 17 anos:\n- RG\n- CPF ou título de eleitor\n- Carteira de Trabalho (se tiver)\n- Comprovante de Residência no nome do Responsável Familiar (Luz, Água, Contrato de Aluguel ou Recibo de Aluguel) [1]. \n\nVocê pode fazer o Cadastro Único nas unidades dos Cras.",
+  "A_resposta": "Para fazer o Cadastro Único, você precisa levar os seguintes documentos:\n\nPara integrantes com menos de 16 anos:\n- RG ou Certidão de Nascimento\n- Declaração escolar\n\nPara integrantes com mais de 17 anos:\n- RG\n- CPF ou título de eleitor\n- Carteira de Trabalho (se tiver)\n- Comprovante de Residência no nome do Responsável Familiar [1]. \n\nSe precisar de mais informações, ligue para o 156.",
   "A_abstencao": false,
   "A_bloqueada": false,
   "A_cos_top1": 0.86,
@@ -24,20 +24,20 @@
    "fundamentada": true,
    "nao_sustentado": ""
   },
-  "B_resposta": "Para fazer o Cadastro Único, você precisa levar os seguintes documentos:\n\nPara integrantes com menos de 16 anos:\n- RG ou Certidão de Nascimento\n- Declaração escolar (Creche, Pré-Escola, Fundamental e Ensino Médio)\n\nPara integrantes com mais de 17 anos:\n- RG\n- CPF ou título de eleitor\n- Carteira de Trabalho (se tiver)\n- Comprovante de Residência no nome do Responsável Familiar (Luz, Água, Contrato de Aluguel ou Recibo de Aluguel) [1]. \n\nSe precisar de mais informações, ligue para o CadÚnico no Cras mais próximo.",
+  "B_resposta": "Para fazer o Cadastro Único, você precisa levar os seguintes documentos:\n\nIntegrantes com menos de 16 anos:\n- RG ou Certidão de Nascimento\n- Declaração escolar (Creche, Pré-Escola, Fundamental e Ensino Médio)\n\nIntegrantes com mais de 17 anos:\n- RG\n- CPF ou título de eleitor\n- Carteira de Trabalho (se tiver)\n- Comprovante de Residência no nome do Responsável Familiar (Luz, Água, Contrato de Aluguel ou Recibo de Aluguel) [1].",
   "B_juiz": {
    "correta": "sim",
    "fundamentada": true,
    "nao_sustentado": ""
   },
   "B_cita_fonte": true,
-  "B_frases": 10
+  "B_frases": 9
  },
  {
   "id": "R02",
   "tipo": "respondivel",
   "pergunta": "Quem tem direito ao leite gratuito para crianças?",
-  "A_resposta": "Têm direito ao leite gratuito as famílias que: \n\n1. Estão cadastradas no Cadastro Único e têm o NIS.\n2. Têm renda mensal de até 1/4 de salário mínimo por pessoa.\n3. Têm crianças entre 6 meses e 5 anos e 11 meses.\n4. Preferência para famílias com chefe desempregado ou mãe como arrimo [1]. \n\nSe precisar de mais informações, ligue para o 156.",
+  "A_resposta": "Têm direito ao leite gratuito as crianças de 6 meses a 5 anos e 11 meses de idade, que estão em famílias cadastradas no Cadastro Único. As famílias devem ter renda mensal de até 1/4 de salário mínimo por pessoa. Também é preferencial para famílias com chefe desempregado ou que a mãe seja a responsável. [1]",
   "A_abstencao": false,
   "A_bloqueada": false,
   "A_cos_top1": 0.869,
@@ -46,7 +46,7 @@
    "apoio-social-ao-cidadao-entrega-de-leite",
    "apoio-social-ao-cidadao-entrega-de-leite"
   ],
-  "A_frases": 6,
+  "A_frases": 3,
   "A_cita_fonte": true,
   "A_contexto": [
    "Entrega de leite\nAcesso\nSeleção das famílias pelo Governo Estadual através do Cadastro Único;\nCritérios\n• Ser cadastrado no Cadastro Único para a obtenção do NIS (número de identificação social) • Famílias com renda mensal de até 1/4 de salário mínimo per capita • Crianças entre 6 meses a 5 anos e 11 meses de idade • Atendimento preferencial às crianças de família cujo chefe esteja desempregado ou tenha como arrimo a mãe • Realizar Cadastro Único para obtenção do NIS (Número de Identificação Social)",
@@ -58,20 +58,20 @@
    "fundamentada": true,
    "nao_sustentado": ""
   },
-  "B_resposta": "Têm direito ao leite gratuito as famílias que: \n\n1. Estão cadastradas no Cadastro Único e têm o NIS.\n2. Têm renda mensal de até 1/4 de salário mínimo por pessoa.\n3. Têm crianças entre 6 meses e 5 anos e 11 meses.\n4. Preferência para famílias com chefe desempregado ou mãe como arrimo. \n\nEssa informação é do trecho [1].",
+  "B_resposta": "Têm direito ao leite gratuito as famílias que: \n\n1. Estão cadastradas no Cadastro Único e têm o NIS.\n2. Têm renda mensal de até 1/4 de salário mínimo por pessoa.\n3. Têm crianças entre 6 meses e 5 anos e 11 meses.\n4. Preferência para famílias com chefe desempregado ou mãe como arrimo. \n\nEssa informação é do trecho [1]. Se precisar de mais detalhes, ligue para o 156.",
   "B_juiz": {
    "correta": "sim",
    "fundamentada": true,
    "nao_sustentado": ""
   },
   "B_cita_fonte": true,
-  "B_frases": 6
+  "B_frases": 7
  },
  {
   "id": "R03",
   "tipo": "respondivel",
   "pergunta": "De quem é a responsabilidade pela limpeza da calçada?",
-  "A_resposta": "A limpeza da calçada é de responsabilidade do munícipe, segundo a lei municipal 7815/2009. [1]",
+  "A_resposta": "A limpeza da calçada é de responsabilidade do munícipe, segundo a lei municipal 7815/2009. É importante que cada morador cuide da sua calçada para manter a cidade limpa e saudável [1]. Se precisar de mais informações, ligue para o 156.",
   "A_abstencao": false,
   "A_bloqueada": false,
   "A_cos_top1": 0.844,
@@ -80,7 +80,7 @@
    "mobilidade-urbana-calcada-segura",
    "mobilidade-urbana-calcada-segura"
   ],
-  "A_frases": 1,
+  "A_frases": 3,
   "A_cita_fonte": true,
   "A_contexto": [
    "Varrição\nCidade limpa\nSão José dos Campos é uma cidade historicamente limpa. A limpeza da cidade sempre foi encarada como serviço preventivo de saúde. Onde há lixo com ratos, baratas, moscas e ainda com dengue. Onde há lixo tem doença! Tem também poluição ambiental. Poluição do solo, da água e do ar. Todo tipo de poluição prejudica nossa saúde. Por isso, preservar a cidade limpa é dever de todos nós.\nPintura de guias\nRealizado, o serviço tem o objetivo de sinalizar os locais de tráfego de veículos para evitar riscos de acidentes para pedestres e tornar as ruas mais seguras.\nCalçada\nÉ de responsabilidade da Secretaria de Manutenção da Cidade a desobstrução de bueiros e bocas de lobo. A limpeza da calçada, pela lei municipal 7815/2009, é de responsabilidade do munícipe.",
@@ -92,7 +92,7 @@
    "fundamentada": true,
    "nao_sustentado": ""
   },
-  "B_resposta": "A responsabilidade pela limpeza da calçada é do munícipe, segundo a lei municipal 7815/2009 [1].",
+  "B_resposta": "A limpeza da calçada é de responsabilidade do munícipe, segundo a lei municipal 7815/2009 [1].",
   "B_juiz": {
    "correta": "sim",
    "fundamentada": true,
@@ -126,20 +126,20 @@
    "fundamentada": true,
    "nao_sustentado": ""
   },
-  "B_resposta": "Para pedir a limpeza de um bueiro entupido, você pode ligar para o número 156 gratuitamente. Também pode usar o aplicativo 156 SJC. A limpeza é feita pela prefeitura. [1]",
+  "B_resposta": "Para pedir a limpeza de um bueiro entupido, você pode ligar para o número 156 gratuitamente. Também pode usar o aplicativo 156 SJC. [1]",
   "B_juiz": {
    "correta": "sim",
    "fundamentada": true,
    "nao_sustentado": ""
   },
   "B_cita_fonte": true,
-  "B_frases": 3
+  "B_frases": 2
  },
  {
   "id": "R05",
   "tipo": "respondivel",
   "pergunta": "Quem pode usar o transporte adaptado?",
-  "A_resposta": "O transporte adaptado é para pessoas com deficiência motora, mental ou múltipla severa. Essas pessoas devem ter alto grau de dependência, que as impeça de usar o transporte coletivo urbano. O atendimento é gratuito, mas é preciso fazer um cadastro e passar por uma perícia médica. [2]",
+  "A_resposta": "O transporte adaptado é para pessoas com deficiência motora, mental ou múltipla severa. Essas pessoas devem ter alto grau de dependência, que as impeça de usar o transporte coletivo urbano. O serviço é gratuito, mas é preciso fazer um cadastro e passar por uma perícia médica. [2]",
   "A_abstencao": false,
   "A_bloqueada": false,
   "A_cos_top1": 0.87,
@@ -160,7 +160,7 @@
    "fundamentada": true,
    "nao_sustentado": ""
   },
-  "B_resposta": "O transporte adaptado é para pessoas com deficiência motora, mental ou múltipla severa. Essas pessoas precisam ter alto grau de dependência e não conseguir usar o transporte coletivo urbano. O serviço é gratuito. [1]",
+  "B_resposta": "O transporte adaptado é para pessoas com deficiência motora, mental ou múltipla severa. Essas pessoas devem ter alto grau de dependência e não conseguir usar o transporte coletivo urbano. O serviço é gratuito e oferecido pela Prefeitura de São José dos Campos [1].",
   "B_juiz": {
    "correta": "sim",
    "fundamentada": true,
@@ -173,7 +173,7 @@
   "id": "R06",
   "tipo": "respondivel",
   "pergunta": "Onde fica a unidade Acesso Já?",
-  "A_resposta": "A unidade Acesso Já fica na praça Afonso Pena, 59, ao lado do prédio da Câmara antiga, no Centro. O atendimento é das 8h30 às 17h, de segunda a sexta-feira [1].",
+  "A_resposta": "A unidade Acesso Já fica na praça Afonso Pena, 59, ao lado do prédio da Câmara antiga, no Centro. O atendimento é feito das 8h30 às 17h de segunda a sexta-feira [1].",
   "A_abstencao": false,
   "A_bloqueada": false,
   "A_cos_top1": 0.889,
@@ -194,20 +194,20 @@
    "fundamentada": true,
    "nao_sustentado": ""
   },
-  "B_resposta": "A unidade Acesso Já fica na praça Afonso Pena, 59, ao lado do prédio da Câmara antiga, no Centro [1]. O atendimento é de segunda a sexta-feira, das 8h30 às 17h. Se precisar de mais informações, ligue para o 156.",
+  "B_resposta": "A unidade Acesso Já fica na praça Afonso Pena, 59, ao lado do prédio da Câmara antiga, no Centro [1]. O atendimento é de segunda a sexta-feira, das 8h30 às 17h.",
   "B_juiz": {
    "correta": "sim",
    "fundamentada": true,
    "nao_sustentado": ""
   },
   "B_cita_fonte": true,
-  "B_frases": 3
+  "B_frases": 2
  },
  {
   "id": "R07",
   "tipo": "respondivel",
   "pergunta": "Qual o endereço do CREAS Sul?",
-  "A_resposta": "O endereço do CREAS Sul é Avenida Cidade Jardim, 5.431, Bosque dos Eucaliptos [1]. Você pode ligar para os telefones 3922-5554, 3922-5558, 3916-4306 ou 3966-2817 para mais informações. O horário de funcionamento é de segunda a sexta-feira, das 8h às 17h.",
+  "A_resposta": "O endereço do CREAS Sul é Avenida Cidade Jardim, 5.431, Bosque dos Eucaliptos [1]. Você pode ligar para os telefones 3922-5554, 3922-5558, 3916-4306 ou 3966-2817 para mais informações. O atendimento é de segunda a sexta-feira, das 8h às 17h.",
   "A_abstencao": false,
   "A_bloqueada": false,
   "A_cos_top1": 0.869,
@@ -275,7 +275,7 @@
   "id": "R09",
   "tipo": "respondivel",
   "pergunta": "Onde ficam os ecopontos no Centro?",
-  "A_resposta": "No Centro, os ecopontos ficam nos seguintes endereços:\n\n1. Ecoponto Santa Cruz 3 - R. do Cruzeiro, 98\n2. Ecoponto Floriano Peixoto - Av. Mal. Floriano Peixoto, 154\n3. Ecoponto Francisco Raphael - R. Francisco Raphael, 405\n4. Ecoponto Subterrâneo Praça João Mendes - Praça Dr. João Mendes, 136-188\n5. Ecoponto Subterrâneo Mercado Municipal - Rua Sebastião Humel, 277\n\nEssa informação é da fonte [1].",
+  "A_resposta": "No Centro, os ecopontos ficam nos seguintes endereços:\n\n1. ECOPONTO SANTA CRUZ 3 - R. do Cruzeiro, 98\n2. ECOPONTO FLORIANO PEIXOTO - Av. Mal. Floriano Peixoto, 154\n3. ECOPONTO FRANCISCO RAPHAEL - R. Francisco Raphael, 405\n4. ECOPONTO SUBTERRÂNEO PRAÇA JOÃO MENDES - Praça Dr. João Mendes, 136-188\n5. ECOPONTO SUBTERRÂNEO MERCADO MUNICIPAL - Rua Sebastião Humel, 277 [1].",
   "A_abstencao": false,
   "A_bloqueada": false,
   "A_cos_top1": 0.88,
@@ -284,7 +284,7 @@
    "manutencao-da-cidade-pevs-na-cidade",
    "manutencao-da-cidade-unidades-regionais"
   ],
-  "A_frases": 12,
+  "A_frases": 11,
   "A_cita_fonte": true,
   "A_contexto": [
    "Ecopontos\nONDE FICAM OS ECOPONTOS?\nECOPONTO SÍTIO BOM JESUS\nEndereço: R. Hilário Santana, 5 - Parque Res. Flamboyant\nECOPONTO SANTA CRUZ 1\nEndereço: R. Setenta, 54 - Vila Progresso\nECOPONTO SANTA CRUZ 3\nEndereço: R. do Cruzeiro, 98 - Centro\nECOPONTO FLORIANO PEIXOTO\nEndereço: Av. Mal. Floriano Peixoto, 154 - Centro\nECOPONTO FRANCISCO RAPHAEL\nEndereço: R. Francisco Raphael, 405 - Centro\nECOPONTO VILA MACHADO\nEndereço: Av. Rui Barbosa, 2696 - Santana\nECOPONTO SUBTERRÂNEO PRAÇA JOÃO MENDES\nEndereço: Praça Dr. João Mendes, 136-188 - Centro\nECOPONTO SUBTERRÂNEO MERCADO MUNICIPAL\nEndereço: Rua Sebastião Humel, 277 - Centro",
@@ -309,7 +309,7 @@
   "id": "R10",
   "tipo": "respondivel",
   "pergunta": "O que são os PEVs?",
-  "A_resposta": "Os PEVs são Pontos de Entrega Voluntária. Eles são espaços públicos para receber gratuitamente pequenos volumes de resíduos, como de construção, recicláveis e eletroeletrônicos. O volume máximo é até 1m³, que é o tamanho de um porta-malas de carro. Os resíduos devem ser separados e colocados nos recipientes do PEV [1].",
+  "A_resposta": "Os PEVs são Pontos de Entrega Voluntária. Eles são espaços públicos para receber gratuitamente pequenos volumes de resíduos, como de construção, recicláveis e eletroeletrônicos. O usuário deve separar os resíduos e colocá-los nos recipientes do PEV. Esse serviço é gratuito e ajuda na destinação correta dos resíduos [1].",
   "A_abstencao": false,
   "A_bloqueada": false,
   "A_cos_top1": 0.886,
@@ -330,7 +330,7 @@
    "fundamentada": true,
    "nao_sustentado": ""
   },
-  "B_resposta": "Os PEVs são Pontos de Entrega Voluntária. Eles são espaços públicos onde você pode entregar gratuitamente pequenos volumes de resíduos, como restos de construção, recicláveis e eletroeletrônicos. O volume máximo é de até 1m³, que é o tamanho de um porta-malas de carro. É importante separar os resíduos e seguir as orientações dos responsáveis pelo local [1].",
+  "B_resposta": "Os PEVs são Pontos de Entrega Voluntária. Eles são espaços públicos onde você pode entregar gratuitamente pequenos volumes de resíduos, como materiais de construção, recicláveis e eletroeletrônicos. O volume máximo é de até 1m³, que é o tamanho de um porta-malas de carro. É importante separar os resíduos e seguir as orientações dos responsáveis pelo local [1].",
   "B_juiz": {
    "correta": "sim",
    "fundamentada": true,
@@ -343,7 +343,7 @@
   "id": "R11",
   "tipo": "respondivel",
   "pergunta": "Como peço para remover uma árvore que oferece risco?",
-  "A_resposta": "Para pedir a remoção de uma árvore que oferece risco, você deve ir pessoalmente a qualquer setor de Protocolo da Prefeitura. Leve os documentos necessários. Você pode consultar os endereços da Prefeitura para saber onde ir. Ligue 156 se precisar de mais informações [1].",
+  "A_resposta": "Para pedir a remoção de uma árvore que oferece risco, você deve ir pessoalmente a qualquer setor de Protocolo da Prefeitura. É necessário abrir um processo administrativo. Qualquer pessoa pode fazer esse pedido. Para mais informações, ligue para 156 gratuitamente [1].",
   "A_abstencao": false,
   "A_bloqueada": false,
   "A_cos_top1": 0.847,
@@ -398,7 +398,7 @@
    "fundamentada": true,
    "nao_sustentado": ""
   },
-  "B_resposta": "As Unidades de Especialidade de Saúde têm os seguintes horários:\n\n- UES 1: Segunda a sexta, das 7h às 18h.\n- UES 3: Segunda a sexta, das 7h30 às 17h30. \n\nAs informações são da fonte [1].",
+  "B_resposta": "As Unidades de Especialidade de Saúde têm os seguintes horários:\n\n- UES 1: Segunda a sexta, das 7h às 18h.\n- UES 3: Segunda a sexta, das 7h30 às 17h30. \n\nFonte: [1].",
   "B_juiz": {
    "correta": "parcial",
    "fundamentada": true,
@@ -445,7 +445,7 @@
   "id": "R14",
   "tipo": "respondivel",
   "pergunta": "Como solicito a colocação de uma lixeira na rua?",
-  "A_resposta": "Você pode solicitar a colocação de uma lixeira ligando para o número 156 gratuitamente. Também pode usar o Aplicativo 156 SJC ou acessar o site pelo Pref Book. [1]",
+  "A_resposta": "Você pode solicitar a colocação de uma lixeira ligando para o número 156 gratuitamente. Também pode usar o Aplicativo 156 SJC ou ir ao site pelo Pref Book. [1]",
   "A_abstencao": false,
   "A_bloqueada": false,
   "A_cos_top1": 0.856,
@@ -466,20 +466,20 @@
    "fundamentada": true,
    "nao_sustentado": ""
   },
-  "B_resposta": "Você pode solicitar a colocação de uma lixeira na rua ligando para a Central 156. Também é possível usar o Aplicativo 156 SJC ou acessar o site pelo Pref Book. [1]",
+  "B_resposta": "Você pode solicitar a colocação de uma lixeira na rua ligando para a Central 156, usando o Aplicativo 156 SJC ou pelo site no Pref Book. [1]",
   "B_juiz": {
    "correta": "sim",
    "fundamentada": true,
    "nao_sustentado": ""
   },
   "B_cita_fonte": true,
-  "B_frases": 2
+  "B_frases": 1
  },
  {
   "id": "R15",
   "tipo": "respondivel",
   "pergunta": "O que é o CRAS?",
-  "A_resposta": "O CRAS é uma unidade pública que oferece serviços de proteção social básica. Ele ajuda as famílias com acompanhamento e oficinas. O objetivo é fortalecer os laços familiares e encaminhar para outros serviços. [1]",
+  "A_resposta": "O CRAS é uma unidade pública que oferece serviços de proteção social básica. Ele ajuda as famílias com acompanhamento, oficinas e encaminhamentos para outros serviços. O objetivo é fortalecer os vínculos familiares e sociais. [1]",
   "A_abstencao": false,
   "A_bloqueada": false,
   "A_cos_top1": 0.859,
@@ -547,7 +547,7 @@
   "id": "R17",
   "tipo": "respondivel",
   "pergunta": "Qual o endereço da Unidade Regional Centro?",
-  "A_resposta": "O endereço da Unidade Regional Centro é Av. Mario Covas, 2.201, Jardim Aeroporto. O telefone é (12) 3923-3945 [1].",
+  "A_resposta": "O endereço da Unidade Regional Centro é Av. Mario Covas, 2.201, Jardim Aeroporto. Você pode ligar para o telefone (12) 3923-3945 para mais informações [1].",
   "A_abstencao": false,
   "A_bloqueada": false,
   "A_cos_top1": 0.859,
@@ -696,68 +696,44 @@
   "id": "A01",
   "tipo": "ambigua",
   "pergunta": "Quero fazer o cadastro",
-  "A_resposta": "Para fazer o Cadastro Único, você precisa ir a uma das unidades do CRAS. Leve os documentos da sua família. O horário de atendimento é de segunda a sexta-feira, das 8h às 16h30. Você pode ligar para o CRAS mais perto para mais informações. [1][3]",
+  "A_resposta": "Para eu ajudar, preciso saber melhor o que você procura. De qual serviço você fala? Por exemplo: UBS, CRAS, Cadastro Único, coleta de lixo, buraco na rua ou transporte adaptado.",
   "A_abstencao": false,
   "A_bloqueada": false,
-  "A_cos_top1": 0.848,
-  "A_docs": [
-   "apoio-social-ao-cidadao-cadastro-unico",
-   "apoio-social-ao-cidadao-entrega-de-leite",
-   "apoio-social-ao-cidadao-cadastro-unico"
-  ],
-  "A_frases": 5,
-  "A_cita_fonte": true,
-  "A_contexto": [
-   "Cadastro Único\nAvenida João Rodolfo Castelli, 4000\nCadÚnico: 3923-6733\nCras Jardim Mariana 2\nAvenida Mariana de Andrade, 92\nCadÚnico: 3941-1660\nExpediente\nHorário de funcionamento:\nDe segunda a sexta-feira, das 8h às 16h30",
-   "Entrega de leite\nAcesso\nSeleção das famílias pelo Governo Estadual através do Cadastro Único;\nCritérios\n• Ser cadastrado no Cadastro Único para a obtenção do NIS (número de identificação social) • Famílias com renda mensal de até 1/4 de salário mínimo per capita • Crianças entre 6 meses a 5 anos e 11 meses de idade • Atendimento preferencial às crianças de família cujo chefe esteja desempregado ou tenha como arrimo a mãe • Realizar Cadastro Único para obtenção do NIS (Número de Identificação Social)",
-   "Cadastro Único\nDocumentos da família para inscrição no Cadastro Único:\nIntegrantes com menos de 16 anos\n• RG ou Certidão de Nascimento\n• Declaração escolar (Creche, Pré-Escola, Fundamental e Ensino Médio)\nIntegrantes com mais de 17 anos\n• RG\n• CPF ou título de eleitor\n• Carteira de Trabalho (se tiver)\n• Comprovante de Residência no nome do Responsável Familiar (Luz, Água, Contrato de Aluguel ou Recibo de Aluguel)\nO Cadastro Único pode ser feito pessoalmente nas nove unidades dos Cras e nas duas extensões.\nOs Cras\nCentro\nRua Machado Sidney, 145\nCadÚnico: 3941-1539\nVista Verde\nRua Cidade de Washington, 113\nCadÚnico: 3917-1440\nParque Nova Esperança\nAvenida Carlos Alberto de Andrade Silva, 475\nCadÚnico: 3941-3395\nEugênio de Melo\nRua Juvenal dos Santos, 15, Galo Branco\nCadÚnico: 3941-1643\nParque Santa Rita\nPraça Hélio Dias, 30\nCadÚnico: 3916-4416\nDom Pedro 1º\nRua Edilson Sabino dos Santos, 181\nCadÚnico: 3941-1619\nAnhembi\nRua Serra do Roncador, 210\nCadÚnico: 3941-7646\nAlto da Ponte\nRua Alziro Lebrão\nCadÚnico: 3941-8746\nSão Francisco Xavier\nVinculado à unidade do Alto da Ponte\nRua 15 de Novembro, 870, São Francisco Xavier\nTelefones: 3926-1177 | 3926-1200\nCras Pernambucano"
-  ],
-  "C_resposta": "Para fazer o Cadastro Único, você precisa ir a uma das unidades do CRAS. Leve os documentos da sua família. O horário de atendimento é de segunda a sexta-feira, das 8h às 16h30. Você pode ligar para o CRAS mais perto para mais informações. [1][3]",
+  "A_cos_top1": null,
+  "A_docs": [],
+  "A_frases": 3,
+  "A_cita_fonte": false,
+  "A_contexto": [],
+  "C_resposta": "Você pode fazer o Cadastro Único pessoalmente em uma das unidades do CRAS. Os documentos que você precisa levar dependem da idade dos integrantes da família. Para quem tem menos de 16 anos, é necessário RG ou Certidão de Nascimento e Declaração escolar. Para quem tem mais de 17 anos, é preciso RG, CPF ou título de eleitor, Carteira de Trabalho (se tiver) e Comprovante de Residência no nome do Responsável Familiar. \n\nAs unidades do CRAS estão abertas de segunda a sexta-feira, das 8h às 16h30. [1][3]",
   "C_absteve": false
  },
  {
   "id": "A02",
   "tipo": "ambigua",
   "pergunta": "Qual o telefone?",
-  "A_resposta": "Não encontrei essa informação nas fontes oficiais que tenho. Procure a Prefeitura de São José dos Campos pelo telefone 156 ou no portal sjc.sp.gov.br.",
-  "A_abstencao": true,
+  "A_resposta": "Para eu ajudar, preciso saber melhor o que você procura. De qual serviço você fala? Por exemplo: UBS, CRAS, Cadastro Único, coleta de lixo, buraco na rua ou transporte adaptado.",
+  "A_abstencao": false,
   "A_bloqueada": false,
-  "A_cos_top1": 0.819,
-  "A_docs": [
-   "manutencao-da-cidade-manutencoes-diversas",
-   "manutencao-da-cidade-fiscalizacao-de-concessionarias",
-   "manutencao-da-cidade-lixeiras-nas-vias-publicas"
-  ],
-  "A_frases": 2,
+  "A_cos_top1": null,
+  "A_docs": [],
+  "A_frases": 3,
   "A_cita_fonte": false,
-  "A_contexto": [
-   "Manutenções Diversas\nSolicitações\nLigue 156 gratuitamente\nAplicativo 156 SJC\nPrefBook - Link\nTelefone\n(12) 3945.9500\nEndereço\nAvenida Nelson D'Ávila, 658 - Centro - CEP: 12245-030",
-   "Fiscalização de Concessionárias\nSolicitações\nLigue 156 gratuitamente\nAplicativo 156 SJC PrefBook - Link\nEndereço\nAvenida Nelson D'Ávila, 658 - Centro CEP: 12245-030",
-   "Lixeiras nas Vias Públicas\nSolicitações\nLigue 156 gratuitamente\nAplicativo 156 SJC PrefBook - Link\nTelefone\n(12) 3908-6000\nEndereço\nRua Ricardo Edwards, 100, Vila Industrial\nCEP 12.220-290"
-  ],
-  "C_resposta": "O telefone para manutenções diversas é (12) 3945.9500. Para lixeiras nas vias públicas, o telefone é (12) 3908-6000. Você também pode ligar para o 156 gratuitamente para outras solicitações. [1][3]",
+  "A_contexto": [],
+  "C_resposta": "O telefone para manutenções diversas é (12) 3945.9500. Para lixeiras nas vias públicas, o telefone é (12) 3908-6000. Para outras solicitações, você pode ligar para o 156 gratuitamente. [1][3]",
   "C_absteve": false
  },
  {
   "id": "A03",
   "tipo": "ambigua",
   "pergunta": "Como faço para reclamar?",
-  "A_resposta": "Não encontrei essa informação nas fontes oficiais que tenho. Procure a Prefeitura de São José dos Campos pelo telefone 156 ou no portal sjc.sp.gov.br.",
-  "A_abstencao": true,
+  "A_resposta": "Para eu ajudar, preciso saber melhor o que você procura. De qual serviço você fala? Por exemplo: UBS, CRAS, Cadastro Único, coleta de lixo, buraco na rua ou transporte adaptado.",
+  "A_abstencao": false,
   "A_bloqueada": false,
-  "A_cos_top1": 0.819,
-  "A_docs": [
-   "mobilidade-urbana-calcada-segura",
-   "apoio-social-ao-cidadao-cadastro-unico",
-   "mobilidade-urbana-transporte-adaptado"
-  ],
-  "A_frases": 2,
+  "A_cos_top1": null,
+  "A_docs": [],
+  "A_frases": 3,
   "A_cita_fonte": false,
-  "A_contexto": [
-   "Calçada segura\nInformação: Quando for realizar algum tipo de reforma na calçada, deverá solicitar antecipadamente a “autorização para obras em calçadas” através do (e-mail) do Departamento de Transito: planejamento.transito@sjc.sp.gov.br",
-   "Cadastro Único\nAvenida João Rodolfo Castelli, 4000\nCadÚnico: 3923-6733\nCras Jardim Mariana 2\nAvenida Mariana de Andrade, 92\nCadÚnico: 3941-1660\nExpediente\nHorário de funcionamento:\nDe segunda a sexta-feira, das 8h às 16h30",
-   "Transporte adaptado\nPossuem prioridade no atendimento famílias com renda de até 1/4 de salário mínimo, seguidas das com renda de meio salário mínimo, das atendidas por programa sociais de proteção à pessoa com deficiência e famílias que não se enquadram em nenhum dos critérios anteriores, conforme artigo 14 do Decreto Municipal 17.767/2018.\nPara o dia a dia da operação, a empresa contratada e prestadora do serviço disponibiliza o contato direto com os credenciados e responsáveis por meio do telefone 3500-0901. Esse canal de atendimento realiza a solicitação de alteração de endereço, o ajuste de horário, informe de ocorrências, entre outros itens."
-  ],
+  "A_contexto": [],
   "C_resposta": "Não encontrei essa informação nas fontes oficiais que tenho. Sugiro ligar para o 156.",
   "C_absteve": true
  },
@@ -824,7 +800,7 @@
   "id": "C01",
   "tipo": "continuacao",
   "pergunta": "E onde eu faço isso?",
-  "A_resposta": "Você pode fazer o Cadastro Único pessoalmente nas unidades dos CRAS. Existem nove unidades e duas extensões. Os endereços e telefones estão disponíveis para você entrar em contato e tirar dúvidas. [1]",
+  "A_resposta": "Você pode fazer o Cadastro Único pessoalmente nas unidades dos CRAS. Existem nove unidades e duas extensões. Você pode ir a qualquer uma delas. Se precisar de mais informações, ligue para os números que estão disponíveis [1].",
   "A_abstencao": false,
   "A_bloqueada": false,
   "A_cos_top1": 0.865,
@@ -833,7 +809,7 @@
    "apoio-social-ao-cidadao-cadastro-unico",
    "apoio-social-ao-cidadao-beneficios-eventuais"
   ],
-  "A_frases": 3,
+  "A_frases": 4,
   "A_cita_fonte": true,
   "A_contexto": [
    "Cadastro Único\nDocumentos da família para inscrição no Cadastro Único:\nIntegrantes com menos de 16 anos\n• RG ou Certidão de Nascimento\n• Declaração escolar (Creche, Pré-Escola, Fundamental e Ensino Médio)\nIntegrantes com mais de 17 anos\n• RG\n• CPF ou título de eleitor\n• Carteira de Trabalho (se tiver)\n• Comprovante de Residência no nome do Responsável Familiar (Luz, Água, Contrato de Aluguel ou Recibo de Aluguel)\nO Cadastro Único pode ser feito pessoalmente nas nove unidades dos Cras e nas duas extensões.\nOs Cras\nCentro\nRua Machado Sidney, 145\nCadÚnico: 3941-1539\nVista Verde\nRua Cidade de Washington, 113\nCadÚnico: 3917-1440\nParque Nova Esperança\nAvenida Carlos Alberto de Andrade Silva, 475\nCadÚnico: 3941-3395\nEugênio de Melo\nRua Juvenal dos Santos, 15, Galo Branco\nCadÚnico: 3941-1643\nParque Santa Rita\nPraça Hélio Dias, 30\nCadÚnico: 3916-4416\nDom Pedro 1º\nRua Edilson Sabino dos Santos, 181\nCadÚnico: 3941-1619\nAnhembi\nRua Serra do Roncador, 210\nCadÚnico: 3941-7646\nAlto da Ponte\nRua Alziro Lebrão\nCadÚnico: 3941-8746\nSão Francisco Xavier\nVinculado à unidade do Alto da Ponte\nRua 15 de Novembro, 870, São Francisco Xavier\nTelefones: 3926-1177 | 3926-1200\nCras Pernambucano",
@@ -845,20 +821,20 @@
    "fundamentada": true,
    "nao_sustentado": ""
   },
-  "B_resposta": "Você pode fazer o Cadastro Único pessoalmente nas unidades dos CRAS. Existem nove unidades na cidade. Você pode escolher a mais perto de você.",
+  "B_resposta": "Você pode fazer o Cadastro Único pessoalmente nas nove unidades dos CRAS. Aqui estão alguns endereços:\n\n1. Centro: Rua Machado Sidney, 145\n2. Vista Verde: Rua Cidade de Washington, 113\n3. Parque Nova Esperança: Avenida Carlos Alberto de Andrade Silva, 475\n4. Eugênio de Melo: Rua Juvenal dos Santos, 15, Galo Branco\n5. Parque Santa Rita: Praça Hélio Dias, 30\n\nVocê também pode ligar para os números de cada unidade para mais informações [1].",
   "B_juiz": {
    "correta": "sim",
    "fundamentada": true,
    "nao_sustentado": ""
   },
-  "B_cita_fonte": false,
-  "B_frases": 3
+  "B_cita_fonte": true,
+  "B_frases": 8
  },
  {
   "id": "C02",
   "tipo": "continuacao",
   "pergunta": "E quais documentos eu preciso?",
-  "A_resposta": "Para solicitar o transporte adaptado, você precisa dos seguintes documentos:\n\n1. Requerimento da Prefeitura preenchido e assinado.\n2. Original do RG e CPF do interessado.\n3. RG e CPF do responsável legal, se necessário.\n4. Comprovante de endereço recente (contas de água, luz, gás ou convênio médico).\n5. Original da ficha médica assinada e carimbada pelo médico.\n6. Número da Inscrição Social (NIS) e renda per capita. \n\nEsses documentos são necessários para abrir o processo de cadastramento [1][2].",
+  "A_resposta": "Para solicitar o transporte adaptado, você precisa dos seguintes documentos:\n\n1. Requerimento da Prefeitura preenchido e assinado.\n2. Original do RG e CPF do interessado.\n3. RG e CPF do responsável legal, se necessário.\n4. Comprovante de endereço recente (contas de água, luz, gás ou convênio médico) em nome da pessoa com deficiência ou de parente de primeiro grau.\n5. Original da ficha médica (STR066), assinada e carimbada pelo médico.\n6. Número da Inscrição Social (NIS) e renda per capita. [1][2]",
   "A_abstencao": false,
   "A_bloqueada": false,
   "A_cos_top1": 0.88,
@@ -875,11 +851,11 @@
    "Transporte adaptado\nPossuem prioridade no atendimento famílias com renda de até 1/4 de salário mínimo, seguidas das com renda de meio salário mínimo, das atendidas por programa sociais de proteção à pessoa com deficiência e famílias que não se enquadram em nenhum dos critérios anteriores, conforme artigo 14 do Decreto Municipal 17.767/2018.\nPara o dia a dia da operação, a empresa contratada e prestadora do serviço disponibiliza o contato direto com os credenciados e responsáveis por meio do telefone 3500-0901. Esse canal de atendimento realiza a solicitação de alteração de endereço, o ajuste de horário, informe de ocorrências, entre outros itens."
   ],
   "A_juiz": {
-   "correta": "parcial",
-   "fundamentada": false,
-   "nao_sustentado": "Número da Inscrição Social (NIS) e renda per capita não são mencionados na resposta de referência como documentos necessários."
+   "correta": "sim",
+   "fundamentada": true,
+   "nao_sustentado": ""
   },
-  "B_resposta": "Você precisa dos seguintes documentos:\n\n1. Requerimento da Prefeitura preenchido e assinado.\n2. Original do RG e CPF do interessado.\n3. RG e CPF do responsável legal, se necessário.\n4. Comprovante de endereço recente (contas de água, luz, gás ou convênio médico) em nome da pessoa com deficiência ou de um parente de primeiro grau que comprove o parentesco. \n\nEssa informação é do trecho [1].",
+  "B_resposta": "Você precisa dos seguintes documentos:\n\n1. Requerimento da Prefeitura de São José dos Campos preenchido e assinado.\n2. Original do RG e CPF do interessado.\n3. RG e CPF do responsável legal, se necessário.\n4. Comprovante de endereço recente, em nome da pessoa com deficiência ou de um parente de primeiro grau. \n\nEsses comprovantes podem ser contas de água, luz, gás ou convênio médico, com até 120 dias. [1]",
   "B_juiz": {
    "correta": "sim",
    "fundamentada": true,
@@ -892,7 +868,7 @@
   "id": "C03",
   "tipo": "continuacao",
   "pergunta": "E o horário de funcionamento?",
-  "A_resposta": "O CREAS Sul funciona de segunda a sexta-feira, das 8h às 17h [1].",
+  "A_resposta": "O CREAS Sul funciona de segunda a sexta-feira, das 8h às 17h. [1]",
   "A_abstencao": false,
   "A_bloqueada": false,
   "A_cos_top1": 0.886,
@@ -947,7 +923,7 @@
    "fundamentada": true,
    "nao_sustentado": ""
   },
-  "B_resposta": "A criança pode receber leite gratuito até 5 anos e 11 meses de idade. [1]",
+  "B_resposta": "A criança pode receber leite até 5 anos e 11 meses de idade. [1]",
   "B_juiz": {
    "correta": "sim",
    "fundamentada": true,
@@ -1028,7 +1004,7 @@
   "id": "V03",
   "tipo": "respondivel",
   "pergunta": "Posso levar entulho de uma pequena reforma da minha casa a algum lugar?",
-  "A_resposta": "Sim, você pode levar entulho de pequenas reformas da sua casa a um PEV. O limite é de até 1m³. Isso inclui madeiras, tijolos, blocos e outros materiais de construção. Lembre-se de levar nos horários de funcionamento dos PEVs [1].",
+  "A_resposta": "Sim, você pode levar entulho de pequenas reformas residenciais até 1m³ a um PEV. Isso inclui madeiras, tijolos, blocos, telhas e outros materiais de construção. Lembre-se de levar nos horários de funcionamento dos PEVs. Para mais informações, ligue 156 gratuitamente [1].",
   "A_abstencao": false,
   "A_bloqueada": false,
   "A_cos_top1": 0.85,
@@ -1049,7 +1025,7 @@
    "fundamentada": true,
    "nao_sustentado": ""
   },
-  "B_resposta": "Sim, você pode levar entulho de uma pequena reforma da sua casa a um Ponto de Entrega Voluntária (PEV). Os PEVs recebem resíduos de construção civil, entre outros, de forma gratuita. Lembre-se de separar os resíduos antes de levar. [1]",
+  "B_resposta": "Sim, você pode levar entulho de uma pequena reforma da sua casa a um Ponto de Entrega Voluntária (PEV). Os PEVs recebem resíduos de construção civil, entre outros, de forma gratuita. É importante separar os resíduos e seguir as orientações dos responsáveis pelo local. [1]",
   "B_juiz": {
    "correta": "sim",
    "fundamentada": true,
@@ -1091,7 +1067,7 @@
   "id": "V05",
   "tipo": "respondivel",
   "pergunta": "Idoso tem passagem de ônibus de graça?",
-  "A_resposta": "Sim, idosos com mais de 60 anos têm gratuidade no transporte público coletivo municipal. Para isso, é necessário ter um cartão de isenção. [1] Para mais informações, você pode ligar para o 156.",
+  "A_resposta": "Sim, idosos com mais de 60 anos têm direito à gratuidade no transporte público coletivo municipal. Para isso, é necessário ter um cartão de isenção. [1] Para mais informações, você pode ligar para o 156.",
   "A_abstencao": false,
   "A_bloqueada": false,
   "A_cos_top1": 0.877,
@@ -1112,14 +1088,14 @@
    "fundamentada": true,
    "nao_sustentado": ""
   },
-  "B_resposta": "Sim, pessoas com mais de 60 anos têm gratuidade no transporte público coletivo municipal. Isso está na Lei Municipal 10.010/2019 e no Decreto Municipal 18.787/2021. [1] Para obter o cartão de isenção, é necessário apresentar alguns documentos.",
+  "B_resposta": "Sim, pessoas com mais de 60 anos têm gratuidade no transporte público coletivo municipal. Isso está previsto na Lei Municipal 10.010/2019 e no Decreto Municipal 18.787/2021 [1]. Para obter o cartão de isenção, é necessário apresentar alguns documentos. Se precisar de mais informações, ligue para o 156.",
   "B_juiz": {
    "correta": "sim",
    "fundamentada": true,
    "nao_sustentado": ""
   },
   "B_cita_fonte": true,
-  "B_frases": 3
+  "B_frases": 4
  },
  {
   "id": "V06",
@@ -1159,7 +1135,7 @@
   "id": "V07",
   "tipo": "respondivel",
   "pergunta": "Qual o objetivo da Lei da Calçada?",
-  "A_resposta": "O objetivo da Lei da Calçada é transformar as calçadas em caminhos acessíveis, principalmente para pessoas com mobilidade reduzida. Ela busca proporcionar um trajeto seguro e melhorar a paisagem urbana. A lei também ajuda na implantação e adequação dos passeios para garantir segurança e conforto aos pedestres [1].",
+  "A_resposta": "O objetivo da Lei da Calçada é transformar as calçadas em caminhos acessíveis, principalmente para pessoas com mobilidade reduzida. Ela busca proporcionar um trajeto seguro e melhorar a paisagem urbana. A lei também ajuda na adequação dos passeios para garantir segurança e conforto aos pedestres [1].",
   "A_abstencao": false,
   "A_bloqueada": false,
   "A_cos_top1": 0.855,
@@ -1180,20 +1156,20 @@
    "fundamentada": true,
    "nao_sustentado": ""
   },
-  "B_resposta": "O objetivo da Lei da Calçada é transformar as calçadas em caminhos acessíveis, principalmente para pessoas com mobilidade reduzida. Ela busca proporcionar um trajeto seguro e melhorar a paisagem urbana. A lei também ajuda na adequação dos passeios para garantir segurança e conforto para todos os pedestres [1].",
+  "B_resposta": "O objetivo da Lei da Calçada é transformar as calçadas em caminhos acessíveis, principalmente para pessoas com mobilidade reduzida. Ela busca garantir segurança e conforto nos trajetos de todos os pedestres, melhorando a paisagem urbana e a locomoção nos espaços públicos [1].",
   "B_juiz": {
    "correta": "sim",
    "fundamentada": true,
    "nao_sustentado": ""
   },
   "B_cita_fonte": true,
-  "B_frases": 3
+  "B_frases": 2
  },
  {
   "id": "V08",
   "tipo": "respondivel",
   "pergunta": "Qual o telefone do serviço de controle de pragas?",
-  "A_resposta": "O telefone do serviço de controle de pragas é (12) 3945.9526 [1]. Você também pode ligar para 156 gratuitamente para fazer solicitações.",
+  "A_resposta": "O telefone do serviço de controle de pragas é (12) 3945.9526 [1]. Se precisar de mais informações, você pode ligar para o 156 gratuitamente.",
   "A_abstencao": false,
   "A_bloqueada": false,
   "A_cos_top1": 0.873,
@@ -1214,7 +1190,7 @@
    "fundamentada": true,
    "nao_sustentado": ""
   },
-  "B_resposta": "O telefone do serviço de controle de pragas é (12) 3945.9526 [1]. Você também pode ligar para 156 gratuitamente para fazer solicitações.",
+  "B_resposta": "O telefone do serviço de controle de pragas é (12) 3945.9526 [1]. Se precisar, você pode ligar para 156 gratuitamente para fazer solicitações.",
   "B_juiz": {
    "correta": "sim",
    "fundamentada": true,
@@ -1248,7 +1224,7 @@
    "fundamentada": true,
    "nao_sustentado": ""
   },
-  "B_resposta": "As inscrições são feitas nas Casas do Idoso Sul, Leste, Norte e Centro. Você precisa ir até uma dessas casas para se inscrever. [1]",
+  "B_resposta": "As inscrições são feitas nas Casas do Idoso Sul, Leste, Norte e Centro. Você precisa ser morador de São José e ter mais de 60 anos. [1]",
   "B_juiz": {
    "correta": "sim",
    "fundamentada": true,
@@ -1422,23 +1398,15 @@
   "id": "V17",
   "tipo": "ambigua",
   "pergunta": "Preciso de ajuda",
-  "A_resposta": "Não encontrei essa informação nas fontes oficiais que tenho. Procure a Prefeitura de São José dos Campos pelo telefone 156 ou no portal sjc.sp.gov.br.",
-  "A_abstencao": true,
+  "A_resposta": "Para eu ajudar, preciso saber melhor o que você procura. De qual serviço você fala? Por exemplo: UBS, CRAS, Cadastro Único, coleta de lixo, buraco na rua ou transporte adaptado.",
+  "A_abstencao": false,
   "A_bloqueada": false,
-  "A_cos_top1": 0.82,
-  "A_docs": [
-   "apoio-social-ao-cidadao-cadastro-unico",
-   "manutencao-da-cidade-pevs-na-cidade",
-   "apoio-social-ao-cidadao-unidades-de-atendimento-social"
-  ],
-  "A_frases": 2,
+  "A_cos_top1": null,
+  "A_docs": [],
+  "A_frases": 3,
   "A_cita_fonte": false,
-  "A_contexto": [
-   "Cadastro Único\nAvenida João Rodolfo Castelli, 4000\nCadÚnico: 3923-6733\nCras Jardim Mariana 2\nAvenida Mariana de Andrade, 92\nCadÚnico: 3941-1660\nExpediente\nHorário de funcionamento:\nDe segunda a sexta-feira, das 8h às 16h30",
-   "PEVs na cidade\nLocalização por Região\nOeste\n• Urbanova | Avenida Dr. Dilson Lara, 80, Residencial Montserrat",
-   "Unidades de atendimento social\nUNIDADE PROTEGIDA E SIGILOSA (sem divulgação de endereço por medida de segurança)\nAbrigo feminino adulto\nCENTRO POP\nRua dos Guararapes, 37 - Monte Castelo (região central)\nCreas\nSul\nEndereço: Avenida Cidade Jardim, 5.431, Bosque dos Eucaliptos\nTelefone: 3922-5554 / 3922-5558 / 3916-4306 / 3966-2817\nCentro-Norte\nEndereço: Conselheiro Rodrigues Alves, 224, no centro\nTelefones: 3923-7200 / 3913-2827 / 3913-2829\nLeste\nEndereço: rua Saigiro Nakamura, 50, na Vila Industrial\nTelefone: 3941-2800\nIntegra (Centro de Referência da Pessoa com Deficiência)\nEndereço: Rua Aurora Pinto da Cunha, 131 – Jardim América (Centro da Juventude)\nTelefones: (12) 3932-8682\nCras\nREGIÃO CENTRAL\nCentro\nEndereço: rua Machado Sidney, 145\nTelefones: 3941-1539 e 3909-8638\nREGIÃO LESTE\nVista Verde\nEndereço: rua Cidade de Washington, 113\nTelefones: 3917-1440 e 3916-5495\nParque Nova Esperança\nEndereço: avenida Carlos Alberto de Andrade Silva, 475\nTelefone: 3941-3395\nEugênio de Melo\nEndereço: rua Juvenal Santos, 15, no Galo Branco\nTelefones: 3941-1643 e 3905-2096\nJardim Mariana 2\nEndereço: avenida Mariana de Andrade, 92\nTelefones: 3922-0096, 3922-0644 e 3941-1660\nREGIÃO SUL\nDom Pedro 1º"
-  ],
-  "C_resposta": "Não encontrei essa informação nas fontes oficiais que tenho. Sugiro ligar para o 156. Eles podem ajudar você com o que precisar.",
+  "A_contexto": [],
+  "C_resposta": "Não encontrei essa informação nas fontes oficiais que tenho. Sugiro ligar para o 156. Eles podem ajudar você com o que precisa.",
   "C_absteve": true
  }
 ]
