@@ -24,7 +24,7 @@ Principais resultados, em 49 perguntas escritas pelo grupo:
 
 ## 2. Contexto e objetivo
 
-O enunciado pede um assistente integrado ao projeto, com chunking, retriever e generator justificados, avaliação separada de cada componente e do sistema completo, mitigação de respostas não sustentadas e testes de vulnerabilidade. No EloBairro, este motor é reaproveitado pela voz (disciplina 02), pelo app (01) e pelo robô de RPA (06). A função `rag.motor.responder(pergunta, historico)` é a interface comum, exposta pelo endpoint `POST /rag/perguntar` (`01-front-end/api/routers/rag.py`).
+O enunciado pede um assistente integrado ao projeto, com chunking, retriever e generator justificados, avaliação separada de cada componente e do sistema completo, mitigação de respostas não sustentadas e testes de vulnerabilidade. No EloBairro, este motor é reaproveitado pela voz (disciplina 02), pelo app (01) e pelo robô de RPA (06). A função `rag.motor.responder(pergunta, historico)` é a interface comum, exposta pelo endpoint `POST /rag/perguntar` (`01-front-end/api/routers/rag.py`, montado em `01-front-end/api/main.py`).
 
 ## 3. Arquitetura e decisões
 
@@ -198,13 +198,13 @@ Requer Python 3.10+, as dependências de `requirements.txt` e o `.env` na raiz d
 ```bash
 pip install -r requirements.txt
 python rag/ingestao/ingestao.py            # corpus (ou --offline para usar o HTML salvo)
-python -m unittest discover -s testes -v   # 21 testes automáticos, sem rede
+python -m unittest discover -s testes -v   # 23 testes automáticos, sem rede
 python avaliacao/avaliar_recuperacao.py    # seção 5.1
 python avaliacao/avaliar_retrievers.py     # seção 5.2 (baixa o e5-large, ~2,2 GB)
 python avaliacao/validar_limiar.py         # seção 5.3
 python avaliacao/avaliar_sistema.py        # seções 5.4 e 5.5 (usa a API da OpenAI)
 python avaliacao/avaliar_seguranca.py      # seção 5.6 (usa a API da OpenAI)
-python rag/servidor.py                     # API isolada em http://127.0.0.1:8000/docs
+uvicorn api.main:app --port 8000           # a partir de 01-front-end: API em http://127.0.0.1:8000/docs
 ```
 
 ---

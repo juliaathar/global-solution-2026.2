@@ -12,7 +12,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "03-generative-ai")
 
 from rag.motor import responder  # noqa: E402
 
-from ..schemas.rag import PerguntaRAG, RespostaRAG  # noqa: E402
+from api.schemas.rag import PerguntaRAG, RespostaRAG  # noqa: E402
 
 router = APIRouter(prefix="/rag", tags=["rag"])
 

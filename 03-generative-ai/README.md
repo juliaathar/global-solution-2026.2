@@ -7,7 +7,7 @@ Grupo de até 3 integrantes, com nome completo e RM em todos os materiais.
 - [x] Chunking justificado (tamanho, overlap, metadados), comparando configurações
 - [x] Retriever justificado (BM25, denso ou híbrido; embeddings, top-k, filtros, reranking)
 - [x] Generator justificado (LLM, prompt, parâmetros, citação de fontes, abstenção)
-- [~] Pipeline funcional integrado ao protótipo (endpoint `POST /rag/perguntar` pronto em `01-front-end/api/routers/rag.py`, testado; falta montar no app principal quando o 01 existir)
+- [~] Pipeline funcional integrado ao protótipo (`POST /rag/perguntar` montado em `01-front-end/api/main.py` e testado; rodar de `01-front-end`: `uvicorn api.main:app --port 8000`)
 - [x] Mínimo de 10 perguntas: respondíveis, sem resposta, ambíguas, desvio de propósito
 - [x] Avaliação separada: recuperação, geração (contexto controlado), sistema completo
 - [x] Proteção contra resposta não sustentada
@@ -67,7 +67,7 @@ r = responder("Quais documentos preciso para o Cadastro Único?", historico=[])
 r["resposta"], r["fontes"], r["abstencao"]
 ```
 
-Testes automáticos (21, sem rede): `python -m unittest discover -s testes -v`.
+Testes automáticos (23, sem rede): `python -m unittest discover -s testes -v`.
 
 Entregáveis e pendências:
 - `relatorio/relatorio_avaliacao.md`: relatório de avaliação (seções 1 a 8 e anexos).

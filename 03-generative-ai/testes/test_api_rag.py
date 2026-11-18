@@ -53,5 +53,25 @@ class TestEndpointRAG(unittest.TestCase):
         self.assertNotIn("sk-segredo", r.text)
 
 
+class TestAppPrincipal(unittest.TestCase):
+    """O router está montado no app do 01 (api.main) e o CORS é restritivo."""
+
+    def test_saude_e_rota_do_rag_montadas(self):
+        from api.main import app as app_principal
+        c = TestClient(app_principal)
+        self.assertEqual(c.get("/saude").json(), {"status": "ok"})
+        self.assertIn("/rag/perguntar", app_principal.openapi()["paths"])
+
+    def test_cors_nao_libera_origem_desconhecida(self):
+        from api.main import app as app_principal
+        c = TestClient(app_principal)
+        r = c.options("/rag/perguntar", headers={"Origin": "http://site-malicioso.test",
+                                                 "Access-Control-Request-Method": "POST"})
+        self.assertNotIn("access-control-allow-origin", {k.lower() for k in r.headers})
+        r = c.options("/rag/perguntar", headers={"Origin": "http://localhost:8501",
+                                                 "Access-Control-Request-Method": "POST"})
+        self.assertEqual(r.headers.get("access-control-allow-origin"), "http://localhost:8501")
+
+
 if __name__ == "__main__":
     unittest.main()
