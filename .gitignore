@@ -21,3 +21,10 @@ models/*.bin
 02-pln-voz/*.onnx.json
 02-pln-voz/audios_teste/sintetico/*.wav
 02-pln-voz/audios_teste/sintetico_e2e/*.wav
+
+# 01-front-end: banco local da API (ocorrências e eventos)
+01-front-end/dados/
+.streamlit/secrets.toml
+
+# 05-iot: gravações brutas podem ter sons da casa; só os clipes preparados vão para o Git
+05-iot/dados_audio/brutos/

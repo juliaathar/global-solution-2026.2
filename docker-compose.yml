@@ -1,0 +1,30 @@
+# EloBairro: docker compose up --build   ->  interface http://localhost:8501 | API http://localhost:8000/docs
+# Antes: cp .env.example .env  (as chaves ficam só no .env, que não é versionado)
+services:
+  api:
+    build: { context: ., dockerfile: docker/Dockerfile.api }
+    env_file:
+      - path: .env
+        required: false                                  # sem .env: roda sem LLM (regras)
+    environment:
+      ALLOWED_ORIGINS: http://localhost:8501
+      ELB_DADOS: /dados
+      RPA_BANCO: /rpa_saida/protocolos.db
+      VC_MODELO: /modelos/modelo_fissuras.pt              # gerado por 04-visao-computacional/codigo/treinar.py
+    volumes:
+      - dados_app:/dados
+      - ./06-rpa/saida:/rpa_saida                       # mesmo banco de protocolos do robô RPA
+      - ./04-visao-computacional/codigo:/modelos:ro
+    ports: ["8000:8000"]
+    restart: unless-stopped
+
+  web:
+    build: { context: ., dockerfile: docker/Dockerfile.web }
+    environment:
+      API_URL: http://api:8000
+    ports: ["8501:8501"]
+    depends_on: [api]
+    restart: unless-stopped
+
+volumes:
+  dados_app:

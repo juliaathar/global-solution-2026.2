@@ -1,0 +1,9 @@
+# Interface Streamlit. Só fala com a API (nenhuma chave de LLM aqui).
+FROM python:3.12-slim
+WORKDIR /app/01-front-end
+ENV PYTHONUNBUFFERED=1 PIP_NO_CACHE_DIR=1
+RUN pip install "streamlit>=1.50" "requests>=2.31" "pandas>=2.0" "plotly>=6.1"
+COPY 01-front-end/web web
+COPY 01-front-end/.streamlit .streamlit
+EXPOSE 8501
+CMD ["streamlit", "run", "web/app.py", "--server.address", "0.0.0.0", "--server.port", "8501"]

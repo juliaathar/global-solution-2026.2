@@ -1,0 +1,18 @@
+[server]
+maxUploadSize = 50        # MB: vídeo da visão computacional; fotos são limitadas a 5 MB na interface e na API
+headless = true
+
+[browser]
+gatherUsageStats = false  # nenhuma telemetria do Streamlit
+
+[client]
+toolbarMode = "minimal"
+
+[theme]
+base = "light"
+primaryColor = "#0E6A8A"              # azul de placa de rua (contraste 5,9:1 sobre branco)
+backgroundColor = "#F3F6F9"
+secondaryBackgroundColor = "#FFFFFF"
+textColor = "#17283A"
+borderColor = "#D9E1E8"
+baseRadius = "10px"

@@ -27,7 +27,7 @@ def _aba_imagem(limiar: float):
         st.info("Envie uma foto para analisar.")
         return
     col_img, col_res = st.columns(2)
-    col_img.image(arq, use_container_width=True)
+    col_img.image(arq, width="stretch")
     with col_res:
         try:
             with st.spinner("Analisando a imagem..."):
