@@ -133,7 +133,7 @@ A variação entre execuções é grande: é um notebook com CPU de baixa potên
 ## 9. Limitações
 
 - A separação por blocos é uma **aproximação**: pode haver recortes da mesma foto original em conjuntos diferentes.
-- O teste vem da **mesma distribuição do treino**; o desempenho em fotos de cidadãos, em outros locais, deve ser menor.
+- O teste vem da **mesma distribuição do treino**; o desempenho em fotos de cidadãos, em outros locais, deve ser menor. As 600 imagens de teste formam apenas **6 blocos de 100** (3 por classe) e imagens do mesmo bloco são parecidas, então o número efetivo de amostras independentes é bem menor que 600 e os 98% têm mais incerteza do que o tamanho do teste sugere.
 - Há **rótulos duvidosos** no dataset (fissuras visíveis em `Negative`).
 - **Não houve avaliação com fotos reais.** As interferências (sombra, pouca luz, desfoque, obstáculo) são **simuladas** sobre imagens do dataset. As 4 imagens da internet da seção 6 são só exemplos qualitativos, com rótulo atribuído visualmente.
 - O modelo foi treinado com recortes quadrados de superfície vista **de perto**. Fotos de fachada inteira, de longe, e fotos retangulares redimensionadas à força para 224×224 podem degradar o resultado.
