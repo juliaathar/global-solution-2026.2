@@ -8,3 +8,4 @@ edge-tts>=6.1
 piper-tts>=1.2
 requests>=2.31
 python-dotenv>=1.0
+fastembed>=0.4   # embeddings do RAG da pasta 03 (e5-large, ~2,2 GB no primeiro uso)
