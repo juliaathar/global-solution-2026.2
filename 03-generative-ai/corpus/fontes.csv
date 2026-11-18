@@ -1,0 +1,37 @@
+id,url,titulo,categoria,data_consulta,status,n_caracteres,sha256
+manutencao-da-cidade-tapa-buracos,https://www.sjc.sp.gov.br/servicos/manutencao-da-cidade/tapa-buracos/,Tapa-Buracos,zeladoria,2026-11-17,ok_cache_local,714,3f50dafb14db820a
+manutencao-da-cidade-iluminacao-publica,https://www.sjc.sp.gov.br/servicos/manutencao-da-cidade/iluminacao-publica/,Iluminação Pública,zeladoria,2026-11-17,descartado_texto_curto,16,5f09ef4c779382a3
+manutencao-da-cidade-limpeza-de-bueiros,https://www.sjc.sp.gov.br/servicos/manutencao-da-cidade/limpeza-de-bueiros/,Limpeza de Bueiros,zeladoria,2026-11-17,ok_cache_local,345,0d51929035ae57f9
+manutencao-da-cidade-lixeiras-nas-vias-publicas,https://www.sjc.sp.gov.br/servicos/manutencao-da-cidade/lixeiras-nas-vias-publicas/,Lixeiras nas Vias Públicas,zeladoria,2026-11-17,ok_cache_local,506,95dd07a8d6a88009
+manutencao-da-cidade-varricao,https://www.sjc.sp.gov.br/servicos/manutencao-da-cidade/varricao/,Varrição,zeladoria,2026-11-17,ok_cache_local,1977,4c88a3828e4c6e09
+manutencao-da-cidade-rocada,https://www.sjc.sp.gov.br/servicos/manutencao-da-cidade/rocada/,Roçada,zeladoria,2026-11-17,ok_cache_local,677,ea56869bb9683473
+manutencao-da-cidade-manejo-de-arvores-podas-e-supressoes,https://www.sjc.sp.gov.br/servicos/manutencao-da-cidade/manejo-de-arvores-podas-e-supressoes/,Manejo de Árvores (podas e supressões),zeladoria,2026-11-17,ok_cache_local,1493,012d5ba080178fca
+manutencao-da-cidade-manutencoes-diversas,https://www.sjc.sp.gov.br/servicos/manutencao-da-cidade/manutencoes-diversas/,Manutenções Diversas,zeladoria,2026-11-17,ok_cache_local,2231,f02fac995bb6db01
+manutencao-da-cidade-ecopontos,https://www.sjc.sp.gov.br/servicos/manutencao-da-cidade/ecopontos/,Ecopontos,zeladoria,2026-11-17,ok_cache_local,614,5e126e371c251829
+manutencao-da-cidade-pevs-na-cidade,https://www.sjc.sp.gov.br/servicos/manutencao-da-cidade/pevs-na-cidade/,PEVs na cidade,zeladoria,2026-11-17,ok_cache_local,6466,777edb3f19a858eb
+manutencao-da-cidade-unidades-regionais,https://www.sjc.sp.gov.br/servicos/manutencao-da-cidade/unidades-regionais/,Unidades Regionais,zeladoria,2026-11-17,ok_cache_local,1100,7920d905028283d6
+manutencao-da-cidade-saneamento-basico,https://www.sjc.sp.gov.br/servicos/manutencao-da-cidade/saneamento-basico/,Saneamento Básico,zeladoria,2026-11-17,ok_cache_local,2271,8ffba11d0abc04b7
+manutencao-da-cidade-controle-de-pragas,https://www.sjc.sp.gov.br/servicos/manutencao-da-cidade/controle-de-pragas/,Controle de Pragas,zeladoria,2026-11-17,ok_cache_local,1657,edbc1230dc6c33a7
+manutencao-da-cidade-fiscalizacao-de-concessionarias,https://www.sjc.sp.gov.br/servicos/manutencao-da-cidade/fiscalizacao-de-concessionarias/,Fiscalização de Concessionárias,zeladoria,2026-11-17,ok_cache_local,651,5e43d3e21cf72352
+mobilidade-urbana-calcada-segura,https://www.sjc.sp.gov.br/servicos/mobilidade-urbana/calcada-segura/,Calçada segura,zeladoria,2026-11-17,ok_cache_local,7737,4eb18e131552ea6e
+urbanismo-e-sustentabilidade-manejo-sustentavel-de-aguas-pluviais,https://www.sjc.sp.gov.br/servicos/urbanismo-e-sustentabilidade/manejo-sustentavel-de-aguas-pluviais/,Manejo sustentável de águas pluviais,zeladoria,2026-11-17,ok_cache_local,1141,712376ef3b06dfc5
+saude-unidades-basicas-de-saude-ubs-unidades-basicas-de-saude,https://www.sjc.sp.gov.br/servicos/saude/unidades-basicas-de-saude-ubs/unidades-basicas-de-saude/,Unidades básicas de saúde,saude,2026-11-17,ok_cache_local,8741,341d482762007be0
+saude-emergencia-hospitais-e-unidades-de-saude,https://www.sjc.sp.gov.br/servicos/saude/emergencia-hospitais-e-unidades-de-saude/,"Emergência, Hospitais e Unidades de Saúde",saude,2026-11-17,ok_cache_local,628,df40b1ea2c466ef4
+saude-vacinacao,https://www.sjc.sp.gov.br/servicos/saude/vacinacao/,Vacinação,saude,2026-11-17,ok_cache_local,502,b51316eb4979706c
+saude-consulta-de-medicamentos,https://www.sjc.sp.gov.br/servicos/saude/consulta-de-medicamentos/,Consulta de medicamentos,saude,2026-11-17,ok_cache_local,526,fd6a738f7d4ae0e7
+saude-especialidades-medicas,https://www.sjc.sp.gov.br/servicos/saude/especialidades-medicas/,Especialidades médicas,saude,2026-11-17,ok_cache_local,3085,e6ec9e2fdfcf9695
+saude-campanha-contra-a-dengue,https://www.sjc.sp.gov.br/servicos/saude/campanha-contra-a-dengue/,Campanha contra a dengue,saude,2026-11-17,ok_cache_local,692,0e765e24e3e91641
+saude-saude-mental,https://www.sjc.sp.gov.br/servicos/saude/saude-mental/,Saúde mental,saude,2026-11-17,ok_cache_local,334,84ffb35d03dc849b
+saude-consulta-de-exames-agendados-e-preparos,https://www.sjc.sp.gov.br/servicos/saude/consulta-de-exames-agendados-e-preparos/,Consulta de Exames Agendados e Preparos,saude,2026-11-17,descartado_texto_curto,0,
+apoio-social-ao-cidadao-cras,https://www.sjc.sp.gov.br/servicos/apoio-social-ao-cidadao/cras/,Cras,assistencia_social,2026-11-17,ok_cache_local,1969,b41f2812b0ad5973
+apoio-social-ao-cidadao-creas,https://www.sjc.sp.gov.br/servicos/apoio-social-ao-cidadao/creas/,Creas,assistencia_social,2026-11-17,ok_cache_local,843,59db6bbc852faab5
+apoio-social-ao-cidadao-cadastro-unico,https://www.sjc.sp.gov.br/servicos/apoio-social-ao-cidadao/cadastro-unico/,Cadastro Único,assistencia_social,2026-11-17,ok_cache_local,1376,918ef12d74c090ad
+apoio-social-ao-cidadao-beneficios-eventuais,https://www.sjc.sp.gov.br/servicos/apoio-social-ao-cidadao/beneficios-eventuais/,Benefícios eventuais,assistencia_social,2026-11-17,ok_cache_local,4534,dfcfdce730c338b7
+apoio-social-ao-cidadao-casa-do-idoso,https://www.sjc.sp.gov.br/servicos/apoio-social-ao-cidadao/casa-do-idoso/,Casa do Idoso,assistencia_social,2026-11-17,ok_cache_local,12465,f6d59f042e214150
+apoio-social-ao-cidadao-pessoas-com-deficiencia,https://www.sjc.sp.gov.br/servicos/apoio-social-ao-cidadao/pessoas-com-deficiencia/,Pessoas com deficiência,assistencia_social,2026-11-17,ok_cache_local,1400,c497151e1db9a1f4
+apoio-social-ao-cidadao-unidades-de-atendimento-social,https://www.sjc.sp.gov.br/servicos/apoio-social-ao-cidadao/unidades-de-atendimento-social/,Unidades de atendimento social,assistencia_social,2026-11-17,ok_cache_local,3010,51f6390944731b40
+apoio-social-ao-cidadao-entrega-de-leite,https://www.sjc.sp.gov.br/servicos/apoio-social-ao-cidadao/entrega-de-leite/,Entrega de leite,assistencia_social,2026-11-17,ok_cache_local,761,3337e93c98f218d1
+apoio-social-ao-cidadao-populacao-em-situacao-de-rua,https://www.sjc.sp.gov.br/servicos/apoio-social-ao-cidadao/populacao-em-situacao-de-rua/,População em situação de rua,assistencia_social,2026-11-17,ok_cache_local,5862,ed94f4b6fd9523b0
+mobilidade-urbana-beneficios-para-idosos-e-pcd,https://www.sjc.sp.gov.br/servicos/mobilidade-urbana/beneficios-para-idosos-e-pcd/,Benefícios para Idosos e PcD,mobilidade_acessivel,2026-11-17,ok_cache_local,12243,777e384c238230f3
+mobilidade-urbana-transporte-adaptado,https://www.sjc.sp.gov.br/servicos/mobilidade-urbana/transporte-adaptado/,Transporte adaptado,mobilidade_acessivel,2026-11-17,ok_cache_local,2806,3d6d0058f148b1e9
+mobilidade-urbana-guia-rebaixada,https://www.sjc.sp.gov.br/servicos/mobilidade-urbana/guia-rebaixada/,Guia Rebaixada,mobilidade_acessivel,2026-11-17,descartado_texto_curto,158,0d15512b36c425b6
