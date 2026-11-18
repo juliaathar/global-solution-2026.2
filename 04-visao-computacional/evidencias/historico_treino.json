@@ -1,0 +1,32 @@
+[
+  {
+    "epoca": 1,
+    "perda_treino": 0.33085814429180965,
+    "acc_validacao": 0.9733333333333334,
+    "seg": 250.5
+  },
+  {
+    "epoca": 2,
+    "perda_treino": 0.13417366879326956,
+    "acc_validacao": 0.975,
+    "seg": 203.8
+  },
+  {
+    "epoca": 3,
+    "perda_treino": 0.09674527223621096,
+    "acc_validacao": 0.985,
+    "seg": 193.7
+  },
+  {
+    "epoca": 4,
+    "perda_treino": 0.08288444289139339,
+    "acc_validacao": 0.9816666666666667,
+    "seg": 277.2
+  },
+  {
+    "epoca": 5,
+    "perda_treino": 0.07306166442377227,
+    "acc_validacao": 0.9866666666666667,
+    "seg": 163.8
+  }
+]

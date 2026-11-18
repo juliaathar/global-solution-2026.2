@@ -37,7 +37,8 @@ def main():
         for i, bloco in enumerate(escolhidos):
             conjunto = "treino" if i < corte1 else "validacao" if i < corte2 else "teste"
             for arq in bloco:
-                linhas.append({"arquivo": str(arq), "rotulo": rotulo, "conjunto": conjunto, "bloco": f"{nome_pasta}-{i}"})
+                # caminho relativo a config.IMAGENS (portável entre máquinas)
+                linhas.append({"arquivo": arq.relative_to(config.IMAGENS).as_posix(), "rotulo": rotulo, "conjunto": conjunto, "bloco": f"{nome_pasta}-{i}"})
     config.SAIDA.mkdir(parents=True, exist_ok=True)
     with open(config.MANIFESTO, "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=["arquivo", "rotulo", "conjunto", "bloco"])

@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+python-multipart
+streamlit
+requests
+pandas
+-r ../04-visao-computacional/codigo/requirements.txt

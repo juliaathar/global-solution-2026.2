@@ -1,0 +1,12 @@
+arquivo,real,previsto,confianca
+Negative/13047.jpg,sem_fissura,com_fissura,0.916
+Negative/13056.jpg,sem_fissura,com_fissura,0.608
+Negative/03043.jpg,sem_fissura,com_fissura,0.702
+Negative/03097.jpg,sem_fissura,com_fissura,0.791
+Negative/00320.jpg,sem_fissura,com_fissura,0.764
+Negative/00324.jpg,sem_fissura,com_fissura,0.493
+Negative/00355.jpg,sem_fissura,com_fissura,0.637
+Negative/00375.jpg,sem_fissura,com_fissura,0.794
+Positive/16429_1.jpg,com_fissura,sem_fissura,0.687
+Positive/09902.jpg,com_fissura,sem_fissura,0.847
+Positive/05342.jpg,com_fissura,sem_fissura,0.603

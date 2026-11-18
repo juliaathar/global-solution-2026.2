@@ -1,0 +1,8 @@
+              precision    recall  f1-score   support
+
+ sem_fissura     0.9898    0.9733    0.9815       300
+ com_fissura     0.9738    0.9900    0.9818       300
+
+    accuracy                         0.9817       600
+   macro avg     0.9818    0.9817    0.9817       600
+weighted avg     0.9818    0.9817    0.9817       600

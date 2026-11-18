@@ -29,7 +29,8 @@ def predizer(imagem: Image.Image, limiar: float = config.LIMIAR_CONFIANCA) -> di
     p_fissura = float(prob[1])
     return {
         "rotulo": config.CLASSES[1] if p_fissura >= limiar else config.CLASSES[0],
-        "confianca": round(max(p_fissura, 1 - p_fissura), 4),
+        # confiança = probabilidade da classe devolvida (coerente com o rótulo, mesmo com limiar != 0,5)
+        "confianca": round(p_fissura if p_fissura >= limiar else 1 - p_fissura, 4),
         "probabilidade_fissura": round(p_fissura, 4),
         "inspecao_recomendada": p_fissura >= limiar,
         "aviso": AVISO,

@@ -27,4 +27,5 @@ MEDIA = (0.485, 0.456, 0.406)
 DESVIO = (0.229, 0.224, 0.225)
 EPOCAS = int(os.getenv("VC_EPOCAS", "5"))
 BATCH = 32
-LIMIAR_CONFIANCA = float(os.getenv("VC_LIMIAR", "0.5"))
+# 0,45: escolhido na VALIDAÇÃO (recall >= 0,99 com maior precisão); ver evidencias/limiar_escolhido.json
+LIMIAR_CONFIANCA = float(os.getenv("VC_LIMIAR", "0.45"))
