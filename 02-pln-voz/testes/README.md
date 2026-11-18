@@ -23,6 +23,14 @@ python testes/avaliar_stt.py --manifesto audios_teste/sintetico/manifesto.csv --
 
 Gera 20 áudios sintéticos (3 vozes do edge-tts, ruído branco a 10 dB em 5 deles) e mede o WER, só para conferir o script e ter uma medição preliminar. **Não substitui as gravações do grupo**: vozes sintéticas são mais limpas que pessoas reais e não dizem nada sobre sotaque ou idade. Os resultados ficam em `evidencias/sintetico/`, separados dos oficiais.
 
+## Quando as gravações chegarem: organizar
+
+1. Copie os áudios originais (qualquer formato: m4a, opus do WhatsApp, mp3, wav) para `audios_teste/entrada/` (pasta fora do git). Se o nome do arquivo for o código da frase (`stt_01`, `c03_t2`...), nada mais é preciso; senão, copie `audios_teste/modelos/mapeamento.csv` para lá e preencha `original,codigo`.
+2. Copie `audios_teste/modelos/vozes.csv` para `audios_teste/entrada/` e preencha, para cada voz A, B e C, a faixa etária, o sotaque e `consentimento` = `sim`. Voz sem consentimento registrado não é processada.
+3. Confira sem gravar nada: `python testes/organizar_audios.py --so-conferir`. Ele aponta arquivo sem código, voz sem dados, áudio mudo, curto, longo ou estourado, e ruído marcado que não parece ruidoso.
+4. Organize: `python testes/organizar_audios.py`. Converte para WAV 16 kHz mono em `audios_teste/stt/` e `audios_teste/e2e/`, preenche `faixa_etaria` e `sotaque` no `manifesto_stt.csv` e grava `evidencias/audios_qualidade.csv`. Os originais não são alterados.
+5. Rode os testes das seções 1 e 4 abaixo. Transcrições muito diferentes da frase indicam arquivo trocado: confira o mapeamento antes de aceitar o WER.
+
 ## 1. STT
 
 1. Grave as 20 frases da coluna `referencia` de `audios_teste/manifesto_stt.csv`, em WAV, com o nome da coluna `arquivo`, na pasta `audios_teste/stt/`. A coluna `falante` já divide em 3 vozes (A, B, C) e `ruido = sim` marca os 5 áudios com ruído de fundo (ligue uma TV, ventilador ou rua).
@@ -46,7 +54,8 @@ python testes/avaliar_llm.py --llm ollama:qwen2.5:3b --llm groq:llama-3.1-8b-ins
 - `testes/perguntas_fuga.csv` tem 10 conversas de 2 turnos (uma pergunta do tema e outra fora do tema) para medir se a guarda de "não sei" resiste a mudanças de assunto: `python testes/avaliar_llm.py --llm ollama:qwen2.5:3b --perguntas testes/perguntas_fuga.csv --saida evidencias/fuga_depois`. A opção `--saida` mantém esses resultados separados dos oficiais. O modelo varia entre rodadas (temperatura 0,2), então repita as medições antes de comparar.
 - `esperado` usa `;` para E e `|` para OU (sem diferença de acento ou caixa). É uma aproximação: leia a lista de erros e, se a resposta estiver certa com outras palavras, escreva `1` em `acerto_manual` em `evidencias/llm_resultados.csv` (ou `0`, para derrubar um acerto falso). A coluna manual prevalece no resumo.
 - Os tipos são `normal`, `continuacao`, `fora_escopo` (deve recusar e encaminhar) e `sem_resposta` (tema certo, mas a base não tem o dado, então deve dizer que não sabe).
-- **Atenção:** as respostas esperadas foram escritas a partir do corpus provisório de `llm/base_stub.py`, cujos textos são exemplos fictícios. Quando o RAG da pasta 03 existir, troque a base em `componentes.carregar_base()` e revise `perguntas_llm.csv` com os fatos reais.
+- **Base de conhecimento:** o padrão agora é o RAG da pasta 03 (`BASE_CONHECIMENTO=rag`), e `perguntas_llm.csv`, `perguntas_fuga.csv` e `conversas_e2e.csv` foram escritos com fatos do corpus oficial de SJC (cada palavra esperada foi conferida no texto da página). Os arquivos `*_base_ficticia.csv` guardam as perguntas antigas, escritas para a base fictícia; para reproduzir os resultados antigos use `BASE_CONHECIMENTO=stub` e `--perguntas testes/perguntas_llm_base_ficticia.csv`.
+- **Pendente:** rodar `python testes/avaliar_llm.py --llm ollama:qwen2.5:3b --llm ollama:qwen2.5:1.5b` (e depois `--perguntas testes/perguntas_fuga.csv --saida evidencias/fuga_rag`) com o Ollama no ar, revisar a coluna `acerto_manual` e atualizar o relatório.
 
 ## 3. TTS
 
@@ -59,6 +68,8 @@ Gera as 10 respostas em `audios_teste/tts/` e a planilha `testes/planilha_tts.cs
 ```bash
 python testes/avaliar_tts.py resumir
 ```
+
+**Avaliação cega (recomendada).** O nome do arquivo em `audios_teste/tts/` revela o motor. Para os avaliadores não saberem qual estão ouvindo, use `python testes/tts_cego.py preparar`: ele embaralha os 20 áudios em `audios_teste/tts_cego/aval_01.wav...` (todos WAV mono 22,05 kHz) e cria `testes/tts_cego_notas.csv` para as notas. Cada avaliador ouve os 20 áudios na ordem de `aval_01` a `aval_20` e preenche `naturalidade` e `clareza` (1 a 5); troque "Avaliador 1, 2 e 3" pelos nomes. Depois: `python testes/tts_cego.py consolidar` (passa as notas para `planilha_tts.csv`, recusa nota fora de 1 a 5 e menos de 3 pessoas) e `python testes/avaliar_tts.py resumir`. Não mostre `testes/tts_cego_chave.csv` aos avaliadores antes do fim. No relatório, registre que a avaliação foi cega.
 
 O `gerar` se recusa a sobrescrever uma planilha existente (use `--forcar` só para recomeçar). Troque "Avaliador 1, 2 e 3" pelos nomes ou números reais, mantendo 3 pessoas distintas.
 

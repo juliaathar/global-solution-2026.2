@@ -40,7 +40,8 @@ class Vetorial:
         else:
             m = _modelo(modelo)
             textos = [c["texto"] for c in chunks]
-            vet = m.passage_embed(textos) if modelo == "e5large" else m.embed(textos)
+            # lote pequeno: o e5-large com o lote padrão (256) passa de 5 GB de RAM e é morto em máquinas de 8 GB
+            vet = m.passage_embed(textos, batch_size=8) if modelo == "e5large" else m.embed(textos, batch_size=8)
             self.mat = _normalizar(np.array(list(vet), dtype=np.float32))
             CACHE.mkdir(exist_ok=True)
             np.save(arq, self.mat)

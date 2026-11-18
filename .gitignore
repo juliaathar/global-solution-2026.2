@@ -9,7 +9,6 @@ models/*.bin
 *.log
 .DS_Store
 06-rpa/saida/
-04-visao-computacional/codigo/*.pt
 04-visao-computacional/imagens/Positive/
 04-visao-computacional/imagens/Negative/
 *.imsx.bak
@@ -21,3 +20,7 @@ models/*.bin
 02-pln-voz/*.onnx.json
 02-pln-voz/audios_teste/sintetico/*.wav
 02-pln-voz/audios_teste/sintetico_e2e/*.wav
+
+# 02-pln-voz: gravações originais do grupo (os WAV organizados em stt/ e e2e/ vão para o git)
+02-pln-voz/audios_teste/entrada/
+02-pln-voz/relatorio/relatorio_rascunho.pdf

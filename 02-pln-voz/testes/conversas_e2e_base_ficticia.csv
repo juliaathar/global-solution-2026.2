@@ -1,0 +1,31 @@
+﻿conversa,turno,arquivo,pergunta_planejada
+c01,1,c01_t1.wav,Que horas a UBS abre?
+c01,2,c01_t2.wav,E o que eu levo?
+c01,3,c01_t3.wav,Quem ganhou o jogo ontem?
+c02,1,c02_t1.wav,Para que serve o CRAS?
+c02,2,c02_t2.wav,E o que eu preciso levar lá?
+c02,3,c02_t3.wav,Qual remédio é bom para dor de cabeça?
+c03,1,c03_t1.wav,Como faço a segunda via do RG?
+c03,2,c03_t2.wav,E quais documentos eu levo?
+c03,3,c03_t3.wav,Quanto custa?
+c04,1,c04_t1.wav,Tem um buraco na minha rua. Como eu aviso?
+c04,2,c04_t2.wav,E isso gera um número para acompanhar?
+c04,3,c04_t3.wav,Obrigado. Me conta uma piada.
+c05,1,c05_t1.wav,Em quais dias a UBS atende?
+c05,2,c05_t2.wav,E ela fecha que horas?
+c05,3,c05_t3.wav,Posso processar meu vizinho?
+c06,1,c06_t1.wav,Onde posso fazer o Cadastro Único?
+c06,2,c06_t2.wav,E eu preciso de comprovante de residência?
+c06,3,c06_t3.wav,Qual a previsão do tempo?
+c07,1,c07_t1.wav,O poste da minha rua está apagado. O que eu faço?
+c07,2,c07_t2.wav,"E depois que eu relato, o que acontece?"
+c07,3,c07_t3.wav,Quanto está o dólar?
+c08,1,c08_t1.wav,Preciso do cartão do SUS para ir à UBS?
+c08,2,c08_t2.wav,E se eu não tiver?
+c08,3,c08_t3.wav,Me dá uma receita de bolo.
+c09,1,c09_t1.wav,Como relato lixo acumulado na calçada?
+c09,2,c09_t2.wav,E isso gera protocolo?
+c09,3,c09_t3.wav,Qual é o endereço da UBS mais próxima?
+c10,1,c10_t1.wav,Posso usar certidão de casamento na segunda via do RG?
+c10,2,c10_t2.wav,E precisa de mais alguma coisa?
+c10,3,c10_t3.wav,Quem é o prefeito da cidade?
