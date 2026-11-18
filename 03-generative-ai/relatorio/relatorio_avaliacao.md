@@ -4,8 +4,8 @@ Global Solution 2026.2 · FIAP · Generative AI & Advanced Nets · Turma 2TIAPF
 
 | Nome completo | RM |
 |---|---|
-| Bruno Fernandes | 566325 |
-| Edgar Lódula | 565260 |
+| Bruno Fernandes Nascimento | 552574 |
+| Edgar Lódula de Assis | 565260 |
 | Júlia Aben-Athar | 566325 |
 
 Repositório: `juliaathar/global-solution-2026.2`, pasta `03-generative-ai`. Todos os números deste relatório vêm dos scripts de `avaliacao/` e dos arquivos de `evidencias/`, que podem ser reproduzidos (seção 8).
