@@ -26,7 +26,15 @@ _carregar_env()
 
 TEMPERATURA = 0.1
 MAX_TOKENS = 400
-TIMEOUT_S = 60
+def _timeout_s() -> float:
+    """Espera máxima pelo LLM. Em CPU sem GPU o modelo local passa de 1 minuto: ajuste LLM_TIMEOUT_S (a mesma variável da API do 01)."""
+    try:
+        return float(os.getenv("LLM_TIMEOUT_S", "60"))
+    except ValueError:
+        return 60.0
+
+
+TIMEOUT_S = _timeout_s()
 
 SISTEMA = """Você é o assistente do EloBairro, que orienta moradores de São José dos Campos sobre serviços públicos.
 Seu público inclui pessoas idosas, de baixa alfabetização e com deficiência: use frases curtas e palavras simples.

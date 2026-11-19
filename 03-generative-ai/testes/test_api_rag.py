@@ -59,7 +59,7 @@ class TestAppPrincipal(unittest.TestCase):
     def test_saude_e_rota_do_rag_montadas(self):
         from api.main import app as app_principal
         c = TestClient(app_principal)
-        self.assertEqual(c.get("/saude").json(), {"status": "ok"})
+        self.assertEqual(c.get("/saude").json()["status"], "ok")  # o front passou a listar também o estado de cada módulo
         self.assertIn("/rag/perguntar", app_principal.openapi()["paths"])
 
     def test_cors_nao_libera_origem_desconhecida(self):
