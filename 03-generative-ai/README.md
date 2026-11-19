@@ -22,7 +22,7 @@ Projeto **EloBairro**, disciplina Generative AI & Advanced Nets (Turma 2TIAPF), 
 - [x] 2+ testes adversariais (prompt injection, vazamento de prompt ou dados)
 - [x] Sem credenciais nem dados pessoais expostos
 - [~] Relatório: perguntas, evidências recuperadas, respostas, métricas, análise crítica (`relatorio/relatorio_avaliacao.md`; a seção 6.4 traz a revisão humana de 15 respostas, feita por Júlia Aben-Athar; exportar para PDF se exigido)
-- [ ] Vídeo de até 5 min com sucessos, falhas, mitigação e limites (roteiro pronto em `relatorio/roteiro_video.md`)
+- [x] Vídeo de até 5 min com sucessos, falhas, mitigação e limites: https://youtu.be/P8tk_suSmPo (não listado; roteiro em `relatorio/roteiro_video.md`)
 
 ## Corpus e ingestão
 
@@ -81,4 +81,4 @@ Entregáveis e pendências:
 - `relatorio/relatorio_avaliacao.md`: relatório de avaliação (seções 1 a 8 e anexos).
 - `relatorio/revisao_humana_amostra.md`: ficha com as 15 respostas revisadas por Júlia Aben-Athar; o resultado está na seção 6.4 do relatório.
 - `relatorio/roteiro_video.md`: roteiro de 4 min 40 s para o vídeo.
-- Pendente: gravar o vídeo. Nome e RM já constam neste README e no relatório; o router do RAG já está montado em `01-front-end/api/main.py`.
+- Vídeo gravado e publicado como não listado no YouTube: https://youtu.be/P8tk_suSmPo. Nome e RM constam neste README e no relatório; o router do RAG já está montado em `01-front-end/api/main.py`.
