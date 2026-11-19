@@ -76,6 +76,8 @@ Gera as 10 respostas em `audios_teste/tts/` e a planilha `testes/planilha_tts.cs
 python testes/avaliar_tts.py resumir
 ```
 
+**Avaliação por nota geral (a que o grupo usou).** O grupo avaliou os áudios de `tts_cego` com 6 pessoas em 3 duplas e deu **uma nota geral** por áudio, de 1 a 10, o que não permite separar naturalidade de clareza. Para esse caso, `python testes/tts_notas_gerais.py --importar "<60 números: 3 por áudio, na ordem aval_01 a aval_20>"` guarda as notas em `testes/tts_cego_notas_gerais.csv`, converte para 1 a 5 (`1 + (nota - 1) * 4 / 9`), junta com a chave cega e grava `evidencias/tts_notas.csv` e `evidencias/tts_resumo.md`. O fluxo abaixo, com as duas notas separadas, é o que o enunciado pede e continua disponível.
+
 **Avaliação cega (recomendada).** O nome do arquivo em `audios_teste/tts/` revela o motor. Para os avaliadores não saberem qual estão ouvindo, use `python testes/tts_cego.py preparar`: ele embaralha os 20 áudios em `audios_teste/tts_cego/aval_01.wav...` (todos WAV mono 22,05 kHz) e cria `testes/tts_cego_notas.csv` para as notas. Cada avaliador ouve os 20 áudios na ordem de `aval_01` a `aval_20` e preenche `naturalidade` e `clareza` (1 a 5); troque "Avaliador 1, 2 e 3" pelos nomes. Depois: `python testes/tts_cego.py consolidar` (passa as notas para `planilha_tts.csv`, recusa nota fora de 1 a 5 e menos de 3 pessoas) e `python testes/avaliar_tts.py resumir`. Não mostre `testes/tts_cego_chave.csv` aos avaliadores antes do fim. No relatório, registre que a avaliação foi cega.
 
 O `gerar` se recusa a sobrescrever uma planilha existente (use `--forcar` só para recomeçar). Troque "Avaliador 1, 2 e 3" pelos nomes ou números reais, mantendo 3 pessoas distintas.
