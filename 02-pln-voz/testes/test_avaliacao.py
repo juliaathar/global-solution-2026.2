@@ -210,6 +210,45 @@ class TesteE2E(unittest.TestCase):
         from config import SAIDA_DIR
         shutil.rmtree(SAIDA_DIR, ignore_errors=True)
 
+    def _linhas_e_audios(self, d, n=2):
+        linhas = [l for l in ler_csv(TESTES / "conversas_e2e.csv") if l["conversa"] in [f"c{i:02d}" for i in range(1, n + 1)]]
+        for l in linhas:
+            tom_wav(str(Path(d) / l["arquivo"]))
+        return linhas
+
+    def test_erro_num_turno_nao_derruba_a_rodada_e_fica_fora_das_medias(self):
+        class STTQueQuebraNaPrimeira(DemoSTT):
+            chamadas = 0
+
+            def transcrever(self, caminho):
+                STTQueQuebraNaPrimeira.chamadas += 1
+                if STTQueQuebraNaPrimeira.chamadas == 1:
+                    raise TimeoutError("sem resposta")
+                return super().transcrever(caminho)
+
+        with tempfile.TemporaryDirectory() as d:
+            linhas = self._linhas_e_audios(d)
+            vistos = []
+            res = avaliar_e2e.executar(STTQueQuebraNaPrimeira(apagar_audio=False), DemoLLM(), BaseStub(), DemoTTS(),
+                                       linhas, Path(d), ao_terminar=lambda r: vistos.append(r["motivo"]))
+            self.assertEqual(len(res), 6)
+            self.assertEqual(len(vistos), 6)  # progresso informado a cada turno
+            self.assertEqual(res[0]["motivo"], "erro")
+            self.assertEqual(sum(r["motivo"] == "erro" for r in res), 1)
+            md = avaliar_e2e.resumir(res, "STT x, LLM y, TTS z")
+            self.assertIn("1 com erro, fora das médias", md)
+            self.assertIn("Configuração: STT x, LLM y, TTS z", md)
+        from config import SAIDA_DIR
+        shutil.rmtree(SAIDA_DIR, ignore_errors=True)
+
+    def test_retomar_so_pula_conversas_completas_e_sem_erro(self):
+        linhas = [{"conversa": "c1", "turno": "1"}, {"conversa": "c1", "turno": "2"},
+                  {"conversa": "c2", "turno": "1"}, {"conversa": "c3", "turno": "1"}]
+        feitos = [{"conversa": "c1", "motivo": "llm"}, {"conversa": "c1", "motivo": "llm"},
+                  {"conversa": "c2", "motivo": "erro"}]
+        self.assertEqual(avaliar_e2e.conversas_completas(feitos, linhas), {"c1"})
+        self.assertEqual(avaliar_e2e.conversas_completas(feitos[:1], linhas), set())  # conversa pela metade é refeita
+
 
 if __name__ == "__main__":
     unittest.main()
