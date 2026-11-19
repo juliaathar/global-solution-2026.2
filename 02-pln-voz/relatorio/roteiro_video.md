@@ -13,7 +13,7 @@ bash ~/pln_run/demo.sh status      # confere o que está no ar
 bash ~/pln_run/demo.sh voz         # sobe o assistente (2 a 4 minutos na primeira vez; aquece o modelo)
 ```
 
-1. Quando aparecer "Assistente de voz (02) no ar", abra a aba **Portas** (Ports) do VS Code. A porta **7860** aparece sozinha. Clique com o botão direito, "Abrir no navegador" (ou copie o endereço HTTPS).
+1. Quando aparecer "Assistente de voz (02) no ar", abra a aba **Portas** (Ports) do VS Code. **Atenção:** se o Codespace estiver aberto no navegador, `localhost:7860` no seu PC dá "conexão recusada", porque o app roda dentro do Codespace. Use o endereço público da porta: `https://<nome-do-codespace>-7860.app.github.dev` (o nome vem de `echo $CODESPACE_NAME`), entrando com a conta do GitHub. A porta **7860** aparece sozinha. Clique com o botão direito, "Abrir no navegador" (ou copie o endereço HTTPS).
 2. **Ensaio obrigatório:** faça a conversa inteira da seção 3 uma vez, antes de gravar. Isso confirma o microfone e deixa o modelo quente. Depois clique em **Nova conversa** para zerar a memória.
 3. Sala silenciosa, sem ventilador nem rádio (nas gravações de teste, o ruído piorou a transcrição).
 4. Se o Codespace tiver dormido, rode de novo o `demo.sh voz`.
