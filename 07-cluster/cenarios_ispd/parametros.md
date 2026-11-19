@@ -48,6 +48,21 @@ Se o iSPD mostrar tempos diferentes, o relatório deve explicar a diferença (re
 
 Só a quantidade de workers muda entre A e B. Carga, capacidade, escalonador, banda e latência ficam iguais.
 
-## Se quiser aproximar do real
+## Comparação com a medição da `04-visao-computacional`
 
-Substituir o tamanho computacional pela latência de inferência medida em `04-visao-computacional` e declarar a origem aqui.
+O classificador simulado é a MobileNetV2 da disciplina de Visão Computacional, com entrada de 224×224. Ela custa cerca de 300 milhões de multiplicações-somas por imagem, ou seja, cerca de **600 MFLOPS**. Num notebook com CPU Intel i5-6300U, a latência medida foi de cerca de **60 ms por imagem** (`04-visao-computacional/evidencias/benchmark.txt`).
+
+A hipótese de 2000 MFLOPS por tarefa é, portanto, cerca de 3 vezes o custo do modelo, e os workers de 1000 MFLOPS/s são mais lentos que o notebook usado na 04. As duas escolhas são conservadoras: equivalem a um modelo mais pesado ou a máquinas mais modestas. Elas não mudam a conclusão da comparação, mas mudam o ponto em que a rede vira gargalo.
+
+Estimativa com o custo do modelo (calculada, **não simulada** no iSPD; mesmos 1000 tarefas, rede e escalonador):
+
+| | Hipótese simulada | Com 600 MFLOPS por imagem |
+|---|---|---|
+| Cálculo por tarefa (worker de 1000 MFLOPS/s) | 2 s | 0,6 s |
+| Comunicação por tarefa | 0,042 s (2 % do cálculo) | 0,042 s (7 % do cálculo) |
+| T2 estimado | 1021 s (simulado) | cerca de 500 × 0,642 = 321 s |
+| T4 estimado | 511 s (simulado) | cerca de 250 × 0,642 = 160 s |
+| Razão T2/T4 | 2,00 | cerca de 2,0 |
+| Workers a partir dos quais a comunicação do mestre (42 s) limita | cerca de 48 | cerca de 14 |
+
+Leitura: com 2 e 4 workers o ganho continua perto do ideal, mas com o custo real do modelo o mestre vira gargalo muito antes. Além disso, 1000 fotos levariam cerca de 1 minuto num único notebook com a latência medida na 04, então o cluster só se justifica para um volume maior que o pico de um bairro, como a cidade inteira ou quadros de vídeo de inspeção. Para confirmar, basta repetir os dois cenários com 600 MFLOPS no lugar de 2000.

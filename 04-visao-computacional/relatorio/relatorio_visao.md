@@ -10,6 +10,10 @@ Vídeo de demonstração (não listado no YouTube): https://www.youtube.com/watc
 
 Classificar fotos de superfícies de concreto em **com fissura** e **sem fissura**, devolvendo o rótulo e a confiança do modelo, para apoiar a triagem de inspeções pela prefeitura. O módulo está integrado ao app (endpoint de imagem, endpoint de vídeo e tela) e processa um vídeo curto para simular monitoramento urbano.
 
+**Papel no EloBairro.** No EloBairro, o cidadão pode relatar um problema do bairro por voz, texto ou foto. Este módulo trata a foto. Quando o modelo recomenda inspeção, o fluxo de relatos do app reforça a categoria **calçada danificada** (se o texto não indicou outra) e mostra a probabilidade como triagem. Depois da confirmação do cidadão, o protocolo é gravado no banco do robô de RPA (disciplina 06), o mesmo usado nos relatos por texto. A mesma tarefa, em lote, é a carga simulada na disciplina de Cluster Computing (07).
+
+**Escopo e o que fica de fora.** A base Concrete Crack traz fissuras em superfícies de concreto vistas de perto, o que se aproxima de calçadas e muros. Ela não traz buracos no asfalto, que são o exemplo mais comum de relato no bairro. O módulo, portanto, não reconhece buracos, e esses relatos dependem do texto ou da voz. Uma base de dano em pavimento, como a RDD2022, seria o próximo passo para cobrir esse caso.
+
 ## 2. Dados e preparação
 
 - **Base:** Concrete Crack Images for Classification (Mendeley, METU Campus). 40 mil imagens de 227×227 px, 20 mil por classe, recortadas de 458 fotos de alta resolução.
@@ -114,6 +118,7 @@ Os dois erros combinam com o que já aparece no teste: fissura fina escapa (fals
 - **API (FastAPI):** `POST /visao/imagem` recebe JPG ou PNG (até 5 MB) e `POST /visao/video` recebe MP4, AVI, MOV ou MKV (até 50 MB), analisando 1 a cada N quadros. Ambos aceitam o parâmetro `limiar`.
 - **Resposta (Pydantic):** rótulo, confiança, probabilidade de fissura, `inspecao_recomendada`, limiar, latência e o aviso de triagem. O vídeo devolve ainda quadros analisados, quadros com alerta, latência média, FPS e a série de probabilidades.
 - **Validação e erros tratados:** formato não suportado (415), arquivo vazio ou corrompido (422), arquivo grande demais (413), limiar fora da faixa (422) e modelo ausente (503). Na tela, API fora do ar mostra uma mensagem clara, sem travar.
+- **Ligação com o relato e o protocolo:** na aba de relato do app, a foto é enviada junto com o texto. Com `inspecao_recomendada` verdadeiro, a categoria vira "calçada" quando o texto não indicou outra (ou já era calçada), a confiança mínima da proposta passa a 0,75 e o cidadão vê o aviso de triagem antes de confirmar. A probabilidade de fissura fica gravada junto com a ocorrência.
 - **Tela (Streamlit):** abas Imagem e Vídeo, aviso de triagem fixo, alerta colorido com ícone, métricas de confiança e probabilidade, aviso de "confiança baixa" abaixo de 70%, slider de limiar e gráfico de probabilidade por quadro no vídeo. Prints em `evidencias/prints/`.
 
 ## 8. Desempenho
@@ -139,6 +144,7 @@ A variação entre execuções é grande: é um notebook com CPU de baixa potên
 - **Não houve avaliação com fotos reais.** As interferências (sombra, pouca luz, desfoque, obstáculo) são **simuladas** sobre imagens do dataset. As 4 imagens da internet da seção 6 são só exemplos qualitativos, com rótulo atribuído visualmente.
 - O modelo foi treinado com recortes quadrados de superfície vista **de perto**. Fotos de fachada inteira, de longe, e fotos retangulares redimensionadas à força para 224×224 podem degradar o resultado.
 - **Classificação binária:** não localiza a fissura nem mede gravidade, abertura ou segurança estrutural.
+- **Não reconhece buracos no asfalto**, que estão fora da base de treino. No app, a foto só reforça a categoria calçada.
 - Latência e FPS foram medidos em um único equipamento e, por ora, com entradas sintéticas.
 
 ## 10. Reprodução e arquivos

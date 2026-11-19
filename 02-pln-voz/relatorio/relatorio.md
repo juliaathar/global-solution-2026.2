@@ -67,6 +67,18 @@ Fluxo de um turno: o áudio (microfone ou arquivo) é transcrito pelo STT; as gu
 | TTS | `tts/` | Piper (local) e edge-tts (nuvem) |
 | Latência | `pipeline.py` | STT, LLM+RAG, adaptação, TTS e total |
 
+### 3.1 Integração com o restante do EloBairro
+
+O assistente de voz é uma das entradas do EloBairro. A busca vem do motor RAG da disciplina de Generative AI (pasta 03), e a voz também é usada pela API do app (pasta 01, rotas `/voz/perguntar` e `/voz/falar`). Relatos de problemas do bairro, como buraco ou poste apagado, não são abertos por esta interface: viram protocolo pelo fluxo de relatos do app, que usa o robô da disciplina de RPA (pasta 06).
+
+Há dois caminhos de voz. A interface desta pasta (`app.py`) roda o assistente completo descrito neste relatório, e todas as medições da seção 6 foram feitas nela. A rota de voz do app usa daqui só o STT, a adaptação para fala e o TTS, e entre eles chama o motor completo da pasta 03, com o gerador e as proteções de lá.
+
+| | Interface da 02 (`app.py`) | Rota `/voz/perguntar` do app |
+|---|---|---|
+| Busca | RAG da 03 (só a recuperação) | RAG da 03 |
+| LLM | o escolhido aqui (`qwen2.5:1.5b` local) | o gerador da 03, configurado pelo `.env` da raiz |
+| "Não sei" | resposta fixa, sem LLM | abstenção da 03 (limiar 0,84 e regra no prompt) |
+
 ## 4. Justificativa das escolhas
 
 > **Escrever:** por que nuvem ou local (custo, latência, privacidade, disponibilidade de internet), por que RAG, e por que cada modelo. A escolha final de modelos deve apoiar-se nas medições da seção 6.
@@ -80,6 +92,8 @@ Fluxo de um turno: o áudio (microfone ou arquivo) é transcrito pelo STT; as gu
 | TTS | Piper (local) | escolhido depois da avaliação cega, que empatou (4,26 do Piper contra 4,30 do edge-tts, em escala de 1 a 5): sintetiza em 1,13 s contra 2,31 s e roda no computador, enquanto o edge-tts envia o texto da resposta à Microsoft e precisa de internet (seção 6.3) |
 
 O STT e o Piper rodam no computador, sem custo por uso. O edge-tts não exigiu chave de API neste projeto, mas depende de internet. O LLM local também não tem custo por uso, mas exige cerca de 2 GB de disco para o modelo 3B.
+
+Essas são as escolhas padrão do `config.py` desta pasta. O `.env.example` da raiz é compartilhado com o app e com a pasta 03 e vem com `LLM_PROVIDER=openai` e `gpt-4o-mini`, o LLM avaliado na 03. Para manter a pergunta no computador, como decidido aqui, é preciso trocar no `.env` para `LLM_PROVIDER=ollama` e `LLM_MODEL=qwen2.5:1.5b`.
 
 ### 4.2 Por que RAG
 
@@ -341,6 +355,7 @@ Com as gravações do grupo (tabelas na seção 6.1), o WER médio por áudio da
 - Um erro de transcrição de sigla derruba a resposta e também a continuação seguinte (6 dos 20 turnos sobre o tema com o Whisper `base`).
 - A revisão das respostas do LLM foi assistida por IA e cobre 23 perguntas; uma amostra foi conferida por um integrante do grupo, e o restante não.
 - No STT, as três vozes têm de 18 a 25 anos e sotaque paulista, e há 4 a 5 áudios por grupo comparado.
+- A página de iluminação pública ficou fora do corpus da pasta 03 ("em construção"), então o assistente responde "não sei" sobre iluminação, embora seja uma das categorias de relato do robô de RPA.
 
 **Melhorias futuras:**
 
