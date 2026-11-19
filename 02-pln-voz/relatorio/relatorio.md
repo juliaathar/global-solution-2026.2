@@ -8,8 +8,8 @@
 | Edgar Lódula de Assis | 565260 |
 | Júlia Aben-Athar | 566325 |
 
-**Repositório:** https://github.com/juliaathar/global-solution-2026.2 (pasta `02-pln-voz`)  
-**Vídeo (até 5 min):** [PREENCHER: link]  
+**Repositório:** <https://github.com/juliaathar/global-solution-2026.2> (pasta `02-pln-voz`)  
+**Vídeo (até 5 min):** <https://youtu.be/RJKlXz8Ev5U> (não listado no YouTube)  
 **Data:** 19/11/2026
 
 > **Como usar este esqueleto.** Cada seção tem um bloco "Escrever" com o que o enunciado pede, um texto "Já temos" apoiado no que existe no repositório, e marcadores `[PREENCHER: ...]` para o que só o grupo sabe ou só os testes mostram. Apague os blocos "Escrever" antes de exportar. As tabelas de resultado entram sozinhas depois que os scripts de `testes/` rodarem (veja `relatorio/README.md`). Escrevam a conclusão com as próprias palavras.
@@ -379,19 +379,19 @@ Como próximos passos, propomos sintetizar e tocar a primeira frase antes do res
 
 Fontes de dados consultadas em 18/11/2026 (IBGE): as quatro da tabela da seção 1.
 
-Corpus da base de conhecimento: Prefeitura de São José dos Campos, páginas de serviços em https://www.sjc.sp.gov.br/servicos/, consultadas em 17/11/2026 (lista completa, com hash por página, em `03-generative-ai/corpus/fontes.csv`).
+Corpus da base de conhecimento: Prefeitura de São José dos Campos, páginas de serviços em <https://www.sjc.sp.gov.br/servicos/>, consultadas em 17/11/2026 (lista completa, com hash por página, em `03-generative-ai/corpus/fontes.csv`).
 
 Referências técnicas (conferir os links antes de entregar):
 
-- Radford, A. et al. *Robust Speech Recognition via Large-Scale Weak Supervision* (Whisper), 2022. https://arxiv.org/abs/2212.04356
-- Wang, L. et al. *Multilingual E5 Text Embeddings: A Technical Report*, 2024. https://arxiv.org/abs/2402.05672
-- faster-whisper (SYSTRAN), pacote `faster-whisper` 1.2.1. https://pypi.org/project/faster-whisper/
-- piper-tts 1.8.0. https://pypi.org/project/piper-tts/
-- edge-tts 7.3.1. https://pypi.org/project/edge-tts/
-- jiwer 4.0.0, cálculo do WER. https://pypi.org/project/jiwer/
-- Ollama v0.40.16, execução local dos modelos Qwen2.5. https://ollama.com
-- Brasil. *Lei nº 13.709, de 14 de agosto de 2018* (Lei Geral de Proteção de Dados Pessoais). https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm
-- ONU Brasil. *Objetivos de Desenvolvimento Sustentável 10 e 16*. https://brasil.un.org/pt-br/sdgs
+- Radford, A. et al. *Robust Speech Recognition via Large-Scale Weak Supervision* (Whisper), 2022. <https://arxiv.org/abs/2212.04356>
+- Wang, L. et al. *Multilingual E5 Text Embeddings: A Technical Report*, 2024. <https://arxiv.org/abs/2402.05672>
+- faster-whisper (SYSTRAN), pacote `faster-whisper` 1.2.1. <https://pypi.org/project/faster-whisper/>
+- piper-tts 1.8.0. <https://pypi.org/project/piper-tts/>
+- edge-tts 7.3.1. <https://pypi.org/project/edge-tts/>
+- jiwer 4.0.0, cálculo do WER. <https://pypi.org/project/jiwer/>
+- Ollama v0.40.16, execução local dos modelos Qwen2.5. <https://ollama.com>
+- Brasil. *Lei nº 13.709, de 14 de agosto de 2018* (Lei Geral de Proteção de Dados Pessoais). <https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm>
+- ONU Brasil. *Objetivos de Desenvolvimento Sustentável 10 e 16*. <https://brasil.un.org/pt-br/sdgs>
 
 ## Anexos
 
