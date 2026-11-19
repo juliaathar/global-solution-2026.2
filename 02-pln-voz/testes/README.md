@@ -55,7 +55,14 @@ python testes/avaliar_llm.py --llm ollama:qwen2.5:3b --llm groq:llama-3.1-8b-ins
 - `esperado` usa `;` para E e `|` para OU (sem diferença de acento ou caixa). É uma aproximação: leia a lista de erros e, se a resposta estiver certa com outras palavras, escreva `1` em `acerto_manual` em `evidencias/llm_resultados.csv` (ou `0`, para derrubar um acerto falso). A coluna manual prevalece no resumo.
 - Os tipos são `normal`, `continuacao`, `fora_escopo` (deve recusar e encaminhar) e `sem_resposta` (tema certo, mas a base não tem o dado, então deve dizer que não sabe).
 - **Base de conhecimento:** o padrão agora é o RAG da pasta 03 (`BASE_CONHECIMENTO=rag`), e `perguntas_llm.csv`, `perguntas_fuga.csv` e `conversas_e2e.csv` foram escritos com fatos do corpus oficial de SJC (cada palavra esperada foi conferida no texto da página). Os arquivos `*_base_ficticia.csv` guardam as perguntas antigas, escritas para a base fictícia; para reproduzir os resultados antigos use `BASE_CONHECIMENTO=stub` e `--perguntas testes/perguntas_llm_base_ficticia.csv`.
-- **Pendente:** rodar `python testes/avaliar_llm.py --llm ollama:qwen2.5:3b --llm ollama:qwen2.5:1.5b` (e depois `--perguntas testes/perguntas_fuga.csv --saida evidencias/fuga_rag`) com o Ollama no ar, revisar a coluna `acerto_manual` e atualizar o relatório.
+- **Como reproduzir a avaliação do LLM (base real):** com o Ollama no ar (`ollama serve`) e os modelos baixados (`ollama pull qwen2.5:3b` e `ollama pull qwen2.5:1.5b`), rode a partir de `02-pln-voz/`:
+  ```bash
+  export LLM_TIMEOUT_S=900 OLLAMA_URL=http://127.0.0.1:11434   # em CPU o modelo frio leva mais de 2 minutos para responder
+  python testes/avaliar_llm.py --retomar --llm ollama:qwen2.5:3b
+  python testes/avaliar_llm.py --retomar --llm ollama:qwen2.5:3b --perguntas testes/perguntas_fuga.csv --saida evidencias/fuga_rag
+  python testes/avaliar_llm.py --retomar --llm ollama:qwen2.5:1.5b
+  ```
+  O progresso é gravado após cada pergunta e `--retomar` continua de onde parou (conversas já concluídas e sem erro são puladas), então uma interrupção não perde o trabalho. Uma falha do LLM numa pergunta vira um resultado com `motivo` "erro" e a rodada segue. Aqueça o modelo antes de medir (uma chamada qualquer), para o carregamento não entrar na latência. Depois leia as respostas contra as páginas e preencha `acerto_manual`; `--so-resumir` recalcula o resumo.
 
 ## 3. TTS
 

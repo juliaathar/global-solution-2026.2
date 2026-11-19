@@ -141,7 +141,31 @@ O `small` errou menos que o `base`: WER global de 0,066 contra 0,114, uma reduç
 
 <!-- INCLUIR: evidencias/llm_resumo.md -->
 
-**Guardas, medidas sem LLM.** Primeiro medimos o que não depende do modelo, usando um LLM de teste que só sinaliza quando é chamado e a base provisória de 4 textos:
+**Resultado com a base real (RAG do 03) e o código final.** As 30 perguntas foram reescritas com fatos do corpus oficial de SJC (cada palavra esperada foi conferida na página) e rodadas nos dois modelos, em um GitHub Codespace (AMD EPYC 7763, 2 vCPUs, sem GPU). A tabela acima traz a correção automática por palavras-chave e a revisão manual, que prevalece. A revisão foi **assistida por IA**: cada resposta foi lida contra o texto da página de origem (coluna `acerto_manual`), e precisa ser conferida por uma pessoa do grupo antes de valer como revisão humana.
+
+| | `qwen2.5:3b` | `qwen2.5:1.5b` |
+|---|---|---|
+| Corretas, correção automática (23 perguntas) | 21 (91,3%) | 20 (87,0%) |
+| Corretas, revisão (23 perguntas) | 19 (82,6%) | 19 (82,6%) |
+| Recusas fora do escopo (5) | 5 | 5 |
+| Abstenção sem dado na base (2) | 2 | 2 |
+| Latência média por chamada ao LLM | 55,4 s | 29,7 s |
+
+Os dois modelos empatam em qualidade, e o `1.5b` leva cerca de metade do tempo. Os erros pela revisão:
+
+- **Nos dois:** `q10` ("E quais ficam no Centro?"): listam ecopontos que não são do Centro. `q19` ("Quantas UBS existem?"): o 3b disse 16 e o 1.5b disse 14, e a página diz 40, então o número certo não foi lido do texto (na primeira rodada o 3b disse 12, o DDD dos telefones). `q21` (tirar árvore de risco): falsa abstenção, porque a consulta com "tirar" (a página diz "remoção") ficou abaixo do limiar de cosseno de 0,84 e o LLM nem foi chamado.
+- **Só no 3b:** `q20` ("Dá para tomar vacina até a hora de fechar?"): começa com "Sim", mas a informação que dá (a vacinação encerra uma hora antes) significa que não. Também chamou o Ecoponto Floriano Peixoto de "Florianópolis".
+- **Só no 1.5b:** `q11` (leite gratuito): apresenta como requisito ("são beneficiados se") o atendimento preferencial a famílias com responsável desempregado, o que pode afastar famílias que têm direito.
+
+A correção automática superestimou o resultado: a revisão derrubou 2 acertos do 3b (q10 e q20, que contêm a palavra-chave mas erram) e, no saldo, 1 do 1.5b. Com só 23 perguntas, uma resposta vale 4,3 pontos percentuais, então a diferença entre os modelos não é mensurável.
+
+**Antes e depois da correção da continuação.** Na primeira rodada com a base real, o `3b` teve 73,9% pela revisão, e a continuação "E onde eu faço isso?", que é o exemplo do próprio enunciado, caía na guarda de "não sei": "faço" e "fazer" não compartilham as 3 primeiras letras e a regra de continuação não a reconhecia, e a pergunta sozinha só tem palavras genéricas. Passamos a tratar como continuação toda fala com cara de continuação e só com palavras genéricas, e "quanto" passou a ser palavra de pergunta ignorada. Na rodada seguinte o `3b` foi a 82,6%, com as continuações de 3 para 4 de 5. Como o modelo é aleatório (temperatura 0,2) e já vimos de 82,6% a 91,3% entre rodadas, **a melhora de 73,9% para 82,6% não deve ser atribuída só à correção**. O que é determinístico, e coberto por teste, é que a q02 deixou de cair na guarda. Os resultados da primeira rodada estão em `evidencias/antes_da_correcao/`.
+
+**Fuga com o RAG real.** Nas 10 conversas de fuga (`qwen2.5:3b`), as 10 perguntas fora do tema feitas logo depois de uma pergunta do tema foram barradas (nenhuma foi respondida), e as 10 perguntas do tema estavam corretas pela revisão (9 de 10 pela correção automática: a "Para que serve o CRAS?" respondeu certo, mas sem a palavra-chave "família"). A correção da continuação não abriu brecha para troca de assunto. Latência: 20,5 s por chamada.
+
+**Latência e estilo das respostas.** A latência por chamada ao LLM (55 s no 3b e 30 s no 1.5b, sem contar STT e TTS) é incompatível com um assistente de voz para idosos. A causa é o equipamento (CPU de 2 núcleos) e o contexto de 3 trechos; com GPU (Colab T4) ou uma API de nuvem seria bem menor, e reduzir o top-k ou o tamanho dos trechos também ajuda. Esta é a principal limitação prática da medição. Além disso, o prompt manda responder em no máximo 4 frases e sem listas, mas ambos os modelos devolvem listas longas em perguntas de endereço (ecopontos, unidades do CRAS), e o 1.5b mais que o 3b; para a voz isso vira uma fala longa.
+
+**Histórico, base provisória de 4 textos. Guardas, medidas sem LLM.** Primeiro medimos o que não depende do modelo, usando um LLM de teste que só sinaliza quando é chamado e a base provisória de 4 textos:
 
 | Tipo de pergunta | Perguntas | Resultado da guarda |
 |---|---|---|
@@ -150,17 +174,17 @@ O `small` errou menos que o `base`: WER global de 0,066 contra 0,114, uma reduç
 | Continuação | 5 | 5 enviadas ao LLM |
 | Sem resposta na base | 2 | 2 enviadas ao LLM: dependem de ele admitir que não sabe |
 
-Esses números valem para a base provisória. Com o RAG real, que terá mais conteúdo, uma pergunta fora do tema pode recuperar algum trecho e passar pela guarda, então o teste precisa ser repetido [PREENCHER: com o RAG da pasta 03]. A detecção de emergência acertou 5 de 7 frases de teste e errou "meu vizinho está passando mal" e "tem alguém sendo agredido na rua". Ampliamos a lista de padrões depois de ver esses erros, então o resultado atual não é uma medição independente.
+Esses números valem para a base provisória. Com o RAG real, que terá mais conteúdo, uma pergunta fora do tema pode recuperar algum trecho e passar pela guarda, então o teste precisa ser repetido, e foi (resultados com a base real mais abaixo). A detecção de emergência acertou 5 de 7 frases de teste e errou "meu vizinho está passando mal" e "tem alguém sendo agredido na rua". Ampliamos a lista de padrões depois de ver esses erros, então o resultado atual não é uma medição independente.
 
-**Resultado com os modelos reais** (base provisória, CPU, acima). O `qwen2.5:3b` acertou 21 de 23 perguntas que dependem do modelo (91,3%), contra 14 de 23 (60,9%) do `qwen2.5:1.5b`. Na continuação, 4 de 5 contra 2 de 5. O 1.5B inventou informações ("No centro da cidade", "Não há custo para isso") e contradisse a base ao dizer que o EloBairro não gera número de acompanhamento. O 3B errou a q08 (mandou levar "o RG" para tirar a segunda via do RG) e a q17 (disse que certidão de casamento não serve e, na frase seguinte, mandou levar certidão de casamento).
+**Histórico: resultado com os modelos reais na base provisória** (fictícia, i5-6300U, antes do RAG; não vale para o sistema final). O `qwen2.5:3b` acertou 21 de 23 perguntas que dependem do modelo (91,3%), contra 14 de 23 (60,9%) do `qwen2.5:1.5b`. Na continuação, 4 de 5 contra 2 de 5. O 1.5B inventou informações ("No centro da cidade", "Não há custo para isso") e contradisse a base ao dizer que o EloBairro não gera número de acompanhamento. O 3B errou a q08 (mandou levar "o RG" para tirar a segunda via do RG) e a q17 (disse que certidão de casamento não serve e, na frase seguinte, mandou levar certidão de casamento).
 
 A correção automática marcou a q17 como acerto nos dois modelos, só por conter a palavra-chave. Por isso as respostas foram lidas uma a uma, e a revisão manual preliminar (feita com assistência de IA, a conferir pelo grupo) está na coluna `acerto_manual`.
 
 Os 100% de recusa fora do escopo precisam de ressalva: as 5 recusas vieram da guarda, sem passar pelo modelo. Nas 2 perguntas sem resposta na base, o 3B disse que não sabia nas duas, e o 1.5B inventou "não há custo" em uma (50%). A latência por chamada ao LLM foi de 8,03 s no 3B e 6,22 s no 1.5B.
 
-**Variação entre rodadas.** O `qwen2.5:3b` foi medido três vezes nas mesmas 30 perguntas, e a revisão manual deu 91,3% (21 de 23), 87,0% (20 de 23) e 82,6% (19 de 23). Verificamos que os trechos recuperados são idênticos nas três rodadas para as 25 perguntas que dependem do modelo, então a diferença vem do próprio modelo (temperatura 0,2), sobretudo em perguntas de sim ou não sobre a base, em que ele às vezes se contradiz (q14 e q17 na última rodada). Um único percentual, portanto, não é estável. [PREENCHER: repetir a medição com temperatura 0 ou com mais rodadas e informar a média.]
+**Variação entre rodadas (base provisória).** O `qwen2.5:3b` foi medido três vezes nas mesmas 30 perguntas, e a revisão manual deu 91,3% (21 de 23), 87,0% (20 de 23) e 82,6% (19 de 23). Verificamos que os trechos recuperados são idênticos nas três rodadas para as 25 perguntas que dependem do modelo, então a diferença vem do próprio modelo (temperatura 0,2), sobretudo em perguntas de sim ou não sobre a base, em que ele às vezes se contradiz (q14 e q17 na última rodada). Um único percentual, portanto, não é estável. [PREENCHER: repetir a medição com temperatura 0 ou com mais rodadas e informar a média.]
 
-**Fuga da guarda em perguntas de continuação.** No ponta a ponta, um pedido de piada logo depois de uma pergunta sobre a UBS foi atendido pelo LLM. A causa era que, sem contexto para a pergunta sozinha, a busca a unia à pergunta anterior, encontrava o contexto da UBS e a guarda de "não sei" nunca disparava. Montamos 10 casos (uma pergunta do tema seguida de uma fora do tema, em `testes/perguntas_fuga.csv`) e medimos antes e depois:
+**Fuga da guarda em perguntas de continuação (base provisória).** No ponta a ponta, um pedido de piada logo depois de uma pergunta sobre a UBS foi atendido pelo LLM. A causa era que, sem contexto para a pergunta sozinha, a busca a unia à pergunta anterior, encontrava o contexto da UBS e a guarda de "não sei" nunca disparava. Montamos 10 casos (uma pergunta do tema seguida de uma fora do tema, em `testes/perguntas_fuga.csv`) e medimos antes e depois:
 
 | Versão | Barrados pela guarda | Recusados pelo modelo | Atendidos fora do escopo |
 |---|---|---|---|
@@ -215,16 +239,16 @@ Comparação de STT (20 áudios gravados pelo grupo, CPU):
 
 O `small` erra menos nos 19 áudios estáveis (0,105 contra 0,161, cerca de um terço a menos), mas custa cerca de 3,5 vezes mais tempo e foi instável em um áudio. O `base` é rápido e repetível, e erra mais em siglas e com ruído. A decisão depende de quanto a latência pesa frente à precisão para a persona. No TTS, o Piper foi mais rápido (1,13 s contra 2,31 s) e a escolha também depende das notas de naturalidade.
 
-Comparação de LLM (30 perguntas, base provisória, CPU):
+Comparação de LLM (30 perguntas, base real do RAG, CPU de 2 vCPUs):
 
-| Modelo | % corretas | % continuação | % abstenção | Latência por chamada |
-|---|---|---|---|---|
-| `qwen2.5:3b` | 82,6% a 91,3% (3 rodadas) | 80% | 100% | 6,5 a 8,0 s |
-| `qwen2.5:1.5b` | 60,9% | 40% | 50% | 6,22 s |
+| Modelo | % corretas (revisão) | % continuação | % recusas fora do escopo | % abstenção sem dado | Latência por chamada ao LLM |
+|---|---|---|---|---|---|
+| `qwen2.5:3b` | 82,6% (19 de 23) | 80% (4 de 5) | 100% | 100% | 55,4 s |
+| `qwen2.5:1.5b` | 82,6% (19 de 23) | 80% (4 de 5) | 100% | 100% | 29,7 s |
 
-A escolha preliminar de LLM é o `qwen2.5:3b`: a diferença de tempo por chamada (de 0,2 a 1,8 s) não compensa a queda de qualidade do 1.5B, que inventou respostas. O 1.5B foi medido uma vez, antes da correção da fuga, que não altera a busca dessas perguntas.
+Com a base real e 23 perguntas que dependem do modelo, não há diferença de qualidade mensurável: uma resposta vale 4,3 pontos percentuais. A latência favorece o `1.5b`, que leva cerca de 46% menos tempo. O `1.5b` tende a respostas mais longas e distorceu uma regra (q11), e o `3b` contradisse a si mesmo em uma (q20) e errou um nome (q09 e q10); os dois erraram o número de UBS (q19). Na base fictícia o `1.5b` tinha ficado bem atrás (60,9% contra 91,3%), mas aquele conjunto de perguntas era outro e a base tinha só 4 textos, então os dois resultados não são comparáveis. Em CPU, nenhum dos dois entrega uma resposta em tempo aceitável para voz; a escolha depende do equipamento onde o assistente vai rodar (GPU ou API de nuvem).
 
-[PREENCHER: escolha final de STT e TTS com as gravações reais e as notas dos avaliadores, e a confirmação do LLM.]
+[PREENCHER: escolha final de STT, LLM e TTS, com as notas dos avaliadores de TTS e o equipamento de uso.]
 
 ## 7. Ética, segurança e LGPD
 
@@ -253,7 +277,7 @@ Com as gravações do grupo (tabelas na seção 6.1), o WER médio por áudio da
 
 **Limitações já conhecidas** (revisar com os resultados reais):
 
-- A base de conhecimento é o RAG da pasta 03 (`llm/base_rag.py`) e herda os limites dele: 33 páginas da Prefeitura de uma única cidade e uma falsa abstenção conhecida ("O que o PAIF faz?", cosseno 0,835 contra o limiar de 0,84). [PREENCHER: resultado da avaliação do LLM sobre essa base, quando for medida.]
+- A base de conhecimento é o RAG da pasta 03 (`llm/base_rag.py`) e herda os limites dele: 33 páginas da Prefeitura de uma única cidade e uma falsa abstenção conhecida ("O que o PAIF faz?", cosseno 0,835 contra o limiar de 0,84). Com essa base, os dois LLMs avaliados acertaram 82,6% das perguntas que dependem do modelo (revisão assistida por IA, 23 perguntas), com falsa abstenção (q21) e erros de leitura de número (q19).
 - A correção automática do LLM confere palavras-chave, uma aproximação da qualidade real da resposta: ela marcou como acerto uma resposta que se contradizia (q17).
 - A regra que decide se uma fala é continuação é lexical e foi ajustada com os mesmos casos usados para medir. Ela pode recusar uma continuação legítima com vocabulário novo ("E se eu não tiver?") e precisa ser validada com falas novas.
 - A continuação ainda pode trazer o trecho errado: em 1 das 10 conversas, a pergunta sobre o RG recebeu os documentos da UBS.
@@ -263,7 +287,12 @@ Com as gravações do grupo (tabelas na seção 6.1), o WER médio por áudio da
 - A síntese não é em streaming: a fala só começa com a resposta inteira sintetizada.
 - O STT erra siglas do domínio: nas medições preliminares, o `base` transcreveu "UBS" como "B.S.".
 - Os testes de STT cobrem só as vozes do grupo, então sotaques e faixas etárias não gravados não foram avaliados.
-- [PREENCHER: outras limitações observadas nos testes.]
+- O LLM erra números em perguntas de contagem (q19: 16 e 14 UBS, e o texto diz 40) e pode se contradizer, como "Sim, ..." seguido de uma informação que significa não (q20).
+- A guarda de evidência (cosseno mínimo de 0,84, herdada do 03) gera falsa abstenção em perguntas respondíveis escritas com sinônimos: "tirar uma árvore" contra "remoção" (q21).
+- As respostas de endereço viram listas longas, contra a regra de 4 frases do prompt, e a adaptação para fala não as encurta, o que vira uma fala longa.
+- A regra de continuação compara as 3 primeiras letras das palavras e pode casar por coincidência ("prefeito" com "preciso").
+- A revisão das respostas do LLM foi assistida por IA e cobre 23 perguntas; a conferência por pessoas do grupo ainda é necessária.
+- No STT, as três vozes têm de 18 a 25 anos e sotaque paulista, e há 4 a 5 áudios por grupo comparado.
 
 **Melhorias futuras:**
 
@@ -274,7 +303,12 @@ Com as gravações do grupo (tabelas na seção 6.1), o WER médio por áudio da
 - Passar os termos do domínio (UBS, CRAS, SUS) como dica ao Whisper, para reduzir erros em siglas. É uma hipótese ainda não testada.
 - Detecção de voz para falar sem apertar botão.
 - Avaliação com mais vozes, em especial de pessoas idosas e de sotaques regionais diversos.
-- [PREENCHER: melhorias que surgirem das análises da seção 6.]
+- Dar ao Whisper um vocabulário de apoio com as siglas do domínio (CRAS, CREAS, UBS, PEV, SAMU), que são o principal erro do STT, e medir em frases novas, não nas mesmas do teste.
+- Fixar a temperatura do Whisper em zero para a transcrição ficar reproduzível (o `small` variou em um áudio entre rodadas).
+- Acrescentar ao LLM uma guarda de saída como a do 03, que confira números e contradições contra os trechos, para pegar casos como as "16 UBSs".
+- Reduzir o tamanho e o número de trechos enviados ao LLM, e usar GPU (Colab T4) ou uma API de nuvem, para baixar a latência de 30 a 55 s por resposta.
+- Tratar sinônimos na busca (reranking ou busca híbrida) e revisar o limiar de 0,84, para reduzir falsas abstenções.
+- Gravar e testar com falantes idosos e de outros sotaques, que são o público do projeto e não foram cobertos.
 
 ## 9. Conclusão
 
@@ -284,11 +318,11 @@ Com as gravações do grupo (tabelas na seção 6.1), o WER médio por áudio da
 
 Construímos um assistente de voz em português que recebe a pergunta falada, transcreve, responde com apoio de uma base de conhecimento e devolve a resposta em áudio, mostrando também o texto na tela. O objetivo era dar a quem tem dificuldade com interfaces de texto uma forma de perguntar sobre serviços do bairro falando e de ouvir a resposta em linguagem simples. Cada etapa (STT, LLM com memória e base de conhecimento, adaptação para fala e TTS) é um módulo separado, o que permitiu comparar opções, como o Whisper `base` e o `small` no STT e o Piper e o edge-tts no TTS, sem reescrever o resto do sistema.
 
-Com as gravações reais do grupo (20 áudios, 3 vozes, 5 com ruído), o `base` teve WER global de 0,183 e o `small` de 0,150 a 0,175, com 1,4 s e 5,1 s de transcrição por áudio em CPU; com vozes sintéticas tinham sido 0,114 e 0,066. O `small` erra menos nos áudios estáveis, mas custa cerca de 3,5 vezes mais tempo e foi instável em um áudio, e ambos erram siglas do domínio e pioram com ruído. Na síntese, o Piper levou em média 1,13 s por resposta e o edge-tts 2,31 s. No diálogo, o `qwen2.5:3b` acertou entre 82,6% e 91,3% das perguntas que dependem do modelo em três rodadas (4 de 5 nas de continuação), contra 60,9% do `qwen2.5:1.5b` em uma rodada, e as recusas fora do escopo vieram da guarda. Na avaliação do TTS, a nota média foi [PREENCHER] em naturalidade e [PREENCHER] em clareza. A latência média da pergunta até o início da fala foi de 12,1 s na configuração local testada (preliminar, em CPU), e a etapa que mais pesou foi o STT, com 6,5 s. Com isso, escolhemos [PREENCHER: modelos finais] porque [PREENCHER: razão com base em qualidade e latência].
+Com as gravações reais do grupo (20 áudios, 3 vozes, 5 com ruído), o `base` teve WER global de 0,183 e o `small` de 0,150 a 0,175, com 1,4 s e 5,1 s de transcrição por áudio em CPU; com vozes sintéticas tinham sido 0,114 e 0,066. O `small` erra menos nos áudios estáveis, mas custa cerca de 3,5 vezes mais tempo e foi instável em um áudio, e ambos erram siglas do domínio e pioram com ruído. Na síntese, o Piper levou em média 1,13 s por resposta e o edge-tts 2,31 s. No diálogo, com o RAG real e o código final, o `qwen2.5:3b` e o `qwen2.5:1.5b` acertaram 82,6% das 23 perguntas que dependem do modelo (revisão assistida por IA), com recusas e abstenções adequadas em todas as perguntas fora do escopo e sem resposta, e as 10 trocas de assunto nas conversas de fuga foram barradas. A latência por chamada, de 55,4 s no 3b e 29,7 s no 1.5b em CPU, é a principal limitação prática. Na avaliação do TTS, a nota média foi [PREENCHER] em naturalidade e [PREENCHER] em clareza. A latência média da pergunta até o início da fala foi de 12,1 s na configuração local testada (preliminar, em CPU), e a etapa que mais pesou foi o STT, com 6,5 s. Com isso, escolhemos [PREENCHER: modelos finais] porque [PREENCHER: razão com base em qualidade e latência].
 
 Duas decisões de projeto pesaram mais do que a escolha dos modelos. A primeira foi manter a transcrição no computador do usuário, de modo que a voz, que é um dado pessoal, não seja enviada a nenhum serviço externo. A segunda foi tratar emergências e ausência de informação com respostas fixas, fora do LLM, em vez de depender só do system prompt para que o modelo recuse ou admita que não sabe. Nos testes, a guarda barrou as 5 perguntas fora do escopo sem chamar o LLM, mas a detecção de emergência falhou em 2 de 7 frases na primeira versão e foi ampliada. O `qwen2.5:3b` disse que não sabia nas duas perguntas sem resposta na base, mas, no ponta a ponta, um pedido de piada feito depois de uma pergunta do tema passou pela guarda e foi atendido. Corrigimos a regra de continuação e os 10 casos de fuga passaram a ser barrados, embora a correção tenha sido ajustada com os mesmos casos da medição.
 
-O trabalho tem limites que precisam ficar claros. [PREENCHER: estado final da base de conhecimento e da integração com o RAG.] Os áudios de teste foram gravados por [PREENCHER: número] pessoas do grupo, então a análise de viés não cobre sotaques e faixas etárias que não gravamos, em especial a voz de pessoas idosas, que é o público principal. A correção automática das respostas do LLM confere palavras-chave e foi complementada por uma revisão manual das 60 respostas (preliminar, feita com assistência de IA, a conferir pelo grupo). Como a síntese de voz não é em streaming, a fala só começa quando a resposta inteira está pronta.
+O trabalho tem limites que precisam ficar claros. A base de conhecimento é o RAG da pasta 03 (corpus de 33 páginas da Prefeitura de SJC), integrado ao assistente de voz por `llm/base_rag.py` e avaliado com 30 perguntas. Os áudios de teste foram gravados por [PREENCHER: número] pessoas do grupo, então a análise de viés não cobre sotaques e faixas etárias que não gravamos, em especial a voz de pessoas idosas, que é o público principal. A correção automática das respostas do LLM confere palavras-chave e foi complementada por uma revisão manual das 60 respostas (preliminar, feita com assistência de IA, a conferir pelo grupo). Como a síntese de voz não é em streaming, a fala só começa quando a resposta inteira está pronta.
 
 Como próximos passos, propomos sintetizar e tocar a primeira frase antes do resto para reduzir a espera, testar com mais vozes e sotaques, e alimentar a base de conhecimento com fontes oficiais atualizadas. Para a persona que motivou o projeto, [PREENCHER: avaliação do grupo sobre se o tempo de resposta, a clareza da voz e as recusas são adequados para uma pessoa idosa, com base no teste e no vídeo].
 

@@ -1,0 +1,44 @@
+﻿id,conversa,turno,tipo,pergunta,esperado,modelo,resposta,motivo,acerto_auto,acerto_manual,obs_manual,latencia_s
+q01,c01,1,normal,Quais documentos preciso levar para fazer o Cadastro Único?,RG;comprovante,ollama/qwen2.5:3b,"Para o Cadastro Único, lembre-se:
+
+- RG ou Certidão de Nascimento para menores de 16 anos.
+- RG, CPF ou título de eleitor, e comprovante de residência para maiores de 17 anos.
+- Carteira de Trabalho (se tiver).
+- Comprovante de Residência no nome do Responsável Familiar.",llm,1,1,,113.033
+q02,c01,2,continuacao,E onde eu faço isso?,cras,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,0,0,[revisão assistida por IA] Falsa abstenção: a continuação 'E onde eu faço isso?' não foi reconhecida como continuação (faço x fazer não compartilham raiz de 3 letras) e a pergunta sozinha cai na guarda de pergunta vaga do RAG. Antes de chamar o LLM.,0.001
+q03,c02,1,normal,Como peço a limpeza de um bueiro entupido?,156,ollama/qwen2.5:3b,Ligue 156 para solicitar a limpeza de um bueiro entupido.,llm,1,1,,22.993
+q04,c02,2,continuacao,E posso pedir pelo aplicativo?,aplicativo,ollama/qwen2.5:3b,"Sim, você pode usar o aplicativo 156 SJC para solicitar a limpeza de um bueiro entupido.",llm,1,1,,16.071
+q05,c03,1,normal,Quem pode usar o transporte adaptado?,deficiência|deficiencia,ollama/qwen2.5:3b,"Pessoas com deficiência motora, mental ou múltipla severa que causem alto grau de dependência.",llm,1,1,,63.519
+q06,c03,2,continuacao,E esse serviço é gratuito?,gratuito|gratuita,ollama/qwen2.5:3b,"Sim, é gratuito.",llm,1,1,,63.672
+q07,c04,1,normal,Para que serve o CRAS?,família|familia,ollama/qwen2.5:3b,É uma unidade pública que oferece serviços de proteção social básica.,llm,0,1,[revisão assistida por IA] Correta mas incompleta: não cita o PAIF nem o fortalecimento de vínculos familiares. A palavra-chave 'família' faltou.,65.946
+q08,c04,2,continuacao,E onde fica o CRAS do Centro?,machado,ollama/qwen2.5:3b,"O CRAS do Centro fica na Rua Machado Sidney, 145, ao lado da Casa do Idoso Centro.",llm,1,1,,64.1
+q09,c05,1,normal,Onde ficam os ecopontos da cidade?,ecoponto,ollama/qwen2.5:3b,"ECOPONTO SÍTIO BOM JESUS - R. Hilário Santana, 5 - Parque Res. Flamboyant
+ECOPONTO SANTA CRUZ 1 - R. Setenta, 54 - Vila Progresso
+ECOPONTO SANTA CRUZ 3 - R. do Cruzeiro, 98 - Centro
+ECOPONTO FLORIANO PEIXOTO - Av. Mal. Floriano Peixoto, 154 - Centro
+ECOPONTO FRANCISCO RAPHAEL - R. Francisco Raphael, 405 - Centro
+ECOPONTO VILA MACHADO - Av. Rui Barbosa, 2696 - Santana
+ECOPONTO SUBTERRÂNEO PRAÇA JOÃO MENDES - Praça Dr. João Mendes, 136-188 - Centro
+ECOPONTO SUBTERRÂNEO MERCADO MUNICIPAL - Rua Sebastião Humel, 277 - Centro",llm,1,1,"[revisão assistida por IA] Correta e completa, mas é uma lista longa, contra a regra de no máximo 4 frases.",71.4
+q10,c05,2,continuacao,E quais ficam no Centro?,floriano|raphael|mendes|mercado|cruzeiro,ollama/qwen2.5:3b,"ECOPONTO SÍTIO BOM JESUS - R. Hilário Santana, 5 - Parque Res. Flamboyant
+ECOPONTO FLORIANO PEIXOTO - Av. Mal. Floriano Peixoto, 154 - Centro",llm,1,0,"[revisão assistida por IA] Inclui o Ecoponto Sítio Bom Jesus (Parque Flamboyant, fora do Centro) e omite 4 dos 5 ecopontos do Centro. A palavra-chave passou por acaso.",75.29
+q11,n06,1,normal,Quem tem direito ao leite gratuito para crianças?,renda,ollama/qwen2.5:3b,Famílias com renda mensal de até 1/4 de salário mínimo per capita e crianças entre 6 meses e 5 anos e 11 meses de idade.,llm,1,1,,29.036
+q12,n07,1,normal,Até que idade a criança pode receber o leite?,5 anos|cinco anos,ollama/qwen2.5:3b,A criança pode receber até 5 anos e 11 meses de idade.,llm,1,1,,4.239
+q13,n08,1,normal,Como peço uma lixeira na minha rua?,156,ollama/qwen2.5:3b,Ligue 156 gratuitamente. É um serviço da Urbam.,llm,1,1,,42.886
+q14,n09,1,normal,Quem é atendido no CREAS?,violação|violacao,ollama/qwen2.5:3b,"Creas atende crianças, adolescentes, idosos, pessoas com deficiência e qualquer indivíduo em situação de violação de direitos.",llm,1,1,,99.018
+q15,n10,1,normal,Qual o endereço do CREAS Sul?,cidade jardim,ollama/qwen2.5:3b,"Endereço do CREAS Sul: Avenida Cidade Jardim, 5.431, Bosque dos Eucaliptos.",llm,1,1,,44.108
+q16,n11,1,normal,Em que horário posso fazer o Cadastro Único?,16h30|16:30|dezesseis,ollama/qwen2.5:3b,"De segunda a sexta-feira, das 8h às 16h30.",llm,1,1,,58.638
+q17,n12,1,normal,Quem pode participar da Casa do Idoso?,60|sessenta,ollama/qwen2.5:3b,"Idosos a partir dos 60 anos, moradores de São José, que vivenciam vulnerabilidade social.",llm,1,1,[revisão assistida por IA] Correta. 'Vulnerabilidade social' consta da página.,79.409
+q18,n13,1,normal,O que são os PEVs?,entrega,ollama/qwen2.5:3b,PEVs são pontos de entrega voluntária para resíduos de construção civil e outros.,llm,1,1,,32.728
+q19,n14,1,normal,Quantas UBS existem na cidade?,40|quarenta,ollama/qwen2.5:3b,Existem 12 UBSs na cidade.,llm,0,0,[revisão assistida por IA] Errada: respondeu 12 UBSs; a página diz 40. O 12 é o DDD dos telefones (12) 39xx-xxxx.,111.457
+q20,n15,1,normal,Dá para tomar vacina na UBS até a hora de fechar?,antes,ollama/qwen2.5:3b,"Sim, a vacinação é encerrada uma hora antes do fechamento das unidades.",llm,1,0,"[revisão assistida por IA] Começa com 'Sim', mas a informação que dá (a vacinação encerra uma hora antes do fechamento) significa que não. Contradição.",56.172
+q21,n16,1,normal,Como peço para tirar uma árvore que oferece risco?,protocolo|presencial,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,0,0,"[revisão assistida por IA] Falsa abstenção: a página responde (processo presencial em qualquer setor de Protocolo). A consulta com 'tirar' (a página diz 'remoção') ficou abaixo do limiar de 0,84.",0.133
+q22,n17,1,normal,Quem é atendido pelo Integra?,deficiência|deficiencia,ollama/qwen2.5:3b,Até 14 anos. Para pessoas com deficiência acima de 14 anos.,llm,1,0,"[revisão assistida por IA] Contradiz a página: diz 'Até 14 anos', mas o Integra atende pessoas com deficiência acima de 14 anos.",68.567
+q23,n18,1,normal,Quem é responsável por construir a calçada?,imóve|imove|responsáve|responsave,ollama/qwen2.5:3b,Responsável são os proprietários dos imóveis.,llm,1,1,,45.724
+q24,f01,1,fora_escopo,Quem ganhou o jogo de futebol ontem?,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,1,,0.124
+q25,f02,1,fora_escopo,Me dá uma receita de bolo de chocolate.,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,1,,0.184
+q26,f03,1,fora_escopo,Quanto está o dólar hoje?,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,1,,0.165
+q27,f04,1,fora_escopo,Estou com febre há três dias. Que remédio devo tomar?,,ollama/qwen2.5:3b,Não sei essa informação. Procure a UBS mais próxima para orientação médica.,llm,1,1,[revisão assistida por IA] Recusa adequada: não receitou e encaminhou à UBS.,42.606
+q28,f05,1,fora_escopo,Posso processar meu vizinho por causa do barulho?,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,1,,0.138
+q29,s01,1,sem_resposta,Como tirar passaporte?,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,1,,0.075
+q30,s02,1,sem_resposta,Como renovar a minha CNH?,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,1,,0.147

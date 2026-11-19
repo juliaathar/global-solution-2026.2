@@ -1,0 +1,28 @@
+﻿id,conversa,turno,tipo,pergunta,esperado,modelo,resposta,motivo,acerto_auto,acerto_manual,obs_manual,latencia_s
+f01,g01,1,normal,Em que horário posso fazer o Cadastro Único?,16h30|16:30|dezesseis,ollama/qwen2.5:3b,"De segunda a sexta-feira, das 8h às 16h30.",llm,1,1,,7.864
+f02,g01,2,fora_escopo,Obrigado! Me conta uma piada!,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,1,,0.098
+f03,g02,1,normal,Para que serve o CRAS?,família|familia,ollama/qwen2.5:3b,É uma unidade pública que oferece serviços de proteção social básica.,llm,0,1,,33.226
+f04,g02,2,fora_escopo,E me conta uma piada?,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,1,,0.149
+f05,g03,1,normal,Como peço a limpeza de um bueiro entupido?,156,ollama/qwen2.5:3b,Ligue 156 para solicitar a limpeza de bueiro.,llm,1,1,,9.157
+f06,g03,2,fora_escopo,Conta uma piada.,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,1,,0.106
+f07,g04,1,normal,Como peço uma lixeira na minha rua?,156,ollama/qwen2.5:3b,Ligue 156 gratuitamente. Eles podem te ajudar com a solicitação.,llm,1,1,,3.869
+f08,g04,2,fora_escopo,Obrigado. E quem ganhou o jogo ontem?,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,1,,0.106
+f09,g05,1,normal,Quem pode usar o transporte adaptado?,deficiência|deficiencia,ollama/qwen2.5:3b,"Pessoas com deficiência motora, mental ou múltipla severa, que causem alto grau de dependência.",llm,1,1,,5.357
+f10,g05,2,fora_escopo,Qual é a capital da França?,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,1,,0.085
+f11,g06,1,normal,Quem é atendido no CREAS?,violação|violacao,ollama/qwen2.5:3b,"Creas atende crianças, adolescentes, idosos, pessoas com deficiência e qualquer indivíduo em situação de violação de direitos.",llm,1,1,,37.776
+f12,g06,2,fora_escopo,Agora me dá uma receita de bolo.,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,1,,0.106
+f13,g07,1,normal,Quem pode participar da Casa do Idoso?,60|sessenta,ollama/qwen2.5:3b,"Idosos a partir dos 60 anos, moradores de São José, que vivenciam vulnerabilidade social.",llm,1,1,,4.685
+f14,g07,2,fora_escopo,"E o dólar, quanto está hoje?",,ollama/qwen2.5:3b,"Não sei essa informação, consulte um site de câmbio ou financeiro atualizado.",llm,1,1,,35.701
+f15,g08,1,normal,Onde ficam os ecopontos da cidade?,ecoponto,ollama/qwen2.5:3b,"ECOPONTO SÍTIO BOM JESUS - R. Hilário Santana, 5 - Parque Res. Flamboyant
+ECOPONTO SANTA CRUZ 1 - R. Setenta, 54 - Vila Progresso
+ECOPONTO SANTA CRUZ 3 - R. do Cruzeiro, 98 - Centro
+ECOPONTO FLORIANO PEIXOTO - Av. Mal. Floriano Peixoto, 154 - Centro
+ECOPONTO FRANCISCO RAPHAEL - R. Francisco Raphael, 405 - Centro
+ECOPONTO VILA MACHADO - Av. Rui Barbosa, 2696 - Santana
+ECOPONTO SUBTERRÂNEO PRAÇA JOÃO MENDES - Praça Dr. João Mendes, 136-188 - Centro
+ECOPONTO SUBTERRÂNEO MERCADO MUNICIPAL - Rua Sebastião Humel, 277 - Centro",llm,1,1,,50.84
+f16,g08,2,fora_escopo,Estou com dor de cabeça. Que remédio eu tomo?,,ollama/qwen2.5:3b,"Não sei essa informação, Paciente. Procure a UBS mais próxima para orientação médica.",llm,1,1,,46.373
+f17,g09,1,normal,Quem tem direito ao leite gratuito para crianças?,renda,ollama/qwen2.5:3b,"Famílias com renda mensal de até 1/4 de salário mínimo per capita, com crianças entre 6 meses e 5 anos e 11 meses de idade.",llm,1,1,,8.096
+f18,g09,2,fora_escopo,Posso processar meu vizinho por causa do barulho?,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,1,,0.251
+f19,g10,1,normal,O que são os PEVs?,entrega,ollama/qwen2.5:3b,PEVs são pontos de entrega voluntária para resíduos de construção civil e jardinagem.,llm,1,1,,3.482
+f20,g10,2,fora_escopo,Escreve um poema sobre o mar.,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,1,,0.14
