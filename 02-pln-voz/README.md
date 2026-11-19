@@ -178,8 +178,8 @@ Legenda: [x] feito e verificado, [~] código escrito, mas ainda não verificado 
 - [x] Executar os testes com dados reais: STT (20 áudios), LLM (30 perguntas, 2 modelos, 10 conversas de fuga), TTS (6 avaliadores) e ponta a ponta (10 conversas, 30 gravações, 2 configurações)
 - [x] Comparar duas opções em um componente: `base` contra `small` (STT, 20 gravações reais), `3b` contra `1.5b` (LLM, base real) e Piper contra `edge-tts` (TTS, avaliação cega): empate nas notas, com diferenças de latência e de privacidade
 - [x] README com arquitetura, modelos, versões e licenças
-- [~] Relatório em PDF: texto, ODS, evidência do problema (IBGE), referências e diagrama prontos (`relatorio/figuras/arquitetura.png`); `python relatorio/gerar_pdf.py` gera o PDF final quando não houver mais `[PREENCHER]` (hoje restam os que dependem das gravações, das notas do TTS, da avaliação do LLM com a base real e do vídeo)
-- [ ] Vídeo de até 5 min: conversa de 3 turnos com continuação e recusa
+- [x] Relatório em PDF: `relatorio/relatorio_pln_voz.pdf`, gerado de `relatorio/relatorio.md` por `python relatorio/gerar_pdf.py`
+- [x] Vídeo de até 5 min: conversa de 3 turnos com continuação e recusa, publicado como não listado no YouTube: https://youtu.be/RJKlXz8Ev5U (roteiro em `relatorio/roteiro_video.md`)
 
 ## Limitações conhecidas
 
