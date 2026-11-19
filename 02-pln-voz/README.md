@@ -67,11 +67,11 @@ As informações do domínio (horários de UBS, documentos para segunda via, ben
 
 | Etapa | Padrão no `.env.example` | Motivo |
 |---|---|---|
-| STT | local (faster-whisper) | a **voz do usuário não sai do computador**, o que é o dado mais sensível |
-| LLM | Ollama local por padrão, com API de nuvem opcional | local protege a pergunta; a nuvem responde mais rápido em máquina sem GPU |
-| TTS | Piper (local) ou edge-tts (nuvem) | edge-tts soa mais natural, mas envia o **texto da resposta** à Microsoft |
+| STT | local (faster-whisper `small`) | a **voz do usuário não sai do computador**, o que é o dado mais sensível |
+| LLM | Ollama local, `qwen2.5:1.5b` (nuvem opcional) | local protege a pergunta; empata em qualidade com o `3b` e leva metade do tempo em CPU |
+| TTS | Piper (local) | empatou nas notas com o edge-tts, é 2× mais rápido e não envia o **texto da resposta** à Microsoft |
 
-A escolha final entre as opções será justificada pelas medições de qualidade e latência (veja [Testes](#testes-e-métricas)). Quando algum serviço de nuvem está ativo, a tela de consentimento avisa o que é enviado.
+**Escolha final:** Whisper `small`, `qwen2.5:1.5b` e Piper, justificada pelas medições de qualidade e latência (veja [Testes](#testes-e-métricas) e as seções 6.5 e 9 do relatório). São os padrões do `config.py`; o `.env.example` da raiz pode sobrescrevê-los. Quando algum serviço de nuvem está ativo, a tela de consentimento avisa o que é enviado.
 
 ## Modelos, versões e licenças
 
@@ -84,7 +84,7 @@ Versões e licenças dos pacotes foram consultadas no PyPI em 17/11/2026. Os mod
 | edge-tts | 7.3.1 | LGPL-3.0 | usa o serviço online do Microsoft Edge: conferir os termos de uso do serviço |
 | piper-tts | 1.8.0 | GPL-3.0-ou-posterior | motor local |
 | Voz Piper `pt_BR-faber-medium` | n/d | CC0 (dataset, segundo o cartão da voz) | voz sintética pronta, sem clonagem |
-| LLM `qwen2.5:3b` (padrão) e `qwen2.5:1.5b`, via Ollama | Ollama 0.40.16 | conferir | o 3B usa a licença Qwen Research (restrita a uso não comercial): confirmar no cartão do modelo, assim como a do 1.5B |
+| LLM `qwen2.5:1.5b` (padrão) e `qwen2.5:3b`, via Ollama | Ollama 0.40.16 | conferir | o 3B usa a licença Qwen Research (restrita a uso não comercial): confirmar no cartão do modelo, assim como a do 1.5B |
 | OpenAI, Groq e Gemini (opcionais) | API | termos do provedor | enviam o texto da pergunta |
 | gradio | testado com 5.50.0; `requirements.txt` aceita >=5, <6 | Apache-2.0 | |
 | jiwer | 4.0.0 | Apache-2.0 | WER |
@@ -107,9 +107,9 @@ pip install -r requirements.txt
 cp ../.env.example ../.env      # edite: LLM_PROVIDER, LLM_MODEL, LLM_API_KEY, STT_MODEL, TTS_ENGINE
 ```
 
-**LLM local:** instale o [Ollama](https://ollama.com) e baixe o modelo, por exemplo `ollama pull qwen2.5:3b`. No Windows também funciona o pacote portátil `ollama-windows-amd64.zip`, sem instalador: extraia, rode `ollama serve` e depois `ollama pull`.
+**LLM local:** instale o [Ollama](https://ollama.com) e baixe o modelo, `ollama pull qwen2.5:1.5b` (o padrão; para comparar, também `ollama pull qwen2.5:3b`). No Windows também funciona o pacote portátil `ollama-windows-amd64.zip`, sem instalador: extraia, rode `ollama serve` e depois `ollama pull`.
 **LLM em nuvem:** coloque `LLM_PROVIDER=openai` (ou `groq`, `gemini`) e a chave em `LLM_API_KEY` no `.env`. O `.env` não é versionado.
-**Voz Piper (opcional):** baixe a voz nesta pasta.
+**Voz Piper (necessária com o padrão, que usa o Piper):** baixe a voz nesta pasta.
 
 ```bash
 python -m piper.download_voices pt_BR-faber-medium
