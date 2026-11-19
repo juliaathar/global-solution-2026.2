@@ -83,7 +83,7 @@ O STT e o Piper rodam no computador, sem custo por uso. O edge-tts não exigiu c
 
 ### 4.2 Por que RAG
 
-As informações do domínio (horários, documentos exigidos, benefícios) mudam e precisam ser confiáveis. Com RAG, o conteúdo fica em uma base que se atualiza sem retreinar, o LLM responde só com trechos recuperados, e cada resposta pode ser rastreada até uma fonte. Fine-tuning exigiria dados e GPU e deixaria a informação congelada no modelo; colocar todo o conteúdo no prompt não cabe quando a base cresce. [PREENCHER: corpus usado, fontes e quantidade de trechos, vindos da pasta 03.]
+As informações do domínio (horários, documentos exigidos, benefícios) mudam e precisam ser confiáveis. Com RAG, o conteúdo fica em uma base que se atualiza sem retreinar, o LLM responde só com trechos recuperados, e cada resposta pode ser rastreada até uma fonte. Fine-tuning exigiria dados e GPU e deixaria a informação congelada no modelo; colocar todo o conteúdo no prompt não cabe quando a base cresce. O corpus tem 33 páginas de serviços da Prefeitura de São José dos Campos, consultadas em 17/11/2026 (lista, com hash por página, em `03-generative-ai/corpus/fontes.csv`). Elas foram divididas em 125 trechos por seção, com o título da página no começo de cada um, e a busca é vetorial (embeddings `multilingual-e5-large`, top-3), com abstenção quando o cosseno do melhor trecho é menor que 0,84.
 
 ### 4.3 Modelos, versões e licenças
 
@@ -182,7 +182,7 @@ A correção automática marcou a q17 como acerto nos dois modelos, só por cont
 
 Os 100% de recusa fora do escopo precisam de ressalva: as 5 recusas vieram da guarda, sem passar pelo modelo. Nas 2 perguntas sem resposta na base, o 3B disse que não sabia nas duas, e o 1.5B inventou "não há custo" em uma (50%). A latência por chamada ao LLM foi de 8,03 s no 3B e 6,22 s no 1.5B.
 
-**Variação entre rodadas (base provisória).** O `qwen2.5:3b` foi medido três vezes nas mesmas 30 perguntas, e a revisão manual deu 91,3% (21 de 23), 87,0% (20 de 23) e 82,6% (19 de 23). Verificamos que os trechos recuperados são idênticos nas três rodadas para as 25 perguntas que dependem do modelo, então a diferença vem do próprio modelo (temperatura 0,2), sobretudo em perguntas de sim ou não sobre a base, em que ele às vezes se contradiz (q14 e q17 na última rodada). Um único percentual, portanto, não é estável. [PREENCHER: repetir a medição com temperatura 0 ou com mais rodadas e informar a média.]
+**Variação entre rodadas (base provisória).** O `qwen2.5:3b` foi medido três vezes nas mesmas 30 perguntas, e a revisão manual deu 91,3% (21 de 23), 87,0% (20 de 23) e 82,6% (19 de 23). Verificamos que os trechos recuperados são idênticos nas três rodadas para as 25 perguntas que dependem do modelo, então a diferença vem do próprio modelo (temperatura 0,2), sobretudo em perguntas de sim ou não sobre a base, em que ele às vezes se contradiz (q14 e q17 na última rodada). Um único percentual, portanto, não é estável. Com a base real a medição foi repetida (duas rodadas do `qwen2.5:3b`, em versões diferentes do código, na seção 6.2), e a variação entre rodadas continua sendo um limite: com o modelo aleatório (temperatura 0,2) e 23 perguntas, diferenças de uma ou duas respostas não são conclusivas.
 
 **Fuga da guarda em perguntas de continuação (base provisória).** No ponta a ponta, um pedido de piada logo depois de uma pergunta sobre a UBS foi atendido pelo LLM. A causa era que, sem contexto para a pergunta sozinha, a busca a unia à pergunta anterior, encontrava o contexto da UBS e a guarda de "não sei" nunca disparava. Montamos 10 casos (uma pergunta do tema seguida de uma fora do tema, em `testes/perguntas_fuga.csv`) e medimos antes e depois:
 
@@ -192,7 +192,7 @@ Os 100% de recusa fora do escopo precisam de ressalva: as 5 recusas vieram da gu
 | Só a regra de continuação | 7 | 1 | 2 |
 | Regra, checagem de assunto e palavras vazias | 10 | 0 | 0 |
 
-Pelo critério automático, no caso do vizinho barulhento o modelo deu um conselho e encaminhou à Defensoria, e isso entrou como "atendido". A regra final reaproveita a pergunta anterior só se a fala parecer continuação (começa com "e", "mas" ou "então", ou usa "isso", "ela", "lá" e palavras parecidas) **e** dividir alguma palavra com a conversa anterior. Os dois furos da versão intermediária foram "E me conta uma piada?", que parecia continuação, e um pedido de poema, que casava com a palavra "sobre" do texto do CRAS. As 5 continuações do conjunto de 30 perguntas seguem funcionando. O custo é que continuações legítimas com vocabulário novo ("E se eu não tiver?") agora recebem "não tenho essa informação". A regra foi ajustada com os mesmos casos usados para medir, então o 10 de 10 é otimista. [PREENCHER: testar com falas novas escritas pelo grupo.]
+Pelo critério automático, no caso do vizinho barulhento o modelo deu um conselho e encaminhou à Defensoria, e isso entrou como "atendido". A regra final reaproveita a pergunta anterior só se a fala parecer continuação (começa com "e", "mas" ou "então", ou usa "isso", "ela", "lá" e palavras parecidas) **e** dividir alguma palavra com a conversa anterior. Os dois furos da versão intermediária foram "E me conta uma piada?", que parecia continuação, e um pedido de poema, que casava com a palavra "sobre" do texto do CRAS. As 5 continuações do conjunto de 30 perguntas seguem funcionando. O custo é que continuações legítimas com vocabulário novo ("E se eu não tiver?") agora recebem "não tenho essa informação". A regra foi ajustada com os mesmos casos usados para medir, então o 10 de 10 é otimista. Falas novas, escritas por outras pessoas, ainda não foram testadas.
 
 ### 6.3 TTS
 
@@ -255,7 +255,7 @@ A B leva mais turnos ao LLM (20 contra 14 na A), e por isso o total médio sobe:
 
 <!-- INCLUIR: evidencias/sintetico/e2e_resumo.md -->
 
-A pergunta levou em média 12,1 s até o início da fala, com máximo de 18,6 s. O STT é a etapa mais pesada (6,5 s, cerca de metade do total), seguido do LLM (4,5 s). A adaptação não pesa e o Piper levou 1,1 s. O LLM foi chamado em 19 dos 30 turnos; nos outros 11, a guarda respondeu na hora. Na primeira medição, antes da correção da fuga da guarda (seção 6.2), o total foi de 14,2 s (máximo de 25,0 s), com o LLM chamado em 24 turnos. A média caiu porque a guarda passou a responder mais turnos sem o modelo, e não porque o sistema ficou mais rápido. Na medição isolada do STT, o `base` levou 2,1 s contra 6,9 s do `small`, então trocá-lo reduziria a espera, ao custo de mais erros de transcrição. Para uma pessoa que espera a resposta falada, 12 s ainda é um tempo longo. [PREENCHER: avaliação do grupo sobre se esse tempo é aceitável para a persona, e a medição com as gravações reais.]
+A pergunta levou em média 12,1 s até o início da fala, com máximo de 18,6 s. O STT é a etapa mais pesada (6,5 s, cerca de metade do total), seguido do LLM (4,5 s). A adaptação não pesa e o Piper levou 1,1 s. O LLM foi chamado em 19 dos 30 turnos; nos outros 11, a guarda respondeu na hora. Na primeira medição, antes da correção da fuga da guarda (seção 6.2), o total foi de 14,2 s (máximo de 25,0 s), com o LLM chamado em 24 turnos. A média caiu porque a guarda passou a responder mais turnos sem o modelo, e não porque o sistema ficou mais rápido. Na medição isolada do STT, o `base` levou 2,1 s contra 6,9 s do `small`, então trocá-lo reduziria a espera, ao custo de mais erros de transcrição. Para uma pessoa que espera a resposta falada, 12 s ainda é um tempo longo. A medição com as gravações reais está no começo desta seção (17,8 s em média na configuração local e 45,1 s na padrão, de 34,5 s a 64,3 s nos turnos que chamam o LLM). Esse tempo não é aceitável para a persona, como discutido acima.
 
 **O que a leitura das respostas mostrou (medição sintética).** O script mede tempo, não correção, mas as respostas mostram o comportamento do sistema:
 
@@ -294,12 +294,22 @@ Com a base real e 23 perguntas que dependem do modelo, não há diferença de qu
 
 | Cuidado | O que o sistema faz | Como foi verificado |
 |---|---|---|
-| Consentimento | a interface só libera o uso depois de o usuário marcar que leu o aviso, que diz o que é gravado e o que sai do computador | [PREENCHER: print da tela de aviso] |
+| Consentimento | a interface só libera o uso depois de o usuário marcar que leu o aviso, que diz o que é gravado e o que sai do computador | texto do aviso logo abaixo |
 | Retenção mínima | o áudio do usuário é apagado logo após a transcrição; só as 5 últimas respostas sintetizadas ficam em disco; o log de latência guarda só números | verificado em um turno real com Whisper e com os dois TTS: o arquivo de áudio de entrada deixou de existir depois da transcrição |
-| Uso de nuvem | o áudio nunca é enviado; com LLM em nuvem o texto da pergunta é enviado, e com edge-tts o texto da resposta é enviado; o aviso informa isso | [PREENCHER] |
+| Uso de nuvem | o áudio nunca é enviado; com LLM em nuvem o texto da pergunta é enviado, e com edge-tts o texto da resposta é enviado; o aviso informa isso | texto do aviso logo abaixo |
 | Limites do assistente | recusa fora do tema, não dá diagnóstico nem parecer jurídico, encaminha emergência para 192, 193 e 190 | as 5 perguntas fora do escopo foram recusadas pela guarda (seção 6.2), com a base provisória. Um pedido de piada feito logo depois de uma pergunta do tema chegou a ser atendido pelo LLM; depois da correção da seção 6.2, os 10 casos de fuga foram barrados |
 | Alucinação | sem trecho recuperado, o LLM nem é chamado e a resposta diz que não sabe | sem trecho recuperado, a guarda responde que não sabe (5 de 5 perguntas fora do escopo). As 2 perguntas sem resposta na base chegaram ao LLM: o `qwen2.5:3b` respondeu que não sabia nas duas (q29 e q30); o `qwen2.5:1.5b` inventou "não há custo" na q30 |
 | Clonagem de voz | só vozes sintéticas prontas | voz `pt_BR-faber-medium` do Piper e vozes do edge-tts |
+
+**Texto do aviso de consentimento.** É o texto que a função `texto_consentimento` de `app.py` gera (não é um print de tela do app em execução). Ele aparece antes do primeiro uso, e o uso só é liberado depois de a pessoa marcar que leu. O aviso muda conforme a configuração: com tudo local ele não cita envio de dados; com o `edge-tts` ele diz que o texto da resposta é enviado à Microsoft; com um LLM em nuvem ele diz também que o texto da pergunta é enviado. O texto abaixo é o da configuração padrão (`edge-tts` com LLM local):
+
+> ### Antes de começar
+>
+> - Sua **voz será gravada e processada** para responder à sua pergunta.
+> - A transcrição é feita **neste computador** (faster-whisper `small`). O áudio é **apagado logo depois** de virar texto.
+> - A voz que responde é **sintética**, não é a voz de nenhuma pessoa real.
+> - **Internet:** o **texto da resposta** é enviado ao serviço de voz `edge-tts` (Microsoft). Seu áudio não é enviado. Não diga nome completo, CPF, endereço ou dados de saúde.
+> - Este assistente **não substitui** médico, advogado ou atendimento de emergência. Em emergência, ligue 192, 193 ou 190.
 
 ### 7.1 Análise de viés do STT
 
@@ -362,7 +372,7 @@ Com as gravações reais do grupo (20 áudios, 3 vozes, 5 com ruído), o `base` 
 
 Duas decisões de projeto pesaram mais do que a escolha dos modelos. A primeira foi manter a transcrição no computador do usuário, de modo que a voz, que é um dado pessoal, não seja enviada a nenhum serviço externo. A segunda foi tratar emergências e ausência de informação com respostas fixas, fora do LLM, em vez de depender só do system prompt para que o modelo recuse ou admita que não sabe. Nos testes, a guarda barrou as 5 perguntas fora do escopo sem chamar o LLM, mas a detecção de emergência falhou em 2 de 7 frases na primeira versão e foi ampliada. O `qwen2.5:3b` disse que não sabia nas duas perguntas sem resposta na base, mas, no ponta a ponta, um pedido de piada feito depois de uma pergunta do tema passou pela guarda e foi atendido. Corrigimos a regra de continuação e os 10 casos de fuga passaram a ser barrados, embora a correção tenha sido ajustada com os mesmos casos da medição.
 
-O trabalho tem limites que precisam ficar claros. A base de conhecimento é o RAG da pasta 03 (corpus de 33 páginas da Prefeitura de SJC), integrado ao assistente de voz por `llm/base_rag.py` e avaliado com 30 perguntas. Os áudios de teste foram gravados por [PREENCHER: número] pessoas do grupo, então a análise de viés não cobre sotaques e faixas etárias que não gravamos, em especial a voz de pessoas idosas, que é o público principal. A correção automática das respostas do LLM confere palavras-chave e foi complementada por uma revisão manual das 60 respostas (preliminar, feita com assistência de IA, a conferir pelo grupo). Como a síntese de voz não é em streaming, a fala só começa quando a resposta inteira está pronta.
+O trabalho tem limites que precisam ficar claros. A base de conhecimento é o RAG da pasta 03 (corpus de 33 páginas da Prefeitura de SJC), integrado ao assistente de voz por `llm/base_rag.py` e avaliado com 30 perguntas. Os áudios de teste foram gravados por 3 pessoas do grupo, então a análise de viés não cobre sotaques e faixas etárias que não gravamos, em especial a voz de pessoas idosas, que é o público principal. A correção automática das respostas do LLM confere palavras-chave e foi complementada por uma revisão manual das 60 respostas (preliminar, feita com assistência de IA, a conferir pelo grupo). Como a síntese de voz não é em streaming, a fala só começa quando a resposta inteira está pronta.
 
 Como próximos passos, propomos sintetizar e tocar a primeira frase antes do resto para reduzir a espera, testar com mais vozes e sotaques, e alimentar a base de conhecimento com fontes oficiais atualizadas. Para a persona que motivou o projeto, [PREENCHER: avaliação do grupo sobre se o tempo de resposta, a clareza da voz e as recusas são adequados para uma pessoa idosa, com base no teste e no vídeo].
 
