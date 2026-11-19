@@ -14,7 +14,7 @@ Legenda: [x] feito e verificado, [~] feito em parte, [ ] a fazer.
 - [~] Latência média por imagem e FPS, com equipamento e resolução: medido (CPU i5-6300U), mas com vídeo sintético. Repetir com vídeo real
 - [x] Justificativa de arquitetura, pré-processamento e limiar de confiança (`relatorio/relatorio_visao.md`)
 - [x] Aviso: fissura na imagem não define gravidade nem segurança estrutural: na API (`aviso`) e fixo na tela
-- [~] Vídeo de demonstração e relatório breve: relatório escrito (`relatorio/relatorio_visao.md`, com a latência de vídeo real ainda a preencher); falta gravar o vídeo
+- [x] Vídeo de demonstração e relatório breve: relatório em `relatorio/relatorio_visao.md` (a latência com vídeo real continua a preencher) e vídeo publicado como não listado no YouTube: https://www.youtube.com/watch?v=sOFx6vsD0AY
 
 ## Resultados medidos (conjunto de teste, 600 imagens)
 

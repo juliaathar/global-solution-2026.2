@@ -2,6 +2,7 @@
 
 Projeto EloBairro, Global Solution 2026.2 (FIAP, CitizenTech). Disciplina de Visão Computacional.
 Integrantes: Bruno Fernandes Nascimento (RM 552574), Edgar Lódula de Assis (RM 565260) e Júlia Aben-Athar (RM 566325).
+Vídeo de demonstração (não listado no YouTube): https://www.youtube.com/watch?v=sOFx6vsD0AY
 
 > **Aviso de triagem.** O módulo sinaliza locais que merecem inspeção. A presença de fissura na imagem, isoladamente, **não define a gravidade do dano nem a segurança estrutural** da edificação. Esse aviso aparece na resposta da API (`aviso`) e fixo na tela do app.
 
