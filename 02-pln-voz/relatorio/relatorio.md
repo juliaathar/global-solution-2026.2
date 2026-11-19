@@ -110,7 +110,7 @@ Versões usadas nas medições (a tabela completa, com licenças, está no `READ
 | TTS | 10 respostas avaliadas por 3 pessoas | naturalidade e clareza, de 1 a 5 |
 | Ponta a ponta | 10 conversas de 3 turnos ou mais | latência por etapa e total |
 
-- **Áudios do STT:** o enunciado pede 20 áudios gravados pelo grupo. [PREENCHER: quem gravou, quantas vozes, idade e sotaque, aparelho, ambiente, fonte do ruído de fundo e a confirmação de que todos consentiram.] Enquanto essas gravações não existem, fizemos uma **medição preliminar com 20 áudios sintéticos**: as mesmas 20 frases lidas por três vozes do edge-tts (Francisca, Antonio e Thalita), com ruído branco a 10 dB de relação sinal-ruído em 5 deles (`testes/gerar_audios_sinteticos.py`). Vozes sintéticas são mais limpas que pessoas reais, então esses números tendem a ser mais otimistas e não dizem nada sobre sotaque ou idade.
+- **Áudios do STT:** o enunciado pede 20 áudios gravados pelo grupo. O conjunto final tem 20 áudios de 3 vozes, as dos três integrantes (A, B e C), com 5 áudios com ruído de fundo. Quinze são limpos e vêm das gravações das conversas de teste; os outros cinco (`stt_03`, `stt_07`, `stt_11`, `stt_15` e `stt_19`) foram gravados à parte, com ruído de fundo, todos pela voz A. Os 15 limpos foram escolhidos por uma regra definida antes de ver o WER (os cinco primeiros áudios de cada voz, na ordem das conversas), para não favorecer o resultado. As três pessoas têm de 18 a 25 anos, falam com sotaque paulista e confirmaram o consentimento para o uso das gravações no trabalho. Os arquivos do repositório são WAV de 16 kHz, mono, convertidos dos originais (m4a, WAV e aac do WhatsApp) por `testes/organizar_audios.py`, que também confere nível, duração e ruído de cada gravação: o piso de ruído dos cinco áudios ruidosos ficou entre −34 e −27 dBFS, contra −59 a −44 dBFS nas gravações limpas da voz A. [PREENCHER: aparelho, ambiente e fonte do ruído de fundo.] Antes das gravações reais, uma medição preliminar com 20 áudios sintéticos (as mesmas 20 frases lidas por três vozes do edge-tts, com ruído branco a 10 dB em 5 deles, `testes/gerar_audios_sinteticos.py`) serviu para validar os scripts. Vozes sintéticas são mais limpas que pessoas reais; esses resultados ficam em `evidencias/sintetico/` e não valem como resultado final.
 - **Perguntas do LLM:** 30 perguntas (18 normais, 5 de continuação, 5 fora do escopo e 2 sem resposta na base), com palavras-chave esperadas. Foram escritas a partir da base provisória de 4 textos, que são exemplos fictícios. A correção automática confere palavras-chave; as respostas foram lidas uma a uma, e a revisão manual preliminar (feita com assistência de IA, a conferir pelo grupo) está em `evidencias/llm_resultados.csv`, nas colunas `acerto_manual` e `obs_manual`.
 - **Avaliação do TTS:** [PREENCHER: quem avaliou, em que condições de escuta, e se os avaliadores sabiam qual motor estavam ouvindo.]
 - **Equipamento das medições:** Intel Core i5-6300U (2 núcleos, 4 threads), 16 GB de RAM, sem GPU, Windows 10, Python 3.13. O STT rodou localmente em CPU com `int8`; o edge-tts usou a internet. O LLM rodou localmente pelo Ollama 0.40.16 (`qwen2.5:3b` e `qwen2.5:1.5b`), em CPU. A rede só foi usada pelo edge-tts.
@@ -123,7 +123,13 @@ Versões usadas nas medições (a tabela completa, com licenças, está no `READ
 
 <!-- INCLUIR: evidencias/stt_resumo.md -->
 
-[PREENCHER: análise do resultado com as gravações reais do grupo.]
+Com as gravações reais, o WER global foi de 0,183 no `base` e de 0,175 no `small` (nesta rodada), contra 0,114 e 0,066 com vozes sintéticas: com pessoas reais o erro é bem maior. A latência média foi de 1,4 s no `base` e de 5,1 s no `small`, medida em um GitHub Codespace (AMD EPYC 7763, 2 vCPUs, sem GPU), não no i5-6300U das medições preliminares; o WER praticamente não depende da máquina, a latência sim.
+
+**O `small` variou entre rodadas em um áudio.** Em uma rodada anterior com os mesmos 20 áudios, o WER global do `small` foi 0,150. A diferença vem de um único áudio, o `stt_04` ("Quem ganhou o jogo ontem?"), que o `small` transcreveu como "O que que eu vou fazer?" (WER 1,2) e, ao repetir, como "O que é que é que é que é?" (WER 1,8). A gravação está normal (nível e ruído comparáveis aos das outras). O Whisper sorteia a decodificação quando a primeira tentativa falha, então um áudio difícil pode mudar de uma rodada para outra. O `base` repetiu exatamente as 20 transcrições. O WER do `small` deve ser lido como um intervalo (0,150 a 0,175) e não como um número único. Sem o `stt_04`, o WER médio por áudio é 0,105 no `small` e 0,161 no `base`.
+
+**Ruído.** Na mesma voz (A), sem o `stt_04`, o WER médio por áudio passa de 0,179 (limpos, n=4) para 0,280 (com ruído, n=5) no `base`, e de 0,081 para 0,189 no `small`: o ruído de fundo moderado aumentou o erro nos dois modelos. Incluindo o `stt_04`, o `small` parece não piorar com ruído (0,191 sem ruído contra 0,189 com ruído), mas isso é efeito desse áudio instável e não robustez. Com 4 a 5 áudios por grupo, o efeito é um indício e não uma medida precisa.
+
+**Onde erra.** Os erros se concentram em siglas e palavras curtas do domínio: "CRAS" virou "CRICE" e "Krais", e "PEVs" virou "peves". Isso importa para o assistente, porque uma sigla errada pode levar a busca a outro serviço. Uma melhoria futura é dar ao Whisper um vocabulário de apoio com as siglas do domínio; não testamos isso para não ajustar o sistema às mesmas frases usadas na medição.
 
 **Medição preliminar com áudios sintéticos.**
 
@@ -200,14 +206,14 @@ A pergunta levou em média 12,1 s até o início da fala, com máximo de 18,6 s.
 
 > **Escrever:** a comparação de pelo menos duas opções em um componente (por exemplo Whisper `base` contra `small`), e a decisão com base em qualidade e latência.
 
-Comparação preliminar de STT (20 áudios sintéticos, CPU):
+Comparação de STT (20 áudios gravados pelo grupo, CPU):
 
-| Modelo | WER global | Latência média (s) |
-|---|---|---|
-| faster-whisper `base` | 0,114 | 2,11 |
-| faster-whisper `small` | 0,066 | 6,86 |
+| Modelo | WER global | WER médio por áudio sem o `stt_04` (n=19) | Latência média (s) |
+|---|---|---|---|
+| faster-whisper `base` | 0,183 | 0,161 | 1,44 |
+| faster-whisper `small` | 0,150 a 0,175 (varia entre rodadas) | 0,105 | 5,09 |
 
-O `small` erra cerca de 42% menos e custa cerca de 3,3 vezes mais tempo. A decisão depende de quanto a latência pesa frente à precisão para a persona. No TTS, o Piper foi mais rápido (1,13 s contra 2,31 s) e a escolha também depende das notas de naturalidade.
+O `small` erra menos nos 19 áudios estáveis (0,105 contra 0,161, cerca de um terço a menos), mas custa cerca de 3,5 vezes mais tempo e foi instável em um áudio. O `base` é rápido e repetível, e erra mais em siglas e com ruído. A decisão depende de quanto a latência pesa frente à precisão para a persona. No TTS, o Piper foi mais rápido (1,13 s contra 2,31 s) e a escolha também depende das notas de naturalidade.
 
 Comparação de LLM (30 perguntas, base provisória, CPU):
 
@@ -237,9 +243,9 @@ A escolha preliminar de LLM é o `qwen2.5:3b`: a diferença de tempo por chamada
 
 > **Escrever:** diferenças de erro entre sotaques, idades e ruído, e o que isso significa para a persona.
 
-Na medição preliminar (vozes sintéticas), o WER variou entre as três vozes. No `base`: 0,208 (Francisca), 0,141 (Antonio) e 0,052 (Thalita). No `small`: 0,098, 0,082 e 0,012. Há diferença de desempenho até entre vozes sintéticas, com apenas 6 ou 7 áudios por voz, o que mostra a necessidade de testar com falantes variados. Vozes sintéticas não representam sotaques regionais nem a fala de pessoas idosas, então essa análise **não** cobre o viés que o enunciado pede.
+Com as gravações do grupo (tabelas na seção 6.1), o WER médio por áudio da voz A foi 0,252 no `base` e 0,307 no `small`, o da voz B 0,040 e 0,000, e o da voz C 0,147 nos dois. A voz A parece pior, mas metade dos seus áudios tem ruído de fundo e um deles é o `stt_04` instável. Só com os áudios limpos e sem o `stt_04` (n=4), a voz A fica em 0,179 no `base` e 0,081 no `small`, na faixa das outras. Com 5 a 10 áudios por voz e frases de 4 a 9 palavras, uma palavra errada muda o WER em 0,1 a 0,3, então **não dá para afirmar que o sistema trate melhor uma voz do que outra**.
 
-[PREENCHER: tabelas de WER por falante, ruído, faixa etária e sotaque com as gravações reais (vêm do `stt_resumo.md`), a interpretação e o limite da análise, que cobre só as vozes gravadas pelo grupo.]
+**Limite principal.** As três pessoas têm de 18 a 25 anos e sotaque paulista. A análise por faixa etária e por sotaque, que o enunciado pede, **não pôde ser feita**, porque não há variação, e a persona do projeto, uma pessoa idosa, **não está representada**: não sabemos como o STT se comporta com a fala de idosos ou com outros sotaques. Em uso real, é preciso testar com falantes mais velhos e de outras regiões antes de confiar no assistente para esse público. O ruído de fundo foi gravado só pela voz A: a comparação com e sem ruído é feita na mesma pessoa, mas não diz nada sobre o efeito do ruído nas outras vozes. As medições preliminares com vozes sintéticas (Francisca, Antonio e Thalita) mostraram diferença entre vozes que não reflete pessoas reais e não substituem essa análise.
 
 ## 8. Limitações e melhorias futuras
 
@@ -278,7 +284,7 @@ Na medição preliminar (vozes sintéticas), o WER variou entre as três vozes. 
 
 Construímos um assistente de voz em português que recebe a pergunta falada, transcreve, responde com apoio de uma base de conhecimento e devolve a resposta em áudio, mostrando também o texto na tela. O objetivo era dar a quem tem dificuldade com interfaces de texto uma forma de perguntar sobre serviços do bairro falando e de ouvir a resposta em linguagem simples. Cada etapa (STT, LLM com memória e base de conhecimento, adaptação para fala e TTS) é um módulo separado, o que permitiu comparar opções, como o Whisper `base` e o `small` no STT e o Piper e o edge-tts no TTS, sem reescrever o resto do sistema.
 
-Os testes preliminares, feitos com áudios sintéticos porque as gravações do grupo ainda não existem, mostraram que o `small` reduz o WER de 0,114 para 0,066 em relação ao `base`, ao custo de cerca de 3,3 vezes mais tempo de transcrição em CPU. Na síntese, o Piper levou em média 1,13 s por resposta e o edge-tts 2,31 s. [PREENCHER: resultado do STT com as gravações reais do grupo.] No diálogo, o `qwen2.5:3b` acertou entre 82,6% e 91,3% das perguntas que dependem do modelo em três rodadas (4 de 5 nas de continuação), contra 60,9% do `qwen2.5:1.5b` em uma rodada, e as recusas fora do escopo vieram da guarda. Na avaliação do TTS, a nota média foi [PREENCHER] em naturalidade e [PREENCHER] em clareza. A latência média da pergunta até o início da fala foi de 12,1 s na configuração local testada (preliminar, em CPU), e a etapa que mais pesou foi o STT, com 6,5 s. Com isso, escolhemos [PREENCHER: modelos finais] porque [PREENCHER: razão com base em qualidade e latência].
+Com as gravações reais do grupo (20 áudios, 3 vozes, 5 com ruído), o `base` teve WER global de 0,183 e o `small` de 0,150 a 0,175, com 1,4 s e 5,1 s de transcrição por áudio em CPU; com vozes sintéticas tinham sido 0,114 e 0,066. O `small` erra menos nos áudios estáveis, mas custa cerca de 3,5 vezes mais tempo e foi instável em um áudio, e ambos erram siglas do domínio e pioram com ruído. Na síntese, o Piper levou em média 1,13 s por resposta e o edge-tts 2,31 s. No diálogo, o `qwen2.5:3b` acertou entre 82,6% e 91,3% das perguntas que dependem do modelo em três rodadas (4 de 5 nas de continuação), contra 60,9% do `qwen2.5:1.5b` em uma rodada, e as recusas fora do escopo vieram da guarda. Na avaliação do TTS, a nota média foi [PREENCHER] em naturalidade e [PREENCHER] em clareza. A latência média da pergunta até o início da fala foi de 12,1 s na configuração local testada (preliminar, em CPU), e a etapa que mais pesou foi o STT, com 6,5 s. Com isso, escolhemos [PREENCHER: modelos finais] porque [PREENCHER: razão com base em qualidade e latência].
 
 Duas decisões de projeto pesaram mais do que a escolha dos modelos. A primeira foi manter a transcrição no computador do usuário, de modo que a voz, que é um dado pessoal, não seja enviada a nenhum serviço externo. A segunda foi tratar emergências e ausência de informação com respostas fixas, fora do LLM, em vez de depender só do system prompt para que o modelo recuse ou admita que não sabe. Nos testes, a guarda barrou as 5 perguntas fora do escopo sem chamar o LLM, mas a detecção de emergência falhou em 2 de 7 frases na primeira versão e foi ampliada. O `qwen2.5:3b` disse que não sabia nas duas perguntas sem resposta na base, mas, no ponta a ponta, um pedido de piada feito depois de uma pergunta do tema passou pela guarda e foi atendido. Corrigimos a regra de continuação e os 10 casos de fuga passaram a ser barrados, embora a correção tenha sido ajustada com os mesmos casos da medição.
 

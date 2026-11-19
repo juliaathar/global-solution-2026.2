@@ -10,7 +10,7 @@ Assistente que escuta o morador, entende o pedido com um LLM e responde falando,
 | Edgar Lódula de Assis | 565260 |
 | Júlia Aben-Athar | 566325 |
 
-> Estado: o código dos módulos, a interface e os scripts de teste estão prontos. STT, LLM e TTS já rodaram com modelos reais, mas só com **áudios sintéticos** (ainda não há gravações do grupo). A seção [Estado e checklist](#estado-e-checklist) diz o que foi verificado e o que falta.
+> Estado: o código dos módulos, a interface e os scripts de teste estão prontos. STT, LLM e TTS já rodaram com modelos reais. O STT já foi medido com **gravações reais do grupo** e as 30 falas das conversas estão gravadas; o LLM ainda não foi medido com a base real e o TTS ainda não tem as notas dos avaliadores. A seção [Estado e checklist](#estado-e-checklist) diz o que foi verificado e o que falta.
 
 ## Problema, persona e ODS
 
@@ -141,13 +141,13 @@ python -m unittest discover -s testes -v
 
 | Componente | Teste mínimo | Métrica | Script | Resultado |
 |---|---|---|---|---|
-| STT | 20 áudios, 3 vozes, 5 com ruído | WER (`jiwer`) | `testes/avaliar_stt.py` | preliminar (áudios sintéticos): WER global `base` 0,114 e `small` 0,066; latência 2,11 s e 6,86 s. Gravações reais: a medir |
+| STT | 20 áudios, 3 vozes, 5 com ruído | WER (`jiwer`) | `testes/avaliar_stt.py` | **20 gravações reais do grupo** (3 vozes, 5 com ruído): WER global `base` 0,183 e `small` 0,150 a 0,175 (o `small` varia entre rodadas por causa de um áudio, o `stt_04`); latência 1,44 s e 5,09 s no Codespace (AMD EPYC 7763, 2 vCPUs). Com vozes sintéticas tinha sido 0,114 e 0,066 |
 | LLM | 30 perguntas (5 de continuação, 5 fora do escopo) | % corretas e % de recusas adequadas | `testes/avaliar_llm.py` | **Base fictícia** (perguntas antigas em `testes/perguntas_llm_base_ficticia.csv`, rodar com `BASE_CONHECIMENTO=stub`): `qwen2.5:3b` 82,6% a 91,3% corretas em 3 rodadas (4 de 5 na continuação); `qwen2.5:1.5b` 60,9%; 5 de 5 recusas fora do escopo (pela guarda); fuga em continuação 10 de 10 barrados depois da correção (antes, 0 de 10). **Base real (RAG do 03): a medir.** As 30 perguntas em `testes/perguntas_llm.csv` já foram reescritas com fatos do corpus de SJC |
 | TTS | 10 respostas, 3 avaliadores | naturalidade e clareza (1 a 5) | `testes/avaliar_tts.py` | áudios gerados, sem notas ainda. Síntese média: Piper 1,13 s, edge-tts 2,31 s |
 | Ponta a ponta | 10 conversas de 3 turnos | latência por etapa e total | `testes/avaliar_e2e.py` | preliminar (falas sintéticas, 100% local): total médio 12,1 s (STT 6,5 s, LLM 4,5 s, TTS 1,1 s). Gravações reais: a medir |
 | Comparação | `base` contra `small` (STT), dois LLMs e dois TTS | qualidade e latência | os mesmos scripts | feita de forma preliminar nos três; repetir com dados reais |
 
-Resultados em `evidencias/` (CSV e resumo em Markdown). As medições preliminares com áudios sintéticos ficam separadas em `evidencias/sintetico/`. Foram feitas em um Intel Core i5-6300U (4 threads) com 16 GB de RAM, sem GPU, e valem para esse equipamento. Vozes sintéticas são mais limpas que pessoas reais, então o WER real tende a ser maior. Detalhes e análise em [relatorio/relatorio.md](relatorio/relatorio.md).
+Resultados em `evidencias/` (CSV e resumo em Markdown). As medições preliminares com áudios sintéticos ficam separadas em `evidencias/sintetico/`. Foram feitas em um Intel Core i5-6300U (4 threads) com 16 GB de RAM, sem GPU, e valem para esse equipamento. As medições de STT com gravações reais, de latência de 1,44 s e 5,09 s, foram feitas em um GitHub Codespace (AMD EPYC 7763, 2 vCPUs, 7,9 GB de RAM, Linux, sem GPU), não no i5: a latência vale para aquela máquina, e o WER praticamente não depende dela. Vozes sintéticas são mais limpas que pessoas reais, e o WER real foi de fato maior. Detalhes e análise em [relatorio/relatorio.md](relatorio/relatorio.md).
 
 ## Ética, segurança e LGPD
 
@@ -157,14 +157,14 @@ Resultados em `evidencias/` (CSV e resumo em Markdown). As medições preliminar
 - **Limites:** recusa fora do tema, não dá diagnóstico nem parecer jurídico, encaminha emergência (192, 193, 190) e diz "não sei" em vez de inventar.
 - **Sem voz clonada:** só vozes sintéticas prontas.
 - **Áudios de teste:** são gravações do próprio grupo, feitas com consentimento de quem falou, e não são apagadas pelos scripts de teste.
-- **Viés do STT:** o script de teste calcula o WER por falante, ruído, faixa etária e sotaque. A análise será escrita com os dados reais, e cobre só as vozes que o grupo gravar.
+- **Viés do STT:** o script calcula o WER por falante, ruído, faixa etária e sotaque. Com as gravações do grupo só deu para comparar voz e ruído: as três pessoas têm de 18 a 25 anos e sotaque paulista, então não há variação de idade nem de sotaque, e idosos (a persona) não estão representados. Detalhes na seção 7 do relatório.
 
 ## Estado e checklist
 
 Legenda: [x] feito e verificado, [~] código escrito, mas ainda não verificado com modelo real ou no navegador, [ ] a fazer.
 
 - [~] Captura por microfone e upload de áudio (interface verificada só em modo demonstração, e o microfone não foi gravado no navegador)
-- [x] STT em português (módulo separado), verificado com faster-whisper `base` e `small` em áudios sintéticos; falta testar com gravações reais
+- [x] STT em português (módulo separado), medido com faster-whisper `base` e `small` em 20 gravações reais do grupo (WER global 0,183 e 0,150 a 0,175) e verificado antes com áudios sintéticos
 - [x] LLM com system prompt (papel, tom, limites), executado com `qwen2.5:3b` e `qwen2.5:1.5b` via Ollama; erros analisados em `evidencias/llm_resultados.csv`
 - [x] Memória da conversa (perguntas de continuação), coberta por testes
 - [~] Base de conhecimento: RAG da pasta 03 integrado (`llm/base_rag.py`, 8 testes) e a recuperação conferida (trechos oficiais, abstenção em passaporte, piada e pergunta vaga). Falta rodar `avaliar_llm.py` com um LLM sobre a base real
@@ -173,9 +173,9 @@ Legenda: [x] feito e verificado, [~] código escrito, mas ainda não verificado 
 - [~] Interface mostra transcrição e resposta em texto, com o áudio, verificada em modo demonstração
 - [x] Latência por etapa e total, medida pelo pipeline (um turno real com Whisper e TTS verificado)
 - [x] LGPD: consentimento, retenção mínima (verificado: o áudio de entrada é apagado depois da transcrição), recusa fora do tema (guarda barrou 5 de 5 perguntas, com a base provisória) e sem voz clonada
-- [ ] LGPD: análise de viés do STT (depende dos áudios)
+- [~] LGPD: análise de viés do STT feita por voz e por ruído; por faixa etária e sotaque não é possível (as três vozes têm de 18 a 25 anos e sotaque paulista) e idosos não estão representados (relatório, seção 7)
 - [x] Scripts e dados de teste (STT, LLM, TTS, ponta a ponta), com 82 testes automáticos. Ferramentas prontas para quando os dados chegarem: `testes/organizar_audios.py` (converte e confere as gravações), `testes/tts_cego.py` (avaliação cega do TTS) e `relatorio/gerar_pdf.py` (PDF do relatório)
-- [~] Executar os testes com dados reais: o LLM está configurado e o ponta a ponta rodou com falas sintéticas; faltam 20 áudios de STT e 30 falas de ponta a ponta gravados pelo grupo e 3 avaliadores de TTS
+- [~] Executar os testes com dados reais: STT feito (20 áudios) e as 30 falas das conversas estão gravadas (`audios_teste/e2e/`); o ponta a ponta e o LLM com a base real precisam do Ollama na máquina de vocês; faltam as notas dos 3 avaliadores de TTS
 - [~] Comparar duas opções em um componente: `base` contra `small` (STT), `3b` contra `1.5b` (LLM) e Piper contra edge-tts (TTS), medidos de forma preliminar; repetir com dados reais
 - [x] README com arquitetura, modelos, versões e licenças
 - [~] Relatório em PDF: texto, ODS, evidência do problema (IBGE), referências e diagrama prontos (`relatorio/figuras/arquitetura.png`); `python relatorio/gerar_pdf.py` gera o PDF final quando não houver mais `[PREENCHER]` (hoje restam os que dependem das gravações, das notas do TTS, da avaliação do LLM com a base real e do vídeo)
