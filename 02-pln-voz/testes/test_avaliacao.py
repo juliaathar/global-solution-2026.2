@@ -125,6 +125,47 @@ class TesteLLM(unittest.TestCase):
         self.assertIn("falso", md)
         self.assertIn("Erros para análise", md)
 
+    def test_erro_do_llm_nao_derruba_a_rodada(self):
+        class LLMQuebrado:
+            nome = "quebrado"
+            def responder(self, system, historico, contexto):
+                raise TimeoutError("tempo esgotado")
+
+        linhas = [
+            {"id": "a1", "conversa": "c1", "turno": "1", "tipo": "normal", "pergunta": "Que horas a UBS abre?", "esperado": "sete"},
+            {"id": "a2", "conversa": "c2", "turno": "1", "tipo": "fora_escopo", "pergunta": "Quem ganhou o jogo ontem?", "esperado": ""},
+        ]
+        res = avaliar_llm.executar(LLMQuebrado(), BaseStub(), linhas)
+        por_id = {r["id"]: r for r in res}
+        self.assertEqual((por_id["a1"]["motivo"], por_id["a1"]["acerto_auto"]), ("erro", 0))
+        self.assertIn("TimeoutError", por_id["a1"]["resposta"])
+        self.assertEqual(por_id["a2"]["acerto_auto"], 1)  # a rodada seguiu: o fora do escopo nem chama o LLM
+
+    def test_progresso_e_gravado_a_cada_pergunta(self):
+        class LLM:
+            nome = "falso"
+            def responder(self, system, historico, contexto):
+                return "sete horas"
+
+        linhas = [{"id": f"p{i}", "conversa": f"c{i}", "turno": "1", "tipo": "normal",
+                   "pergunta": "Que horas a UBS abre?", "esperado": "sete"} for i in range(3)]
+        vistos = []
+        avaliar_llm.executar(LLM(), BaseStub(), linhas, ao_terminar=lambda r: vistos.append(r["id"]))
+        self.assertEqual(vistos, ["p0", "p1", "p2"])
+
+    def test_retomar_so_pula_conversas_completas_e_sem_erro(self):
+        linhas = [
+            {"id": "q1", "conversa": "c1", "turno": "1"}, {"id": "q2", "conversa": "c1", "turno": "2"},
+            {"id": "q3", "conversa": "c2", "turno": "1"}, {"id": "q4", "conversa": "c3", "turno": "1"},
+        ]
+        feitos = [
+            {"id": "q1", "conversa": "c1", "motivo": "llm"}, {"id": "q2", "conversa": "c1", "motivo": "llm"},  # completa
+            {"id": "q3", "conversa": "c2", "motivo": "erro"},                                                 # com erro
+        ]                                                                                                     # c3: não feita
+        self.assertEqual(avaliar_llm.conversas_completas(feitos, linhas), {"c1"})
+        # conversa pela metade (falta o turno 2) também é refeita inteira, porque a continuação precisa da memória
+        self.assertEqual(avaliar_llm.conversas_completas(feitos[:1], linhas), set())
+
     def test_acerto_manual_prevalece(self):
         r = {"acerto_auto": 0, "acerto_manual": "1"}
         self.assertTrue(avaliar_llm.acerto(r))
@@ -168,6 +209,45 @@ class TesteE2E(unittest.TestCase):
                 self.assertIn(etapa, md)
         from config import SAIDA_DIR
         shutil.rmtree(SAIDA_DIR, ignore_errors=True)
+
+    def _linhas_e_audios(self, d, n=2):
+        linhas = [l for l in ler_csv(TESTES / "conversas_e2e.csv") if l["conversa"] in [f"c{i:02d}" for i in range(1, n + 1)]]
+        for l in linhas:
+            tom_wav(str(Path(d) / l["arquivo"]))
+        return linhas
+
+    def test_erro_num_turno_nao_derruba_a_rodada_e_fica_fora_das_medias(self):
+        class STTQueQuebraNaPrimeira(DemoSTT):
+            chamadas = 0
+
+            def transcrever(self, caminho):
+                STTQueQuebraNaPrimeira.chamadas += 1
+                if STTQueQuebraNaPrimeira.chamadas == 1:
+                    raise TimeoutError("sem resposta")
+                return super().transcrever(caminho)
+
+        with tempfile.TemporaryDirectory() as d:
+            linhas = self._linhas_e_audios(d)
+            vistos = []
+            res = avaliar_e2e.executar(STTQueQuebraNaPrimeira(apagar_audio=False), DemoLLM(), BaseStub(), DemoTTS(),
+                                       linhas, Path(d), ao_terminar=lambda r: vistos.append(r["motivo"]))
+            self.assertEqual(len(res), 6)
+            self.assertEqual(len(vistos), 6)  # progresso informado a cada turno
+            self.assertEqual(res[0]["motivo"], "erro")
+            self.assertEqual(sum(r["motivo"] == "erro" for r in res), 1)
+            md = avaliar_e2e.resumir(res, "STT x, LLM y, TTS z")
+            self.assertIn("1 com erro, fora das médias", md)
+            self.assertIn("Configuração: STT x, LLM y, TTS z", md)
+        from config import SAIDA_DIR
+        shutil.rmtree(SAIDA_DIR, ignore_errors=True)
+
+    def test_retomar_so_pula_conversas_completas_e_sem_erro(self):
+        linhas = [{"conversa": "c1", "turno": "1"}, {"conversa": "c1", "turno": "2"},
+                  {"conversa": "c2", "turno": "1"}, {"conversa": "c3", "turno": "1"}]
+        feitos = [{"conversa": "c1", "motivo": "llm"}, {"conversa": "c1", "motivo": "llm"},
+                  {"conversa": "c2", "motivo": "erro"}]
+        self.assertEqual(avaliar_e2e.conversas_completas(feitos, linhas), {"c1"})
+        self.assertEqual(avaliar_e2e.conversas_completas(feitos[:1], linhas), set())  # conversa pela metade é refeita
 
 
 if __name__ == "__main__":

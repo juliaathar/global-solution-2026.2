@@ -1,0 +1,87 @@
+﻿conversa,turno,transcricao,resposta,motivo,stt,llm_rag,adaptacao,tts,total
+c01,1,Quais documentes eu preciso pra fazer o cadastro único?,"Para fazer o Cadastro Único, você precisa dos seguintes documentos:
+
+1. **Integrantes com menos de 16 anos:**
+   - RG ou Certidão de Nascimento
+   - Declaração escolar (Creche, Pré-Escola, Fundamental e Ensino Médio)
+
+2. **Integrantes com mais de 17 anos:**
+   - RG
+   - CPF ou título de eleitor
+   - Carteira de Trabalho (se tiver)
+   - Comprovante de Residência no nome do Responsável Familiar (Luz, Água, Contrato de Aluguel ou Recibo de Aluguel)
+
+Lembre-se de que o Cadastro Único pode ser feito pessoalmente nas unidades dos Cras, que estão localizadas nas seguintes endereços:
+
+- Centro: Rua Machado Sidney, 145
+- Vista Verde: Rua Cidade de Washington, 113
+- Parque Nova Esperança: Avenida Carlos Alberto de Andrade Silva, 475
+- Eugênio de Melo: Rua Juvenal dos Santos, 15, Galo Branco
+- Parque Santa Rita: Praça Hélio Dias, 30
+- Dom Pedro 1º: Rua Edilson Sabino dos Santos, 181
+- Anhembi: Rua Serra do Roncador, 210
+- Alto da Ponte: Rua Alziro Lebrão
+- São Francisco Xavier: Rua 15 de Novembro, 870, São Francisco Xavier
+
+Se você precisar de mais informações, fique à vontade para perguntar!",llm,1.76,86.444,0.002,7.65,95.856
+c01,2,E onde eu faço isso?,"Para fazer o Cadastro Único, você pode ir às seguintes unidades dos Cras:
+
+- Centro: Rua Machado Sidney, 145
+- Vista Verde: Rua Cidade de Washington, 113
+- Parque Nova Esperança: Avenida Carlos Alberto de Andrade Silva, 475
+- Eugênio de Melo: Rua Juvenal dos Santos, 15, Galo Branco
+- Parque Santa Rita: Praça Hélio Dias, 30
+- Dom Pedro 1º: Rua Edilson Sabino dos Santos, 181
+- Anhembi: Rua Serra do Roncador, 210
+- Alto da Ponte: Rua Alziro Lebrão
+- São Francisco Xavier: Rua 15 de Novembro, 870, São Francisco Xavier
+
+Lembre-se de que você pode fazer o cadastro pessoalmente nas unidades dos Cras, que estão localizadas nas referidas endereços.",llm,1.42,46.205,0.001,4.444,52.069
+c01,3,Quem ganhou o jogo de onde?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1.405,0.125,0.0,1.56,3.09
+c02,1,Para que serve o cráceo,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1.411,0.101,0.0,1.436,2.948
+c02,2,E onde fica o craço do centro?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1.489,0.183,0.0,1.775,3.447
+c02,3,Corre média bom pra dor de cabeça.,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1.383,0.102,0.0,1.505,2.99
+c03,1,Como eu peço ali um peso de um boeiro entupido?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1.576,0.155,0.0,1.481,3.213
+c03,2,Eu posso pedir pelo aplicativo?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1.436,0.091,0.0,1.587,3.114
+c03,3,"Obrigado, me conto uma piada.","Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1.484,0.101,0.0,1.536,3.121
+c04,1,Quem pode usar o transporte adaptado?,"Pessoas com deficiência motora, mental ou múltipla severa, que precisam de alto grau de dependência e não podem usar o transporte coletivo urbano.",llm,1.411,33.03,0.0,0.777,35.218
+c04,2,E esse serviço é gratuito.,"Sim, o transporte adaptado é gratuito.",llm,1.524,32.541,0.0,0.276,34.341
+c04,3,como tirar passaporte,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1.38,0.08,0.0,1.466,2.926
+c05,1,Quem pode participar da casa do idoso?,"Para participar da Casa do Idoso, é preciso ser morador de São José e ter mais de 60 anos de idade.",llm,1.417,29.534,0.0,0.658,31.608
+c05,2,E onde faça a inscrição?,"As inscrições são feitas nas Casas do Idoso Sul, Leste, Norte e Centro.",llm,1.446,41.986,0.0,0.413,43.846
+c05,3,Posso processar meu vizinho?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1.476,0.094,0.0,1.611,3.181
+c06,1,Quem tem direito ao lete gratuito para crianças?,As crianças de baixa renda que estão em situação de risco nutricional têm direito ao leite gratuito.,llm,1.493,13.325,0.0,0.495,15.313
+c06,2,E até que idade a criança recebe.,A criança recebe leite até os 5 anos e 11 meses de idade.,llm,1.595,2.398,0.0,0.421,4.414
+c06,3,Qual a previsão do tempo?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1.46,0.089,0.0,1.994,3.542
+c07,1,Onde ficam os ecopontos da cidade?,"Os ecopontos estão localizados nas seguintes endereços:
+
+1. Sítio Jesus: R. Hilário Santana, 5 - Parque Res. Flamboyant
+2. Santa Cruz 1: R. Setenta, 54 - Vila Progresso
+3. Santa Cruz 3: R. do Cruzeiro, 98 - Centro
+4. Florianópolis: Av. Mal. Floriano Peixoto, 154 - Centro
+5. Vila Machado: Av. Rui Barbosa, 2696 - Santana
+6. Subterrâneo Praça João Mendes: Praça Dr. João Mendes, 136-188 - Centro
+7. Subterrâneo Mercado Municipal: Rua Sebastião Humel, 277 - Centro
+
+Lembre-se de que esses endereços podem variar dependendo da região específica do bairro.",llm,1.687,32.185,0.001,4.39,38.261
+c07,2,E quais ficam no centro?,"No centro, os ecopontos estão localizados nas seguintes endereços:
+
+1. Sítio Jesus: R. Hilário Santana, 5 - Parque Res. Flamboyant
+2. Santa Cruz 1: R. Setenta, 54 - Vila Progresso
+3. Santa Cruz 3: R. do Cruzeiro, 98 - Centro
+4. Florianópolis: Av. Mal. Floriano Peixoto, 154 - Centro
+5. Vila Machado: Av. Rui Barbosa, 2696 - Santana
+6. Subterrâneo Praça João Mendes: Praça Dr. João Mendes, 136-188 - Centro
+7. Subterrâneo Mercado Municipal: Rua Sebastião Humel, 277 - Centro
+
+Lembre-se que esses endereços podem variar dependendo da região específica do bairro.",llm,1.424,48.789,0.0,4.208,54.422
+c07,3,Quanto está o dólar?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1.418,0.105,0.0,1.472,2.995
+c08,1,E o que são os peves?,"Os PEVs, Pontos de Entrega Voluntária, são espaços públicos destinados ao recebimento gratuito de pequenos volumes de resíduos, como os mencionados na pergunta.",llm,1.374,18.318,0.0,0.831,20.523
+c08,2,e posso levar em tulho de reforma.,Peças de veículos não são aceitos nos PEVs.,llm,1.464,18.2,0.0,0.262,19.925
+c08,3,Me deu uma receita de bolo.,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1.569,0.102,0.0,1.467,3.138
+c09,1,Quem é o que tem de lucrear?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1.506,0.115,0.0,1.492,3.113
+c09,2,e qual é o inderisto do crecio?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1.603,0.129,0.0,1.485,3.217
+c09,3,Quem é o prefeito da cidade?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1.37,0.099,0.0,1.673,3.143
+c10,1,em que horário posso fazer o cadastro único,"De segunda a sexta-feira, das 8h às 16h30.",llm,1.41,29.477,0.0,0.444,31.332
+c10,2,e onde fica o do centro.,"A unidade do Cras no Centro está localizada na Rua Machado Sidney, 145, conforme informado.",llm,1.561,3.214,0.0,0.648,5.423
+c10,3,Como renovar minha cine agora?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1.417,0.145,0.0,1.535,3.098

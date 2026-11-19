@@ -91,7 +91,7 @@ class TestFormatosDeCelular(Base):
 class TestOrganizar(Base):
     def test_nome_do_arquivo_e_o_codigo(self):
         self.vozes()
-        tom(self.entrada / "stt_01.wav"); tom(self.entrada / "c01_t1.wav")
+        tom(self.entrada / "stt_01.wav", seg=2.0); tom(self.entrada / "c01_t1.wav", seg=2.5)  # áudios diferentes
         r = self.rodar()
         self.assertEqual(r["problemas"], [])
         self.assertTrue((self.saida / "stt" / "stt_01.wav").is_file())
@@ -107,6 +107,34 @@ class TestOrganizar(Base):
         r = self.rodar()
         self.assertEqual(r["problemas"], [])
         self.assertTrue((self.saida / "stt" / "stt_08.wav").is_file())
+
+    def test_arquivo_remapeado_nao_vale_tambem_pelo_nome_original(self):
+        # c09_t1.wav foi gravado com a frase do t2: o mapeamento o leva para c09_t2, e c09_t1 fica faltando
+        self.vozes()
+        tom(self.entrada / "c09_t1.wav")
+        escrever_csv(self.entrada / "mapeamento.csv", [{"original": "c09_t1.wav", "codigo": "c09_t2"}])
+        r = self.rodar()
+        self.assertEqual(r["problemas"], [])
+        self.assertTrue((self.saida / "e2e" / "c09_t2.wav").is_file())
+        self.assertFalse((self.saida / "e2e" / "c09_t1.wav").exists())
+        self.assertIn("c09_t1", r["faltando"])
+
+    def test_ignorar_descarta_sem_reclamar(self):
+        self.vozes()
+        tom(self.entrada / "c09_t3.wav")
+        escrever_csv(self.entrada / "mapeamento.csv", [{"original": "c09_t3.wav", "codigo": "ignorar"}])
+        r = self.rodar()
+        self.assertEqual(r["problemas"], [])
+        self.assertEqual(r["linhas"], [])
+        self.assertFalse((self.saida / "e2e" / "c09_t3.wav").exists())
+
+    def test_audio_repetido_e_apontado(self):
+        self.vozes()
+        tom(self.entrada / "c09_t3.wav")
+        shutil.copy(self.entrada / "c09_t3.wav", self.entrada / "c10_t1.wav")
+        r = self.rodar()
+        self.assertTrue(any("MESMO áudio" in p for p in r["problemas"]))
+        self.assertEqual(len(r["linhas"]), 1)  # só o primeiro entra
 
     def test_arquivo_sem_codigo_e_apontado(self):
         self.vozes()
@@ -147,6 +175,12 @@ class TestOrganizar(Base):
         m = {l["arquivo"]: l for l in ler_csv(self.saida / "manifesto_stt.csv")}
         self.assertEqual((m["stt_01.wav"]["faixa_etaria"], m["stt_01.wav"]["sotaque"]), ("20 a 30", "paulista"))
         self.assertEqual(m["stt_20.wav"]["sotaque"], "paulista")  # a voz C também (todas as linhas da voz)
+
+    def test_so_conversas_nao_mexe_no_manifesto_de_stt(self):
+        antes = (self.saida / "manifesto_stt.csv").read_bytes()
+        tom(self.entrada / "c01_t1.wav")
+        self.assertEqual(self.rodar()["problemas"], [])
+        self.assertEqual((self.saida / "manifesto_stt.csv").read_bytes(), antes)
 
     def test_arquivo_corrompido_nao_derruba(self):
         self.vozes()

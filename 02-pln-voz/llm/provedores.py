@@ -19,13 +19,21 @@ def _mensagens(system: str, historico: list[Mensagem], contexto: list[Trecho]) -
     return msgs
 
 
+def _timeout(padrao: float) -> float:
+    """Limite de espera por resposta. Em CPU sem GPU o modelo frio pode levar mais de 2 minutos: ajuste LLM_TIMEOUT_S."""
+    try:
+        return float(os.getenv("LLM_TIMEOUT_S", padrao))
+    except ValueError:
+        return padrao
+
+
 class OllamaLLM:
     def __init__(self, modelo: str, url: str = "http://localhost:11434"):
         self.nome, self.url = f"ollama/{modelo}", url
         self.modelo = modelo
 
     def responder(self, system, historico, contexto) -> str:
-        r = requests.post(f"{self.url}/api/chat", timeout=120, json={
+        r = requests.post(f"{self.url}/api/chat", timeout=_timeout(120), json={
             "model": self.modelo, "stream": False,
             "options": {"temperature": 0.2},
             "messages": _mensagens(system, historico, contexto)})
@@ -39,7 +47,7 @@ class OpenAICompatLLM:
         self.url, self.modelo, self.api_key = URLS_OPENAI[provedor], modelo, api_key
 
     def responder(self, system, historico, contexto) -> str:
-        r = requests.post(self.url, timeout=60, headers={"Authorization": f"Bearer {self.api_key}"},
+        r = requests.post(self.url, timeout=_timeout(60), headers={"Authorization": f"Bearer {self.api_key}"},
                           json={"model": self.modelo, "temperature": 0.2,
                                 "messages": _mensagens(system, historico, contexto)})
         r.raise_for_status()

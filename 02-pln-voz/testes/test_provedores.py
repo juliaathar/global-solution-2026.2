@@ -28,3 +28,28 @@ class TestProvedores(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestTempoLimite(unittest.TestCase):
+    def _chamar(self, llm):
+        resposta = mock.Mock()
+        resposta.json.return_value = {"message": {"content": "ok"}, "choices": [{"message": {"content": "ok"}}]}
+        with mock.patch("llm.provedores.requests.post", return_value=resposta) as post:
+            llm.responder("sistema", [], [])
+        return post.call_args.kwargs["timeout"]
+
+    def test_padroes_sao_mantidos(self):
+        with mock.patch.dict("os.environ", {}, clear=False):
+            import os
+            os.environ.pop("LLM_TIMEOUT_S", None)
+            self.assertEqual(self._chamar(criar_llm("ollama", "m")), 120)
+            self.assertEqual(self._chamar(criar_llm("groq", "m", "k")), 60)
+
+    def test_llm_timeout_s_vale_para_todos(self):
+        with mock.patch.dict("os.environ", {"LLM_TIMEOUT_S": "900"}):
+            self.assertEqual(self._chamar(criar_llm("ollama", "m")), 900)
+            self.assertEqual(self._chamar(criar_llm("openai", "m", "k")), 900)
+
+    def test_valor_invalido_cai_no_padrao(self):
+        with mock.patch.dict("os.environ", {"LLM_TIMEOUT_S": "abc"}):
+            self.assertEqual(self._chamar(criar_llm("ollama", "m")), 120)

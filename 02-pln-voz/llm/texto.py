@@ -6,7 +6,7 @@ import unicodedata
 # com qualquer pedido do tipo "escreva um poema sobre o mar".
 VAZIAS = {
     "que", "com", "para", "por", "uma", "uns", "dos", "das", "nos", "nas", "mais", "como",
-    "onde", "qual", "quais", "quem", "fica", "ficam", "tem", "ter", "ser", "sao", "foi",
+    "onde", "qual", "quais", "quem", "quanto", "quantos", "quantas", "fica", "ficam", "tem", "ter", "ser", "sao", "foi",
     "meu", "minha", "seu", "sua", "isso", "essa", "esse", "aqui", "pelo", "pela",
     "sobre", "entre", "quando", "porque", "pode", "posso", "agora", "depois", "antes",
     "muito", "tambem", "ainda", "favor", "obrigado", "obrigada", "quero", "gostaria",

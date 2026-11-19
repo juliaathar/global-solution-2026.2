@@ -45,7 +45,9 @@ def julgar(tipo: str, esperado: str, resposta: str, motivo: str) -> bool:
     return satisfaz(resposta, esperado) and not recusou
 
 
-def executar(llm, base, linhas: list[dict]) -> list[dict]:
+def executar(llm, base, linhas: list[dict], ao_terminar=None) -> list[dict]:
+    """`ao_terminar(resultado)` é chamado após cada pergunta (para gravar o progresso). Um erro do LLM
+    (tempo esgotado, serviço fora do ar) vira um resultado com motivo "erro" e a rodada continua."""
     conversas: dict[str, list[dict]] = {}
     for l in linhas:
         conversas.setdefault(l["conversa"], []).append(l)
@@ -54,13 +56,32 @@ def executar(llm, base, linhas: list[dict]) -> list[dict]:
         assistente = Assistente(llm, base)
         for l in sorted(turnos, key=lambda x: int(x["turno"])):
             t = time.perf_counter()
-            resposta = assistente.perguntar(l["pergunta"])
+            try:
+                resposta = assistente.perguntar(l["pergunta"])
+                motivo = assistente.ultimo_motivo
+                acertou = int(julgar(l["tipo"], l["esperado"], resposta, motivo))
+            except Exception as erro:  # noqa: BLE001 - uma falha do LLM não pode perder a rodada inteira
+                resposta, motivo, acertou = f"[ERRO: {type(erro).__name__}]", "erro", 0
+                print(f"  {l['id']}: erro do LLM ({type(erro).__name__}); segue para a próxima", file=sys.stderr)
             dt = time.perf_counter() - t
-            motivo = assistente.ultimo_motivo
             resultados.append({**l, "modelo": llm.nome, "resposta": resposta, "motivo": motivo,
-                               "acerto_auto": int(julgar(l["tipo"], l["esperado"], resposta, motivo)),
-                               "acerto_manual": "", "obs_manual": "", "latencia_s": round(dt, 3)})
+                               "acerto_auto": acertou, "acerto_manual": "", "obs_manual": "",
+                               "latencia_s": round(dt, 3)})
+            if ao_terminar:
+                ao_terminar(resultados[-1])
     return resultados
+
+
+def conversas_completas(resultados: list[dict], linhas: list[dict]) -> set[str]:
+    """Conversas cujos turnos estão todos nos resultados e sem erro do LLM (as demais são refeitas na retomada)."""
+    esperadas: dict[str, set[str]] = {}
+    for l in linhas:
+        esperadas.setdefault(l["conversa"], set()).add(l["id"])
+    feitas: dict[str, set[str]] = {}
+    for r in resultados:
+        if r["motivo"] != "erro":
+            feitas.setdefault(r["conversa"], set()).add(r["id"])
+    return {c for c, ids in esperadas.items() if feitas.get(c, set()) >= ids}
 
 
 def carregar_resultados(caminho: Path) -> list[dict]:
@@ -109,6 +130,8 @@ def main() -> int:
     ap.add_argument("--perguntas", type=Path, default=TESTES / "perguntas_llm.csv")
     ap.add_argument("--anexar", action="store_true",
                     help="mantém os resultados de outros modelos (e as notas manuais) já gravados")
+    ap.add_argument("--retomar", action="store_true",
+                    help="continua uma rodada interrompida: pula as conversas já concluídas (sem erro). Implica --anexar")
     ap.add_argument("--so-resumir", action="store_true",
                     help="não chama o LLM: recalcula o resumo a partir do CSV, com o acerto_manual preenchido")
     ap.add_argument("--saida", type=Path, default=EVIDENCIAS, help="pasta dos resultados")
@@ -122,16 +145,37 @@ def main() -> int:
         if not a.llm:
             ap.error("informe --llm provedor:modelo (ou use --so-resumir)")
         linhas = ler_csv(a.perguntas)
-        resultados = carregar_resultados(destino) if a.anexar and destino.exists() else []
+        resultados = carregar_resultados(destino) if (a.anexar or a.retomar) and destino.exists() else []
         for spec in a.llm:
             prov, modelo = spec.split(":", 1)
             llm = criar_llm(prov, modelo, LLM_API_KEY)
-            resultados = [r for r in resultados if r["modelo"] != llm.nome] + executar(llm, carregar_base(), linhas)
-    campos = list(dict.fromkeys(k for r in resultados for k in r))
-    escrever_csv(destino, resultados, campos)
-    (a.saida / "llm_resumo.md").write_text(resumir(resultados), encoding="utf-8")
+            outros = [r for r in resultados if r["modelo"] != llm.nome]
+            proprios = [r for r in resultados if r["modelo"] == llm.nome] if a.retomar else []
+            feitas = conversas_completas(proprios, linhas)
+            proprios = [r for r in proprios if r["conversa"] in feitas]
+            pendentes = [l for l in linhas if l["conversa"] not in feitas]
+            if feitas:
+                print(f"{llm.nome}: retomando, {len(feitas)} conversas já concluídas, {len(pendentes)} perguntas a fazer")
+            novos: list[dict] = []
+
+            def gravar_progresso(r, outros=outros, proprios=proprios, novos=novos):
+                novos.append(r)
+                _gravar(destino, outros + proprios + novos)  # se a máquina parar, nada se perde
+
+            executar(llm, carregar_base(), pendentes, ao_terminar=gravar_progresso)
+            resultados = outros + proprios + novos
+    _gravar(destino, resultados)
     print((a.saida / "llm_resumo.md").read_text(encoding="utf-8"))
     return 0
+
+
+def _gravar(destino: Path, resultados: list[dict]) -> None:
+    """Grava CSV e resumo de uma vez (por arquivo temporário, para não deixar um CSV pela metade)."""
+    campos = list(dict.fromkeys(k for r in resultados for k in r))
+    tmp = destino.with_suffix(".tmp")
+    escrever_csv(tmp, resultados, campos)
+    tmp.replace(destino)
+    (destino.parent / "llm_resumo.md").write_text(resumir(resultados), encoding="utf-8")
 
 
 if __name__ == "__main__":

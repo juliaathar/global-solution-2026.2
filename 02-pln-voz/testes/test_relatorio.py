@@ -45,7 +45,8 @@ class TesteMontagem(unittest.TestCase):
         self.assertEqual(sorted(alvos), sorted(["evidencias/stt_resumo.md", "evidencias/sintetico/stt_resumo.md",
                                                 "evidencias/llm_resumo.md", "evidencias/tts_resumo.md",
                                                 "evidencias/sintetico/e2e_resumo.md",
-                                                "evidencias/e2e_resumo.md"]))
+                                                "evidencias/e2e_resumo.md", "evidencias/e2e_padrao/e2e_resumo.md",
+                                                "evidencias/tts_inteligibilidade.md"]))
         for t in ("Problema", "ODS", "Arquitetura", "Justificativa", "LGPD", "Limitações", "Conclusão"):
             self.assertIn(t, texto)
 

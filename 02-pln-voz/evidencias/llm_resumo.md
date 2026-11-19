@@ -2,24 +2,23 @@
 
 | Modelo | Perguntas | % corretas (normal+cont.) | % normais | % continuação | % recusas adequadas (fora do escopo) | % abstenção (sem dado) | Latência média por chamada ao LLM (s) |
 |---|---|---|---|---|---|---|---|
-| ollama/qwen2.5:3b | 30 | 91.3% | 94.4% | 80.0% | 100.0% | 100.0% | 8.03 |
-| ollama/qwen2.5:1.5b | 30 | 60.9% | 66.7% | 40.0% | 100.0% | 50.0% | 6.22 |
+| ollama/qwen2.5:3b | 30 | 82.6% | 83.3% | 80.0% | 100.0% | 100.0% | 55.39 |
+| ollama/qwen2.5:1.5b | 30 | 82.6% | 83.3% | 80.0% | 100.0% | 100.0% | 29.71 |
 
 ## Erros para análise
 
 | Modelo | Id | Tipo | Pergunta | Resposta |
 |---|---|---|---|---|
-| ollama/qwen2.5:3b | q08 | continuacao | E o que eu levo? | Leve seu documento de identificação atual, que é o RG. |
-| ollama/qwen2.5:3b | q17 | normal | Posso usar certidão de casamento para tirar a segunda via do RG? | Não, certidão de casamento não serve para tirar segunda via do RG. Leve certidão de nascimento ou casamento e comprovante de residência. |
-| ollama/qwen2.5:1.5b | q04 | continuacao | E que horas ela fecha? | A UBS fecha às dezesseis horas, de segunda a sexta. |
-| ollama/qwen2.5:1.5b | q08 | continuacao | E o que eu levo? | Leve documento com foto e cartão do SUS. |
-| ollama/qwen2.5:1.5b | q09 | normal | Tem um buraco na minha rua. Como eu aviso? | 1. Primeiro, marque o buraco com um sinal indicador.
-2. Em seguida, avise a administração local ou a UBS.
-3. Se possível, envie fotos para a UBS. |
-| ollama/qwen2.5:1.5b | q10 | continuacao | E isso gera algum número para acompanhar? | Não, não gera número específico. |
-| ollama/qwen2.5:1.5b | q13 | normal | Onde posso fazer o Cadastro Único? | No centro da cidade. |
-| ollama/qwen2.5:1.5b | q17 | normal | Posso usar certidão de casamento para tirar a segunda via do RG? | Não, a certidão de casamento não é necessária para tirar a segunda via do RG. Você precisa levar a certidão de nascimento ou casamento, comprovante de residênci |
-| ollama/qwen2.5:1.5b | q18 | normal | O poste da minha rua está apagado. O que eu faço? | Primeiro, você precisa verificar se o poste está realmente apagado. Se sim, pode ser que seja necessário um serviço de manutenção. Ligue para a Defesa Civil ou  |
-| ollama/qwen2.5:1.5b | q19 | normal | Como relato lixo acumulado na calçada? | Peço para limpar a calçada. |
-| ollama/qwen2.5:1.5b | q22 | normal | Onde faço a segunda via de identidade? | Leve certidão de nascimento ou casamento e comprovante de residência. |
-| ollama/qwen2.5:1.5b | q30 | sem_resposta | Quanto custa a segunda via do RG? | Para obter a segunda via do RG, você precisa levar a certidão de nascimento ou casamento e o comprovante de residência. Não há custo para isso. |
+| ollama/qwen2.5:3b | q10 | continuacao | E quais ficam no Centro? | Ecoponto Sítio Bom Jesus: R. Hilário Santana, 5 - Parque Res. Flamboyant
+Ecoponto Florianópolis: Av. Mal. Floriano Peixoto, 154 - Centro |
+| ollama/qwen2.5:3b | q19 | normal | Quantas UBS existem na cidade? | Existem 16 UBSs na cidade. |
+| ollama/qwen2.5:3b | q20 | normal | Dá para tomar vacina na UBS até a hora de fechar? | Sim, a vacinação é encerrada uma hora antes do fechamento das unidades. |
+| ollama/qwen2.5:3b | q21 | normal | Como peço para tirar uma árvore que oferece risco? | Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência |
+| ollama/qwen2.5:1.5b | q10 | continuacao | E quais ficam no Centro? | No Centro da cidade, os ecopontos estão localizados em:
+
+1. R. Hilário Santana, 5 - Parque Res. Flamboyant
+2. R. Setenta, 54 - Vila Progresso
+3. R. do Cruzeiro, |
+| ollama/qwen2.5:1.5b | q11 | normal | Quem tem direito ao leite gratuito para crianças? | As crianças de baixa renda que estão na faixa etária de 6 meses a 5 anos e 11 meses de idade, e que vivem em situação de risco nutricional, têm direito ao leite |
+| ollama/qwen2.5:1.5b | q19 | normal | Quantas UBS existem na cidade? | Existem 14 Unidades Básicas de Saúde (UBS) na cidade. |
+| ollama/qwen2.5:1.5b | q21 | normal | Como peço para tirar uma árvore que oferece risco? | Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência |

@@ -1,63 +1,124 @@
-﻿id,conversa,turno,tipo,pergunta,esperado,modelo,resposta,motivo,acerto_auto,acerto_manual,latencia_s,obs_manual
-q01,c01,1,normal,Que horas a UBS abre?,sete|7,ollama/qwen2.5:3b,"A UBS abre de segunda a sexta, das sete às dezessete horas.",llm,1,,5.47,
-q02,c01,2,continuacao,E o que eu levo?,foto|sus,ollama/qwen2.5:3b,Leve documento com foto e cartão do SUS.,llm,1,,5.368,
-q03,c02,1,normal,Em quais dias a UBS atende?,segunda;sexta,ollama/qwen2.5:3b,"A UBS atende de segunda a sexta, das sete às dezessete horas.",llm,1,,6.965,
-q04,c02,2,continuacao,E que horas ela fecha?,dezessete|17,ollama/qwen2.5:3b,A UBS fecha às dezessete horas.,llm,1,,4.827,
-q05,c03,1,normal,Para que serve o CRAS?,benefício|beneficio|cadastro,ollama/qwen2.5:3b,O CRAS orienta sobre benefícios sociais e o Cadastro Único.,llm,1,,8.475,
-q06,c03,2,continuacao,E o que eu preciso levar lá?,comprovante,ollama/qwen2.5:3b,Leve documento com foto e comprovante de residência.,llm,1,,5.626,
-q07,c04,1,normal,Como faço a segunda via do RG?,posto,ollama/qwen2.5:3b,Vá ao posto de identificação. Leve certidão de nascimento ou casamento e comprovante de residência.,llm,1,,10.832,
-q08,c04,2,continuacao,E o que eu levo?,certidão|certidao;comprovante,ollama/qwen2.5:3b,"Leve seu documento de identificação atual, que é o RG.",llm,0,0,5.85,Errado: manda levar o RG para tirar a segunda via do RG. A base pede certidão e comprovante de residência.
-q09,c05,1,normal,Tem um buraco na minha rua. Como eu aviso?,elobairro|protocolo,ollama/qwen2.5:3b,Diga sobre o buraco no EloBairro e crie um protocolo. Fique atento a outros problemas também.,llm,1,1,9.504,"Correta, mas diz 'crie um protocolo' como se fosse o usuário; na base é o EloBairro que gera."
-q10,c05,2,continuacao,E isso gera algum número para acompanhar?,protocolo,ollama/qwen2.5:3b,"Sim, cria um número de protocolo. Fique atento a esse número para acompanhar o andamento.",llm,1,,7.398,
-q11,n06,1,normal,Preciso do cartão do SUS para ir à UBS?,cartão|cartao|sus,ollama/qwen2.5:3b,"Sim, levará seu documento com foto e o cartão do SUS.",llm,1,,8.041,
-q12,n07,1,normal,Que documento eu levo na UBS?,foto,ollama/qwen2.5:3b,Leve seu documento com foto e o cartão do SUS.,llm,1,,7.549,
-q13,n08,1,normal,Onde posso fazer o Cadastro Único?,cras,ollama/qwen2.5:3b,Vá ao CRAS do seu bairro e faça o Cadastro Único. Precisa de mais alguma informação?,llm,1,,9.708,
-q14,n09,1,normal,O CRAS pede comprovante de residência?,comprovante,ollama/qwen2.5:3b,"Sim, lembre-se de levar o comprovante de residência.",llm,1,,8.143,
-q15,n10,1,normal,Quem orienta sobre benefícios sociais?,cras,ollama/qwen2.5:3b,O CRAS orienta sobre benefícios sociais. Precisa de mais alguma informação?,llm,1,,6.963,
-q16,n11,1,normal,Quais documentos preciso para a segunda via do RG?,certidão|certidao;comprovante,ollama/qwen2.5:3b,Leve certidão de nascimento ou casamento e comprovante de residência.,llm,1,,9.784,
-q17,n12,1,normal,Posso usar certidão de casamento para tirar a segunda via do RG?,certidão|certidao,ollama/qwen2.5:3b,"Não, certidão de casamento não serve para tirar segunda via do RG. Leve certidão de nascimento ou casamento e comprovante de residência.",llm,1,0,9.983,"Acerto falso da correção automática: diz que certidão de casamento não serve, e na frase seguinte manda levar certidão de casamento. Contradiz a base e a si mesma."
-q18,n13,1,normal,O poste da minha rua está apagado. O que eu faço?,elobairro|protocolo,ollama/qwen2.5:3b,Você pode relatar isso pelo EloBairro. Crie um novo protocolo para o poste apagado.,llm,1,,9.195,
-q19,n14,1,normal,Como relato lixo acumulado na calçada?,elobairro|protocolo,ollama/qwen2.5:3b,Você pode relatar lixo acumulado no EloBairro. Crie um novo protocolo informando a localização.,llm,1,,7.664,
-q20,n15,1,normal,O EloBairro gera protocolo?,protocolo,ollama/qwen2.5:3b,"Sim, você pode usar o EloBairro para relatar problemas como buracos na rua, poste apagado ou lixo acumulado.",llm,0,1,8.319,"Responde 'Sim' à pergunta. A explicação não cita protocolo, mas a resposta está correta."
-q21,n16,1,normal,A UBS atende de segunda a sexta?,segunda;sexta,ollama/qwen2.5:3b,"Sim, atende de segunda a sexta, das sete às dezessete horas.",llm,1,,9.894,
-q22,n17,1,normal,Onde faço a segunda via de identidade?,posto,ollama/qwen2.5:3b,Vá ao posto de identificação. Leve certidão de nascimento ou casamento e comprovante de residência.,llm,1,,11.102,
-q23,n18,1,normal,O que a UBS pede para atender uma pessoa?,documento|cartão|cartao,ollama/qwen2.5:3b,Leva documento com foto e cartão do SUS.,llm,1,,7.139,
-q24,f01,1,fora_escopo,Quem ganhou o jogo de futebol ontem?,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,,0.0,
-q25,f02,1,fora_escopo,Me dá uma receita de bolo de chocolate.,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,,0.0,
-q26,f03,1,fora_escopo,Quanto está o dólar hoje?,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,,0.0,
-q27,f04,1,fora_escopo,Estou com febre há três dias. Que remédio devo tomar?,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,,0.0,
-q28,f05,1,fora_escopo,Posso processar meu vizinho por causa do barulho?,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,,0.0,
-q29,s01,1,sem_resposta,Qual é o endereço da UBS mais próxima da minha casa?,,ollama/qwen2.5:3b,Não sei essa informação. Procure no site oficial da prefeitura ou no aplicativo de saúde do seu estado.,llm,1,1,7.62,Abstenção correta. A sugestão de aplicativo de saúde do estado não está na base.
-q30,s02,1,sem_resposta,Quanto custa a segunda via do RG?,,ollama/qwen2.5:3b,Não sei essa informação. Pergunte em uma repartição de identificação.,llm,1,,9.261,
-q01,c01,1,normal,Que horas a UBS abre?,sete|7,ollama/qwen2.5:1.5b,"A UBS está aberta das 7 às 17 horas, segunda a sexta.",llm,1,,22.168,
-q02,c01,2,continuacao,E o que eu levo?,foto|sus,ollama/qwen2.5:1.5b,Leva o seu documento com foto e o cartão do SUS.,llm,1,,4.3,
-q03,c02,1,normal,Em quais dias a UBS atende?,segunda;sexta,ollama/qwen2.5:1.5b,"A UBS atende das sete às dezessete horas, de segunda a sexta.",llm,1,,4.537,
-q04,c02,2,continuacao,E que horas ela fecha?,dezessete|17,ollama/qwen2.5:1.5b,"A UBS fecha às dezesseis horas, de segunda a sexta.",llm,0,,4.095,
-q05,c03,1,normal,Para que serve o CRAS?,benefício|beneficio|cadastro,ollama/qwen2.5:1.5b,"O CRAS serve para orientar sobre benefícios sociais e o Cadastro Único. Para isso, você precisa levar um documento com foto e um comprovante de residência.",llm,1,,7.65,
-q06,c03,2,continuacao,E o que eu preciso levar lá?,comprovante,ollama/qwen2.5:1.5b,Você precisa levar um documento com foto e um comprovante de residência para o CRAS.,llm,1,,4.958,
-q07,c04,1,normal,Como faço a segunda via do RG?,posto,ollama/qwen2.5:1.5b,"Leve certidão de nascimento ou casamento e comprovante de residência. No posto de identificação, pegue a segunda via do RG.",llm,1,,7.523,
-q08,c04,2,continuacao,E o que eu levo?,certidão|certidao;comprovante,ollama/qwen2.5:1.5b,Leve documento com foto e cartão do SUS.,llm,0,,3.94,
-q09,c05,1,normal,Tem um buraco na minha rua. Como eu aviso?,elobairro|protocolo,ollama/qwen2.5:1.5b,"1. Primeiro, marque o buraco com um sinal indicador.
-2. Em seguida, avise a administração local ou a UBS.
-3. Se possível, envie fotos para a UBS.",llm,0,0,8.296,"Inventou passos que não estão na base (marcar o buraco, avisar a UBS)."
-q10,c05,2,continuacao,E isso gera algum número para acompanhar?,protocolo,ollama/qwen2.5:1.5b,"Não, não gera número específico.",llm,0,0,3.427,"Contradiz a base: diz que não gera número, mas o EloBairro gera protocolo."
-q11,n06,1,normal,Preciso do cartão do SUS para ir à UBS?,cartão|cartao|sus,ollama/qwen2.5:1.5b,Leve o seu cartão do SUS e a foto para a UBS.,llm,1,,5.331,
-q12,n07,1,normal,Que documento eu levo na UBS?,foto,ollama/qwen2.5:1.5b,Leve um documento com foto e o cartão do SUS.,llm,1,,5.05,
-q13,n08,1,normal,Onde posso fazer o Cadastro Único?,cras,ollama/qwen2.5:1.5b,No centro da cidade.,llm,0,0,3.962,Inventou: 'No centro da cidade'. A base diz que o Cadastro Único é no CRAS.
-q14,n09,1,normal,O CRAS pede comprovante de residência?,comprovante,ollama/qwen2.5:1.5b,"Sim, o CRAS pede comprovante de residência. Leve o documento com foto e o comprovante de sua moradia.",llm,1,,6.039,
-q15,n10,1,normal,Quem orienta sobre benefícios sociais?,cras,ollama/qwen2.5:1.5b,O CRAS orienta sobre benefícios sociais.,llm,1,,3.626,
-q16,n11,1,normal,Quais documentos preciso para a segunda via do RG?,certidão|certidao;comprovante,ollama/qwen2.5:1.5b,Você precisa levar a certidão de nascimento ou casamento e o comprovante de residência para a segunda via do RG.,llm,1,,7.256,
-q17,n12,1,normal,Posso usar certidão de casamento para tirar a segunda via do RG?,certidão|certidao,ollama/qwen2.5:1.5b,"Não, a certidão de casamento não é necessária para tirar a segunda via do RG. Você precisa levar a certidão de nascimento ou casamento, comprovante de residência e documento com foto para tirar a segunda via do RG.",llm,1,0,7.652,Acerto falso da correção automática: diz que certidão de casamento não é necessária e na frase seguinte manda levar certidão de casamento.
-q18,n13,1,normal,O poste da minha rua está apagado. O que eu faço?,elobairro|protocolo,ollama/qwen2.5:1.5b,"Primeiro, você precisa verificar se o poste está realmente apagado. Se sim, pode ser que seja necessário um serviço de manutenção. Ligue para a Defesa Civil ou para a prefeitura do seu bairro para saber se há um serviço de manutenção que pode resolver o problema. Se não houver, pode ser necessário procurar um serviço de manutenção especializado.",llm,0,,10.828,
-q19,n14,1,normal,Como relato lixo acumulado na calçada?,elobairro|protocolo,ollama/qwen2.5:1.5b,Peço para limpar a calçada.,llm,0,,3.732,
-q20,n15,1,normal,O EloBairro gera protocolo?,protocolo,ollama/qwen2.5:1.5b,"Sim, o EloBairro gera protocolo para situações como buracos na rua, apagões de poste e lixo acumulado.",llm,1,,4.45,
-q21,n16,1,normal,A UBS atende de segunda a sexta?,segunda;sexta,ollama/qwen2.5:1.5b,"Sim, a UBS atende das 7 às 17 horas, segunda a sexta.",llm,1,,5.573,
-q22,n17,1,normal,Onde faço a segunda via de identidade?,posto,ollama/qwen2.5:1.5b,Leve certidão de nascimento ou casamento e comprovante de residência.,llm,0,0,5.087,Não diz onde fazer (posto de identificação); só lista documentos.
-q23,n18,1,normal,O que a UBS pede para atender uma pessoa?,documento|cartão|cartao,ollama/qwen2.5:1.5b,A UBS pede documento com foto e cartão do SUS.,llm,1,,4.261,
-q24,f01,1,fora_escopo,Quem ganhou o jogo de futebol ontem?,,ollama/qwen2.5:1.5b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,,0.001,
-q25,f02,1,fora_escopo,Me dá uma receita de bolo de chocolate.,,ollama/qwen2.5:1.5b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,,0.0,
-q26,f03,1,fora_escopo,Quanto está o dólar hoje?,,ollama/qwen2.5:1.5b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,,0.0,
-q27,f04,1,fora_escopo,Estou com febre há três dias. Que remédio devo tomar?,,ollama/qwen2.5:1.5b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,,0.0,
-q28,f05,1,fora_escopo,Posso processar meu vizinho por causa do barulho?,,ollama/qwen2.5:1.5b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,,0.0,
-q29,s01,1,sem_resposta,Qual é o endereço da UBS mais próxima da minha casa?,,ollama/qwen2.5:1.5b,Não sei essa informação. Você pode procurar o endereço da UBS no site da Prefeitura ou no aplicativo da Secretaria Municipal de Saúde.,llm,1,,4.816,
-q30,s02,1,sem_resposta,Quanto custa a segunda via do RG?,,ollama/qwen2.5:1.5b,"Para obter a segunda via do RG, você precisa levar a certidão de nascimento ou casamento e o comprovante de residência. Não há custo para isso.",llm,0,0,7.062,"Inventou: afirma que não há custo, informação que não está na base."
+﻿id,conversa,turno,tipo,pergunta,esperado,modelo,resposta,motivo,acerto_auto,acerto_manual,obs_manual,latencia_s
+q01,c01,1,normal,Quais documentos preciso levar para fazer o Cadastro Único?,RG;comprovante,ollama/qwen2.5:3b,"Para o Cadastro Único, lembre-se:
+
+- RG ou Certidão de Nascimento para menores de 16 anos
+- RG, CPF ou título de eleitor, e comprovante de residência para maiores de 17 anos
+- Carteira de Trabalho (se tiver)
+- Comprovante de Residência no nome do Responsável Familiar (Luz, Água, Contrato de Aluguel ou Recibo de Aluguel)",llm,1,1,,106.43
+q02,c01,2,continuacao,E onde eu faço isso?,cras,ollama/qwen2.5:3b,Você pode fazer o Cadastro Único em qualquer uma das unidades do Cras. Lembre-se de verificar a unidade mais próxima de sua residência.,llm,1,1,,8.295
+q03,c02,1,normal,Como peço a limpeza de um bueiro entupido?,156,ollama/qwen2.5:3b,Ligue 156 para solicitar a limpeza de um bueiro entupido.,llm,1,1,,24.513
+q04,c02,2,continuacao,E posso pedir pelo aplicativo?,aplicativo,ollama/qwen2.5:3b,"Sim, você pode usar o aplicativo 156 SJC para solicitar a limpeza de um bueiro entupido.",llm,1,1,,16.306
+q05,c03,1,normal,Quem pode usar o transporte adaptado?,deficiência|deficiencia,ollama/qwen2.5:3b,"Pessoas com deficiência motora, mental ou múltipla severa, que causem alto grau de dependência.",llm,1,1,,63.972
+q06,c03,2,continuacao,E esse serviço é gratuito?,gratuito|gratuita,ollama/qwen2.5:3b,"Sim, é gratuito.",llm,1,1,,63.246
+q07,c04,1,normal,Para que serve o CRAS?,família|familia,ollama/qwen2.5:3b,É uma unidade pública que oferece serviços de proteção social básica para a família.,llm,1,1,,66.73
+q08,c04,2,continuacao,E onde fica o CRAS do Centro?,machado,ollama/qwen2.5:3b,"O CRAS do Centro fica na Rua Machado Sidney, 145, ao lado da Casa do Idoso Centro.",llm,1,1,,63.964
+q09,c05,1,normal,Onde ficam os ecopontos da cidade?,ecoponto,ollama/qwen2.5:3b,"Ecoponto Sítio Bom Jesus: R. Hilário Santana, 5 - Parque Res. Flamboyant
+Ecoponto Santa Cruz 1: R. Setenta, 54 - Vila Progresso
+Ecoponto Santa Cruz 3: R. do Cruzeiro, 98 - Centro
+Ecoponto Florianópolis: Av. Mal. Floriano Peixoto, 154 - Centro
+Ecoponto Francisco Rafael: R. Francisco Rafael, 405 - Centro
+Ecoponto Vila Machado: Av. Rui Barbosa, 2696 - Santana
+Ecoponto Subterrâneo Praça João Mendes: Praça Dr. João Mendes, 136-188 - Centro
+Ecoponto Subterrâneo Mercado Municipal: Rua Sebastião Humel, 277 - Centro",llm,1,1,"[revisão assistida por IA] Endereços certos e completos, mas troca o nome 'Floriano Peixoto' por 'Florianópolis' e escreve 'Francisco Rafael'. Lista longa, contra a regra de 4 frases.",64.501
+q10,c05,2,continuacao,E quais ficam no Centro?,floriano|raphael|mendes|mercado|cruzeiro,ollama/qwen2.5:3b,"Ecoponto Sítio Bom Jesus: R. Hilário Santana, 5 - Parque Res. Flamboyant
+Ecoponto Florianópolis: Av. Mal. Floriano Peixoto, 154 - Centro",llm,1,0,"[revisão assistida por IA] Inclui o Ecoponto Sítio Bom Jesus (Parque Flamboyant, fora do Centro), chama o Floriano Peixoto de 'Florianópolis' e omite 3 dos 5 do Centro.",71.879
+q11,n06,1,normal,Quem tem direito ao leite gratuito para crianças?,renda,ollama/qwen2.5:3b,"Famílias com renda mensal de até 1/4 de salário mínimo per capita, com crianças entre 6 meses e 5 anos e 11 meses de idade.",llm,1,1,,29.493
+q12,n07,1,normal,Até que idade a criança pode receber o leite?,5 anos|cinco anos,ollama/qwen2.5:3b,A criança pode receber até 5 anos e 11 meses de idade.,llm,1,1,,4.245
+q13,n08,1,normal,Como peço uma lixeira na minha rua?,156,ollama/qwen2.5:3b,Ligue 156 gratuitamente. Eles podem te ajudar com a solicitação.,llm,1,1,,44.25
+q14,n09,1,normal,Quem é atendido no CREAS?,violação|violacao,ollama/qwen2.5:3b,"Creas atende crianças, adolescentes, idosos, pessoas com deficiência e qualquer indivíduo que se encontre em situação de violação de direitos.",llm,1,1,,99.805
+q15,n10,1,normal,Qual o endereço do CREAS Sul?,cidade jardim,ollama/qwen2.5:3b,"Endereço do CREAS Sul: Avenida Cidade Jardim, 5.431, Bosque dos Eucaliptos.",llm,1,1,,44.36
+q16,n11,1,normal,Em que horário posso fazer o Cadastro Único?,16h30|16:30|dezesseis,ollama/qwen2.5:3b,"De segunda a sexta-feira, das 8h às 16h30.",llm,1,1,,58.822
+q17,n12,1,normal,Quem pode participar da Casa do Idoso?,60|sessenta,ollama/qwen2.5:3b,"Idosos a partir dos 60 anos, moradores de São José, que vivenciam vulnerabilidade social e estão em situação de extrema pobreza.",llm,1,1,,81.54
+q18,n13,1,normal,O que são os PEVs?,entrega,ollama/qwen2.5:3b,PEVs são pontos de entrega voluntária para resíduos.,llm,1,1,,32.178
+q19,n14,1,normal,Quantas UBS existem na cidade?,40|quarenta,ollama/qwen2.5:3b,Existem 16 UBSs na cidade.,llm,0,0,[revisão assistida por IA] Errada: respondeu 16 UBSs; a página diz 40. O modelo não leu o número da página.,111.902
+q20,n15,1,normal,Dá para tomar vacina na UBS até a hora de fechar?,antes,ollama/qwen2.5:3b,"Sim, a vacinação é encerrada uma hora antes do fechamento das unidades.",llm,1,0,"[revisão assistida por IA] Começa com 'Sim', mas a informação que dá (a vacinação encerra uma hora antes do fechamento) significa que não. Contradição.",56.511
+q21,n16,1,normal,Como peço para tirar uma árvore que oferece risco?,protocolo|presencial,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,0,0,"[revisão assistida por IA] Falsa abstenção: a página responde (processo presencial em qualquer setor de Protocolo). A consulta com 'tirar' (a página diz 'remoção') ficou abaixo do limiar de 0,84.",0.117
+q22,n17,1,normal,Quem é atendido pelo Integra?,deficiência|deficiencia,ollama/qwen2.5:3b,"Pessoas com deficiência, acima de 14 anos.",llm,1,1,,69.147
+q23,n18,1,normal,Quem é responsável por construir a calçada?,imóve|imove|responsáve|responsave,ollama/qwen2.5:3b,Os responsáveis por imóveis são obrigados a construir as calçadas na extensão correspondente a sua testada.,llm,1,1,,48.817
+q24,f01,1,fora_escopo,Quem ganhou o jogo de futebol ontem?,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,1,,0.094
+q25,f02,1,fora_escopo,Me dá uma receita de bolo de chocolate.,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,1,,0.119
+q26,f03,1,fora_escopo,Quanto está o dólar hoje?,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,1,,0.087
+q27,f04,1,fora_escopo,Estou com febre há três dias. Que remédio devo tomar?,,ollama/qwen2.5:3b,Não sei essa informação. Procure a UBS mais próxima para orientação médica.,llm,1,1,[revisão assistida por IA] Recusa adequada: não receitou e encaminhou à UBS.,43.061
+q28,f05,1,fora_escopo,Posso processar meu vizinho por causa do barulho?,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,1,,0.124
+q29,s01,1,sem_resposta,Como tirar passaporte?,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,1,,0.073
+q30,s02,1,sem_resposta,Como renovar a minha CNH?,,ollama/qwen2.5:3b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,1,,0.096
+q01,c01,1,normal,Quais documentos preciso levar para fazer o Cadastro Único?,RG;comprovante,ollama/qwen2.5:1.5b,"Você precisa levar os seguintes documentos para o Cadastro Único:
+
+1. RG ou Certidão de Nascimento
+2. Declaração escolar (Creche, Pré-Escola, Fundamental e Ensino Médio)
+3. RG
+4. CPF ou título de eleitor
+5. Carteira de Trabalho (se tiver)
+6. Comprovante de Residência no nome do Responsável Familiar (Luz, Água, Contrato de Aluguel ou Recibo de Aluguel)
+
+Para os Cras, você pode levar esses documentos na unidade mais próxima de você.",llm,1,1,"[revisão assistida por IA] Junta numa lista só os documentos de menores de 16 anos (declaração escolar) e de maiores de 17, como se fossem todos para todos.",58.478
+q02,c01,2,continuacao,E onde eu faço isso?,cras,ollama/qwen2.5:1.5b,"Você pode fazer o Cadastro Único nas unidades dos Cras, que estão localizadas nas seguintes ruas:
+
+- Centro: Rua Machado Sidney, 145
+- Vista Verde: Rua Cidade de Washington, 113
+- Parque Nova Esperança: Avenida Carlos Alberto de Andrade Silva, 475
+- Eugênio de Melo: Rua Juvenal dos Santos, 15, Galo Branco
+- Parque Santa Rita: Praça Hélio Dias, 30
+- Dom Pedro 1º: Rua Edilson Sabino dos Santos, 181
+- Anhembi: Rua Serra do Roncador, 210
+- Alto da Ponte: Rua Alziro Lebrão
+- São Francisco Xavier: Rua 15 de Novembro, 870, São Francisco Xavier
+
+Lá você pode encontrar os números de telefone das unidades para mais informações.",llm,1,1,"[revisão assistida por IA] Correta, mas é uma lista longa (9 unidades), contra a regra de 4 frases, e omite 2 unidades.",21.681
+q03,c02,1,normal,Como peço a limpeza de um bueiro entupido?,156,ollama/qwen2.5:1.5b,Ligue 156 e informe o problema.,llm,1,1,,10.678
+q04,c02,2,continuacao,E posso pedir pelo aplicativo?,aplicativo,ollama/qwen2.5:1.5b,"Sim, você pode usar o aplicativo 156 SJC.",llm,1,1,,6.449
+q05,c03,1,normal,Quem pode usar o transporte adaptado?,deficiência|deficiencia,ollama/qwen2.5:1.5b,"As pessoas com deficiência motora, mental ou múltipla severa, que precisam de alta dependência e não podem usar o transporte coletivo urbano.",llm,1,1,,32.257
+q06,c03,2,continuacao,E esse serviço é gratuito?,gratuito|gratuita,ollama/qwen2.5:1.5b,"Sim, é gratuito.",llm,1,1,,30.9
+q07,c04,1,normal,Para que serve o CRAS?,família|familia,ollama/qwen2.5:1.5b,O CRAS serve para oferecer serviços de proteção social básica do Suas (Sistema Único de Assistência Social) no território de abrangência.,llm,0,1,,34.399
+q08,c04,2,continuacao,E onde fica o CRAS do Centro?,machado,ollama/qwen2.5:1.5b,"O CRAS do Centro está localizado na Rua Machado Sidney, 145 (ao lado da Casa do Idoso Centro).",llm,1,1,,32.892
+q09,c05,1,normal,Onde ficam os ecopontos da cidade?,ecoponto,ollama/qwen2.5:1.5b,"Os ecopontos estão localizados em diversos pontos da cidade, conforme listado abaixo:
+
+1. R. Hilário Santana, 5 - Parque Res. Flamboyant
+2. R. Setenta, 54 - Vila Progresso
+3. R. do Cruzeiro, 98 - Centro
+4. Av. Mal. Floriano Peixoto, 154 - Centro
+5. Av. Rui Barbosa, 2696 - Santana
+6. Praça Dr. João Mendes, 136-188 - Centro
+7. Rua Sebastião Humel, 277 - Centro
+8. Rua Sebastião Humel, 277 - Centro (subterrâneo)
+
+Lembre-se de que os ecopontos podem mudar de localização, então é sempre bom verificar a localização mais atualizada.",llm,1,1,[revisão assistida por IA] Omite o Ecoponto Francisco Raphael e repete o do Mercado Municipal; lista longa.,32.836
+q10,c05,2,continuacao,E quais ficam no Centro?,floriano|raphael|mendes|mercado|cruzeiro,ollama/qwen2.5:1.5b,"No Centro da cidade, os ecopontos estão localizados em:
+
+1. R. Hilário Santana, 5 - Parque Res. Flamboyant
+2. R. Setenta, 54 - Vila Progresso
+3. R. do Cruzeiro, 98 - Centro
+4. Av. Mal. Floriano Peixoto, 154 - Centro
+5. Av. Rui Barbosa, 2696 - Santana
+6. Praça Dr. João Mendes, 136-188 - Centro
+7. Rua Sebastião Humel, 277 - Centro
+8. Rua Sebastião Humel, 277 - Centro (subterrâneo)
+
+Lembre-se que os ecopontos podem mudar de localização, então é sempre bom verificar a localização mais atualizada.",llm,1,0,"[revisão assistida por IA] Lista todos os ecopontos como se ficassem no Centro, inclusive Parque Flamboyant, Vila Progresso e Santana.",48.106
+q11,n06,1,normal,Quem tem direito ao leite gratuito para crianças?,renda,ollama/qwen2.5:1.5b,"As crianças de baixa renda que estão na faixa etária de 6 meses a 5 anos e 11 meses de idade, e que vivem em situação de risco nutricional, têm direito ao leite gratuito. Eles são beneficiados se:
+
+• São cadastrados no Cadastro Único
+• A família tem renda mensal de até 1/4 do salário mínimo per capita
+• O responsável pela família está desempregado ou tem como principal arrimo a mãe
+• Realizaram o Cadastro Único para obter o NIS (Número de Identificação Social)
+
+É importante que essas crianças tenham acesso a esse complemento alimentar e nutricional para evitar situações de risco nutricional.",llm,1,0,[revisão assistida por IA] Apresenta como requisito ('são beneficiados se') o atendimento preferencial a famílias com responsável desempregado ou com a mãe como arrimo. Pode afastar famílias que têm direito.,25.014
+q12,n07,1,normal,Até que idade a criança pode receber o leite?,5 anos|cinco anos,ollama/qwen2.5:1.5b,As crianças de 6 meses a 5 anos e 11 meses de idade podem receber o leite.,llm,1,1,,2.791
+q13,n08,1,normal,Como peço uma lixeira na minha rua?,156,ollama/qwen2.5:1.5b,"Ligue 156 gratuitamente, ou use o aplicativo 156 SJC ou o PrefBook.",llm,1,1,,22.667
+q14,n09,1,normal,Quem é atendido no CREAS?,violação|violacao,ollama/qwen2.5:1.5b,"Atendidos crianças, adolescentes, idosos, pessoas com deficiência e qualquer indivíduo em situação de violação de direitos.",llm,1,1,,49.728
+q15,n10,1,normal,Qual o endereço do CREAS Sul?,cidade jardim,ollama/qwen2.5:1.5b,"O endereço do CREAS Sul é Avenida Cidade Jardim, 5.431, Bosque dos Eucaliptos.",llm,1,1,,22.231
+q16,n11,1,normal,Em que horário posso fazer o Cadastro Único?,16h30|16:30|dezesseis,ollama/qwen2.5:1.5b,"De segunda a sexta-feira, das 8h às 16h30.",llm,1,1,,28.915
+q17,n12,1,normal,Quem pode participar da Casa do Idoso?,60|sessenta,ollama/qwen2.5:1.5b,"Para participar da Casa do Idoso, você precisa ser morador de São José e ter mais de 60 anos de idade.",llm,1,1,,39.444
+q18,n13,1,normal,O que são os PEVs?,entrega,ollama/qwen2.5:1.5b,"Os PEVs, Pontos de Entrega Voluntária, são espaços públicos onde os moradores podem entregar pequenos volumes de resíduos sem pagar. São destinados a resíduos de construção civil, resíduos volumosos, recicláveis, eletroeletrônicos e resíduos de podas e jardinagem.",llm,1,1,,21.142
+q19,n14,1,normal,Quantas UBS existem na cidade?,40|quarenta,ollama/qwen2.5:1.5b,Existem 14 Unidades Básicas de Saúde (UBS) na cidade.,llm,0,0,[revisão assistida por IA] Errada: respondeu 14 UBSs; a página diz 40.,55.421
+q20,n15,1,normal,Dá para tomar vacina na UBS até a hora de fechar?,antes,ollama/qwen2.5:1.5b,"Não, a vacinação é encerrada uma hora antes do fechamento das unidades.",llm,1,1,"[revisão assistida por IA] Correta ('Não, a vacinação é encerrada uma hora antes').",27.842
+q21,n16,1,normal,Como peço para tirar uma árvore que oferece risco?,protocolo|presencial,ollama/qwen2.5:1.5b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,0,0,"[revisão assistida por IA] Falsa abstenção, como no 3b: a consulta ficou abaixo do limiar de 0,84.",0.119
+q22,n17,1,normal,Quem é atendido pelo Integra?,deficiência|deficiencia,ollama/qwen2.5:1.5b,O Integra atende pessoas com deficiência a partir de 14 anos.,llm,1,1,,33.227
+q23,n18,1,normal,Quem é responsável por construir a calçada?,imóve|imove|responsáve|responsave,ollama/qwen2.5:1.5b,"Responsável por construir a calçada é o proprietário do imóvel, que deve fazer isso na extensão correspondente à testada e manter em perfeita condição.",llm,1,1,,25.167
+q24,f01,1,fora_escopo,Quem ganhou o jogo de futebol ontem?,,ollama/qwen2.5:1.5b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,1,,0.092
+q25,f02,1,fora_escopo,Me dá uma receita de bolo de chocolate.,,ollama/qwen2.5:1.5b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,1,,0.124
+q26,f03,1,fora_escopo,Quanto está o dólar hoje?,,ollama/qwen2.5:1.5b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,1,,0.106
+q27,f04,1,fora_escopo,Estou com febre há três dias. Que remédio devo tomar?,,ollama/qwen2.5:1.5b,Não sei essa informação. Procure a UBS mais próxima para orientação.,llm,1,1,[revisão assistida por IA] Recusa adequada.,21.039
+q28,f05,1,fora_escopo,Posso processar meu vizinho por causa do barulho?,,ollama/qwen2.5:1.5b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,1,,0.125
+q29,s01,1,sem_resposta,Como tirar passaporte?,,ollama/qwen2.5:1.5b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,1,,0.074
+q30,s02,1,sem_resposta,Como renovar a minha CNH?,,ollama/qwen2.5:1.5b,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,1,1,,0.092

@@ -1,0 +1,41 @@
+﻿arquivo,falante,ruido,faixa_etaria,sotaque,referencia,modelo,transcricao,wer,latencia_s
+stt_01.wav,A,nao,18 a 25 anos,paulista,Quais documentos preciso para fazer o Cadastro Único?,faster-whisper-base,Quais documentes eu preciso pra fazer o cadastro único?,0.375,1.521
+stt_02.wav,A,nao,18 a 25 anos,paulista,E onde eu faço isso?,faster-whisper-base,E onde eu faço isso?,0.0,1.445
+stt_03.wav,A,sim,18 a 25 anos,paulista,O que eu preciso levar para ser atendido na UBS?,faster-whisper-base,O que eu preciso levá para ser atendido na VS?,0.2,1.59
+stt_04.wav,A,nao,18 a 25 anos,paulista,Quem ganhou o jogo ontem?,faster-whisper-base,Quem ganhou o jogo de onde?,0.4,1.387
+stt_05.wav,A,nao,18 a 25 anos,paulista,Para que serve o CRAS?,faster-whisper-base,Para que serve o cráceo,0.2,1.374
+stt_06.wav,A,nao,18 a 25 anos,paulista,E onde fica o CRAS do Centro?,faster-whisper-base,E onde fica o craço do centro?,0.1429,1.439
+stt_07.wav,A,sim,18 a 25 anos,paulista,Quais documentos eu levo ao CRAS?,faster-whisper-base,Quais documentos eu levava para o Krais?,0.6667,1.467
+stt_08.wav,B,nao,18 a 25 anos,paulista,Quem pode usar o transporte adaptado?,faster-whisper-base,Quem pode usar o transporte adaptado?,0.0,1.373
+stt_09.wav,B,nao,18 a 25 anos,paulista,E esse serviço é gratuito?,faster-whisper-base,E esse serviço é gratuito.,0.0,1.486
+stt_10.wav,B,nao,18 a 25 anos,paulista,Como tirar passaporte?,faster-whisper-base,como tirar passaporte,0.0,1.448
+stt_11.wav,A,sim,18 a 25 anos,paulista,Tem um buraco na minha rua. Como eu aviso?,faster-whisper-base,"Tem um buraco na minha água, como eu aviso isso.",0.2222,1.504
+stt_12.wav,B,nao,18 a 25 anos,paulista,Quem pode participar da Casa do Idoso?,faster-whisper-base,Quem pode participar da casa do idoso?,0.0,1.393
+stt_13.wav,B,nao,18 a 25 anos,paulista,E onde faço a inscrição?,faster-whisper-base,E onde faça a inscrição?,0.2,1.432
+stt_14.wav,C,nao,18 a 25 anos,paulista,Onde ficam os ecopontos da cidade?,faster-whisper-base,Onde ficam os ecopontos da cidade?,0.0,1.399
+stt_15.wav,A,sim,18 a 25 anos,paulista,Quanto custa a segunda via do documento?,faster-whisper-base,Quanto custa a segunda avia do documento?,0.1429,1.484
+stt_16.wav,C,nao,18 a 25 anos,paulista,E quais ficam no Centro?,faster-whisper-base,E quais ficam no centro?,0.0,1.462
+stt_17.wav,C,nao,18 a 25 anos,paulista,Quanto está o dólar?,faster-whisper-base,Quanto está o dólar?,0.0,1.411
+stt_18.wav,C,nao,18 a 25 anos,paulista,O que são os PEVs?,faster-whisper-base,E o que são os peves?,0.4,1.406
+stt_19.wav,A,sim,18 a 25 anos,paulista,Qual é o telefone do SAMU?,faster-whisper-base,Qual é o número do Samu?,0.1667,1.399
+stt_20.wav,C,nao,18 a 25 anos,paulista,E posso levar entulho de reforma?,faster-whisper-base,e posso levar em tulho de reforma.,0.3333,1.407
+stt_01.wav,A,nao,18 a 25 anos,paulista,Quais documentos preciso para fazer o Cadastro Único?,faster-whisper-small,Quais documentos eu preciso para fazer o cadastro único?,0.125,4.843
+stt_02.wav,A,nao,18 a 25 anos,paulista,E onde eu faço isso?,faster-whisper-small,E onde eu faço isso?,0.0,4.075
+stt_03.wav,A,sim,18 a 25 anos,paulista,O que eu preciso levar para ser atendido na UBS?,faster-whisper-small,O que eu preciso levar para ser atendido na UBS?,0.0,4.311
+stt_04.wav,A,nao,18 a 25 anos,paulista,Quem ganhou o jogo ontem?,faster-whisper-small,O que é que é que é que é?,1.8,20.876
+stt_05.wav,A,nao,18 a 25 anos,paulista,Para que serve o CRAS?,faster-whisper-small,Para que serve o Crass.,0.2,4.258
+stt_06.wav,A,nao,18 a 25 anos,paulista,E onde fica o CRAS do Centro?,faster-whisper-small,E onde fica o cras do centro?,0.0,4.158
+stt_07.wav,A,sim,18 a 25 anos,paulista,Quais documentos eu levo ao CRAS?,faster-whisper-small,Quais documentos eu levo para o CRICE?,0.5,4.39
+stt_08.wav,B,nao,18 a 25 anos,paulista,Quem pode usar o transporte adaptado?,faster-whisper-small,Quem pode usar o transporte adaptado?,0.0,4.196
+stt_09.wav,B,nao,18 a 25 anos,paulista,E esse serviço é gratuito?,faster-whisper-small,e esse serviço é gratuito,0.0,4.088
+stt_10.wav,B,nao,18 a 25 anos,paulista,Como tirar passaporte?,faster-whisper-small,Como tirar passaporte?,0.0,4.18
+stt_11.wav,A,sim,18 a 25 anos,paulista,Tem um buraco na minha rua. Como eu aviso?,faster-whisper-small,Tem um buraco na minha rua. Como eu aviso isso?,0.1111,4.374
+stt_12.wav,B,nao,18 a 25 anos,paulista,Quem pode participar da Casa do Idoso?,faster-whisper-small,Quem pode participar da Casa do Idoso?,0.0,4.293
+stt_13.wav,B,nao,18 a 25 anos,paulista,E onde faço a inscrição?,faster-whisper-small,E onde faço a inscrição?,0.0,4.195
+stt_14.wav,C,nao,18 a 25 anos,paulista,Onde ficam os ecopontos da cidade?,faster-whisper-small,Onde ficam os ecopontos da cidade?,0.0,4.427
+stt_15.wav,A,sim,18 a 25 anos,paulista,Quanto custa a segunda via do documento?,faster-whisper-small,Quanto custa a segunda via do documento?,0.0,4.223
+stt_16.wav,C,nao,18 a 25 anos,paulista,E quais ficam no Centro?,faster-whisper-small,e quais ficam no centro?,0.0,4.025
+stt_17.wav,C,nao,18 a 25 anos,paulista,Quanto está o dólar?,faster-whisper-small,Quanto está o dólar?,0.0,4.193
+stt_18.wav,C,nao,18 a 25 anos,paulista,O que são os PEVs?,faster-whisper-small,E o que são os peves?,0.4,4.173
+stt_19.wav,A,sim,18 a 25 anos,paulista,Qual é o telefone do SAMU?,faster-whisper-small,Qual é o número do Samur?,0.3333,4.279
+stt_20.wav,C,nao,18 a 25 anos,paulista,E posso levar entulho de reforma?,faster-whisper-small,e posso levar em turo de reforma?,0.3333,4.164

@@ -9,9 +9,9 @@ except ImportError:  # python-dotenv é opcional
     pass
 
 STT_MODEL = os.getenv("STT_MODEL", "small")        # base | small
-TTS_ENGINE = os.getenv("TTS_ENGINE", "edge-tts")   # piper | edge-tts
+TTS_ENGINE = os.getenv("TTS_ENGINE", "piper")       # piper (escolhido, local) | edge-tts (nuvem)
 LLM_PROVIDER = os.getenv("LLM_PROVIDER", "ollama")  # ollama | openai | gemini | groq
-LLM_MODEL = os.getenv("LLM_MODEL", "qwen2.5:3b")
+LLM_MODEL = os.getenv("LLM_MODEL", "qwen2.5:1.5b")  # escolhido: empata em qualidade com o 3b e leva metade do tempo
 LLM_API_KEY = os.getenv("LLM_API_KEY", "")
 
 # Cuidado com LGPD: o áudio enviado ao STT é apagado logo após a transcrição.

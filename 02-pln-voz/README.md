@@ -10,7 +10,7 @@ Assistente que escuta o morador, entende o pedido com um LLM e responde falando,
 | Edgar Lódula de Assis | 565260 |
 | Júlia Aben-Athar | 566325 |
 
-> Estado: o código dos módulos, a interface e os scripts de teste estão prontos. STT, LLM e TTS já rodaram com modelos reais, mas só com **áudios sintéticos** (ainda não há gravações do grupo). A seção [Estado e checklist](#estado-e-checklist) diz o que foi verificado e o que falta.
+> Estado: o código dos módulos, a interface e os scripts de teste estão prontos. STT, LLM e TTS já rodaram com modelos reais. O STT já foi medido com **gravações reais do grupo** e as 30 falas das conversas estão gravadas; o LLM ainda não foi medido com a base real e o TTS ainda não tem as notas dos avaliadores. A seção [Estado e checklist](#estado-e-checklist) diz o que foi verificado e o que falta.
 
 ## Problema, persona e ODS
 
@@ -67,11 +67,11 @@ As informações do domínio (horários de UBS, documentos para segunda via, ben
 
 | Etapa | Padrão no `.env.example` | Motivo |
 |---|---|---|
-| STT | local (faster-whisper) | a **voz do usuário não sai do computador**, o que é o dado mais sensível |
-| LLM | Ollama local por padrão, com API de nuvem opcional | local protege a pergunta; a nuvem responde mais rápido em máquina sem GPU |
-| TTS | Piper (local) ou edge-tts (nuvem) | edge-tts soa mais natural, mas envia o **texto da resposta** à Microsoft |
+| STT | local (faster-whisper `small`) | a **voz do usuário não sai do computador**, o que é o dado mais sensível |
+| LLM | Ollama local, `qwen2.5:1.5b` (nuvem opcional) | local protege a pergunta; empata em qualidade com o `3b` e leva metade do tempo em CPU |
+| TTS | Piper (local) | empatou nas notas com o edge-tts, é 2× mais rápido e não envia o **texto da resposta** à Microsoft |
 
-A escolha final entre as opções será justificada pelas medições de qualidade e latência (veja [Testes](#testes-e-métricas)). Quando algum serviço de nuvem está ativo, a tela de consentimento avisa o que é enviado.
+**Escolha final:** Whisper `small`, `qwen2.5:1.5b` e Piper, justificada pelas medições de qualidade e latência (veja [Testes](#testes-e-métricas) e as seções 6.5 e 9 do relatório). São os padrões do `config.py`; o `.env.example` da raiz pode sobrescrevê-los. Quando algum serviço de nuvem está ativo, a tela de consentimento avisa o que é enviado.
 
 ## Modelos, versões e licenças
 
@@ -84,7 +84,7 @@ Versões e licenças dos pacotes foram consultadas no PyPI em 17/11/2026. Os mod
 | edge-tts | 7.3.1 | LGPL-3.0 | usa o serviço online do Microsoft Edge: conferir os termos de uso do serviço |
 | piper-tts | 1.8.0 | GPL-3.0-ou-posterior | motor local |
 | Voz Piper `pt_BR-faber-medium` | n/d | CC0 (dataset, segundo o cartão da voz) | voz sintética pronta, sem clonagem |
-| LLM `qwen2.5:3b` (padrão) e `qwen2.5:1.5b`, via Ollama | Ollama 0.40.16 | conferir | o 3B usa a licença Qwen Research (restrita a uso não comercial): confirmar no cartão do modelo, assim como a do 1.5B |
+| LLM `qwen2.5:1.5b` (padrão) e `qwen2.5:3b`, via Ollama | Ollama 0.40.16 | conferir | o 3B usa a licença Qwen Research (restrita a uso não comercial): confirmar no cartão do modelo, assim como a do 1.5B |
 | OpenAI, Groq e Gemini (opcionais) | API | termos do provedor | enviam o texto da pergunta |
 | gradio | testado com 5.50.0; `requirements.txt` aceita >=5, <6 | Apache-2.0 | |
 | jiwer | 4.0.0 | Apache-2.0 | WER |
@@ -107,9 +107,9 @@ pip install -r requirements.txt
 cp ../.env.example ../.env      # edite: LLM_PROVIDER, LLM_MODEL, LLM_API_KEY, STT_MODEL, TTS_ENGINE
 ```
 
-**LLM local:** instale o [Ollama](https://ollama.com) e baixe o modelo, por exemplo `ollama pull qwen2.5:3b`. No Windows também funciona o pacote portátil `ollama-windows-amd64.zip`, sem instalador: extraia, rode `ollama serve` e depois `ollama pull`.
+**LLM local:** instale o [Ollama](https://ollama.com) e baixe o modelo, `ollama pull qwen2.5:1.5b` (o padrão; para comparar, também `ollama pull qwen2.5:3b`). No Windows também funciona o pacote portátil `ollama-windows-amd64.zip`, sem instalador: extraia, rode `ollama serve` e depois `ollama pull`.
 **LLM em nuvem:** coloque `LLM_PROVIDER=openai` (ou `groq`, `gemini`) e a chave em `LLM_API_KEY` no `.env`. O `.env` não é versionado.
-**Voz Piper (opcional):** baixe a voz nesta pasta.
+**Voz Piper (necessária com o padrão, que usa o Piper):** baixe a voz nesta pasta.
 
 ```bash
 python -m piper.download_voices pt_BR-faber-medium
@@ -141,13 +141,13 @@ python -m unittest discover -s testes -v
 
 | Componente | Teste mínimo | Métrica | Script | Resultado |
 |---|---|---|---|---|
-| STT | 20 áudios, 3 vozes, 5 com ruído | WER (`jiwer`) | `testes/avaliar_stt.py` | preliminar (áudios sintéticos): WER global `base` 0,114 e `small` 0,066; latência 2,11 s e 6,86 s. Gravações reais: a medir |
-| LLM | 30 perguntas (5 de continuação, 5 fora do escopo) | % corretas e % de recusas adequadas | `testes/avaliar_llm.py` | **Base fictícia** (perguntas antigas em `testes/perguntas_llm_base_ficticia.csv`, rodar com `BASE_CONHECIMENTO=stub`): `qwen2.5:3b` 82,6% a 91,3% corretas em 3 rodadas (4 de 5 na continuação); `qwen2.5:1.5b` 60,9%; 5 de 5 recusas fora do escopo (pela guarda); fuga em continuação 10 de 10 barrados depois da correção (antes, 0 de 10). **Base real (RAG do 03): a medir.** As 30 perguntas em `testes/perguntas_llm.csv` já foram reescritas com fatos do corpus de SJC |
-| TTS | 10 respostas, 3 avaliadores | naturalidade e clareza (1 a 5) | `testes/avaliar_tts.py` | áudios gerados, sem notas ainda. Síntese média: Piper 1,13 s, edge-tts 2,31 s |
-| Ponta a ponta | 10 conversas de 3 turnos | latência por etapa e total | `testes/avaliar_e2e.py` | preliminar (falas sintéticas, 100% local): total médio 12,1 s (STT 6,5 s, LLM 4,5 s, TTS 1,1 s). Gravações reais: a medir |
+| STT | 20 áudios, 3 vozes, 5 com ruído | WER (`jiwer`) | `testes/avaliar_stt.py` | **20 gravações reais do grupo** (3 vozes, 5 com ruído): WER global `base` 0,183 e `small` 0,150 a 0,175 (o `small` varia entre rodadas por causa de um áudio, o `stt_04`); latência 1,44 s e 5,09 s no Codespace (AMD EPYC 7763, 2 vCPUs). Com vozes sintéticas tinha sido 0,114 e 0,066 |
+| LLM | 30 perguntas (5 de continuação, 5 fora do escopo) | % corretas e % de recusas adequadas | `testes/avaliar_llm.py` | **Base real (RAG do 03), código final, CPU de 2 vCPUs:** `qwen2.5:3b` e `qwen2.5:1.5b` acertaram 19 de 23 (82,6%) pela revisão assistida por IA (automático: 91,3% e 87,0%); recusas fora do escopo 5 de 5 e abstenção sem dado 2 de 2 nos dois; latência de 55,4 s (3b) e 29,7 s (1.5b) por chamada. Fuga (10 conversas, 3b): 10 de 10 trocas de assunto barradas. Antes de corrigir a regra de continuação, o 3b tinha 73,9% (`evidencias/antes_da_correcao/`). Histórico com a base fictícia em `evidencias/base_ficticia/` |
+| TTS | 10 respostas, 3 avaliadores | naturalidade e clareza (1 a 5) | `testes/avaliar_tts.py` | avaliação cega por 6 pessoas em 3 duplas, **uma nota geral por áudio** (1 a 10, convertida para 1 a 5; naturalidade e clareza não separadas): `edge-tts` 4,30 e Piper 4,26, empate. Clareza objetiva pelo Whisper: WER 0,055 (`edge-tts`) e 0,097 (Piper). Síntese média: Piper 1,13 s, `edge-tts` 2,31 s |
+| Ponta a ponta | 10 conversas de 3 turnos | latência por etapa e total | `testes/avaliar_e2e.py` | **30 gravações reais, 10 conversas**, Codespace de 2 vCPUs. **A (local: Whisper `base` + `qwen2.5:1.5b` + Piper):** total médio 17,8 s (STT 1,5 s, LLM+RAG 14,6 s, TTS 1,7 s); 34,5 s nos turnos que chamam o LLM. **B (padrão: `small` + `3b` + edge-tts):** 45,1 s (STT 5,2 s, LLM+RAG 38,4 s, TTS 1,5 s); 64,3 s nos turnos com LLM. O `base` derrubou 3 conversas por erro de transcrição de siglas (6 de 20 turnos sobre o tema em "não sei"); o `small`, 1 de 20 |
 | Comparação | `base` contra `small` (STT), dois LLMs e dois TTS | qualidade e latência | os mesmos scripts | feita de forma preliminar nos três; repetir com dados reais |
 
-Resultados em `evidencias/` (CSV e resumo em Markdown). As medições preliminares com áudios sintéticos ficam separadas em `evidencias/sintetico/`. Foram feitas em um Intel Core i5-6300U (4 threads) com 16 GB de RAM, sem GPU, e valem para esse equipamento. Vozes sintéticas são mais limpas que pessoas reais, então o WER real tende a ser maior. Detalhes e análise em [relatorio/relatorio.md](relatorio/relatorio.md).
+Resultados em `evidencias/` (CSV e resumo em Markdown). As medições preliminares com áudios sintéticos ficam separadas em `evidencias/sintetico/`. Foram feitas em um Intel Core i5-6300U (4 threads) com 16 GB de RAM, sem GPU, e valem para esse equipamento. As medições de STT com gravações reais, de latência de 1,44 s e 5,09 s, foram feitas em um GitHub Codespace (AMD EPYC 7763, 2 vCPUs, 7,9 GB de RAM, Linux, sem GPU), não no i5: a latência vale para aquela máquina, e o WER praticamente não depende dela. Vozes sintéticas são mais limpas que pessoas reais, e o WER real foi de fato maior. Detalhes e análise em [relatorio/relatorio.md](relatorio/relatorio.md).
 
 ## Ética, segurança e LGPD
 
@@ -157,26 +157,26 @@ Resultados em `evidencias/` (CSV e resumo em Markdown). As medições preliminar
 - **Limites:** recusa fora do tema, não dá diagnóstico nem parecer jurídico, encaminha emergência (192, 193, 190) e diz "não sei" em vez de inventar.
 - **Sem voz clonada:** só vozes sintéticas prontas.
 - **Áudios de teste:** são gravações do próprio grupo, feitas com consentimento de quem falou, e não são apagadas pelos scripts de teste.
-- **Viés do STT:** o script de teste calcula o WER por falante, ruído, faixa etária e sotaque. A análise será escrita com os dados reais, e cobre só as vozes que o grupo gravar.
+- **Viés do STT:** o script calcula o WER por falante, ruído, faixa etária e sotaque. Com as gravações do grupo só deu para comparar voz e ruído: as três pessoas têm de 18 a 25 anos e sotaque paulista, então não há variação de idade nem de sotaque, e idosos (a persona) não estão representados. Detalhes na seção 7 do relatório.
 
 ## Estado e checklist
 
 Legenda: [x] feito e verificado, [~] código escrito, mas ainda não verificado com modelo real ou no navegador, [ ] a fazer.
 
 - [~] Captura por microfone e upload de áudio (interface verificada só em modo demonstração, e o microfone não foi gravado no navegador)
-- [x] STT em português (módulo separado), verificado com faster-whisper `base` e `small` em áudios sintéticos; falta testar com gravações reais
+- [x] STT em português (módulo separado), medido com faster-whisper `base` e `small` em 20 gravações reais do grupo (WER global 0,183 e 0,150 a 0,175) e verificado antes com áudios sintéticos
 - [x] LLM com system prompt (papel, tom, limites), executado com `qwen2.5:3b` e `qwen2.5:1.5b` via Ollama; erros analisados em `evidencias/llm_resultados.csv`
 - [x] Memória da conversa (perguntas de continuação), coberta por testes
-- [~] Base de conhecimento: RAG da pasta 03 integrado (`llm/base_rag.py`, 8 testes) e a recuperação conferida (trechos oficiais, abstenção em passaporte, piada e pergunta vaga). Falta rodar `avaliar_llm.py` com um LLM sobre a base real
+- [x] Base de conhecimento: RAG da pasta 03 integrado (`llm/base_rag.py`) e avaliado com 30 perguntas e dois LLMs (82,6% pela revisão assistida por IA)
 - [x] Adaptação para fala (frases curtas, sem markdown e emoji, números e siglas legíveis), coberta por testes
-- [x] TTS em português do Brasil: Piper e edge-tts geraram áudio (10 respostas em cada); falta a avaliação de naturalidade e clareza por 3 pessoas
+- [x] TTS em português do Brasil: Piper e edge-tts geraram áudio (10 respostas em cada) e foram avaliados por 6 pessoas em 3 duplas, de forma cega (nota geral: empate). Limitação: naturalidade e clareza não foram avaliadas separadamente
 - [~] Interface mostra transcrição e resposta em texto, com o áudio, verificada em modo demonstração
 - [x] Latência por etapa e total, medida pelo pipeline (um turno real com Whisper e TTS verificado)
 - [x] LGPD: consentimento, retenção mínima (verificado: o áudio de entrada é apagado depois da transcrição), recusa fora do tema (guarda barrou 5 de 5 perguntas, com a base provisória) e sem voz clonada
-- [ ] LGPD: análise de viés do STT (depende dos áudios)
+- [~] LGPD: análise de viés do STT feita por voz e por ruído; por faixa etária e sotaque não é possível (as três vozes têm de 18 a 25 anos e sotaque paulista) e idosos não estão representados (relatório, seção 7)
 - [x] Scripts e dados de teste (STT, LLM, TTS, ponta a ponta), com 82 testes automáticos. Ferramentas prontas para quando os dados chegarem: `testes/organizar_audios.py` (converte e confere as gravações), `testes/tts_cego.py` (avaliação cega do TTS) e `relatorio/gerar_pdf.py` (PDF do relatório)
-- [~] Executar os testes com dados reais: o LLM está configurado e o ponta a ponta rodou com falas sintéticas; faltam 20 áudios de STT e 30 falas de ponta a ponta gravados pelo grupo e 3 avaliadores de TTS
-- [~] Comparar duas opções em um componente: `base` contra `small` (STT), `3b` contra `1.5b` (LLM) e Piper contra edge-tts (TTS), medidos de forma preliminar; repetir com dados reais
+- [x] Executar os testes com dados reais: STT (20 áudios), LLM (30 perguntas, 2 modelos, 10 conversas de fuga), TTS (6 avaliadores) e ponta a ponta (10 conversas, 30 gravações, 2 configurações)
+- [x] Comparar duas opções em um componente: `base` contra `small` (STT, 20 gravações reais), `3b` contra `1.5b` (LLM, base real) e Piper contra `edge-tts` (TTS, avaliação cega): empate nas notas, com diferenças de latência e de privacidade
 - [x] README com arquitetura, modelos, versões e licenças
 - [~] Relatório em PDF: texto, ODS, evidência do problema (IBGE), referências e diagrama prontos (`relatorio/figuras/arquitetura.png`); `python relatorio/gerar_pdf.py` gera o PDF final quando não houver mais `[PREENCHER]` (hoje restam os que dependem das gravações, das notas do TTS, da avaliação do LLM com a base real e do vídeo)
 - [ ] Vídeo de até 5 min: conversa de 3 turnos com continuação e recusa
@@ -184,11 +184,11 @@ Legenda: [x] feito e verificado, [~] código escrito, mas ainda não verificado 
 ## Limitações conhecidas
 
 - O RAG herda os limites do 03: cobre 33 páginas da Prefeitura de SJC e tem falsa abstenção conhecida ("O que o PAIF faz?", cosseno 0,835 contra o limiar 0,84).
-- As 30 perguntas de teste foram reescritas com fatos do corpus real, mas as respostas esperadas são palavras-chave conferidas só contra o texto das páginas, e ainda não foram medidas com um LLM. Os resultados de LLM acima, com a base fictícia, não valem para o sistema final.
+- As 30 perguntas de teste foram reescritas com fatos do corpus real e medidas com dois LLMs. As respostas esperadas são palavras-chave, e a revisão que corrige a correção automática foi assistida por IA, com leitura de cada resposta contra a página de origem; uma amostra das notas foi conferida por um integrante do grupo.
 - A correção automática do LLM confere palavras-chave, uma aproximação. O grupo pode corrigir na coluna `acerto_manual`.
 - A guarda de emergência usa uma lista de palavras, então frases que fujam dela vão para o LLM.
-- A regra de continuação é lexical e foi ajustada com os mesmos casos usados para medir (10 de 10 barrados), então o resultado é otimista. Ela pode recusar continuações legítimas com vocabulário novo, e a continuação ainda pode trazer o trecho errado (1 de 10 conversas).
-- O `qwen2.5:3b` contradiz a base em perguntas de sim ou não (q14 e q17), os resultados variam entre rodadas (82,6% a 91,3%), e a correção automática por palavras-chave deixa passar isso, por isso a revisão manual.
-- A latência média ponta a ponta foi de 12,1 s em CPU sem GPU (preliminar, falas sintéticas).
+- A regra de continuação compara só as 3 primeiras letras das palavras, então pode casar por coincidência ("prefeito" com "preciso") e tratar como continuação uma fala que mudou de assunto. Uma fala só com palavras genéricas ("E onde eu faço isso?") conta sempre como continuação. A regra é lexical e foi ajustada com os mesmos casos usados para medir (10 de 10 barrados), então o resultado é otimista. Ela pode recusar continuações legítimas com vocabulário novo, e a continuação ainda pode trazer o trecho errado (1 de 10 conversas).
+- Os dois LLMs avaliados erram números em perguntas de contagem (q19: 16 e 14 UBS, e a página diz 40) e o `3b` se contradisse em uma resposta de sim ou não (q20). A guarda do 03 (cosseno 0,84) gera falsa abstenção com sinônimos (q21). A correção automática por palavras-chave superestima: a revisão derrubou 2 acertos do 3b. A revisão é assistida por IA, e uma amostra das notas foi conferida por um integrante do grupo.
+- A latência por chamada ao LLM com a base real foi de 55,4 s (3b) e 29,7 s (1.5b) em CPU de 2 vCPUs. No ponta a ponta, 17,8 s em média na configuração local e 45,1 s na padrão; nos turnos que chamam o LLM, de 34,5 s a 64,3 s. É incompatível com um assistente de voz: é preciso GPU (Colab T4), API de nuvem ou menos contexto.
 - A síntese não é em streaming: a fala só começa quando a resposta inteira está sintetizada. Sintetizar a primeira frase antes do resto reduziria o tempo.
 - Os números de STT e TTS vêm de um único computador (CPU de 4 threads, sem GPU) e, no STT, de vozes sintéticas. O STT errou siglas do domínio nas medições preliminares (o `base` transcreveu "UBS" como "B.S.").

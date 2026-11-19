@@ -55,7 +55,14 @@ python testes/avaliar_llm.py --llm ollama:qwen2.5:3b --llm groq:llama-3.1-8b-ins
 - `esperado` usa `;` para E e `|` para OU (sem diferença de acento ou caixa). É uma aproximação: leia a lista de erros e, se a resposta estiver certa com outras palavras, escreva `1` em `acerto_manual` em `evidencias/llm_resultados.csv` (ou `0`, para derrubar um acerto falso). A coluna manual prevalece no resumo.
 - Os tipos são `normal`, `continuacao`, `fora_escopo` (deve recusar e encaminhar) e `sem_resposta` (tema certo, mas a base não tem o dado, então deve dizer que não sabe).
 - **Base de conhecimento:** o padrão agora é o RAG da pasta 03 (`BASE_CONHECIMENTO=rag`), e `perguntas_llm.csv`, `perguntas_fuga.csv` e `conversas_e2e.csv` foram escritos com fatos do corpus oficial de SJC (cada palavra esperada foi conferida no texto da página). Os arquivos `*_base_ficticia.csv` guardam as perguntas antigas, escritas para a base fictícia; para reproduzir os resultados antigos use `BASE_CONHECIMENTO=stub` e `--perguntas testes/perguntas_llm_base_ficticia.csv`.
-- **Pendente:** rodar `python testes/avaliar_llm.py --llm ollama:qwen2.5:3b --llm ollama:qwen2.5:1.5b` (e depois `--perguntas testes/perguntas_fuga.csv --saida evidencias/fuga_rag`) com o Ollama no ar, revisar a coluna `acerto_manual` e atualizar o relatório.
+- **Como reproduzir a avaliação do LLM (base real):** com o Ollama no ar (`ollama serve`) e os modelos baixados (`ollama pull qwen2.5:3b` e `ollama pull qwen2.5:1.5b`), rode a partir de `02-pln-voz/`:
+  ```bash
+  export LLM_TIMEOUT_S=900 OLLAMA_URL=http://127.0.0.1:11434   # em CPU o modelo frio leva mais de 2 minutos para responder
+  python testes/avaliar_llm.py --retomar --llm ollama:qwen2.5:3b
+  python testes/avaliar_llm.py --retomar --llm ollama:qwen2.5:3b --perguntas testes/perguntas_fuga.csv --saida evidencias/fuga_rag
+  python testes/avaliar_llm.py --retomar --llm ollama:qwen2.5:1.5b
+  ```
+  O progresso é gravado após cada pergunta e `--retomar` continua de onde parou (conversas já concluídas e sem erro são puladas), então uma interrupção não perde o trabalho. Uma falha do LLM numa pergunta vira um resultado com `motivo` "erro" e a rodada segue. Aqueça o modelo antes de medir (uma chamada qualquer), para o carregamento não entrar na latência. Depois leia as respostas contra as páginas e preencha `acerto_manual`; `--so-resumir` recalcula o resumo.
 
 ## 3. TTS
 
@@ -68,6 +75,8 @@ Gera as 10 respostas em `audios_teste/tts/` e a planilha `testes/planilha_tts.cs
 ```bash
 python testes/avaliar_tts.py resumir
 ```
+
+**Avaliação por nota geral (a que o grupo usou).** O grupo avaliou os áudios de `tts_cego` com 6 pessoas em 3 duplas e deu **uma nota geral** por áudio, de 1 a 10, o que não permite separar naturalidade de clareza. Para esse caso, `python testes/tts_notas_gerais.py --importar "<60 números: 3 por áudio, na ordem aval_01 a aval_20>"` guarda as notas em `testes/tts_cego_notas_gerais.csv`, converte para 1 a 5 (`1 + (nota - 1) * 4 / 9`), junta com a chave cega e grava `evidencias/tts_notas.csv` e `evidencias/tts_resumo.md`. O fluxo abaixo, com as duas notas separadas, é o que o enunciado pede e continua disponível.
 
 **Avaliação cega (recomendada).** O nome do arquivo em `audios_teste/tts/` revela o motor. Para os avaliadores não saberem qual estão ouvindo, use `python testes/tts_cego.py preparar`: ele embaralha os 20 áudios em `audios_teste/tts_cego/aval_01.wav...` (todos WAV mono 22,05 kHz) e cria `testes/tts_cego_notas.csv` para as notas. Cada avaliador ouve os 20 áudios na ordem de `aval_01` a `aval_20` e preenche `naturalidade` e `clareza` (1 a 5); troque "Avaliador 1, 2 e 3" pelos nomes. Depois: `python testes/tts_cego.py consolidar` (passa as notas para `planilha_tts.csv`, recusa nota fora de 1 a 5 e menos de 3 pessoas) e `python testes/avaliar_tts.py resumir`. Não mostre `testes/tts_cego_chave.csv` aos avaliadores antes do fim. No relatório, registre que a avaliação foi cega.
 

@@ -1,0 +1,45 @@
+﻿conversa,turno,transcricao,resposta,motivo,stt,llm_rag,adaptacao,tts,total
+c01,1,Quais documentos eu preciso para fazer o cadastro único?,"Para o Cadastro Único, você precisa de RG e CPF ou título de eleitor. Também pode ser necessário outros documentos como comprovante de residência, carteira de trabalho e declaração escolar.",llm,5.617,95.787,0.002,1.643,103.049
+c01,2,E onde eu faço isso?,Você pode fazer o Cadastro Único pessoalmente em uma unidade do CRAS. As unidades estão localizadas em diferentes bairros. Você precisa verificar a unidade mais próxima de sua residência.,llm,4.404,9.048,0.0,3.224,16.676
+c01,3,Hoje é o dia de hoje.,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,18.978,0.109,0.0,2.549,21.636
+c02,1,Para que serve o Crass.,É uma unidade pública responsável pela organização e oferta de serviços de proteção social básica.,llm,4.435,52.762,0.0,1.287,58.485
+c02,2,E onde fica o cras do centro?,"Cras do Centro está na Rua Machado Sidney, 145, ao lado da Casa do Idoso Centro.",llm,4.493,80.124,0.0,1.438,86.055
+c02,3,Qual remédio é bom para a dor de cabeça?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,4.585,0.112,0.0,0.487,5.185
+c03,1,Como eu peço a limpeza de um boeiro entupido.,Ligue 156 gratuitamente ou use o PrefBook no link fornecido.,llm,4.772,23.665,0.0,0.997,29.434
+c03,2,Eu posso pedir pelo aplicativo?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,4.53,0.085,0.0,0.507,5.122
+c03,3,Obrigado. Me conta uma piada.,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,4.489,0.1,0.0,0.623,5.213
+c04,1,Quem pode usar o transporte adaptado?,"Pessoas com deficiência motora, mental ou múltipla severa que causem alto grau de dependência.",llm,9.875,110.84,0.005,2.477,123.197
+c04,2,e esse serviço é gratuito,"Sim, o serviço de transporte adaptado é gratuito.",llm,4.889,63.877,0.0,1.025,69.792
+c04,3,Como tirar passaporte?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,4.175,0.08,0.0,0.468,4.723
+c05,1,Quem pode participar da Casa do Idoso?,"Idosos a partir dos 60 anos, moradores de São José, que vivenciam situações de vulnerabilidade social.",llm,4.301,80.817,0.0,1.391,86.51
+c05,2,E onde faço a inscrição?,"Inscreva-se nas Casas do Idoso Sul, Leste, Norte e Centro.",llm,4.246,82.392,0.0,0.911,87.549
+c05,3,Posso processar meu vizinho?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,4.598,0.094,0.0,0.426,5.118
+c06,1,Quem tem direito ao leite gratuito para crianças?,Famílias com renda mensal de até 1/4 de salário mínimo per capita.,llm,4.425,28.072,0.0,0.642,33.139
+c06,2,E é até que idade a criança recebe.,A criança recebe até 5 anos e 11 meses de idade.,llm,4.523,4.561,0.0,0.446,9.53
+c06,3,Qual a previsão do tempo?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,4.342,0.126,0.0,0.453,4.922
+c07,1,Onde ficam os ecopontos da cidade?,"ECOPONTO SÍTIO BOM JESUS - R. Hilário Santana, 5 - Parque Res. Flamboyant
+ECOPONTO SANTA CRUZ 1 - R. Setenta, 54 - Vila Progresso
+ECOPONTO SANTA CRUZ 3 - R. do Cruzeiro, 98 - Centro
+ECOPONTO FLORIANO PEIXOTO - Av. Mal. Floriano Peixoto, 154 - Centro
+ECOPONTO FRANCISCO RAPHAEL - R. Francisco Raphael, 405 - Centro
+ECOPONTO VILA MACHADO - Av. Rui Barbosa, 2696 - Santana
+ECOPONTO SUBTERRÂNEO PRAÇA JOÃO MENDES - Praça Dr. João Mendes, 136-188 - Centro
+ECOPONTO SUBTERRÂNEO MERCADO MUNICIPAL - Rua Sebastião Humel, 277 - Centro",llm,4.566,71.903,0.001,9.939,86.41
+c07,2,e quais ficam no centro?,"ECOPONTO SÍTIO BOM JESUS - Parque Res. Flamboyant
+ECOPONTO SANTA CRUZ 1 - Vila Progresso
+ECOPONTO SANTA CRUZ 3 - Centro
+ECOPONTO FLORIANO PEIXOTO - Centro
+ECOPONTO FRANCISCO RAPHAEL - Centro
+ECOPONTO VILA MACHADO - Santana
+ECOPONTO SUBTERRÂNEO PRAÇA JOÃO MENDES - Centro
+ECOPONTO SUBTERRÂNEO MERCADO MUNICIPAL - Centro",llm,4.235,54.658,0.0,5.651,64.545
+c07,3,Quanto está o dólar?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,4.366,0.081,0.0,0.443,4.891
+c08,1,E o que são os peves?,PEVs são pontos de entrega voluntária de resíduos.,llm,4.343,32.732,0.0,1.195,38.271
+c08,2,e posso levar em turo de reforma?,"Sim, você pode levar resíduos de reforma para PEVs.",llm,4.666,35.535,0.0,0.521,40.722
+c08,3,Me deu uma receita de bolo.,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,4.45,0.094,0.0,0.515,5.059
+c09,1,Quem é atendido no CREAS?,"Creas atende crianças, adolescentes, idosos, pessoas com deficiência e qualquer indivíduo em situação de violação de direitos.",llm,4.438,99.48,0.0,1.244,105.162
+c09,2,E qual é o endereço do CREA-SU?,"Creas Sul está localizado na Avenida Cidade Jardim, 5.431, Bosque dos Eucaliptos.",llm,4.692,51.045,0.0,0.634,56.371
+c09,3,Quem é o prefeito da cidade?,"Não tenho essa informação com segurança. Posso ajudar com serviços públicos do bairro, como UBS, CRAS e documentos. Para saúde, assuntos jurídicos ou emergência, procure o órgão competente. Em emergência, ligue 192, 193 ou 190.",sem_contexto,4.28,0.087,0.0,0.476,4.843
+c10,1,Em que horário posso fazer o cadastro único?,"De segunda a sexta-feira, das 8h às 16h30.",llm,4.618,59.606,0.0,1.219,65.443
+c10,2,E onde fica o do centro?,"Centro: Rua Machado Sidney, 145.",llm,4.533,60.834,0.0,1.085,66.451
+c10,3,como renovar minhas CNH.,"Para renovar a CNH, você deve ir à Junta Comercial de São José dos Campos.",llm,4.332,53.465,0.0,1.223,59.021
