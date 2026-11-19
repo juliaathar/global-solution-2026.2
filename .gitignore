@@ -24,3 +24,14 @@ models/*.bin
 # 02-pln-voz: gravações originais do grupo (os WAV organizados em stt/ e e2e/ vão para o git)
 02-pln-voz/audios_teste/entrada/
 02-pln-voz/relatorio/relatorio_rascunho.pdf
+
+# zips de gravações baixados do Drive (voz é dado pessoal: nunca commitar)
+/*.zip
+
+# gravações soltas na raiz (voz é dado pessoal: nunca commitar)
+/*.aac
+/*.m4a
+/*.opus
+/*.mp3
+/*.wav
+/*.ogg

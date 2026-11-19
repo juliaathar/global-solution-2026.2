@@ -17,6 +17,7 @@ sotaque preenchidos e evidencias/audios_qualidade.csv. Os originais não são al
 Qualquer formato que não seja WAV PCM precisa do pacote `av` (já vem com o faster-whisper).
 """
 import argparse
+import hashlib
 import sys
 import wave
 from pathlib import Path
@@ -152,6 +153,7 @@ def identificar(entrada: Path, esperados: dict[str, dict]) -> tuple[dict[str, Pa
     erros = []
     arquivos = {p.name.lower(): p for p in entrada.iterdir() if p.suffix.lower() in EXTENSOES}
     achados: dict[str, Path] = {}
+    tratados: set[Path] = set()  # arquivos citados no mapeamento: não valem também pelo nome original
     mapa = entrada / "mapeamento.csv"
     if mapa.is_file():
         for l in ler_csv(mapa):
@@ -159,7 +161,11 @@ def identificar(entrada: Path, esperados: dict[str, dict]) -> tuple[dict[str, Pa
             cod = Path(cod).stem
             if orig not in arquivos:
                 erros.append(f"mapeamento.csv cita '{l.get('original')}', que não está em {entrada}")
-            elif cod not in esperados:
+                continue
+            tratados.add(arquivos[orig])
+            if cod in ("", "ignorar"):
+                continue  # descartado de propósito (por exemplo, áudio repetido ou gravação errada)
+            if cod not in esperados:
                 erros.append(f"mapeamento.csv: código desconhecido '{l.get('codigo')}'")
             elif cod in achados:
                 erros.append(f"código {cod} mapeado duas vezes")
@@ -167,9 +173,9 @@ def identificar(entrada: Path, esperados: dict[str, dict]) -> tuple[dict[str, Pa
                 achados[cod] = arquivos[orig]
     for nome, p in arquivos.items():
         cod = p.stem.lower()
-        if cod in esperados and cod not in achados:
+        if p not in tratados and cod in esperados and cod not in achados:
             achados[cod] = p
-    usados = set(achados.values())
+    usados = set(achados.values()) | tratados
     for p in arquivos.values():
         if p not in usados:
             erros.append(f"arquivo sem código (fora do mapeamento e do padrão de nome): {p.name}")
@@ -189,6 +195,7 @@ def organizar(entrada: Path, saida: Path = AUDIOS, so_conferir: bool = False, fo
     achados, problemas = identificar(entrada, esperados)
     vozes = ler_vozes(entrada)
     avisos, linhas = [], []
+    vistos: dict[str, str] = {}  # impressão digital do áudio -> código
 
     falantes_usados = {esperados[c]["falante"] for c in achados if esperados[c]["pasta"] == "stt"}
     for f in sorted(falantes_usados):
@@ -208,6 +215,11 @@ def organizar(entrada: Path, saida: Path = AUDIOS, so_conferir: bool = False, fo
         except Exception as erro:  # noqa: BLE001 - arquivo corrompido ou formato sem suporte
             problemas.append(f"{origem.name}: não foi possível ler ({type(erro).__name__}: {erro})")
             continue
+        digest = hashlib.sha1(x.tobytes()).hexdigest()
+        if digest in vistos:
+            problemas.append(f"{origem.name} ({cod}) é o MESMO áudio de {vistos[digest]}: uma das gravações está repetida")
+            continue
+        vistos[digest] = cod
         m = medir(x)
         linhas.append({"codigo": cod, "original": origem.name, "destino": f"{e['pasta']}/{e['arquivo']}",
                        "falante": e["falante"], "ruido": e["ruido"], **m, "avisos": "; ".join(avisos_de(m))})
@@ -221,7 +233,8 @@ def organizar(entrada: Path, saida: Path = AUDIOS, so_conferir: bool = False, fo
     faltando = sorted(c for c in esperados if c not in achados)
     if not so_conferir and linhas:
         escrever_csv(evidencias / "audios_qualidade.csv", linhas)
-        _preencher_manifesto(saida / "manifesto_stt.csv", vozes)
+        if any(l["destino"].startswith("stt/") for l in linhas):  # só mexe no manifesto se houve áudio de STT
+            _preencher_manifesto(saida / "manifesto_stt.csv", vozes)
     return {"problemas": problemas, "avisos": [f"{l['destino']}: {l['avisos']}" for l in linhas if l["avisos"]],
             "linhas": linhas, "faltando": faltando}
 
@@ -254,7 +267,13 @@ def main() -> int:
         if itens:
             print(f"\n{t}:\n  " + "\n  ".join(itens))
     if r["faltando"]:
-        print(f"\nAinda faltam {len(r['faltando'])}: " + ", ".join(r["faltando"]))
+        from montar_stt_das_conversas import LIMPOS  # import tardio: o montador importa este módulo
+        das_conversas = [c for c in r["faltando"] if c in LIMPOS]
+        faltam = [c for c in r["faltando"] if c not in LIMPOS]
+        print(f"\nAinda faltam {len(faltam)}: " + (", ".join(faltam) or "nada"))
+        if das_conversas:
+            print(f"Outros {len(das_conversas)} áudios do STT (stt_01, stt_02...) não precisam ser gravados: vêm das conversas "
+                  "pelo testes/montar_stt_das_conversas.py")
     return 1 if r["problemas"] else 0
 
 
