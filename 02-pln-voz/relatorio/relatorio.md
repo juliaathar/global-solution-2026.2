@@ -112,7 +112,7 @@ Versões usadas nas medições (a tabela completa, com licenças, está no `READ
 
 - **Áudios do STT:** o enunciado pede 20 áudios gravados pelo grupo. O conjunto final tem 20 áudios de 3 vozes, as dos três integrantes (A, B e C), com 5 áudios com ruído de fundo. Quinze são limpos e vêm das gravações das conversas de teste; os outros cinco (`stt_03`, `stt_07`, `stt_11`, `stt_15` e `stt_19`) foram gravados à parte, com ruído de fundo, todos pela voz A. Os 15 limpos foram escolhidos por uma regra definida antes de ver o WER (os cinco primeiros áudios de cada voz, na ordem das conversas), para não favorecer o resultado. As três pessoas têm de 18 a 25 anos, falam com sotaque paulista e confirmaram o consentimento para o uso das gravações no trabalho. Os arquivos do repositório são WAV de 16 kHz, mono, convertidos dos originais (m4a, WAV e aac do WhatsApp) por `testes/organizar_audios.py`, que também confere nível, duração e ruído de cada gravação: o piso de ruído dos cinco áudios ruidosos ficou entre −34 e −27 dBFS, contra −59 a −44 dBFS nas gravações limpas da voz A. [PREENCHER: aparelho, ambiente e fonte do ruído de fundo.] Antes das gravações reais, uma medição preliminar com 20 áudios sintéticos (as mesmas 20 frases lidas por três vozes do edge-tts, com ruído branco a 10 dB em 5 deles, `testes/gerar_audios_sinteticos.py`) serviu para validar os scripts. Vozes sintéticas são mais limpas que pessoas reais; esses resultados ficam em `evidencias/sintetico/` e não valem como resultado final.
 - **Perguntas do LLM:** 30 perguntas (18 normais, 5 de continuação, 5 fora do escopo e 2 sem resposta na base), com palavras-chave esperadas. Foram escritas a partir da base provisória de 4 textos, que são exemplos fictícios. A correção automática confere palavras-chave; as respostas foram lidas uma a uma, e a revisão manual preliminar (feita com assistência de IA, a conferir pelo grupo) está em `evidencias/llm_resultados.csv`, nas colunas `acerto_manual` e `obs_manual`.
-- **Avaliação do TTS:** [PREENCHER: quem avaliou, em que condições de escuta, e se os avaliadores sabiam qual motor estavam ouvindo.]
+- **Avaliação do TTS:** a avaliação é cega: os 20 áudios foram embaralhados, receberam nomes neutros (`aval_01` a `aval_20`) e foram convertidos para o mesmo formato (WAV mono de 22,05 kHz), então o nome e a extensão do arquivo não revelam o motor (`testes/tts_cego.py`). Um integrante do grupo ouviu os 20 áudios em um celular Samsung Galaxy S25. [PREENCHER: fones ou alto-falante e o ambiente de escuta, as notas, e os outros dois avaliadores que o enunciado exige.]
 - **Equipamento das medições:** Intel Core i5-6300U (2 núcleos, 4 threads), 16 GB de RAM, sem GPU, Windows 10, Python 3.13. O STT rodou localmente em CPU com `int8`; o edge-tts usou a internet. O LLM rodou localmente pelo Ollama 0.40.16 (`qwen2.5:3b` e `qwen2.5:1.5b`), em CPU. A rede só foi usada pelo edge-tts.
 
 ## 6. Resultados
@@ -141,7 +141,7 @@ O `small` errou menos que o `base`: WER global de 0,066 contra 0,114, uma reduç
 
 <!-- INCLUIR: evidencias/llm_resumo.md -->
 
-**Resultado com a base real (RAG do 03) e o código final.** As 30 perguntas foram reescritas com fatos do corpus oficial de SJC (cada palavra esperada foi conferida na página) e rodadas nos dois modelos, em um GitHub Codespace (AMD EPYC 7763, 2 vCPUs, sem GPU). A tabela acima traz a correção automática por palavras-chave e a revisão manual, que prevalece. A revisão foi **assistida por IA**: cada resposta foi lida contra o texto da página de origem (coluna `acerto_manual`), e precisa ser conferida por uma pessoa do grupo antes de valer como revisão humana.
+**Resultado com a base real (RAG do 03) e o código final.** As 30 perguntas foram reescritas com fatos do corpus oficial de SJC (cada palavra esperada foi conferida na página) e rodadas nos dois modelos, em um GitHub Codespace (AMD EPYC 7763, 2 vCPUs, sem GPU). A tabela acima traz a correção automática por palavras-chave e a revisão manual, que prevalece. A revisão foi **assistida por IA**: cada resposta foi lida contra o texto da página de origem (coluna `acerto_manual`), e uma amostra dessas notas foi conferida por um integrante do grupo (as demais notas não foram conferidas por uma pessoa).
 
 | | `qwen2.5:3b` | `qwen2.5:1.5b` |
 |---|---|---|
@@ -200,6 +200,12 @@ Pelo critério automático, no caso do vizinho barulhento o modelo deu um consel
 
 As notas de naturalidade e clareza ainda não existem. Os 20 áudios (10 respostas, 2 motores) estão em `audios_teste/tts/` e a planilha dos 3 avaliadores está pronta em `testes/planilha_tts.csv`. [PREENCHER: notas médias e comentários dos avaliadores.]
 
+**Clareza objetiva, medida pelo Whisper.** Como complemento às notas das pessoas, cada um dos 20 áudios de TTS foi transcrito pelo Whisper `small` e comparado ao texto falado (`testes/avaliar_tts_inteligibilidade.py`). Isso mede se uma máquina reconhece a fala, **não** a naturalidade nem a clareza para uma pessoa idosa, e não substitui as notas.
+
+<!-- INCLUIR: evidencias/tts_inteligibilidade.md -->
+
+O `edge-tts` teve WER médio de 0,055 e o Piper de 0,097: os dois são inteligíveis. Parte do erro vem da normalização do texto ("EloBairro" contra "elo bairro", "9-2" contra "nove dois"), então o WER sobrestima um pouco os dois. Os erros reais do Piper são de pronúncia: "buraco" foi entendido como "poraco" e "devagar" como "VADAR".
+
 O que já foi medido é o tempo de síntese neste computador:
 
 | Motor | Respostas | Síntese média (s) | Mínima (s) | Máxima (s) |
@@ -211,15 +217,45 @@ O Piper foi mais rápido em média e roda sem internet. Os 4,99 s do máximo del
 
 ### 6.4 Ponta a ponta e latência
 
+Foram usadas as 30 gravações reais do grupo (10 conversas de 3 turnos: pergunta, continuação e um assunto fora do tema ou sem dado), em duas configurações, em um GitHub Codespace (AMD EPYC 7763, 2 vCPUs, sem GPU). O modelo do LLM foi carregado antes de começar (aquecimento), então o carregamento não entra na conta.
+
+**Configuração A, totalmente local:** Whisper `base`, `qwen2.5:1.5b` e Piper.
+
 <!-- INCLUIR: evidencias/e2e_resumo.md -->
 
-**Medição preliminar com falas sintéticas.** Foram 10 conversas de 3 turnos (30 turnos). As falas planejadas foram sintetizadas com as três vozes do edge-tts, sem ruído, porque as gravações do grupo ainda não existem. A configuração foi 100% local, em CPU: Whisper `small`, Qwen 2.5 3B via Ollama e Piper. O modelo do LLM foi carregado antes de começar, então o tempo de carregamento não entra na conta.
+**Configuração B, padrão do projeto:** Whisper `small`, `qwen2.5:3b` e edge-tts (nuvem: só o texto da resposta é enviado).
+
+<!-- INCLUIR: evidencias/e2e_padrao/e2e_resumo.md -->
+
+| | A (local) | B (padrão) |
+|---|---|---|
+| STT | 1,5 s | 5,2 s |
+| LLM + RAG | 14,6 s | 38,4 s |
+| TTS | 1,7 s | 1,5 s |
+| **Total médio, da pergunta ao início da fala** | **17,8 s** | **45,1 s** |
+| Total máximo | 95,9 s | 123,2 s |
+| Total nos turnos que chamam o LLM | 34,5 s (14 turnos) | 64,3 s (20 turnos) |
+| Total nos turnos resolvidos pela guarda | 3,1 s (16 turnos) | 6,7 s (10 turnos) |
+| WER médio das transcrições (30 turnos) | 0,201 | 0,126 |
+| Turnos sobre o tema (pergunta e continuação) que terminaram em "não sei" | 6 de 20 | 1 de 20 |
+
+A B leva mais turnos ao LLM (20 contra 14 na A), e por isso o total médio sobe: a A é mais rápida em parte porque recusa mais, e 6 dessas recusas vieram de erros de transcrição. Por tipo de turno, a B leva cerca do dobro do tempo da A (64,3 s contra 34,5 s nos turnos com LLM).
+
+**O STT é o elo mais fraco do fluxo de voz.** Na A, o `base` errou siglas e palavras raras e isso derrubou 3 conversas: "CRAS" virou "cráceo" e "craço", "bueiro" virou "boeiro" e "CREAS" virou "lucrear", e o assistente respondeu "não tenho essa informação" a 6 dos 20 turnos sobre o tema. Como a continuação depende do assunto da pergunta anterior, o erro da primeira pergunta derruba também a segunda. Na B, o `small` acertou essas siglas e só 1 turno sobre o tema terminou em "não sei", com o WER médio das transcrições caindo de 0,201 para 0,126. O custo é a latência do STT (de 1,5 s para 5,2 s) e o LLM maior.
+
+**Fragilidade que sobrou nas duas.** A fala "E posso pedir pelo aplicativo?" (c03-t2) foi transcrita como "**Eu** posso pedir pelo aplicativo?" nas duas configurações. A regra de continuação reconhece a continuação pelo "e" no começo da fala, e o "Eu" fez com que ela deixasse de ser tratada como continuação, e o resultado foi "não sei". A regra depende de o STT acertar uma palavra de uma letra.
+
+**A latência é incompatível com o uso por voz em CPU.** Nos turnos que chamam o LLM, o total vai de 34,5 s (A) a 64,3 s (B), com máximo de 123 s. O STT, o TTS e a adaptação juntos pesam pouco (cerca de 7 s na B); o tempo se concentra no LLM com o contexto de 3 trechos. Para uma pessoa idosa, esperar mais de 30 s por uma resposta falada não é aceitável: é preciso GPU (Colab T4), uma API de nuvem ou menos contexto. Os turnos resolvidos pela guarda (3 a 7 s) mostram o que STT, TTS e adaptação entregam sozinhos.
+
+**Memória.** A configuração B usou cerca de 6,5 GB dos 7,9 GB do Codespace (o `qwen2.5:3b`, o Whisper `small` e o índice do RAG). Uma primeira tentativa terminou de repente, sem erro do programa e com a memória no limite, quando o `qwen2.5:1.5b` ainda estava carregado; atribuímos isso à falta de memória, mas não confirmamos pelo log do sistema. Em uma máquina de 8 GB, só um modelo do Ollama deve ficar carregado por vez.
+
+**Histórico: medição preliminar com falas sintéticas** (feita antes das gravações, com Whisper `small`, Qwen 2.5 3B e Piper; não vale como resultado final). Foram 10 conversas de 3 turnos (30 turnos). As falas planejadas foram sintetizadas com as três vozes do edge-tts, sem ruído, porque as gravações do grupo ainda não existem. A configuração foi 100% local, em CPU: Whisper `small`, Qwen 2.5 3B via Ollama e Piper. O modelo do LLM foi carregado antes de começar, então o tempo de carregamento não entra na conta.
 
 <!-- INCLUIR: evidencias/sintetico/e2e_resumo.md -->
 
 A pergunta levou em média 12,1 s até o início da fala, com máximo de 18,6 s. O STT é a etapa mais pesada (6,5 s, cerca de metade do total), seguido do LLM (4,5 s). A adaptação não pesa e o Piper levou 1,1 s. O LLM foi chamado em 19 dos 30 turnos; nos outros 11, a guarda respondeu na hora. Na primeira medição, antes da correção da fuga da guarda (seção 6.2), o total foi de 14,2 s (máximo de 25,0 s), com o LLM chamado em 24 turnos. A média caiu porque a guarda passou a responder mais turnos sem o modelo, e não porque o sistema ficou mais rápido. Na medição isolada do STT, o `base` levou 2,1 s contra 6,9 s do `small`, então trocá-lo reduziria a espera, ao custo de mais erros de transcrição. Para uma pessoa que espera a resposta falada, 12 s ainda é um tempo longo. [PREENCHER: avaliação do grupo sobre se esse tempo é aceitável para a persona, e a medição com as gravações reais.]
 
-**O que a leitura das respostas mostrou.** O script mede tempo, não correção, mas as respostas mostram o comportamento do sistema:
+**O que a leitura das respostas mostrou (medição sintética).** O script mede tempo, não correção, mas as respostas mostram o comportamento do sistema:
 
 - O pedido de piada ("Obrigado! Me conta uma piada!"), que na primeira medição foi atendido com uma piada, passou a cair na guarda depois da correção (seção 6.2).
 - Duas continuações legítimas passaram a receber "não tenho essa informação": "E se eu não tiver?" e "e precisa de mais alguma coisa?". Antes elas recebiam respostas que a base não sustentava ou do assunto errado. A guarda é honesta, mas recusa continuações que usam vocabulário novo.
@@ -290,8 +326,9 @@ Com as gravações do grupo (tabelas na seção 6.1), o WER médio por áudio da
 - O LLM erra números em perguntas de contagem (q19: 16 e 14 UBS, e o texto diz 40) e pode se contradizer, como "Sim, ..." seguido de uma informação que significa não (q20).
 - A guarda de evidência (cosseno mínimo de 0,84, herdada do 03) gera falsa abstenção em perguntas respondíveis escritas com sinônimos: "tirar uma árvore" contra "remoção" (q21).
 - As respostas de endereço viram listas longas, contra a regra de 4 frases do prompt, e a adaptação para fala não as encurta, o que vira uma fala longa.
-- A regra de continuação compara as 3 primeiras letras das palavras e pode casar por coincidência ("prefeito" com "preciso").
-- A revisão das respostas do LLM foi assistida por IA e cobre 23 perguntas; a conferência por pessoas do grupo ainda é necessária.
+- A regra de continuação compara as 3 primeiras letras das palavras e pode casar por coincidência ("prefeito" com "preciso"), e depende de o STT acertar o "e" do começo da fala: "Eu posso pedir pelo aplicativo?" deixou de ser continuação nas duas configurações.
+- Um erro de transcrição de sigla derruba a resposta e também a continuação seguinte (6 dos 20 turnos sobre o tema com o Whisper `base`).
+- A revisão das respostas do LLM foi assistida por IA e cobre 23 perguntas; uma amostra foi conferida por um integrante do grupo, e o restante não.
 - No STT, as três vozes têm de 18 a 25 anos e sotaque paulista, e há 4 a 5 áudios por grupo comparado.
 
 **Melhorias futuras:**
@@ -304,6 +341,7 @@ Com as gravações do grupo (tabelas na seção 6.1), o WER médio por áudio da
 - Detecção de voz para falar sem apertar botão.
 - Avaliação com mais vozes, em especial de pessoas idosas e de sotaques regionais diversos.
 - Dar ao Whisper um vocabulário de apoio com as siglas do domínio (CRAS, CREAS, UBS, PEV, SAMU), que são o principal erro do STT, e medir em frases novas, não nas mesmas do teste.
+- Tornar a regra de continuação robusta a erros do STT (por exemplo, considerar continuação uma fala curta sem substantivo novo, mesmo sem o "e" inicial).
 - Fixar a temperatura do Whisper em zero para a transcrição ficar reproduzível (o `small` variou em um áudio entre rodadas).
 - Acrescentar ao LLM uma guarda de saída como a do 03, que confira números e contradições contra os trechos, para pegar casos como as "16 UBSs".
 - Reduzir o tamanho e o número de trechos enviados ao LLM, e usar GPU (Colab T4) ou uma API de nuvem, para baixar a latência de 30 a 55 s por resposta.
@@ -318,7 +356,7 @@ Com as gravações do grupo (tabelas na seção 6.1), o WER médio por áudio da
 
 Construímos um assistente de voz em português que recebe a pergunta falada, transcreve, responde com apoio de uma base de conhecimento e devolve a resposta em áudio, mostrando também o texto na tela. O objetivo era dar a quem tem dificuldade com interfaces de texto uma forma de perguntar sobre serviços do bairro falando e de ouvir a resposta em linguagem simples. Cada etapa (STT, LLM com memória e base de conhecimento, adaptação para fala e TTS) é um módulo separado, o que permitiu comparar opções, como o Whisper `base` e o `small` no STT e o Piper e o edge-tts no TTS, sem reescrever o resto do sistema.
 
-Com as gravações reais do grupo (20 áudios, 3 vozes, 5 com ruído), o `base` teve WER global de 0,183 e o `small` de 0,150 a 0,175, com 1,4 s e 5,1 s de transcrição por áudio em CPU; com vozes sintéticas tinham sido 0,114 e 0,066. O `small` erra menos nos áudios estáveis, mas custa cerca de 3,5 vezes mais tempo e foi instável em um áudio, e ambos erram siglas do domínio e pioram com ruído. Na síntese, o Piper levou em média 1,13 s por resposta e o edge-tts 2,31 s. No diálogo, com o RAG real e o código final, o `qwen2.5:3b` e o `qwen2.5:1.5b` acertaram 82,6% das 23 perguntas que dependem do modelo (revisão assistida por IA), com recusas e abstenções adequadas em todas as perguntas fora do escopo e sem resposta, e as 10 trocas de assunto nas conversas de fuga foram barradas. A latência por chamada, de 55,4 s no 3b e 29,7 s no 1.5b em CPU, é a principal limitação prática. Na avaliação do TTS, a nota média foi [PREENCHER] em naturalidade e [PREENCHER] em clareza. A latência média da pergunta até o início da fala foi de 12,1 s na configuração local testada (preliminar, em CPU), e a etapa que mais pesou foi o STT, com 6,5 s. Com isso, escolhemos [PREENCHER: modelos finais] porque [PREENCHER: razão com base em qualidade e latência].
+Com as gravações reais do grupo (20 áudios, 3 vozes, 5 com ruído), o `base` teve WER global de 0,183 e o `small` de 0,150 a 0,175, com 1,4 s e 5,1 s de transcrição por áudio em CPU; com vozes sintéticas tinham sido 0,114 e 0,066. O `small` erra menos nos áudios estáveis, mas custa cerca de 3,5 vezes mais tempo e foi instável em um áudio, e ambos erram siglas do domínio e pioram com ruído. Na síntese, o Piper levou em média 1,13 s por resposta e o edge-tts 2,31 s. No diálogo, com o RAG real e o código final, o `qwen2.5:3b` e o `qwen2.5:1.5b` acertaram 82,6% das 23 perguntas que dependem do modelo (revisão assistida por IA), com recusas e abstenções adequadas em todas as perguntas fora do escopo e sem resposta, e as 10 trocas de assunto nas conversas de fuga foram barradas. A latência por chamada, de 55,4 s no 3b e 29,7 s no 1.5b em CPU, é a principal limitação prática. Na avaliação do TTS, a nota média foi [PREENCHER] em naturalidade e [PREENCHER] em clareza. No ponta a ponta com as gravações reais, a pergunta levou em média 17,8 s até o início da fala na configuração local (Whisper `base`, `qwen2.5:1.5b` e Piper) e 45,1 s na padrão (Whisper `small`, `qwen2.5:3b` e edge-tts); nos turnos que chamam o LLM, de 34,5 s a 64,3 s, e a etapa que mais pesou foi o LLM. O `base` derrubou 3 conversas por erros de transcrição de siglas, e o `small` quase não. Com isso, escolhemos [PREENCHER: modelos finais] porque [PREENCHER: razão com base em qualidade e latência].
 
 Duas decisões de projeto pesaram mais do que a escolha dos modelos. A primeira foi manter a transcrição no computador do usuário, de modo que a voz, que é um dado pessoal, não seja enviada a nenhum serviço externo. A segunda foi tratar emergências e ausência de informação com respostas fixas, fora do LLM, em vez de depender só do system prompt para que o modelo recuse ou admita que não sabe. Nos testes, a guarda barrou as 5 perguntas fora do escopo sem chamar o LLM, mas a detecção de emergência falhou em 2 de 7 frases na primeira versão e foi ampliada. O `qwen2.5:3b` disse que não sabia nas duas perguntas sem resposta na base, mas, no ponta a ponta, um pedido de piada feito depois de uma pergunta do tema passou pela guarda e foi atendido. Corrigimos a regra de continuação e os 10 casos de fuga passaram a ser barrados, embora a correção tenha sido ajustada com os mesmos casos da medição.
 
