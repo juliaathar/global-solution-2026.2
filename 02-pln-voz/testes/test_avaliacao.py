@@ -125,6 +125,47 @@ class TesteLLM(unittest.TestCase):
         self.assertIn("falso", md)
         self.assertIn("Erros para análise", md)
 
+    def test_erro_do_llm_nao_derruba_a_rodada(self):
+        class LLMQuebrado:
+            nome = "quebrado"
+            def responder(self, system, historico, contexto):
+                raise TimeoutError("tempo esgotado")
+
+        linhas = [
+            {"id": "a1", "conversa": "c1", "turno": "1", "tipo": "normal", "pergunta": "Que horas a UBS abre?", "esperado": "sete"},
+            {"id": "a2", "conversa": "c2", "turno": "1", "tipo": "fora_escopo", "pergunta": "Quem ganhou o jogo ontem?", "esperado": ""},
+        ]
+        res = avaliar_llm.executar(LLMQuebrado(), BaseStub(), linhas)
+        por_id = {r["id"]: r for r in res}
+        self.assertEqual((por_id["a1"]["motivo"], por_id["a1"]["acerto_auto"]), ("erro", 0))
+        self.assertIn("TimeoutError", por_id["a1"]["resposta"])
+        self.assertEqual(por_id["a2"]["acerto_auto"], 1)  # a rodada seguiu: o fora do escopo nem chama o LLM
+
+    def test_progresso_e_gravado_a_cada_pergunta(self):
+        class LLM:
+            nome = "falso"
+            def responder(self, system, historico, contexto):
+                return "sete horas"
+
+        linhas = [{"id": f"p{i}", "conversa": f"c{i}", "turno": "1", "tipo": "normal",
+                   "pergunta": "Que horas a UBS abre?", "esperado": "sete"} for i in range(3)]
+        vistos = []
+        avaliar_llm.executar(LLM(), BaseStub(), linhas, ao_terminar=lambda r: vistos.append(r["id"]))
+        self.assertEqual(vistos, ["p0", "p1", "p2"])
+
+    def test_retomar_so_pula_conversas_completas_e_sem_erro(self):
+        linhas = [
+            {"id": "q1", "conversa": "c1", "turno": "1"}, {"id": "q2", "conversa": "c1", "turno": "2"},
+            {"id": "q3", "conversa": "c2", "turno": "1"}, {"id": "q4", "conversa": "c3", "turno": "1"},
+        ]
+        feitos = [
+            {"id": "q1", "conversa": "c1", "motivo": "llm"}, {"id": "q2", "conversa": "c1", "motivo": "llm"},  # completa
+            {"id": "q3", "conversa": "c2", "motivo": "erro"},                                                 # com erro
+        ]                                                                                                     # c3: não feita
+        self.assertEqual(avaliar_llm.conversas_completas(feitos, linhas), {"c1"})
+        # conversa pela metade (falta o turno 2) também é refeita inteira, porque a continuação precisa da memória
+        self.assertEqual(avaliar_llm.conversas_completas(feitos[:1], linhas), set())
+
     def test_acerto_manual_prevalece(self):
         r = {"acerto_auto": 0, "acerto_manual": "1"}
         self.assertTrue(avaliar_llm.acerto(r))

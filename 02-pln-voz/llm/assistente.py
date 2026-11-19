@@ -51,6 +51,15 @@ _CONTINUACAO = re.compile(r"^\W*(e|mas|então)\b|"
                           r"\b(isso|isto|disso|nisso|ela|ele|dela|dele|lá|aí|esse|essa|desse|dessa|nesse|nessa)\b")
 
 
+# Palavras que não dizem de qual assunto se fala (verbos de pedir e fazer, perguntas sobre horário, endereço...).
+# Uma fala que só tem isso ("E onde eu faço isso?") não pode ser troca de assunto: troca de assunto traz um
+# substantivo novo ("jogo", "piada", "dólar"). Sem esta regra, "faço" (raiz "fac") não casava com "fazer" ("faz")
+# e a continuação mais típica caía na guarda de "não sei".
+GENERICAS = {"faco", "fazer", "faz", "fazem", "pedir", "peco", "pede", "solicitar", "solicito", "preciso", "precisa",
+             "levar", "levo", "leva", "funciona", "horario", "endereco", "telefone", "numero", "contato", "atendimento",
+             "gratuito", "gratuita", "custa", "valor", "documento", "documentos", "fica", "ficam"}
+
+
 def parece_continuacao(pergunta: str) -> bool:
     return bool(_CONTINUACAO.search(pergunta.lower()))
 
@@ -80,7 +89,7 @@ class Assistente:
         if len(self.historico) < 2 or not parece_continuacao(pergunta):
             return False
         conteudo = palavras(pergunta)
-        if not conteudo:  # "E aí?", "E onde?": nada a comparar, mantém a continuação
+        if not conteudo or conteudo <= GENERICAS:  # "E aí?", "E onde eu faço isso?": nada a trocar, mantém a continuação
             return True
         anterior = palavras(" ".join([self.historico[-2].conteudo, self.historico[-1].conteudo]
                                      + [t.texto for t in self._ultimo_contexto]))

@@ -121,6 +121,36 @@ class TestFugaDaGuarda(unittest.TestCase):
             self.assertEqual(len(llm.chamadas), 2, segunda)
 
 
+class TestContinuacaoSoComPalavrasGenericas(unittest.TestCase):
+    """O exemplo do próprio enunciado: "e onde eu faço isso?" depois de uma pergunta do tema."""
+
+    def _assistente_depois_de(self, pergunta_anterior):
+        from interfaces import Mensagem
+        a = Assistente(LLMEspiao(), BaseStub())
+        a.historico = [Mensagem("user", pergunta_anterior), Mensagem("assistant", "Certo.")]
+        return a
+
+    def test_onde_eu_faco_isso_e_continuacao(self):
+        # "faço" e "fazer" não compartilham as 3 primeiras letras; só tem palavra genérica, logo é continuação
+        a = self._assistente_depois_de("Quais documentos preciso levar para fazer o Cadastro Único?")
+        self.assertTrue(a._eh_continuacao("E onde eu faço isso?"))
+
+    def test_outras_continuacoes_so_com_palavras_genericas(self):
+        a = self._assistente_depois_de("Como peço a limpeza de um bueiro entupido?")
+        for f in ("E qual o horário?", "E qual o telefone?", "E isso é gratuito?"):
+            self.assertTrue(a._eh_continuacao(f), f)
+
+    def test_troca_de_assunto_com_substantivo_novo_continua_sendo_barrada(self):
+        a = self._assistente_depois_de("Quais documentos preciso levar para fazer o Cadastro Único?")
+        for f in ("E me conta uma piada?", "E quem ganhou o jogo ontem?", "E o dólar, quanto está hoje?"):
+            self.assertFalse(a._eh_continuacao(f), f)
+
+    def test_a_pergunta_do_enunciado_chega_ao_llm_com_o_assunto_anterior(self):
+        a = self._assistente_depois_de("Que horas a UBS abre?")
+        a.perguntar("E onde eu faço isso?")
+        self.assertEqual(a.ultimo_motivo, "llm")  # buscou com a pergunta anterior e achou contexto
+
+
 class TestMemoria(unittest.TestCase):
     def test_continuacao_reaproveita_pergunta_anterior_na_busca(self):
         llm = LLMEspiao()
