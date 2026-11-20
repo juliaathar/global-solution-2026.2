@@ -6,7 +6,7 @@ titulo: "EloBairro e a computação quântica: onde ela pode ajudar, quando e co
 
 **Onde ela pode ajudar, quando e com que cuidados**
 
-FIAP · Engenharia de Software · Global Solution 2026.2 · Computação Quântica
+FIAP · Tecnologia em Inteligência Artificial, 2º ano · Global Solution 2026.2 · Computação Quântica
 
 | Nome completo | RM |
 |---|---|

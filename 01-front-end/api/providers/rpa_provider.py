@@ -46,8 +46,21 @@ def gerar_protocolo(relato_id: str, categoria: str, urgencia: str, confianca: fl
 
 
 def relatorio_execucao() -> tuple[Path | None, dict]:
-    """Último relatório do robô: o da saída local, se existir, senão o das evidências versionadas."""
+    """Último relatório do robô que tenha protocolos: o da saída local, senão o das evidências versionadas.
+
+    Quando o robô roda de novo sobre os mesmos relatos, o relatório novo vem sem protocolos (todos já
+    processados). Nesse caso usa o anterior com protocolos, para o painel não ficar vazio.
+    """
+    vazio: tuple[Path | None, dict] = (None, {})
     for arq in config.RELATORIO_RPA:
-        if arq.is_file():
-            return arq, json.loads(arq.read_text(encoding="utf-8"))
-    return None, {}
+        if not arq.is_file():
+            continue
+        try:
+            dados = json.loads(arq.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        if dados.get("protocolos"):
+            return arq, dados
+        if vazio[0] is None:
+            vazio = (arq, dados)
+    return vazio

@@ -110,5 +110,9 @@ Detalhes em `docs/etica-lgpd.md`.
 
 ## Links
 
-- Vídeo: (a preencher)
-- Deploy: (a preencher)
+- Vídeo de Governança (integração de todos os módulos): https://youtu.be/peT0RJlUPe4
+- Vídeo de Front-end: https://youtu.be/3YiRxwm_ClQ
+- Vídeo de PLN (assistente de voz): https://youtu.be/RJKlXz8Ev5U
+- Vídeo de Generative AI (RAG): https://youtu.be/P8tk_suSmPo
+- Vídeo de Visão Computacional: https://www.youtube.com/watch?v=sOFx6vsD0AY
+- Execução: local, com `docker compose up` (sem deploy público)
