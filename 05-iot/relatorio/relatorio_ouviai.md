@@ -1,6 +1,6 @@
 <div align="center">
 
-**FIAP · Engenharia de Software · Global Solution 2026.2**
+**FIAP · Tecnologia em Inteligência Artificial, 2º ano · Global Solution 2026.2**
 **IoT e Embedded AI**
 
 <br>

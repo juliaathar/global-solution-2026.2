@@ -125,10 +125,10 @@ Vídeos por disciplina (não listados no YouTube):
 
 | Disciplina | Vídeo |
 |---|---|
+| 09 Governança (integração de todos os módulos) | https://youtu.be/peT0RJlUPe4 |
+| 01 Front-end | https://youtu.be/3YiRxwm_ClQ |
 | 02 PLN (Assistente de Voz) | https://youtu.be/RJKlXz8Ev5U |
 | 03 Generative AI | https://youtu.be/P8tk_suSmPo |
 | 04 Visão Computacional | https://www.youtube.com/watch?v=sOFx6vsD0AY |
-
-Os vídeos das outras disciplinas e o vídeo geral do projeto (09 Governança) ainda não estão publicados.
 
 Execução: não há deploy público. O sistema roda com Docker Compose (veja [Como executar](#como-executar)).

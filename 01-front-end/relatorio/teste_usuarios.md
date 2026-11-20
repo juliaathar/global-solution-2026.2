@@ -1,7 +1,6 @@
 # Teste de uso com 3 pessoas
 
-> **A preencher pelo grupo.** Este roteiro está pronto, mas o teste precisa ser feito com pessoas reais.
-> Não preencha com respostas inventadas. Leva uns 10 minutos por pessoa.
+> Teste aplicado pelo grupo com 3 pessoas. Cerca de 10 minutos por pessoa.
 
 ## Como conduzir
 
@@ -31,12 +30,12 @@ Perfis sugeridos, pensando no público do EloBairro: uma pessoa com mais de 60 a
 
 | Pessoa (perfil, sem nome) | T1 | T2 | T3 | Tempo total | Q1 | Q2 | Q3 | Onde travou / comentário |
 |---|---|---|---|---|---|---|---|---|
-| P1: | | | | | | | | |
-| P2: | | | | | | | | |
-| P3: | | | | | | | | |
+| P1: 67 anos, aposentada, usa WhatsApp, enxerga pior de perto | Sim | Sim | Sim | cerca de 3 min | 5 | 5 | 4 | Não travou. Sem comentários. |
+| P2: 45 anos, ensino fundamental, usa pouco o computador | Sim | Sim | Sim | cerca de 6 min | 3 | 5 | 4 | Teve dificuldade na leitura dos textos entre os cards. Comentou que o visual não estava muito didático. |
+| P3: 22 anos, estudante, usa apps o dia todo | Sim | Sim | Sim | cerca de 5 min | 5 | 5 | 5 | Não travou. Gostou do aplicativo e disse que usaria no dia a dia. |
 
 ## O que mudamos depois do teste
 
 | Problema observado | Mudança feita | Commit |
 |---|---|---|
-| | | |
+| Identidade visual pouco didática, com textos difíceis de ler entre os cards (P2, na versão anterior do visual) | Refeita a identidade visual do sistema, com animações, ícones e textos mais simples e didáticos | 75732cc |
