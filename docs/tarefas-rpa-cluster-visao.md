@@ -15,11 +15,11 @@ Legenda: [x] feito e verificado, [~] código escrito mas não executado, [ ] a f
 - [x] T9. Log e relatório de execução em JSON (`main.py`)
 - [x] T10. Testes automatizados, 7 casos (`testes/test_rpa.py`)
 - [x] T11. Medir acerto em amostra rotulada (`avaliar.py`)
-- [ ] T12. Definir os 3 temas da disciplina de RPA e preencher o quadro de temas no README
-- [ ] T13. Registrar um caso de falha demonstrado (print do log com retry) em `evidencias/`
-- [ ] T14. Ligar a saída do robô à API do app (`01-front-end/api`)
-- [ ] T15. Escrever o parágrafo de proteção de dados, ética e ODS no README
-- [ ] T16. Melhorar o classificador (sinônimos como "sujeira" e "caçamba cheia" para lixo) ou trocar por modelo de ML da outra disciplina
+- [x] T12. Definir os 3 temas da disciplina de RPA e preencher o quadro de temas no README
+- [x] T13. Registrar um caso de falha demonstrado (print do log com retry) em `evidencias/` (9 cenários em `evidencias/falha_tratada.txt`)
+- [~] T14. Ligar a saída do robô à API do app (`01-front-end/api`): a API tem `POST /protocolos` (contrato do robô) e `POST /protocolos/importar-rpa`, e o app usa a máscara, o classificador e o banco do robô; falta registrar uma execução do robô com `RPA_API_URL` apontando para a API real
+- [x] T15. Escrever o parágrafo de proteção de dados, ética e ODS no README
+- [x] T16. Melhorar o classificador (sinônimos como "sujeira" e "caçamba cheia" para lixo) ou trocar por modelo de ML da outra disciplina
 
 Como executar, a partir de `06-rpa/codigo`:
 
@@ -47,11 +47,11 @@ A deduplicação compara cada texto com todos os anteriores, o que fica lento em
 - [x] V6. Medir latência média e FPS em vídeo ou pasta de imagens (`benchmark_video.py`)
 - [x] V7. Baixar o dataset Concrete Crack (Mendeley) e extrair em `imagens/Positive` e `imagens/Negative`
 - [x] V8. Instalar dependências (`pip install -r codigo/requirements.txt`) e rodar V1 a V4
-- [~] V9. Analisar erros do `erros_teste.csv` (sombra, textura, iluminação) e anotar no relatório (erros e acertos vistos em imagem, interferências simuladas em `montagem_interferencias.png`, sem fotos reais por decisão do grupo; falta a anotação no relatório)
+- [x] V9. Analisar erros do `erros_teste.csv` (sombra, textura, iluminação) e anotar no relatório (erros e acertos vistos em imagem, interferências simuladas em `montagem_interferencias.png`, sem fotos reais por decisão do grupo; anotado na seção 6 do relatório)
 - [~] V10. Gravar ou escolher um vídeo curto e rodar V6, anotando equipamento e resolução (rodado com vídeo sintético em `evidencias/benchmark.txt`; repetir com vídeo real)
 - [x] V11. Criar o endpoint de imagem na API e a tela no app
 - [x] V12. Justificar arquitetura, pré-processamento e limiar de confiança no relatório (`04-visao-computacional/relatorio/relatorio_visao.md`; latência de vídeo real a preencher)
-- [ ] V13. Gravar o vídeo da funcionalidade integrada
+- [x] V13. Gravar o vídeo da funcionalidade integrada (https://www.youtube.com/watch?v=sOFx6vsD0AY)
 
 Atenção: o dataset não informa a imagem original de cada recorte. A separação por blocos é uma aproximação e deve aparecer como limitação.
 Executado em 2026-11-17 (CPU i5-6300U): teste com 600 imagens, acurácia 98,2%, F1 0,98 por classe, 11 erros. Limiar 0,45 escolhido na validação. Detalhes em `04-visao-computacional/README.md`.
@@ -61,11 +61,11 @@ Novos scripts: `escolher_limiar.py`, `analisar_erros.py`, `exemplos_acertos.py`,
 
 - [x] C1. Definir a carga, os parâmetros e os dois cenários (`cenarios_ispd/parametros.md`)
 - [x] C2. Script para calcular redução percentual, razão T2/T4 e eficiência (`calcular_resultados.py`)
-- [ ] C3. Instalar o iSPD e confirmar as unidades de cada campo
-- [ ] C4. Montar e executar o cenário A (2 workers) e salvar o `.imsx`
-- [ ] C5. Montar e executar o cenário B (4 workers), mudando só a quantidade
-- [ ] C6. Capturar Total Simulated Time e a aba Resources dos dois cenários
-- [ ] C7. Rodar `calcular_resultados.py T2 T4` e montar a tabela com unidades
-- [ ] C8. Redigir o relatório de 2 a 4 páginas com análise de gargalos e limites
+- [x] C3. Instalar o iSPD e confirmar as unidades de cada campo
+- [x] C4. Montar e executar o cenário A (2 workers) e salvar o `.imsx`
+- [x] C5. Montar e executar o cenário B (4 workers), mudando só a quantidade
+- [x] C6. Capturar Total Simulated Time e a aba Resources dos dois cenários
+- [x] C7. Rodar `calcular_resultados.py T2 T4` e montar a tabela com unidades
+- [x] C8. Redigir o relatório de 2 a 4 páginas com análise de gargalos e limites
 
-Os parâmetros são hipóteses declaradas. Confirmar se o MobileNetV2 usa 600 MFLOPS por imagem após medir (V6).
+Os parâmetros são hipóteses declaradas. A comparação com o custo da MobileNetV2 (cerca de 600 MFLOPS) e com a latência medida em V6 (cerca de 60 ms por imagem) está em `07-cluster/cenarios_ispd/parametros.md`.

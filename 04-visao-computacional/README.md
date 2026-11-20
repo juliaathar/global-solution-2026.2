@@ -1,5 +1,12 @@
 # 04 Visão Computacional para Manutenção Urbana
 
+Projeto **EloBairro**. Este módulo é a entrada por **foto** do relato do cidadão.
+
+## Papel no EloBairro
+- **No app (`01-front-end`):** a foto vai para `POST /visao/imagem`. Se o modelo recomenda inspeção, o fluxo de relatos usa esse resultado para reforçar a categoria **calçada** (só quando o texto não indicou outra categoria) e mostra a probabilidade como triagem. O cidadão confirma, e o protocolo é gravado no mesmo banco do robô da `06-rpa`.
+- **No cluster (`07-cluster`):** a tarefa simulada no iSPD é este classificador rodando em lote. A latência medida aqui (cerca de 60 ms por imagem em CPU) é a referência para os parâmetros de lá.
+- **O que fica de fora:** o modelo foi treinado com fissuras em superfícies de concreto (Concrete Crack). Ele **não detecta buraco no asfalto**, que é o exemplo mais comum de relato no robô da 06. Relatos de buraco dependem do texto ou da voz. Cobrir buracos exigiria uma base de dano em pavimento, como a RDD2022.
+
 Legenda: [x] feito e verificado, [~] feito em parte, [ ] a fazer.
 
 ## Checklist

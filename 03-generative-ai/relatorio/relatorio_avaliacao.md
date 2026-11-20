@@ -10,6 +10,8 @@ Global Solution 2026.2 · FIAP · Generative AI & Advanced Nets · Turma 2TIAPF
 
 Repositório: `juliaathar/global-solution-2026.2`, pasta `03-generative-ai`. Todos os números deste relatório vêm dos scripts de `avaliacao/` e dos arquivos de `evidencias/`, que podem ser reproduzidos (seção 8).
 
+Vídeo de demonstração (não listado no YouTube): https://youtu.be/P8tk_suSmPo
+
 ---
 
 ## 1. Resumo

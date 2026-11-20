@@ -10,7 +10,9 @@ Assistente que escuta o morador, entende o pedido com um LLM e responde falando,
 | Edgar Lódula de Assis | 565260 |
 | Júlia Aben-Athar | 566325 |
 
-> Estado: o código dos módulos, a interface e os scripts de teste estão prontos. STT, LLM e TTS já rodaram com modelos reais. O STT já foi medido com **gravações reais do grupo** e as 30 falas das conversas estão gravadas; o LLM ainda não foi medido com a base real e o TTS ainda não tem as notas dos avaliadores. A seção [Estado e checklist](#estado-e-checklist) diz o que foi verificado e o que falta.
+> Estado: STT, LLM e TTS foram medidos com dados reais (20 gravações do grupo no STT, 30 perguntas sobre a base real do RAG no LLM, avaliação cega por 6 pessoas no TTS e 10 conversas de ponta a ponta). Falta verificar a captura pelo microfone no navegador. A seção [Estado e checklist](#estado-e-checklist) diz o que foi verificado e o que falta.
+
+**Ligação com as outras disciplinas:** a busca vem do motor RAG da `03-generative-ai`, e a voz também é usada pela API do app (`01-front-end`, rotas `/voz/perguntar` e `/voz/falar`). Veja [Como a voz entra no app integrado](#como-a-voz-entra-no-app-integrado). Relatos de problemas do bairro (buraco, poste apagado) não são abertos por esta interface: viram protocolo pelo fluxo de relatos do app, que usa o robô da `06-rpa`.
 
 ## Problema, persona e ODS
 
@@ -65,13 +67,25 @@ As informações do domínio (horários de UBS, documentos para segunda via, ben
 
 ### Nuvem ou local
 
-| Etapa | Padrão no `.env.example` | Motivo |
+| Etapa | Padrão do `config.py` (escolha da disciplina) | Motivo |
 |---|---|---|
 | STT | local (faster-whisper `small`) | a **voz do usuário não sai do computador**, o que é o dado mais sensível |
 | LLM | Ollama local, `qwen2.5:1.5b` (nuvem opcional) | local protege a pergunta; empata em qualidade com o `3b` e leva metade do tempo em CPU |
 | TTS | Piper (local) | empatou nas notas com o edge-tts, é 2× mais rápido e não envia o **texto da resposta** à Microsoft |
 
-**Escolha final:** Whisper `small`, `qwen2.5:1.5b` e Piper, justificada pelas medições de qualidade e latência (veja [Testes](#testes-e-métricas) e as seções 6.5 e 9 do relatório). São os padrões do `config.py`; o `.env.example` da raiz pode sobrescrevê-los. Quando algum serviço de nuvem está ativo, a tela de consentimento avisa o que é enviado.
+**Escolha final:** Whisper `small`, `qwen2.5:1.5b` e Piper, justificada pelas medições de qualidade e latência (veja [Testes](#testes-e-métricas) e as seções 6.5 e 9 do relatório). São os padrões do `config.py`. **Atenção:** o `.env.example` da raiz é compartilhado com o app e com a `03-generative-ai` e vem com `LLM_PROVIDER=openai` e `LLM_MODEL=gpt-4o-mini`, o LLM avaliado na 03. Quem copiar esse arquivo sem mudar nada vai mandar o texto da pergunta para a OpenAI. Para usar a configuração local escolhida aqui, troque no `.env` para `LLM_PROVIDER=ollama` e `LLM_MODEL=qwen2.5:1.5b`. Quando algum serviço de nuvem está ativo, a tela de consentimento avisa o que é enviado.
+
+### Como a voz entra no app integrado
+
+Existem dois caminhos de voz no EloBairro. A interface desta pasta (`app.py`) roda o **assistente completo da 02**: guarda de emergência, memória de 6 turnos, regra de continuação e o LLM escolhido aqui. Todas as medições deste README foram feitas nesse caminho.
+
+A API do app (`01-front-end/api/routers/voz.py`) usa desta pasta só o STT, a adaptação para fala e o TTS. Entre eles, chama o motor **completo** da 03 (busca, gerador `gpt-4o-mini` e proteções da 03), e não o `llm/assistente.py`. Por isso, no app:
+
+| | Interface da 02 (`app.py`) | Rota `/voz/perguntar` do app |
+|---|---|---|
+| Busca | RAG da 03 (só a recuperação) | RAG da 03 |
+| LLM | o do `config.py`/`.env` (escolha da 02: `qwen2.5:1.5b` local) | o gerador da 03, pelo `.env` da raiz (`gpt-4o-mini` no exemplo) |
+| "Não sei" | resposta fixa, sem LLM | abstenção da 03 (limiar 0,84 e regra no prompt) |
 
 ## Modelos, versões e licenças
 
@@ -144,7 +158,7 @@ python -m unittest discover -s testes -v
 | STT | 20 áudios, 3 vozes, 5 com ruído | WER (`jiwer`) | `testes/avaliar_stt.py` | **20 gravações reais do grupo** (3 vozes, 5 com ruído): WER global `base` 0,183 e `small` 0,150 a 0,175 (o `small` varia entre rodadas por causa de um áudio, o `stt_04`); latência 1,44 s e 5,09 s no Codespace (AMD EPYC 7763, 2 vCPUs). Com vozes sintéticas tinha sido 0,114 e 0,066 |
 | LLM | 30 perguntas (5 de continuação, 5 fora do escopo) | % corretas e % de recusas adequadas | `testes/avaliar_llm.py` | **Base real (RAG do 03), código final, CPU de 2 vCPUs:** `qwen2.5:3b` e `qwen2.5:1.5b` acertaram 19 de 23 (82,6%) pela revisão assistida por IA (automático: 91,3% e 87,0%); recusas fora do escopo 5 de 5 e abstenção sem dado 2 de 2 nos dois; latência de 55,4 s (3b) e 29,7 s (1.5b) por chamada. Fuga (10 conversas, 3b): 10 de 10 trocas de assunto barradas. Antes de corrigir a regra de continuação, o 3b tinha 73,9% (`evidencias/antes_da_correcao/`). Histórico com a base fictícia em `evidencias/base_ficticia/` |
 | TTS | 10 respostas, 3 avaliadores | naturalidade e clareza (1 a 5) | `testes/avaliar_tts.py` | avaliação cega por 6 pessoas em 3 duplas, **uma nota geral por áudio** (1 a 10, convertida para 1 a 5; naturalidade e clareza não separadas): `edge-tts` 4,30 e Piper 4,26, empate. Clareza objetiva pelo Whisper: WER 0,055 (`edge-tts`) e 0,097 (Piper). Síntese média: Piper 1,13 s, `edge-tts` 2,31 s |
-| Ponta a ponta | 10 conversas de 3 turnos | latência por etapa e total | `testes/avaliar_e2e.py` | **30 gravações reais, 10 conversas**, Codespace de 2 vCPUs. **A (local: Whisper `base` + `qwen2.5:1.5b` + Piper):** total médio 17,8 s (STT 1,5 s, LLM+RAG 14,6 s, TTS 1,7 s); 34,5 s nos turnos que chamam o LLM. **B (padrão: `small` + `3b` + edge-tts):** 45,1 s (STT 5,2 s, LLM+RAG 38,4 s, TTS 1,5 s); 64,3 s nos turnos com LLM. O `base` derrubou 3 conversas por erro de transcrição de siglas (6 de 20 turnos sobre o tema em "não sei"); o `small`, 1 de 20 |
+| Ponta a ponta | 10 conversas de 3 turnos | latência por etapa e total | `testes/avaliar_e2e.py` | **30 gravações reais, 10 conversas**, Codespace de 2 vCPUs. **A (local: Whisper `base` + `qwen2.5:1.5b` + Piper):** total médio 17,8 s (STT 1,5 s, LLM+RAG 14,6 s, TTS 1,7 s); 34,5 s nos turnos que chamam o LLM. **B (comparação, padrão do projeto na época da medição: `small` + `3b` + edge-tts):** 45,1 s (STT 5,2 s, LLM+RAG 38,4 s, TTS 1,5 s); 64,3 s nos turnos com LLM. O `base` derrubou 3 conversas por erro de transcrição de siglas (6 de 20 turnos sobre o tema em "não sei"); o `small`, 1 de 20 |
 | Comparação | `base` contra `small` (STT), dois LLMs e dois TTS | qualidade e latência | os mesmos scripts | feita de forma preliminar nos três; repetir com dados reais |
 
 Resultados em `evidencias/` (CSV e resumo em Markdown). As medições preliminares com áudios sintéticos ficam separadas em `evidencias/sintetico/`. Foram feitas em um Intel Core i5-6300U (4 threads) com 16 GB de RAM, sem GPU, e valem para esse equipamento. As medições de STT com gravações reais, de latência de 1,44 s e 5,09 s, foram feitas em um GitHub Codespace (AMD EPYC 7763, 2 vCPUs, 7,9 GB de RAM, Linux, sem GPU), não no i5: a latência vale para aquela máquina, e o WER praticamente não depende dela. Vozes sintéticas são mais limpas que pessoas reais, e o WER real foi de fato maior. Detalhes e análise em [relatorio/relatorio.md](relatorio/relatorio.md).
@@ -183,7 +197,7 @@ Legenda: [x] feito e verificado, [~] código escrito, mas ainda não verificado 
 
 ## Limitações conhecidas
 
-- O RAG herda os limites do 03: cobre 33 páginas da Prefeitura de SJC e tem falsa abstenção conhecida ("O que o PAIF faz?", cosseno 0,835 contra o limiar 0,84).
+- O RAG herda os limites do 03: cobre 33 páginas da Prefeitura de SJC e tem falsa abstenção conhecida ("O que o PAIF faz?", cosseno 0,835 contra o limiar 0,84). A página de iluminação pública ficou fora do corpus ("em construção"), então o assistente responde "não sei" sobre iluminação, embora seja uma das categorias de relato do robô da 06.
 - As 30 perguntas de teste foram reescritas com fatos do corpus real e medidas com dois LLMs. As respostas esperadas são palavras-chave, e a revisão que corrige a correção automática foi assistida por IA, com leitura de cada resposta contra a página de origem; uma amostra das notas foi conferida por um integrante do grupo.
 - A correção automática do LLM confere palavras-chave, uma aproximação. O grupo pode corrigir na coluna `acerto_manual`.
 - A guarda de emergência usa uma lista de palavras, então frases que fujam dela vão para o LLM.

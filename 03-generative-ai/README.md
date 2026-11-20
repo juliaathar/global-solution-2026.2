@@ -24,6 +24,20 @@ Projeto **EloBairro**, disciplina Generative AI & Advanced Nets (Turma 2TIAPF), 
 - [~] Relatório: perguntas, evidências recuperadas, respostas, métricas, análise crítica (`relatorio/relatorio_avaliacao.md`; a seção 6.4 traz a revisão humana de 15 respostas, feita por Júlia Aben-Athar; exportar para PDF se exigido)
 - [x] Vídeo de até 5 min com sucessos, falhas, mitigação e limites: https://youtu.be/P8tk_suSmPo (não listado; roteiro em `relatorio/roteiro_video.md`)
 
+## Papel no EloBairro e ligação com as outras disciplinas
+
+Este é o motor que responde às perguntas do cidadão sobre serviços públicos. Ele é usado de três formas:
+
+| Quem usa | O que usa daqui | Observação |
+|---|---|---|
+| App, aba Perguntar (`POST /rag/perguntar` em `01-front-end`) | motor completo: busca, gerador e proteções | é o caminho avaliado neste README |
+| App, voz (`POST /voz/perguntar` em `01-front-end`) | motor completo, entre o STT e o TTS da `02-pln-voz` | usa as proteções avaliadas neste README |
+| Assistente de voz da `02-pln-voz` (`app.py`) | só a recuperação e os filtros (`llm/base_rag.py` da 02) | o LLM, a memória e a guarda de emergência são os da 02, avaliados lá com `qwen2.5` local |
+
+O corpus foi escolhido para combinar com os relatos que o robô da `06-rpa` registra: as categorias dele (buraco, lixo, calçada, alagamento, saúde) têm página correspondente aqui (tapa-buracos, limpeza e lixeiras, calçada segura, limpeza de bueiros, UBS). A exceção é **iluminação**: a página da prefeitura estava "em construção" e foi descartada, então o motor se abstém nesse assunto. Os dois módulos usam a mesma cidade, São José dos Campos.
+
+O `gpt-4o-mini` é o LLM avaliado aqui e o padrão do `.env.example` da raiz. A `02-pln-voz` escolheu um LLM local (`qwen2.5:1.5b`) para não enviar a pergunta a terceiros; para seguir essa escolha também no app, troque `LLM_PROVIDER` e `LLM_MODEL` no `.env`, sabendo que as métricas deste README foram medidas com o `gpt-4o-mini`.
+
 ## Corpus e ingestão
 
 - Município: São José dos Campos (mesma cidade do RPA em `06-rpa`). Fonte: páginas de serviços do portal da Prefeitura (`sjc.sp.gov.br/servicos/`).
